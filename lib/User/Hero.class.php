@@ -39,11 +39,11 @@ class User_Hero extends User_Base{
 			if( is_array( $keys ) )
 				foreach( $keys as $v ){
 					$hero = $this->redis->hgetall($v);
-					/*for( $i=1;$i<7; $i++ ){
+					for( $i=1;$i<7; $i++ ){
 						if( empty( $hero['equip'.$i] ) ){
 							unset( $hero['equip'.$i] );
 						}
-					}*/
+					}
 					$this->hinfo[] = $hero;
 					unset($hero);
 				}
