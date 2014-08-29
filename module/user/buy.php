@@ -1,0 +1,106 @@
+<?php
+/**
+ *@ buy 用户购买行为
+ **/
+ $user = new User_User();
+ $type = isset( $input['t'] ) ? $input['t'] : 0;
+
+ if( empty( $type ) ){
+ 	ret('YMD',-1);
+ }
+
+ $config = array(
+ 		1=>array('name'=>'购买体力'		,'tag'=>'buyLifeDay'),
+ 		2=>array('name'=>'点金手'		,'tag'=>'exchangeMoneyTimesDay'),
+ 		3=>array('name'=>'购买竞技场次数'	,'tag'=>'buyArenaTimesDay'		,'to'=>'doArenaTimesDay'),
+ 		4=>array('name'=>'消除竞技场冷却时间'	,'tag'=>'delAreanTimeDay'		,'to'=>'doArenaTimesDay'),
+ 		5=>array('name'=>'购买技能点次数'	,'tag'=>'buyPointDay' ),
+	     );
+ if( !isset( $config[$type] ) ){
+ 	ret('YMD', -1);
+ }
+ $tag = $config[$type]['name'];
+ $limit = new User_Limit( $config[$type]['tag'] );
+ if( $limit->getLastTimes() < 1 ){
+ 	ret( ' 购买次数已达上限 ',-1);
+ }
+ switch ($type) {
+ 	case '1': //购买体力 
+ 		$cooldou = $limit->getOneTimeCooldou();
+ 		if( $user->getCooldou() >= $cooldou ){
+ 			$add['jewel'] = -$cooldou;
+ 			$add['life'] = $limit->getGiveNum();
+ 			$ret = $user->sendGoodsFromConfig($add);
+ 		}else{
+ 			ret( 'no_jewel', -1 );
+ 		}
+ 		break;
+ 	case '2'://点金手 		$u
+		$times = $limit->getUsedTimes();
+		$reCooldou = true;
+		$buyGold = new Buy( 'buyGold', ($times+1) );
+		$config = $buyGold->getConfig();
+		
+		$reCooldou = $user->reduceCooldou( $config['BuyGold_Cost'] );
+	
+		if( $reCooldou !== false ){
+			$rates[1] = $config['BuyGold_Rate1']/10000;
+			$rates[2] = $config['BuyGold_Rate2']/10000;
+			$rates[5] = $config['BuyGold_Rate3']/10000;
+			$rates[10] = $config['BuyGold_Rate4']/10000;
+			$rate = retRate( $rates );
+			if( !isset( $rates[ $rate ] ) ){
+				$rate = 1;
+			}else{
+				$rate = $rate ;
+			}
+
+			$good['money'] = $config['BuyGold_Get'] * $rate;
+			$ret = $user->sendGoodsFromConfig(json_encode($good));
+			$ret['addMoney'] = $good['money'];
+			$ret['rate'] = $rate;
+			$ret['times'] = $times+1;
+		}else{
+			ret( '钻石不足',-1 );
+		}
+ 		break;
+ 	case '3': //购买竞技场战斗次数
+ 		$cooldou = $limit->getOneTimeCooldou();
+ 		if( $user->getCooldou() >= $cooldou ){
+ 			$add['jewel'] = -$cooldou;
+ 			$toLimit = new User_Limit( $config[$type]['to'] );
+ 			$toLimit->delLimit();
+ 			$ret = $user->sendGoodsFromConfig($add);
+ 		}else{
+ 			ret( 'no_jewel', -1 );
+ 		}
+ 		break;
+ 	case '4': //消除竞技场冷却时间
+ 		$cooldou = $limit->getOneTimeCooldou();
+ 		if( $user->getCooldou() >= $cooldou ){
+ 			$add['jewel'] = -$cooldou;
+ 			$toLimit = new User_Limit( $config[$type]['to'] );
+ 			$toLimit->delTimeLimit();
+ 			$ret = $user->sendGoodsFromConfig($add);
+ 		}else{
+ 			ret( 'no_jewel', -1 );
+ 		}
+ 		break;
+ 	case '5': //购买技能点
+ 		$cooldou = $limit->getOneTimeCooldou();
+ 		if( $user->getCooldou() >= $cooldou ){
+ 			$add['jewel'] = -$cooldou;
+ 			$user->addUserSkillPoint( $limit->getGiveNum() );
+ 			$ret = $user->sendGoodsFromConfig($add);
+ 		}else{
+ 			ret( 'no_jewel', -1 );
+ 		}
+ 		break;
+ 	default:
+ 		# code...
+ 		break;
+ }
+ $limit->addLimitTimes(1);
+ ret( $ret );
+
+?>
