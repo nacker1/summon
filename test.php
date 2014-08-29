@@ -15,7 +15,7 @@
 		}
 		return $temp[0];
 	}
-	echo king( 30, 9 );
+	echo king( 30, 8 );
 /**
  *@ 测试脚本
  **/
