@@ -25,7 +25,7 @@ class User_Hero extends User_Base{
 				$this->db;
 				$this->redis->hdel('roleinfo:'.$this->uid.':hero:*');
 				#hid,level,exp,color,star,equip1,equip2,equip3,equip4,equip5,equip6,config
-				$heros = $this->db->find($this->table,'hid,level,exp,color,star,equip1,equip2,equip3,equip4,equip5,equip6,config',array('uid'=>$this->uid));
+				$heros = $this->db->find($this->table,'fire,hid,level,exp,color,star,equip1,equip2,equip3,equip4,equip5,equip6,config',array('uid'=>$this->uid));
 				#$this->hinfo = $heros;
 				if( is_array( $heros ) )
 					foreach( $heros as $v ){
@@ -47,7 +47,6 @@ class User_Hero extends User_Base{
 					$this->hinfo[] = $hero;
 					unset($hero);
 				}
-			
 		}else{//用户指定英雄
 			if( $this->redis->exists( 'roleinfo:'.$this->uid.':hero:'.$this->hid ) ){
 				self::$heroInfo[$this->hid] = $this->redis->hgetall( 'roleinfo:'.$this->uid.':hero:'.$this->hid );
