@@ -19,7 +19,7 @@
  	}
 
  	private function _init(){
- 		if( C('test') || ( !$this->pre->exists( 'baseBuyGoldConfig:'.$this->key ) && !$this->pre->hget( 'baseBuyGoldConfig:check', 'checked' ) ) ){
+ 		if( C('test') || !$this->pre->hget( 'baseBuyGoldConfig:check', 'checked' ) ){
  			$this->cdb;
  			$ret = $this->cdb->find( $this->buyConfig[$this->tag]['name'] );
  			foreach( $ret as $v ){
