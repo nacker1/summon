@@ -130,7 +130,7 @@
  			}
  			unset($merc);
  		}
- 		ret( array('list'=>$ret) );
+ 		ret( array('firend'=>$ret,'sys'=>$ret) );
  	case '9':# 确认雇佣好友佣兵
  		$friendUid = $input['fid'];
  		$uMerc = new User_Merc();
