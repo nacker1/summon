@@ -3,7 +3,7 @@
  *@ 排行榜通用类
  **/
 class Top extends Base{
-	private $type;				//排行榜类型 1为金币排行榜  2为等级排行
+	private $type;				//排行榜类型 1为金币排行榜  2为等级排行  3为钻石排行榜
 	private $redisTag='topList';		//排行榜在redis中的标签
 	private $topPre;			//排行榜redis连接源
 
