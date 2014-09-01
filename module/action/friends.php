@@ -120,17 +120,21 @@
  		$uMerc = new User_Merc();
  		$hasMerc = $uMerc->getHadList();
  		foreach( $fList as $v ){
- 			if( in_array( $v['uid'], $hasMerc ) ){
+ 			if(  !empty( $hasMerc ) && in_array( $v['uid'], $hasMerc ) ){
  				continue;
  			}
  			$merc = new User_Merc( $v['uid'] );
- 			$ret[] = $merc->getMercHero();
+ 			$fMerc = $merc->getMercHero();
+ 			if( !empty( $fMerc ) ){
+ 				$ret[] = $fMerc;
+ 			}
  			unset($merc);
  		}
- 		ret( $ret );
+ 		ret( array('list'=>$ret) );
  	case '9':# 确认雇佣好友佣兵
- 		$friendUid = $input[''];
+ 		$friendUid = $input['fid'];
  		$uMerc = new User_Merc();
+ 		$uMerc->addHadUid( $friendUid );
  		ret( $ret );
  	default:
  		# code...
