@@ -16,6 +16,13 @@
 			foreach( $heroList as $v ){
 				if( $v['fire'] > $maxFire ){
 					$maxFire = $v['fire'];
+					$v['uName'] = $user->getUserName();
+					for( $i=1;$i<=6;$i++ ){
+						if( empty( $v['equip'.$i] ) ){
+							unset( $v['equip'.$i] );
+						}
+					}
+					unset( $v['star'] );
 					$mercHero = $v;
 				}
 			}
