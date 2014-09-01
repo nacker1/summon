@@ -130,7 +130,16 @@
  			}
  			unset($merc);
  		}
- 		ret( array('firend'=>$ret,'sys'=>$ret) );
+ 		$sysUser = $uMerc->getSysMercHero();
+ 		$sysUserList = array();
+ 		foreach( $sysUser as $k=>$v ){
+ 			if( $k == $user->getUid() )continue;
+ 			if( in_array( $k, $hasMerc ) )continue;
+ 			if( $friend->isFriend( $k ) )continue;
+ 			if( count( $sysUserList ) > 4 ) break;
+ 			$sysUserList[$k] = $v;
+ 		}
+ 		ret( array('firend'=>$ret,'sys'=>$sysUserList) );
  	case '9':# 确认雇佣好友佣兵
  		$friendUid = $input['fid'];
  		$uMerc = new User_Merc();
