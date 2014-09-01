@@ -28,7 +28,7 @@
 					$this->sInfo = $v;
 				}
 			}
-			$this->pre->expire( 'heroSkillCost:checked',86400 );
+			$this->pre->set( 'heroSkillCost:checked',1,get3time() );
 		}else{
 			$this->sInfo = $this->pre->hgetall( 'heroSkillCost:list:'.$this->level );
 		}
