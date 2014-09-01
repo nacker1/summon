@@ -162,6 +162,16 @@ class User_Friend extends User_Base{
 		}
 	}
 /**
+ *@ isFriend 用于判断用户是否为当前用户的好友
+ **/
+	public function isFriend( $uid ){
+		$friends = $this->getFriendList();
+		foreach( $friends as $v ){
+			if( $uid == $v['uid'] )return true;
+		}
+		return false;
+	}
+/**
  *@ getErrorInfo 获取错误信息
  **/
 	public function getErrorInfo(){
