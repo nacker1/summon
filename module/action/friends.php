@@ -126,7 +126,7 @@
  			$merc = new User_Merc( $v['uid'] );
  			$fMerc = $merc->getMercHero();
  			if( !empty( $fMerc ) ){
- 				$ret[] = $fMerc;
+ 				$ret[$v['uid']] = $fMerc;
  			}
  			unset($merc);
  		}
