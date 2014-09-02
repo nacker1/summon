@@ -67,7 +67,6 @@
 			}
 		}
 		$point = $point;
-		$point['max'] = $max;
 		return $point;
 	}
 
