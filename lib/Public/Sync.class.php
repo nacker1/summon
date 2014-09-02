@@ -46,14 +46,14 @@ class Sync extends Base{
 			$this->db = Db_Mysql::init( $v['dbTag'] );
 			if( empty($v['opt'] ) ){
 				if( empty( $v['where']  ) ){
-					$opt = 1;
+					$v['opt'] = 1;
 				}elseif( empty( $v['data'] ) ){
-					$opt = 3;
+					$v['opt'] = 3;
 				}else{
-					$opt = 2;
+					$v['opt'] = 2;
 				}
 			}
-			switch( $opt ){
+			switch( $v['opt'] ){
 				case '1':
 					$ret = $this->db->insert( $v['table'],$v['data'] );break;
 				case '2':
