@@ -30,7 +30,8 @@
 
 	foreach( $sync as $v ){
 		$data = json_decode($v,true);
+
 		$sync = new Sync( $data );
-		$sync->exec();
+		//$sync->exec();
 	}
 ?>
