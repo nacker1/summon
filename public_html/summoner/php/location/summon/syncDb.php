@@ -21,11 +21,11 @@
 			case '-f':
 				$data['tag'] = $_SERVER['argv'][$i+1];break;*/
 			case '-s':
-				$sync['data'] = $_SERVER['argv'][$i+1];break;
+				$sync = unserialize( $_SERVER['argv'][$i+1] );break;
 		}
 	}
-	dump($_SERVER['argv']);exit;
-	if( empty( $sync['data'] ) ){
+	dump($sync);exit;
+	if( empty( $sync ) ){
 		exit('参数错误');
 	}
 
