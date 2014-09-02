@@ -142,7 +142,7 @@
 		$insert['jewel'] = $uInfo['jewel'];
 		$insert['version'] = $version ? $version : '1.0.0';
 		$insert['channel'] = $channel ? $channel : 1;
-		$insert['time'] = time();
+		$insert['time'] = date('Y-m-d H:i:s');
 		$insert['isNew'] = $this->isNew;
 		$this->setThrowSQL( $this->loginLogTable,$insert,'',1,'stats' );
 		$this->setLoginTime();
