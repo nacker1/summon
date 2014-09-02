@@ -28,6 +28,7 @@ class Sync extends Base{
 				$this->opt = 2;
 			}
 		}
+		$this->log->i( json_encode($data) );
 	}
 
 	function sendCommand(){
