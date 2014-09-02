@@ -55,6 +55,7 @@ class Sync extends Base{
 			$this->log->i( $this->db->getLastSql().'【'. ( gettimeofday(true) - C('com_start') ).'】' );
 			if( !$ret )
 				$this->log->e( $this->db->getLastSql() );
+			unset($this->db);
 		}
 	}
 }
