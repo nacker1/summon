@@ -24,15 +24,12 @@
 				$sync = unserialize( $_SERVER['argv'][$i+1] );break;
 		}
 	}
-	dump($sync);exit;
 	if( empty( $sync ) ){
 		exit('参数错误');
 	}
 
 	foreach( $sync as $v ){
-		$data = json_decode($v,true);
-
-		$sync = new Sync( $data );
-		//$sync->exec();
+		$sync = new Sync( $v );
+		$sync->exec();
 	}
 ?>
