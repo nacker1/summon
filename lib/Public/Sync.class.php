@@ -56,7 +56,7 @@ class Sync extends Base{
 			$temp = self::$syncData;
 			self::$syncData = '';
 			$com = 'php /data/web/summon/syncDb.php -s '.json_encode($temp).' &';
-			#$this->log->i($com);
+			$this->log->i($com);
 			if( PHP_OS == 'Linux' )
 				@pclose(popen( $com,'r' ));
 		}
