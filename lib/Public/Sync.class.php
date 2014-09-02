@@ -13,22 +13,7 @@ class Sync extends Base{
 	function __construct( $data ){
 		parent::__construct();
 		$this->data = $data;
-		/*$this->table = $data['table'];
-		$this->data = $data['data'];
-		$this->where = $data['where'];
-		$this->opt = isset($data['opt'])?$data['opt']:'';
-		$this->dbTag = isset($data['tag'])?$data['tag']:'master';
-		
-		if( empty($this->opt) ){
-			if( empty( $this->where ) ){
-				$this->opt = 1;
-			}elseif( empty( $this->data ) ){
-				$this->opt = 3;
-			}else{
-				$this->opt = 2;
-			}
-		}
-		$this->log->i( json_encode($data) );*/
+		$this->log->i(json_encode($this->data));
 	}
 
 	function sendCommand(){
