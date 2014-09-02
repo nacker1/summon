@@ -41,7 +41,7 @@ class Sync extends Base{
 
 	function exec(){ //执行sendCommand抛出来的sql
 		C('com_start',gettimeofday(true));
-		$this->log->i( json_encode($this->data) );exit;
+		$this->log->i( json_encode($this->data) );
 		foreach( $this->data as $v ){
 			$this->db = Db_Mysql::init( $v['dbTag'] );
 			switch( $v['opt'] ){
@@ -57,16 +57,5 @@ class Sync extends Base{
 				$this->log->e( $this->db->getLastSql() );
 		}
 	}
-
-	/*function __destruct(){
-		if( !empty( self::$syncData ) && is_array( self::$syncData ) ){
-			$temp = self::$syncData;
-			self::$syncData = '';
-			$com = 'php /data/web/summon/syncDb.php -s \''.serialize($temp).'\' &'; 
-			$this->log->i($com);
-			if( PHP_OS == 'Linux' )
-				@pclose(popen( $com,'r' ));
-		}
-	}*/
 }
 ?>
