@@ -66,6 +66,7 @@ class User_Pay extends User_Base{
 		$pay['channel'] = $this->channel;
 		$pay['status'] = $this->getStatus();
 		#$pay['error'] = $this->getError();
+		$pay['payType'] = $this->payType;
 		$pay['sid'] = $this->getServerId();
 		$pay['uid'] = $this->getUid();
 		$pay['orderid'] = $this->orderid;

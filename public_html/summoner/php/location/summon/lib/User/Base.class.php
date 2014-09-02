@@ -508,7 +508,7 @@
 			$this->userLog['sid'] = self::$userinfo[$this->uid]['sid'];
 			$this->userLog['uid'] = $this->uid;
 			$this->userLog['tag'] = $tag;
-			$this->userLog['time'] = time();
+			$this->userLog['time'] = date('Y-m-d H:i:s');
 			$this->setThrowSQL( 'zy_statsUserLog', $this->userLog, '', 1, 'stats' );
 			//$this->sdb->insert('zy_statsUserLog',$this->userLog);
 		}
