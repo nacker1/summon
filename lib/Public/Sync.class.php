@@ -31,7 +31,7 @@ class Sync extends Base{
 	}
 
 	function sendCommand(){
-		self::$syncData[] = array( 'table'=>$this->table, 'data'=>serialize($this->data), 'where'=>serialize($this->where), 'opt'=>$this->opt, 'tag'=>$this->dbTag );
+		self::$syncData[] = array( 'table'=>$this->table, 'data'=>($this->data), 'where'=>($this->where), 'opt'=>$this->opt, 'tag'=>$this->dbTag );
 	}
 
 	function exec(){ //执行sendCommand抛出来的sql
