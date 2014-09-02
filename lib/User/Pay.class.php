@@ -65,10 +65,11 @@ class User_Pay extends User_Base{
 		$pay['money'] = $this->money;
 		$pay['channel'] = $this->channel;
 		$pay['status'] = $this->getStatus();
-		$pay['error'] = $this->getError();
+		#$pay['error'] = $this->getError();
 		$pay['sid'] = $this->getServerId();
 		$pay['uid'] = $this->getUid();
 		$pay['orderid'] = $this->orderid;
+		$pay['time'] = date('Y-m-d H:i:s');
 		$this->setThrowSQL( $this->payLogTable, $pay, '', 1, 'stats' );
 	}
 }
