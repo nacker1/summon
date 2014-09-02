@@ -47,7 +47,7 @@
 			$limit->setTimeLimit();
 			break;
 	}
-	
+
 	$draw = new User_Draw( $type );
 
 	$give['good'] = $draw->getGift( $num );
