@@ -70,8 +70,8 @@ class User_Draw extends User_Base{
 			}
 			array_push( $ret, implode(',',$good) );
 			unset($good);
+			$this->setMissionId( 2,65 );
 		}
-		$this->setMissionId( 2,65 );
 		return implode('#',$ret);
 	}
 }
