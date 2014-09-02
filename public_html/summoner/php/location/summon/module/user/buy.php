@@ -60,6 +60,7 @@
 			$ret['addMoney'] = $good['money'];
 			$ret['rate'] = $rate;
 			$ret['times'] = $times+1;
+			$user->setMissionId( 2, 67 );
 		}else{
 			ret( '钻石不足',-1 );
 		}
