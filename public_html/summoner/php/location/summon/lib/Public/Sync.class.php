@@ -55,7 +55,7 @@ class Sync extends Base{
 		if( !empty( self::$syncData ) && is_array( self::$syncData ) ){
 			$temp = self::$syncData;
 			self::$syncData = '';
-			$com = 'php /data/web/summon/syncDb.php -s '.serialize(json_encode($temp)).' &'; 
+			$com = 'php /data/web/summon/syncDb.php -s '.serialize($temp).' &'; 
 			$this->log->i($com);
 			if( PHP_OS == 'Linux' )
 				@pclose(popen( $com,'r' ));
