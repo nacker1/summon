@@ -144,7 +144,6 @@
 			$this->setUpdTime(3);
 			$this->log->i('* 用户#'.$this->uid.'#扣除#'.$nums.'#体力'.self::$userinfo[$this->uid]['life'].'->'.( self::$userinfo[$this->uid]['life']-$nums ) );
 			self::$updinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life']-$nums;
-
 			return self::$userinfo[$this->uid]['life'];
 		}else{
 			return false;
