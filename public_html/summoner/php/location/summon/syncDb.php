@@ -24,7 +24,7 @@
 				$sync['data'] = $_SERVER['argv'][$i+1];break;
 		}
 	}
-	dump($sync);
+	dump($_SERVER['argv']);exit;
 	if( empty( $sync['data'] ) ){
 		exit('参数错误');
 	}
