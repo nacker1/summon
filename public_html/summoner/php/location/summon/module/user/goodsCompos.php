@@ -31,7 +31,6 @@
 				ret('还差（'.($money-$uMoney).'）金币才能合成。',-1);
 			}
 
-			$give['money'] = -$money;
 			$gTemp = array();
 			$goods = explode('&',$config);
 			$i = 0;
@@ -51,6 +50,7 @@
 				$i++;
 			}
 			array_push( $gTemp, $comid.',1' );
+			$give['money'] = -$money;
 			$give['good'] = implode('#',$gTemp);
 			$ret = $user->sendGoodsFromConfig( $give );
 
