@@ -516,13 +516,13 @@
 /**
  *@ throwSQL 如果信息有改动抛出sql语句后台自动同步
  **/
-	public function throwSQL( $table, $upd, $where='',$opt='', $db='' ){
-		$init['table'] = $table;
+	public function throwSQL( $data ){
+		/*$init['table'] = $table;
 		$init['data'] = $upd;
 		$init['where'] = $where;
 		$init['opt'] = $opt;
-		$init['tag'] = $db;
-		$proxy = $this->proxy( $init, 'Sync', 'sendCommand' );
+		$init['tag'] = $db;*/
+		$proxy = $this->proxy( $data, 'Sync', 'sendCommand' );
 		$proxy->exec();
 	}
 /**
@@ -606,9 +606,10 @@
 		if( !empty( self::$throwSQL ) && count( self::$throwSQL>0 ) ){
 			$throwSQL = self::$throwSQL;
 			self::$throwSQL = array();
-			foreach( $throwSQL as $val ){
+			/*foreach( $throwSQL as $val ){
 				$this->throwSQL( $val['table'], $val['data'], $val['where'], $val['opt'] );
-			}
+			}*/
+			$this->throwSQL( $throwSQL );
 		}
 	}
  }

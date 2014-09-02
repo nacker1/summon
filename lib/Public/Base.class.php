@@ -3,7 +3,6 @@
  *@ 初始化
  **/
 class Base{
-	static protected $syncData;		//同步的数据
 	protected $log;			//日志
 	protected $uid;			//用户uid
 
@@ -67,17 +66,6 @@ class Base{
 			}
 		}
 		return -1;
-	}
-
-	function __destruct(){
-		if( !empty( self::$syncData ) && is_array( self::$syncData ) ){
-			$temp = self::$syncData;
-			self::$syncData = '';
-			$com = 'php /data/web/summon/syncDb.php -s \''.serialize($temp).'\' &'; 
-			$this->log->i($com);
-			if( PHP_OS == 'Linux' )
-				@pclose(popen( $com,'r' ));
-		}
 	}
 }
 ?>
