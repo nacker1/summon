@@ -27,7 +27,7 @@
 	if( empty( $data ) ){
 		exit('参数错误');
 	}
-
+	dump($data);exit;
 	$sync = new Sync( $data );
 	$sync->exec();
 
