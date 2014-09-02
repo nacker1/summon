@@ -205,6 +205,7 @@
 					$user->reduceUserSkillPoint();
 					$hero->skillUp( $sIndex );
 					$ret['hero'] = $hero->getLastUpdField();
+					$ret['skill'] = $user->getUserSkillInfo();
 					ret( $ret );
 				}else{
 					ret('服务器繁忙，请重试！',-1);
