@@ -21,7 +21,7 @@
 			case '-f':
 				$data['tag'] = $_SERVER['argv'][$i+1];break;*/
 			case '-s':
-				$sync['data'] = $_SERVER['argv'][$i+1];break;
+				$sync['data'] = json_decode( $_SERVER['argv'][$i+1], true );break;
 		}
 	}
 	if( empty( $sync['data'] ) ){
