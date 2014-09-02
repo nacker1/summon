@@ -24,6 +24,7 @@
 				$sync['data'] = json_decode( $_SERVER['argv'][$i+1], true );break;
 		}
 	}
+	dump($sync);
 	if( empty( $sync['data'] ) ){
 		exit('参数错误');
 	}
