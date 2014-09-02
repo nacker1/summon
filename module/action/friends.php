@@ -139,7 +139,7 @@
  			if( count( $sysUserList ) > 4 ) break;
  			$sysUserList[$k] = $v;
  		}
- 		ret( array('firend'=>$ret,'sys'=>$sysUserList) );
+ 		ret( array('friend'=>$ret,'sys'=>$sysUserList) );
  	case '9':# 确认雇佣好友佣兵
  		$friendUid = $input['fid'];
  		$uMerc = new User_Merc();
