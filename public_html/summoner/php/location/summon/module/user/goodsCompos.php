@@ -98,7 +98,7 @@
  			$log->e( '用户'.$user->getUid().'强化装备【'.$gCom->getGoodName().'】失败，能量值不足'.$consumeEnergy.' > '.$tolEnergy );
  			ret( 'no_enough_energy_'.__LINE__, -1 );
  		}
- 		$uset->setMissionId( 2,37 );
+ 		$user->setMissionId( 2,37 );
  		$goods[] = $comid.',-1';
  		$goods[] = ($comid+1).',1';
 
