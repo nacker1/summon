@@ -41,6 +41,7 @@ class Sync extends Base{
 
 	function exec(){ //执行sendCommand抛出来的sql
 		C('com_start',gettimeofday(true));
+		$this->log->i( json_encode($this->data) );exit;
 		foreach( $this->data as $v ){
 			$this->db = Db_Mysql::init( $v['dbTag'] );
 			switch( $v['opt'] ){
