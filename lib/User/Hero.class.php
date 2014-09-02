@@ -275,7 +275,7 @@ class User_Hero extends User_Base{
 		$skillConf =$this->getSkillConfig();
 		$skillConf[ $skillIndex ] += 1;
 		$this->log->i('* 用户#'.$this->uid.'#升级英雄#'.$this->hid.'#'.$skillIndex.'技能->'.$skillConf[ $skillIndex ]);
-		self::$missionIdList[2][] = 27;
+		$this->setMissionId( 2, 27 );
 		self::$lastUpdHero[$this->hid]['config'] = json_encode($skillConf);
 		return self::$heroInfo[$this->hid]['config'] = json_encode($skillConf);
 	}
