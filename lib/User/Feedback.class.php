@@ -20,6 +20,7 @@
  		$insert['con'] = addslashes($con);
  		$insert['type'] = $this->type;
  		$insert['sid'] = $this->getServerId();
+ 		$insert['time'] = 'now()';
  		$this->setThrowSQL( $this->table,$insert,'',1,'stats' );
  		//$this->sdb->insert( $this->table,$insert );
  	}
