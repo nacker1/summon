@@ -143,25 +143,32 @@
 			switch( $k ){
 				case 'money':
 					$this->addMoney($v);
+					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'life':
 					$this->addLife($v);
+					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'jewel':
 				case 'cooldou':
 					$this->addCooldou($v);
+					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'exp':
 					$this->addExp($v);
+					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'mFriend':
 					$this->addUserRecord('mFriend',$v);
+					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'mAction':
 					$this->addUserRecord('mAction',$v);
+					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'mArena':
 					$this->addUserRecord('mArena',$v);
+					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'good':
 					if( !empty( $v ) ){
@@ -197,7 +204,6 @@
 				default:break;
 			}
 		}
-		$uInfo = $this->getUserLastUpdInfo();
 
 		if( is_array( $uInfo ) ){
 			$ret = array_merge( $ret, $uInfo );
