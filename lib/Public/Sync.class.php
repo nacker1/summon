@@ -44,7 +44,16 @@ class Sync extends Base{
 		$this->log->i( json_encode($this->data) );
 		foreach( $this->data as $v ){
 			$this->db = Db_Mysql::init( $v['dbTag'] );
-			switch( $v['opt'] ){
+			if( empty($v['opt'] ) ){
+				if( empty( $v['where']  ) ){
+					$opt = 1;
+				}elseif( empty( $v['data'] ) ){
+					$opt = 3;
+				}else{
+					$opt = 2;
+				}
+			}
+			switch( $opt ){
 				case '1':
 					$ret = $this->db->insert( $v['table'],$v['data'] );break;
 				case '2':
@@ -55,7 +64,6 @@ class Sync extends Base{
 			$this->log->i( $this->db->getLastSql().'【'. ( gettimeofday(true) - C('com_start') ).'】' );
 			if( !$ret )
 				$this->log->e( $this->db->getLastSql() );
-			unset($this->db);
 		}
 	}
 }
