@@ -3,7 +3,6 @@
  *@ 用户数据库自动同步类 
  **/
 class Sync extends Base{
-	static private $syncData;		//同步的数据
 	private $table;				//需要同步的表
 	private $data;				//同步的数据
 	private $where;				//同上数据时的条件
@@ -49,17 +48,6 @@ class Sync extends Base{
 		$this->log->i( $this->db->getLastSql().'【'. ( gettimeofday(true) - C('com_start') ).'】' );
 		if( !$ret )
 			$this->log->e( $this->db->getLastSql() );
-	}
-
-	function __destruct(){
-		if( !empty( self::$syncData ) && is_array( self::$syncData ) ){
-			$temp = self::$syncData;
-			self::$syncData = '';
-			$com = 'php /data/web/summon/syncDb.php -s \''.serialize($temp).'\' &'; 
-			$this->log->i($com);
-			if( PHP_OS == 'Linux' )
-				@pclose(popen( $com,'r' ));
-		}
 	}
 }
 ?>
