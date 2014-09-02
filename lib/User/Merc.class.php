@@ -34,7 +34,7 @@ class User_Merc extends User_Base{
 	function setMercHero( $heroInfo ){
 		$sysListString = self::$cond->get( 'sysTempUser' );
 		$sysList = explode( '#', trim( $sysListString,'#' ) );
-		if( empty( $sysList ) || count( $sysList ) < 86 ){
+		if( empty( $sysList ) || count( $sysList ) < 40 ){
 			empty( $sysListString ) && $sysListString='';
 			if( !in_array( $this->uid, $sysList ) )
 				self::$cond->set( $sysListString.'#'.$this->uid, 'sysTempUser' );
