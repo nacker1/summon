@@ -92,6 +92,7 @@
  			$add['jewel'] = -$cooldou;
  			$user->addUserSkillPoint( $limit->getGiveNum() );
  			$ret = $user->sendGoodsFromConfig($add);
+ 			$ret['skill'] = $user->getUserSkillInfo();
  		}else{
  			ret( 'no_jewel', -1 );
  		}
