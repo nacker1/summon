@@ -54,8 +54,7 @@
  			$this->redis;
  			if( C('test') || !$this->redis->exists( 'roleinfo:'.$this->uid.':mission:11' ) ){
  				$this->db;
- 				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress,status,type', array( 'uid'=>$this->uid,'status'=>0 ) ); 				
- 				
+ 				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress,status,type', array( 'uid'=>$this->uid,'status'=>0 ) ); 	
  				if( $ret && is_array( $ret ) ){
  					foreach( $ret as $v ){
  						$this->redis->del('roleinfo:'.$this->uid.':mission:'.$v['type']);
