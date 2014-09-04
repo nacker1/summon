@@ -1,22 +1,22 @@
 <?php
 /**
- *@ redis»ù´¡Àà Ê¹ÓÃµ¥ÀýÄ£Ê½ 
+ *@ mysql类
  **/
 class Db_Mysql{
-	private $type = '';//Ä¬ÈÏÎª´Ó¿â 
+	private $type = '';		#记录当前db初始化时的类型值
 	private $connect;
 	private $queryId;
 	private $lastSql;
-	private $dbconf;	//Êý¾Ý¿âÅäÖÃÐÅÏ¢
-	private $lastInsertId;		//最后插入的id
+	private $dbconf;		#当前类型值对应的配置信息
+	private $lastInsertId;		#最后插入的id
 	static $mysql=array();
 
 	private function __construct($config,$type=''){
 		$this->type = $type;
 		$this->dbconf = $config;
-		$this->connect = mysql_connect($config['host'].':'.$config['port'],$config['username'],$config['password']) or die('Mysql connect fail!'.self::error());
-		mysql_select_db($config['dbname'],$this->connect) or die('select_db fail'.self::error());
-		mysql_query('set names "'.$config['charset'].'"',$this->connect) or die('mysql_query set names fail'.self::error());
+		$this->connect = mysql_connect($config['host'].':'.$config['port'],$config['username'],$config['password']) or die('Mysql connect fail!'.mysql_error());
+		mysql_select_db($config['dbname'],$this->connect) or die('select_db fail'.mysql_error());
+		mysql_query('set names "'.$config['charset'].'"',$this->connect) or die('mysql_query set names fail'.mysql_error());
 	}
 	public function getConfig(){
 		return $this->dbconf;
