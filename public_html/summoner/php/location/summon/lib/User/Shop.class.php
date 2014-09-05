@@ -93,18 +93,6 @@
 		}
 	}
 /**
- *@ isExists() 判断商店是否存在 
- **/
-	function isExists(){
-		$ret = $this->actRedis->get();//缓存的商店数据
-		if( empty( $ret ) || !is_array( $ret ) ){
-			if( isset( $this->shopConfig[$this->type]['vip'] ) && $this->getVlevel() < $this->shopConfig[$this->type]['vip'] ){
-				return 0;
-			}
-		}		
-		return 1;
-	}
-/**
  *@ getShopGoods() 随机抽取指定数量的商品
  **/
 	function getShopGoods(){
