@@ -2,8 +2,8 @@
 /**
  *@ 战场结算
  **/
-	//$str = '{"bossid":0,"buff":[72001],"cmd":9001,"currnk":0,"diamond":0,"goods":[{}],"heroexp":100,"heros":[10001],"hrank":0,"isboss":0,"money":1000,"pass":1,"playerexp":10,"roundid":3,"stageid":3,"stagetype":2,"tasktype":69,"uid":381440}';
-	//$input = json_decode($str,true);
+	$str = '{"bossid":0,"buff":[],"cmd":9001,"currnk":0,"diamond":0,"goods":[{"63003":1}],"heroexp":100,"heros":[10002,10004,10003,10005,10001],"hrank":0,"isboss":0,"money":0,"pass":1,"playerexp":10,"roundid":3,"stageid":3,"stagetype":2,"tasktype":68,"uid":381440}';
+	$input = json_decode($str,true);
 	if( count( $input )<5 ){
 		$log->e( '* 战斗请求数据格式不对.'.json_encode($input) );
 		ret( ' error_data ',-1 );
@@ -81,10 +81,10 @@
 			$heros = $input['heros'];
 			if( is_array( $heros ) ){
 				foreach( $heros as $v ){
-					$hero = new User_Hero( $uid, $v );
-					$hero->addHeroExp( $input['heroexp'] );
+					$hero[$v] = new User_Hero( $uid, $v );
+					$hero[$v]->addHeroExp( $input['heroexp'] );
 				}
-				$input['heros'] = $hero->getLastUpdField();
+				$input['heros'] = $hero[$v]->getLastUpdField();
 			}
 
 			//-==============处理用户通关进度 PVE==============
