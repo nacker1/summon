@@ -17,6 +17,8 @@
  			$cond = new Cond( 'dayLimit',$user->getUid() );
 	  		$ret['dayLimit'] = $cond->getAll('',1);
 	  		$ret['skill'] = $user->getUserSkillInfo();
+	  		$shop = new User_Shop( $user->getUid(), 2 );
+	  		$ret['vshop'] = $shop->isExists();
  			break;
  		case '1'://获取用户背包数据
  			$good = new User_Goods( $user->getUid() );
