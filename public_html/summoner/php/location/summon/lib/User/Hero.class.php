@@ -179,6 +179,8 @@ class User_Hero extends User_Base{
 		}
 		self::$lastUpdHero[$this->hid]['level'] = self::$heroInfo[$this->hid]['level'];
 		self::$lastUpdHero[$this->hid]['exp'] = self::$heroInfo[$this->hid]['exp'];
+		$this->log->i( json_encode( self::$lastUpdHero ) );
+		$this->log->i( json_encode( self::$heroInfo ) );
 		$this->setUpdTime();
 		return true;
 	}
@@ -265,6 +267,7 @@ class User_Hero extends User_Base{
  *@ 获取英雄最后更新的信息
  **/
 	function getLastUpdField(){
+		$this->log->i( json_encode( self::$lastUpdHero ) );
 		return self::$lastUpdHero;
 	}
 /**
