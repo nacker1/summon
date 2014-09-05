@@ -143,12 +143,31 @@
 			$add['money'] = $input['money'] * $sweepNum;		#添加金币
 		}
 
-		if( isset($input['tasktype']) && $input['tasktype'] < 14 && $input['tasktype'] > 10 ){ //通关系统任务
+		if( isset($input['tasktype']) && $input['tasktype'] < 14 && $input['tasktype'] > 10 ){ // pve逻辑处理
 			$proxy = new Proxy( 1, 'User_Mission', 'getUserMissingByClass' );
 			$miss = $proxy->exec( $input['tasktype'] );
 			if( $miss['progress']<$input['stageid'] ){//当前通关关卡比之前通关关卡id大，设置系统任务与用户通关进度
 				$user->setMissionId( 1, $input['tasktype'] );
 			}
+
+			#======================= 神密商店处理逻辑 ==============================
+			if( $user->getVlevel() > 9 ){
+				$input['vshop'] = 1;
+			}else{
+				$uLevel = $user->getLevel();
+				$input['vshop'] = 0;
+				if( $uLevel > 29 ){
+					if( $uLevel > 60 ){
+						$rate = 30;
+					}else{
+						$rate = 30 - ( 60-$uLevel ) * 0.5;
+					}
+					if( isLucky( $rate/100 ) ){
+						$input['vshop']  = 1;
+					}
+				}
+			}
+			#======================= 神密商店处理逻辑 ==============================	
 		}
 		if( is_array($input['goods']) && count( $input['goods'] ) > 0 ){
 			foreach( $input['goods'] as $val ){
