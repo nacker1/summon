@@ -2,7 +2,7 @@
 /**
  *@ 战场结算
  **/
-	//$str = '{"bossid":910102,"cmd":8003,"errno":0,"goods":[{"11001":1}],"heroexp":20,"heros":[10011],"isboss":0,"money":495,"pass":1,"passlevel":2,"playerexp":6,"roundid":910133,"stageid":910133,"stagetype":1,"tasktype":2,"uid":381440}';
+	//$str = '{"bossid":0,"buff":[72001],"cmd":9001,"currnk":0,"diamond":0,"goods":[{}],"heroexp":100,"heros":[10001],"hrank":0,"isboss":0,"money":1000,"pass":1,"playerexp":10,"roundid":3,"stageid":3,"stagetype":2,"tasktype":69,"uid":381440}';
 	//$input = json_decode($str,true);
 	if( count( $input )<5 ){
 		$log->e( '* 战斗请求数据格式不对.'.json_encode($input) );
@@ -100,7 +100,6 @@
 		}
 		
 		switch( $input['tasktype'] ){  //通关扣除体力
-			case '':		//其它活动
 			case '11': 	//普通关卡
 				$add['life'] = -6*$sweepNum;
 				break;
@@ -135,7 +134,7 @@
 						$good->addGoods( $v );
 					}
 			}
-			$input['getGoods'] = $good->getLastUpdGoods();
+			gettype($good) == 'object' && $input['getGoods'] = $good->getLastUpdGoods();
 		}
 		$log->i( json_encode($add) );
 	}else{
