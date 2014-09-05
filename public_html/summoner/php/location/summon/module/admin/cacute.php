@@ -111,6 +111,30 @@
 				$add['life'] = -24*$sweepNum;
 				$user->setMissionId(2,16);
 				break;
+			case '69':	//炼狱关卡
+				$add['life'] = -24*$sweepNum;
+				$user->setMissionId(2,69);
+				break;
+			case '70':	//炼狱关卡
+				$add['life'] = -6;
+				$user->setMissionId(2,70);
+				break;
+			case '71':	//炼狱关卡
+				$add['life'] = -6;
+				$user->setMissionId(2,71);
+				break;
+			case '68':	//炼狱关卡
+				$add['life'] = -6;
+				$user->setMissionId(2,68);
+				break;
+			case '66':	//炼狱关卡
+				$add['life'] = -6;
+				$user->setMissionId(2,66);
+				break;
+			case '67':	//炼狱关卡
+				$add['life'] = -6;
+				$user->setMissionId(2,67);
+				break;
 		}
 		if( $input['playerexp'] > 0 ){
 			$add['exp'] = $input['playerexp'] * $sweepNum;		#添加召唤师经验
