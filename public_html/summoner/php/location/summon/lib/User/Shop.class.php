@@ -13,7 +13,7 @@
 			'time'=>array(21),
 			'type'=>array(6,6,6,6,6,6,6,6,6,6,6,6),
 			'save'=>'60',			//商店保存时间
-			'vip'=>13			//该商店的vip要求
+			'vip'=>10			//该商店的vip要求
 		),	        				
 		3=>array(				//竞技场商店
 			'time'=>array(21),
@@ -39,7 +39,6 @@
 
 	 private $overTime;					//商店下一次刷新或消失的时间  用于倒计时
 
-	 private $out=0;						//商店是否消失标记
 	
 	function __construct( $uid,$type=1,$isRef=0 ){
 		parent::__construct($uid);
@@ -50,9 +49,9 @@
 		if( !isset( $this->shopConfig[$this->type] ) ){
 			ret('Type_Error! Code:'.__LINE__);
 		}
+		$uLevel = $this->getVlevel();
 		foreach( $this->shopConfig[$this->type]['time'] as $v ){
-			if( isset( $this->shopConfig[$this->type]['vip'] ) && $this->getVlevel() < $this->shopConfig[$this->type]['vip'] ){
-				$this->out = 1;
+			if( isset( $this->shopConfig[$this->type]['vip'] ) && $uLevel < $this->shopConfig[$this->type]['vip'] ){
 				$this->overTime = $this->shopConfig[$this->type]['save'];
 				$this->nextTime = date( 'H:i',time() + $this->shopConfig[$this->type]['save'] ).' 消失';
 			}else{
