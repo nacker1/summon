@@ -18,7 +18,10 @@
 	  		$ret['dayLimit'] = $cond->getAll('',1);
 	  		$ret['skill'] = $user->getUserSkillInfo();
 	  		$sRedis = new Cond( 'userShop_2', $user->getUid() );
-	  		$ret['vshop'] = $sRedis->get();
+	  		$vshop = $sRedis->get();
+	  		$ret['vshop'] = 1;
+	  		if( empty( $vshop ) || !is_array( $vshop ) || count($vshop) < 1 )
+	  			$ret['vshop'] = 0;
  			break;
  		case '1'://获取用户背包数据
  			$good = new User_Goods( $user->getUid() );
