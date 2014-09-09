@@ -2,8 +2,8 @@
 /**
  *@ 战场结算
  **/
-	#$str = '{"bossid":0,"buff":[],"cmd":9001,"currnk":0,"diamond":0,"goods":[{"63003":1}],"heroexp":100,"heros":[10002,10004,10003,10005,10001],"hrank":0,"isboss":0,"money":0,"pass":1,"playerexp":10,"roundid":3,"stageid":3,"stagetype":2,"tasktype":68,"uid":381440}';
-	#$input = json_decode($str,true);
+	$str = '{"bossid":0,"buff":[71001],"cmd":9001,"currnk":0,"diamond":0,"goods":[{}],"heroexp":100,"heros":[10002,10004,10003,10005,10001],"hrank":0,"isboss":0,"money":1000,"pass":1,"playerexp":10,"roundid":3,"stageid":3,"stagetype":2,"tasktype":69,"uid":381440}';
+	$input = json_decode($str,true);
 	if( count( $input )<5 ){
 		$log->e( '* 战斗请求数据格式不对.'.json_encode($input) );
 		ret( ' error_data ',-1 );
@@ -111,29 +111,25 @@
 				$add['life'] = -24*$sweepNum;
 				$user->setMissionId(2,16);
 				break;
-			case '69':	//炼狱关卡
-				$add['life'] = -24*$sweepNum;
+			case '69':	//呆小红
+				$add['life'] = -6;
 				$user->setMissionId(2,69);
 				break;
-			case '70':	//炼狱关卡
+			case '70':	//呆小蓝
 				$add['life'] = -6;
 				$user->setMissionId(2,70);
 				break;
-			case '71':	//炼狱关卡
+			case '71':	//无尽之地
 				$add['life'] = -6;
 				$user->setMissionId(2,71);
 				break;
-			case '68':	//炼狱关卡
+			case '68':	//英雄炼狱
 				$add['life'] = -6;
 				$user->setMissionId(2,68);
 				break;
-			case '66':	//炼狱关卡
+			case '66':	//黄金矿山
 				$add['life'] = -6;
 				$user->setMissionId(2,66);
-				break;
-			case '67':	//炼狱关卡
-				$add['life'] = -6;
-				$user->setMissionId(2,67);
 				break;
 		}
 		if( $input['playerexp'] > 0 ){
