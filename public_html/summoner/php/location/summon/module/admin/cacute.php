@@ -96,9 +96,9 @@
 		}
 
 		if( isset( $input['buff'] ) && is_numeric( $input['buff'] ) ){ //活动添加buff  buff应对buff表中的buffid
-			$user->addRoleBuff( $input['buff'] );
+			$user->addRoleBuff( $input['buff'][0] );
 		}
-		
+
 		switch( $input['tasktype'] ){  //通关扣除体力
 			case '11': 	//普通关卡
 				$add['life'] = -6*$sweepNum;
@@ -114,22 +114,40 @@
 			case '69':	//呆小红
 				$add['life'] = -6;
 				$user->setMissionId(2,69);
+				$actLimit = new User_Limit( 'minRedDay' );
+				$actLimit->setTimeLimit();
 				break;
 			case '70':	//呆小蓝
 				$add['life'] = -6;
 				$user->setMissionId(2,70);
+				$actLimit = new User_Limit( 'minBlueDay' );
+				$actLimit->setTimeLimit();
 				break;
 			case '71':	//无尽之地
 				$add['life'] = -6;
 				$user->setMissionId(2,71);
+				$actLimit = new User_Limit( 'endLessFieldDay' );
+				$actLimit->setTimeLimit();
 				break;
 			case '68':	//英雄炼狱
 				$add['life'] = -6;
 				$user->setMissionId(2,68);
+				if( $input['stageid'] == 960003 ){ #钢铁巢穴
+					$actLimit = new User_Limit( 'steelNestDay' );
+					$actLimit->setTimeLimit();
+				}elseif( $input['stageid'] == 960004 ){#飞龙宝藏
+					$actLimit = new User_Limit( 'hiryuTreasuresDay' );
+					$actLimit->setTimeLimit();
+				}elseif( $input['stageid'] == 960005 ){#猎杀巨龙
+					$actLimit = new User_Limit( 'killDragonDay' );
+					$actLimit->setTimeLimit();
+				}
 				break;
 			case '66':	//黄金矿山
 				$add['life'] = -6;
 				$user->setMissionId(2,66);
+				$actLimit = new User_Limit( 'goldMineDay' );
+				$actLimit->setTimeLimit();
 				break;
 		}
 		if( $input['playerexp'] > 0 ){
