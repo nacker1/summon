@@ -90,6 +90,7 @@
 			$ret = $this->db->insert( $this->roleTable,$insert );
 			$i++;
 		}while(!$ret && $i<3);
+		dump($this->db->getLastSql());
 		if( $ret ){
 			$insert['userid'] = $ret;
 			return $insert;
