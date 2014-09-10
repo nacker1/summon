@@ -196,8 +196,8 @@ class User_Hero extends User_Base{
 	function heroPutDownEquip( $index ){
 		$this->setUpdTime();
 		$ret = self::$heroInfo[$this->hid]['equip'.$index];
-		self::$lastUpdHero[$this->hid]['equip'.$index] = '';
-		self::$heroInfo[$this->hid]['equip'.$index] = '';
+		self::$lastUpdHero[$this->hid]['equip'.$index] = '0';
+		self::$heroInfo[$this->hid]['equip'.$index] = '0';
 		return $ret;
 	}
 /**
