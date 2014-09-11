@@ -563,7 +563,6 @@
  * 	$key: 	对应 zy_uniqRoleRecord 表中的属性值
  **/
 	public function getUserRecord( $key ){
-		dump(self::$recordInfo[$this->uid]);
 		return (int)self::$recordInfo[$this->uid][$key];
 	}
 /**
