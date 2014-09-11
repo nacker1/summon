@@ -11,12 +11,12 @@
 		global $log;
 		if( empty($host) || empty($port) ){
 			gettype($log)=='object' && $log->e('Redis host or port null.£¨host:'.$host.',port:'.$port.',pass:'.$pass.'£©');
-			exit;
+			ret('redis_class_'.__LINE__);
 		}
 		$this->connect = new Redis();
 		if( !$this->connect->pconnect($host,$port) ){
 			gettype($log)=='object' && $log->e('Redis connect fail£¨host:'.$host.',port:'.$port.',pass:'.$pass.'£©');
-			exit;
+			ret('redis_class_'.__LINE__);
 		}
 		!empty($pass) && $this->connect->auth($pass);
 	}

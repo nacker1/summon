@@ -17,15 +17,18 @@
 				$data['where'] = unserialize($where);
 				break;
 			case '-o':
-				$data['opt'] = $_SERVER['argv'][$i+1];break;
+				$data['opt'] = $_SERVER['argv'][$i+1];
+				if( empty( $data['opt'] ) ) unset( $data['opt'] );
+				break;
 			case '-f':
-				$data['tag'] = $_SERVER['argv'][$i+1];break;
+				$data['tag'] = $_SERVER['argv'][$i+1];
+				if( empty( $data['opt'] ) ) unset( $data['tag'] );
+				break;
 		}
 	}
 	if( empty( $data['table'] ) ){
 		exit('参数错误');
 	}
-
 	$sync = new Sync( $data );
 	$sync->exec();
 ?>
