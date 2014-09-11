@@ -37,6 +37,7 @@
 			ret($heroList);
 		}
 	case '999'://给英雄添加经验
+		$heroBase = new Herobase( 10001 );
 		if( empty($hid) ){
 			ret('param error ('.__line__.') !',-1);
 		}
