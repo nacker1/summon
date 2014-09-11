@@ -587,7 +587,6 @@
 		}
 		#同步用户record信息
 		if( is_array( self::$recordInfo[$this->uid] ) && !empty( self::$recordInfo[$this->uid] ) ){
-			dump(self::$recordInfo[$this->uid]);
 			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$recordInfo[$this->uid]);
 			$this->throwSQL( $this->baseRecordTable, self::$recordInfo[$this->uid], array('uid'=>$this->uid) );
 			self::$recordInfo[$this->uid]='';
