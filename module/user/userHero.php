@@ -38,6 +38,7 @@
 		}
 	case '999'://给英雄添加经验
 		$heroBase = new Herobase( 10001 );
+		dump($heroBase->getTotalFire());
 		if( empty($hid) ){
 			ret('param error ('.__line__.') !',-1);
 		}
