@@ -188,7 +188,6 @@ class User_Hero extends User_Base{
 		$this->setUpdTime();
 		$qConfig['g'] = $eqId;
 		$eid = substr( $eqId, 0, 5 );
-		dump($eid);
 		$equip = new Equipbase( $eid );
 		$eFire = $equip->getFire( (int)substr( $eqId, 5 ) );
 		$qConfig['f'] = $eFire;
