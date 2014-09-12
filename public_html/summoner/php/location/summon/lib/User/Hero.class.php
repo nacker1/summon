@@ -26,7 +26,6 @@ class User_Hero extends User_Base{
 				$this->redis->hdel('roleinfo:'.$this->uid.':hero:*');
 				#hid,level,exp,color,star,equip1,equip2,equip3,equip4,equip5,equip6,config
 				$heros = $this->db->find($this->table,'fire,hid,level,exp,color,star,equip1,equip2,equip3,equip4,equip5,equip6,config',array('uid'=>$this->uid));
-				#$this->hinfo = $heros;
 				if( is_array( $heros ) )
 					foreach( $heros as $v ){
 						$this->redis->del( 'roleinfo:'.$this->uid.':hero:'.$v['hid'] );
@@ -205,6 +204,13 @@ class User_Hero extends User_Base{
  **/
 	function getHeroEquip( $index ){
 		return self::$heroInfo[$this->hid]['equip'.$index];
+	}
+/**
+ *@ 计算指定英雄的总战斗力
+ **/
+	function getTotalFire(){
+		$heroBase = new Herobase( $this->hid );
+		return $heroFire = $heroBase->getFire( self::$heroInfo[$this->hid]['level'], self::$heroInfo[$this->hid]['color'] );
 	}
 /**
  *@ 获取英雄当前经验值
