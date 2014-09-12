@@ -81,7 +81,7 @@
 			if( $hero->getHeroLevel() < $bEquip->getEquipMinLevel() ){
 				ret( '英雄等级不够!', -1 );
 			}
-			$eGid = $hero->getHeroEquip( $equipInfo[0] );//卸下的兼备id
+			$eGid = $hero->getHeroEquipGid( $equipInfo[0] );//卸下的兼备id
 			
 			if( $ug->getGoodsNum() > 0 ){
 				if( !empty( $eGid ) ){//如果英雄本身有装备先取下装备再穿
@@ -111,7 +111,7 @@
 		}
 		$hero = new User_Hero( $user->getUid(), $hid );
 		foreach( $indexList as $v ){
-			$goodid = $hero->getHeroEquip($v);
+			$goodid = $hero->getHeroEquipGid($v);
 			if( empty($goodid) ){
 				ret('装备已经取下',-1);
 			}
