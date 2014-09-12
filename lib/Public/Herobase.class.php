@@ -8,7 +8,8 @@ class Herobase extends Base{
 	static protected $hInfo;									//指定英雄信息
 
 	public function __construct( $hid='' ){
-		$this->hid = $hid;
+		if( empty( $hid ) )ret('no_hid');
+		$this->hid = (int)$hid;
 		parent::__construct();
 		$this->_init();
 	}
@@ -27,7 +28,7 @@ class Herobase extends Base{
 				}
 				$this->pre->hset( 'heroBase:check', 'check', 1, get3time() );
 			}
-			self::$hInfo = $this->pre->hgetall( 'heroBase:heroinfo:'.$this->hid );
+			self::$hInfo[$this->hid] = $this->pre->hgetall( 'heroBase:heroinfo:'.$this->hid );
 		}
 	}
 /**
@@ -35,15 +36,16 @@ class Herobase extends Base{
  *	英雄战斗力 = [（英雄物理攻击 + 英雄法术强度 + 英雄物理护甲 + 英雄魔法抗性）* 英雄攻击速度 +（英雄生命值 + 英雄生命回复 * 2 + 英雄法力值 + 英雄法力回复 * 2）] / 10 + 英雄拥有技能个数 * 100 *（1 + 英雄拥有技能的等级之和 / 10）
  **/
 	public function getFire( $level=1,$color=1,$skill='{"1":"1"}' ){
-		echo $att = self::$hInfo['Hero_Att'] + self::$hInfo['Hero_UpAtt'] * ( $level - 1 ) * $color; 								#英雄物理攻击
-		echo $def = self::$hInfo['Hero_Def'] + self::$hInfo['Hero_UpDef'] * ( $level - 1 ) * $color;									#英雄物理护甲
-		echo $sor = self::$hInfo['Hero_Sor'] + self::$hInfo['Hero_UpSor'] * ( $level - 1 ) * $color;									#英雄法术强度
-		echo $res = self::$hInfo['Hero_Res'] + self::$hInfo['Hero_UpRes'] * ( $level - 1 ) * $color;									#英雄法术抗性
-		echo $speed = self::$hInfo['Hero_AttSpd'] + self::$hInfo['Hero_UpAttSpd'] * ( $level - 1 ) * $color;							#英雄的攻击速度
-		echo $hp = self::$hInfo['Hero_Hp'] + self::$hInfo['Hero_UpHp'] * ( $level - 1 ) * $color;									#英雄的生命值
-		echo $mp = self::$hInfo['Hero_Mp'] + self::$hInfo['Hero_UpMp'] * ( $level - 1 ) * $color;									#英雄的魔法值
-		echo $gethp = self::$hInfo['Hero_GetHp'] + self::$hInfo['Hero_UpGetHp'] * ( $level - 1 ) * $color;							#英雄的生命回复
-		echo $getmp = self::$hInfo['Hero_GetMp'] + self::$hInfo['Hero_UpGetMp'] * ( $level - 1 ) * $color;							#英雄的魔法回复
+		dump(self::$hInfo);
+		echo $att = self::$hInfo[$this->hid]['Hero_Att'] + self::$hInfo[$this->hid]['Hero_UpAtt'] * ( $level - 1 ) * $color; 								#英雄物理攻击
+		echo $def = self::$hInfo[$this->hid]['Hero_Def'] + self::$hInfo[$this->hid]['Hero_UpDef'] * ( $level - 1 ) * $color;								#英雄物理护甲
+		echo $sor = self::$hInfo[$this->hid]['Hero_Sor'] + self::$hInfo[$this->hid]['Hero_UpSor'] * ( $level - 1 ) * $color;								#英雄法术强度
+		echo $res = self::$hInfo[$this->hid]['Hero_Res'] + self::$hInfo[$this->hid]['Hero_UpRes'] * ( $level - 1 ) * $color;								#英雄法术抗性
+		echo $speed = self::$hInfo[$this->hid]['Hero_AttSpd'] + self::$hInfo[$this->hid]['Hero_UpAttSpd'] * ( $level - 1 ) * $color;						#英雄的攻击速度
+		echo $hp = self::$hInfo[$this->hid]['Hero_Hp'] + self::$hInfo[$this->hid]['Hero_UpHp'] * ( $level - 1 ) * $color;									#英雄的生命值
+		echo $mp = self::$hInfo[$this->hid]['Hero_Mp'] + self::$hInfo[$this->hid]['Hero_UpMp'] * ( $level - 1 ) * $color;									#英雄的魔法值
+		echo $gethp = self::$hInfo[$this->hid]['Hero_GetHp'] + self::$hInfo[$this->hid]['Hero_UpGetHp'] * ( $level - 1 ) * $color;							#英雄的生命回复
+		echo $getmp = self::$hInfo[$this->hid]['Hero_GetMp'] + self::$hInfo[$this->hid]['Hero_UpGetMp'] * ( $level - 1 ) * $color;							#英雄的魔法回复
 
 		$skill = json_decode( $skill, true );
 		$sTolLevel = 0;						#英雄技能等级总和
