@@ -212,14 +212,14 @@ class User_Hero extends User_Base{
 		$heroBase = new Herobase( $this->hid );
 		$heroFire = $heroBase->getFire( self::$heroInfo[$this->hid]['level'], self::$heroInfo[$this->hid]['color'],  self::$heroInfo[$this->hid]['config']);
 		$eFire = 0;
-		/*for( $i=1; $i<7; $i++ ){
+		for( $i=1; $i<7; $i++ ){
 			if( !empty( self::$heroInfo[$this->hid]['equip'.$i] ) ){
 				$eid = substr( self::$heroInfo[$this->hid]['equip'.$i], 0, 5 );
 				$equip = new Equipbase( $eid );
-				$eFire += $equip->getFire( (int)substr( self::$heroInfo[$this->hid]['equip'.$i], 5 ); );
+				$eFire += $equip->getFire( (int)substr( self::$heroInfo[$this->hid]['equip'.$i], 5 ) );
 				dump($eFire);
 			}
-		}*/
+		}
 		return $heroFire + $eFire;
 	}
 /**
