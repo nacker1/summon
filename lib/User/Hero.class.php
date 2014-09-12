@@ -335,6 +335,7 @@ class User_Hero extends User_Base{
 
 	function __destruct(){
 		if( self::$upd > 0 ){
+			self::$heroInfo[$this->hid]['fire'] = self::$lastUpdHero[$this->hid]['fire'] = $this->getTotalFire();
 			$this->redis->hmset( 'roleinfo:'.$this->uid.':hero:'.$this->hid,self::$heroInfo[$this->hid] );
 			$tempUpdHero = self::$lastUpdHero;
 			self::$lastUpdHero = '';
