@@ -210,7 +210,7 @@ class User_Hero extends User_Base{
  **/
 	function getTotalFire(){
 		$heroBase = new Herobase( $this->hid );
-		return $heroFire = $heroBase->getFire( self::$heroInfo[$this->hid]['level'], self::$heroInfo[$this->hid]['color'] );
+		return $heroFire = $heroBase->getFire( self::$heroInfo[$this->hid]['level'], self::$heroInfo[$this->hid]['color'],  self::$heroInfo[$this->hid]['config']);
 	}
 /**
  *@ 获取英雄当前经验值
