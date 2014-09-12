@@ -214,10 +214,8 @@ class User_Hero extends User_Base{
 		$eFire = 0;
 		for( $i=1; $i<7; $i++ ){
 			if( !empty( self::$heroInfo[$this->hid]['equip'.$i] ) ){
-				$eid = substr( self::$heroInfo[$this->hid]['equip'.$i], 0, 5 );
-				$equip = new Equipbase( $eid );
-				$eFire += $equip->getFire( (int)substr( self::$heroInfo[$this->hid]['equip'.$i], 5 ) );
-				dump($eFire);
+				$fList = json_decode( self::$heroInfo[$this->hid]['equip'.$i], true );
+				$eFire += (int)$fList['f'];
 			}
 		}
 		return $heroFire + $eFire;
