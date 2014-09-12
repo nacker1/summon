@@ -37,8 +37,8 @@
 			ret($heroList);
 		}
 	case '999'://给英雄添加经验
-		$hero = new User_Hero( $user->getUid(), $hid );
-		ret($hero->getTotalFire());
+		#$hero = new User_Hero( $user->getUid(), $hid );
+		#ret($hero->getTotalFire());
 		if( empty($hid) ){
 			ret('param error ('.__line__.') !',-1);
 		}
