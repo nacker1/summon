@@ -186,8 +186,14 @@ class User_Hero extends User_Base{
  **/
 	function heroPutOnEquip( $index,$eqId ){
 		$this->setUpdTime();
-		self::$lastUpdHero[$this->hid]['equip'.$index] = $eqId;
-		return self::$heroInfo[$this->hid]['equip'.$index] = $eqId;
+		$qConfig['g'] = $eqId;
+		$eid = substr( $eqId, 0, 5 );
+		$equip = new Equipbase( $eid );
+		$eFire = $equip->getFire( (int)substr( $eqId, 5 ) );
+		$qConfig['f'] = $eFire;
+		$eqConf = json_encode($qConfig);
+		self::$lastUpdHero[$this->hid]['equip'.$index] = $eqConf;
+		return self::$heroInfo[$this->hid]['equip'.$index] = $eqConf;
 	}
 /**
  *@ 英雄取下装备   $index 指定英雄装备框
@@ -197,13 +203,25 @@ class User_Hero extends User_Base{
 		$ret = self::$heroInfo[$this->hid]['equip'.$index];
 		self::$lastUpdHero[$this->hid]['equip'.$index] = '0';
 		self::$heroInfo[$this->hid]['equip'.$index] = '0';
-		return $ret;
+		return true;
+	}
+/**
+ *@ 获取英雄指定框中的装备信息   $index 指定英雄装备框
+ **/
+	function getHeroEquipGid( $index ){
+		$eqConf = $this->getHeroEquip($index);
+		return isset( $eqConf['g'] ) ? $eqConf['g'] : '';
 	}
 /**
  *@ 获取英雄指定框中的装备信息   $index 指定英雄装备框
  **/
 	function getHeroEquip( $index ){
-		return self::$heroInfo[$this->hid]['equip'.$index];
+		$eqConf = self::$heroInfo[$this->hid]['equip'.$index];
+		if( empty( $eqConf ) ){
+			return false;
+		}
+		$eqConf = json_decode($eqConf,true);
+		return $eqConf;
 	}
 /**
  *@ 计算指定英雄的总战斗力
