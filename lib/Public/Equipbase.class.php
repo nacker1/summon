@@ -25,7 +25,6 @@
 		}
 
 		if( !empty($this->eid) ){
-			dump($this->eid);
 			$this->eInfo = $this->pre->hgetall( 'equip:baseinfo:'.$this->eid );
 			if( empty( $this->eInfo ) ){
 				ret('no_eid_config',-1);
