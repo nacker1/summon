@@ -15,7 +15,7 @@
 	private $cre;			//Cond类连接的专门redis
 	private $domain;		//组装的域
 	private $key;			//最终组装成的键值
-	private $times; 			//组健过期时间 秒
+	private $times; 		//组健过期时间 秒
 	/**
 	 *@ param:
 	 *	$tag:	生成的键值标签(唯一性很强)
@@ -23,7 +23,7 @@
 	 *	$times:	健值有效期
 	 *	$node:	redis节点标签
 	 **/
-	public function __construct( $tag, $uid='', $times=0, $node='Cond' ){
+	function __construct( $tag, $uid='', $times=0, $node='Cond' ){
 		$this->tag = $tag;
 		$this->times = $times;
 		$this->node = $node;
@@ -83,7 +83,9 @@
 		return $this->cre->del( $this->key );
 	}
 	/**
-	 *@ 获取指定键值内的所有值 
+	 *@ 获取指定键值内的所有值
+	 * $keys: 指定键值
+	 * $flag: 标记返回的值类型，1返回时以keys中的第3个字段作下标，第4个字段作二维下标；默认下标为递填下标
 	 * return: Array;
 	 **/
 	public function getAll( $keys='' , $flag=0 ){
