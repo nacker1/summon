@@ -24,9 +24,10 @@
  		$limit = new User_Limit( 'helloWorld' );
  		$money = $limit->getOneTimeCooldou();
  		if( $user->getMoney() >= $money ){
- 			$chat = new Chat($to);	
- 		}else{
-
+ 			$chat = new Chat($to);
+ 			$chat->sendChat( $con, $user->getUserName(), $user->getUid() );
+ 			$give['money'] = $money;
+ 			ret( $user->sendGoodsFromConfig( $give ) );
  		}
  		ret( '喊话需要 '.$money.' 金币' );	
  		break;
