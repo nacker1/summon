@@ -82,6 +82,7 @@
 		if( !empty($this->goodinfo) ){
 			foreach( $this->goodinfo as $val ){
 				foreach( $val as $v ){
+					unset($v['gtype']);
 					$ret[] = $v;
 				}
 			}
