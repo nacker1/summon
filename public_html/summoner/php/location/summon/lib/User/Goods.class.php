@@ -69,7 +69,7 @@
 							$set['id'] = $v['id'];
 							$this->redis->hmset( 'roleinfo:'.$this->uid.':goods:'.$v['gtype'].':'.$v['gid'].':'.$v['id'], $set );
 						}
-						$this->goodinfo[$v['gtype']][] = $v;
+						$this->goodinfo[$v['gtype']][] = $set;
 					}
 				}
 				$this->redis->set( 'roleinfo:'.$this->uid.':goods:check', 1 );
