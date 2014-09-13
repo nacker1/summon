@@ -57,7 +57,7 @@
 				$this->db;
 				$goodbase = new Goodbase();
 				$gsuper = $goodbase->getGoodsSuper();
-				$goods = $this->db->find($this->table,'id,gid,nums,gtype',array('uid'=>$this->uid));
+				$goods = $this->db->find($this->table,'gid,nums,gtype',array('uid'=>$this->uid));
 				if( is_array( $goods ) ){
 					$this->redis->hdel('roleinfo:'.$this->uid.':goods:*');
 					foreach( $goods as $v ){
@@ -69,7 +69,7 @@
 							$set['id'] = $v['id'];
 							$this->redis->hmset( 'roleinfo:'.$this->uid.':goods:'.$v['gtype'].':'.$v['gid'].':'.$v['id'], $set );
 						}
-						$this->goodinfo[$v['gtype']][] = $set;
+						$this->goodinfo[$v['gtype']][] = $v;
 					}
 				}
 				$this->redis->set( 'roleinfo:'.$this->uid.':goods:check', 1 );
