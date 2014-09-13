@@ -1,5 +1,5 @@
 <?php
-	error_reporting(0);
+	//error_reporting(0);
 	global $log,$tag,$version,$channel;
 	require dirname(__FILE__).'/inc/inc.php';
 	C('test',false);
