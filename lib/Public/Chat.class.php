@@ -33,6 +33,7 @@
  *	$lasttime: 客户端收到的最后一条信息时间戳
  **/
  	private function _getUserChat( $lasttime ){
+ 		$ret=[];
  		$cList = $this->uCond->getAll();
  		foreach( $cList as $v ){
  			if( $v['time'] > $lasttime ){
@@ -47,6 +48,7 @@
  *	$lasttime: 客户端收到的最后一条信息时间戳
  **/
  	private function _getWorldChat( $lasttime ){
+ 		$ret=[];
  		$cList = $this->cond->getAll();
  		foreach( $cList as $v ){
  			if( $v['time'] > $lasttime ){
