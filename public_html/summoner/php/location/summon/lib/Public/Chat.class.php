@@ -8,6 +8,7 @@
  	private $type;				#信息类型  1为世界信息  3为私信  5为公会信息
 
  	function __construct( $uid='' ){
+ 		dump($_SERVER);exit;
  		# $uid: 如果是发送信息则为接收者的uid, 如果是拉信息则为当前用户的uid
  		parent::__construct( $uid );
  		$this->cond = new Cond( 'chat', 0, 600 );
