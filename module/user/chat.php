@@ -27,7 +27,7 @@
  		}else{
 
  		}
- 		ret();	
+ 		ret( '喊话需要 '.$money.' 金币' );	
  		break;
  }
 
