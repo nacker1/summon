@@ -35,11 +35,12 @@
  	private function _getUserChat( $lasttime ){
  		$ret=[];
  		$cList = $this->uCond->getAll();
- 		foreach( $cList as $v ){
- 			if( $v['time'] > $lasttime ){
- 				$ret[] = $v;
- 			}
- 		}
+ 		if( is_array( $cList ) )
+	 		foreach( $cList as $v ){
+	 			if( $v['time'] > $lasttime ){
+	 				$ret[] = $v;
+	 			}
+	 		}
  		return $ret;
  	}
  /**
@@ -50,11 +51,12 @@
  	private function _getWorldChat( $lasttime ){
  		$ret=[];
  		$cList = $this->cond->getAll();
- 		foreach( $cList as $v ){
- 			if( $v['time'] > $lasttime ){
- 				$ret[] = $v;
- 			}
- 		}
+ 		if( is_array( $cList ) )
+	 		foreach( $cList as $v ){
+	 			if( $v['time'] > $lasttime ){
+	 				$ret[] = $v;
+	 			}
+	 		}
  		return $ret;
  	}
 /**
@@ -66,7 +68,7 @@
  **/
  	function sendChat( $con, $name, $uid ){
  		$chat = array(
- 			'con'=>$content,
+ 			'con'=>$con,
  			'name'=>$name,
  			'type'=>$this->type,
  			'uid'=>$uid,
