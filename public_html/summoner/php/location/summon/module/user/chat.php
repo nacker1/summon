@@ -24,7 +24,7 @@
  		$limit = new User_Limit( 'helloWorld' );
  		$money = $limit->getOneTimeCooldou();
  		if( $user->getMoney() >= $money ){
- 			$chat = new Chat($to);
+ 			$chat = new Chat( $to );
  			$chat->sendChat( $con, $user->getUserName(), $user->getUid() );
  			$give['money'] = $money;
  			ret( $user->sendGoodsFromConfig( $give ) );
