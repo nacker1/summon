@@ -3,7 +3,7 @@
  *@ Draw抽卡类
  **/
 class User_Draw extends User_Base{
-	private $draw_table='zy_baseDrawConfig';					//抽卡配置表
+	private $draw_table='zy_baseDrawConfig';		//抽卡配置表
 	private $type;									//抽卡类型  1为金币  2为钻石 3为友情点
 	private $dInfo;									//指定类型抽卡配置内容
 

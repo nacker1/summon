@@ -14,7 +14,7 @@ class Config {
 	public static $db_config = array( 
 		'test'=>array(
 			'master'=>array( //召唤师主库	 各服务器不同
-				'host' => '10.0.4.192',
+				'host' => '10.0.4.12',
 				'port' => 3306,
 				'username' => 'root',
 				'password' => 'root',
