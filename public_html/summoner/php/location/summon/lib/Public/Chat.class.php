@@ -80,9 +80,9 @@
  	private function _setChat( $con ){
  		switch( $this->type ){
  			case '3': #发私信
- 				return $this->uCond->set( $con );
+ 				return $this->uCond->set( $con, uniqid(true) );
  			default:
- 				return $this->cond->set( $con );
+ 				return $this->cond->set( $con, uniqid(true) );
  		}
  	}
  }
