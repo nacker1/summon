@@ -541,7 +541,7 @@
  *@ getUserLastUpdInfo 获取用户信息中发生变化的那部分
  **/
 	public function getUserLastUpdInfo(){
-		if( is_array( self::$recordInfo[$this->uid] ) ){
+		if( isset(self::$recordInfo[$this->uid]) && is_array( self::$recordInfo[$this->uid] ) ){
 			return array_merge(self::$updinfo[$this->uid],self::$recordInfo[$this->uid]);
 		}else{
 			return self::$updinfo[$this->uid];
