@@ -20,6 +20,8 @@
 		$input = json_decode('{"t":1,"n":1}',true);
 	if( C('test') ){
 		$tag .= '=DB模式=';
+	}else{
+		$tag .= '=cache模式=';
 	}
 	$log->i( '接口调用开始['.($ver?$ver:0).'] - '.$tag.' IP:'.long2ip(getIp()) );
 	$log->i(json_encode($input));
