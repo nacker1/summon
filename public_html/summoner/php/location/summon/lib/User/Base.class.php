@@ -3,7 +3,7 @@
  *@ 用户基类
  **/
  class User_Base extends Base{
- 	protected static $recordInfo=array();			//用户对应的record信息 对就zy_uniqRoleRecord表 
+ 	protected static $recordInfo=array();		//用户对应的record信息 对就zy_uniqRoleRecord表 
  	protected static $throwSQL=array();			//需要异步同步的数据
 	private static $userinfo=array(); 			//角色所有信息
 	private static $updinfo=array(); 			//角色所有信息
