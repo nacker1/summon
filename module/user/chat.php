@@ -2,7 +2,7 @@
 /**
  *@ 聊天系统
  **/
-
+ $user = new User_User();
  $type = isset( $input['t'] ) ? $input['t'] : '';
 
  if( empty( $type ) ){
