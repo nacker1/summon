@@ -14,7 +14,6 @@
  		$lasttime = isset( $input['lt'] ) ? $input['lt'] : 0;
  		$chat = new Chat( $user->getUid() );
  		ret( $chat->getChat( $lasttime ) );
- 		break;
  	case '2': #发送信息
  		$to = !empty( $input['to'] ) ? $input['to'] : '';
  		$con = $input['con'];
@@ -26,11 +25,13 @@
  		if( $user->getMoney() >= $money ){
  			$chat = new Chat( $to );
  			$chat->sendChat( $con, $user->getUserName(), $user->getUid() );
- 			$give['money'] = $money;
- 			ret( $user->sendGoodsFromConfig( $give ) );
+ 			if( $money > 0 ){
+ 				$give['money'] = $money;
+ 				$ret = $user->sendGoodsFromConfig( $give );
+ 			}
+ 			ret( array( 'money'=>$user->getMoney() ) );
  		}
  		ret( '喊话需要 '.$money.' 金币' );	
- 		break;
  }
 
  ret( 'YMD'.__LINE__, -1 );
