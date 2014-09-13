@@ -32,7 +32,7 @@
 
 	private function _init(){
 		$this->redis;
-		if( C('test') || !self::$userinfo[$this->uid] || empty(self::$userinfo[$this->uid]) || !is_array( self::$userinfo[$this->uid] ) ){
+		if( C('test') || !isset( self::$userinfo[$this->uid] ) || empty(self::$userinfo[$this->uid]) || !is_array( self::$userinfo[$this->uid] ) ){
 			if( C('test') || !$this->redis->exists('roleinfo:'.$this->uid.':baseinfo') ){
 				$this->db;
 				$uinfo = $this->db->findOne($this->baseTable,'*',array( 'userid'=>$this->uid ));
