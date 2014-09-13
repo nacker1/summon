@@ -33,7 +33,7 @@
  *	$lasttime: 客户端收到的最后一条信息时间戳
  **/
  	private function _getUserChat( $lasttime ){
- 		$ret=[];
+ 		$ret=array();
  		$cList = $this->uCond->getAll();
  		if( is_array( $cList ) )
 	 		foreach( $cList as $v ){
@@ -49,7 +49,7 @@
  *	$lasttime: 客户端收到的最后一条信息时间戳
  **/
  	private function _getWorldChat( $lasttime ){
- 		$ret=[];
+ 		$ret=array();
  		$cList = $this->cond->getAll();
  		if( is_array( $cList ) )
 	 		foreach( $cList as $v ){
