@@ -31,6 +31,8 @@
 			if( empty( $uinfo ) ){
 				$uinfo = $this->_createRole();
 				$this->isNew = 1;
+				$hero = new User_Hero( $uinfo['userid'] );
+				$hero->giveHero();
 			}
 			$uid = $uinfo['userid'];
 			if( !empty( $uid ) )
@@ -70,21 +72,21 @@
  **/
 	private function _createRole(){
 		$insert['nickname'] = $this->rid.$this->sid;		//昵称
-		$insert['image'] = '1';					//头像
-		$insert['level'] = 1;					//等级
-		$insert['exp'] = 0;					//当前经验
-		$insert['maxLife'] = 60;					//最大体力值
-		$insert['life'] = 60;					//当前体力值
-		$insert['lead'] = 0;					//领导力
-		$insert['jewel'] = 0;					//钻石数量
-		$insert['money'] = 0;					//金币数量
-		$insert['logintime'] = time();				//最后登录时间	
-		$insert['lastDeductTime'] = time();			//最后扣除体力时间
-		$insert['sex'] = 1;					//性别
-		$insert['pageNum'] = 20;				//背包最大格数
-		$insert['friends'] = 5;					//最大好友数量
-		$insert['rid'] = $this->rid;				//游戏表id
-		$insert['sid'] = $this->sid;				//大区id
+		$insert['image'] = '1';								//头像
+		$insert['level'] = 1;								//等级
+		$insert['exp'] = 0;									//当前经验
+		$insert['maxLife'] = 60;							//最大体力值
+		$insert['life'] = 60;								//当前体力值
+		$insert['lead'] = 0;								//领导力
+		$insert['jewel'] = 0;								//钻石数量
+		$insert['money'] = 0;								//金币数量
+		$insert['logintime'] = time();						//最后登录时间	
+		$insert['lastDeductTime'] = time();					//最后扣除体力时间
+		$insert['sex'] = 1;									//性别
+		$insert['pageNum'] = 20;							//背包最大格数
+		$insert['friends'] = 5;								//最大好友数量
+		$insert['rid'] = $this->rid;						//游戏表id
+		$insert['sid'] = $this->sid;						//大区id
 		$i=0;
 		do{
 			$ret = $this->db->insert( $this->roleTable,$insert );
