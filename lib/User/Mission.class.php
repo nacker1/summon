@@ -12,7 +12,6 @@
 
  	function __construct( $args )
  	{
- 		dump($args);
  		# code...
  		parent::__construct( $args['uid'] );
  		$this->type = $args['type'];	
