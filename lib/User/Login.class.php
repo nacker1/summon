@@ -30,7 +30,9 @@
 			$uinfo = $this->db->findOne($this->roleTable,' `userid` ',array( 'rid'=>$this->rid, 'sid'=>$this->sid ));
 			if( empty( $uinfo ) ){
 				$uinfo = $this->_createRole();
+				dump($uinfo);
 				$this->isNew = 1;
+				dump($this->isNew);
 			}
 			$uid = $uinfo['userid'];
 			if( !empty( $uid ) )
@@ -100,6 +102,7 @@
 		}
 	}
 	public function getUserBeginInfo(){
+		dump($this->isNew);
 		$userinfo = $this->getUserInfo();
 		$ret['new'] = $this->isNew;
 		$ret['now'] = time();
@@ -147,6 +150,7 @@
 		$this->setThrowSQL( $this->loginLogTable,$insert,'',1,'stats' );
 		$this->setLoginTime();
 		//$this->sdb->insert( $this->loginLogTable, $insert );
+		dump($this->isNew);
 		if( 1==$this->isNew ){
 			$hero = new User_Hero( $this->uid, 10001 );
 			$hero->giveHero();
