@@ -286,9 +286,9 @@
 /**
  *@ 设置用户邮件标记
  **/
-	public function setNewMail(){
+	public function setNewMail($val=1){
 		$this->setUpdTime(1);
-		return self::$userinfo[$this->uid]['mail'] = 1;
+		return self::$userinfo[$this->uid]['mail'] = $val;
 	}
 /**
  *@ 设置用户任务完成标记
