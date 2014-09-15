@@ -14,6 +14,7 @@
  	{
  		# code...
  		parent::__construct( $args['uid'] );
+ 		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
  		$this->type = $args['type'];	
  		$this->_init();
  	}

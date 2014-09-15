@@ -15,6 +15,7 @@ class User_Hero extends User_Base{
 	public function __construct( $uid='',$hid='' ){
 		$this->hid = (int)$hid;
 		parent::__construct( $uid );
+		$this->log->i('~~~~~~~~~~~~~~~~~~  User_Hero ~~~~~~~~~~~~~~~~~~');
 		$this->_init();
 	}
 
