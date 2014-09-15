@@ -3,7 +3,7 @@
  *@ 用户英雄类
  **/
 class User_Hero extends User_Base{
-	static $heroInfo=array();				//英雄信息  如果是所有信息则记录英雄列表，如果指定hid则记录当前hid对应的英雄信息
+	static $heroInfo=array();					//英雄信息  如果是所有信息则记录英雄列表，如果指定hid则记录当前hid对应的英雄信息
 	static $upd = 0;
 	static $lastUpdHero = array();				//英雄最后更新信息
 
