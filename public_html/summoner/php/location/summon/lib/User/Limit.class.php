@@ -59,6 +59,7 @@ class User_Limit extends User_Base{
  *@ 检测操作的时间间隔
  **/
 	private function checkTimeLimit( $key='' ){
+		$this->log->i( 'timeLimit:'.$this->getTimeLimit( $key ));
 		if( $this->getTimeLimit( $key ) ){
 			if( $this->getExpend() > 0 ){ //时间限制内是否支持购买行为，如果支持则基数大于0
 				return $this->getExpend();
@@ -149,11 +150,13 @@ class User_Limit extends User_Base{
  **/
 	public function getOneTimeCooldou( $key='' ){
 		$freeTimes = $this->getLastFreeTimes($key);
+		$this->log->i( 'freeTimes:'.$freeTimes );
 		
 		if( $freeTimes > 0 ){ //免费操作时间  作时间间隔判断
 			return $this->checkTimeLimit( $key );
 		}else{
 			$used = $this->getUsedTimes( $key );
+			$this->log->i( 'usedTimes:'.$used );
 			$buyTimes = $used - $this->freeTimes;
 			if( $this->getRule() ){
 				$rate = array( 1=>1, 2=>1, 3=>2, 4=>2, 5=>4, 6=>4, 7=>8 ); //第7次封顶
