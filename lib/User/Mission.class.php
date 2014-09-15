@@ -10,11 +10,11 @@
  	private $type;							//任务类型  1为任务，2为日常
  	private $errorInfo;						//错误信息
 
- 	function __construct( $type=1 )
+ 	function __construct( $args )
  	{
  		# code...
- 		parent::__construct();
- 		$this->type = $type;	
+ 		parent::__construct( $args['uid'] );
+ 		$this->type = $args['type'];	
  		$this->_init();
  	}
 
