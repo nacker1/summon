@@ -9,6 +9,7 @@ class User_Draw extends User_Base{
 
 	function __construct( $type ){
 		parent::__construct();
+		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		$this->type = $type;
 		$this->_init();
 	}

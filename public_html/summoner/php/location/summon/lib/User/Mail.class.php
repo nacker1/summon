@@ -6,6 +6,7 @@
 	private $mailRedis;		//邮件连接的redis服务器
 	function __construct( $uid='' ){
 		parent::__construct( $uid );
+		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		$this->mailRedis = new Cond( 'userMail',$uid );
 	}
 /**

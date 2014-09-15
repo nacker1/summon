@@ -42,6 +42,7 @@
 	
 	function __construct( $uid,$type=1,$isRef=0 ){
 		parent::__construct($uid);
+		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		$this->type = (int)$type;
 		$this->isRef = $isRef;
 		

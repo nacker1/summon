@@ -7,6 +7,7 @@ class User_Merc extends User_Base{
 
 	function __construct( $uid='' ){
 		parent::__construct($uid);
+		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		if( empty( self::$cond ) )
 			self::$cond = new Cond( 'merc', '', 0 , 'Friend');
 	}

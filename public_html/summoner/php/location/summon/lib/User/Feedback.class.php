@@ -8,6 +8,7 @@
 
  	function __construct( $type=1 ){
  		parent::__construct();
+ 		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
  		$this->type = $type;
  		if( empty( $this->type ) ){
  			$this->type = 1;
