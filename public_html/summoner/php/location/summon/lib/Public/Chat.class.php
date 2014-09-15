@@ -12,9 +12,7 @@
  		parent::__construct( $uid );
  		$this->cond = new Cond( 'chat', 0, 600 );
  		$this->type = $type;
- 		if( $this->type == 2 ){
- 			$this->uCond = new Cond( 'chat', $this->uid, 86400 );	#私信保存一天
- 		}
+		$this->uCond = new Cond( 'chat', $this->uid, 86400 );	#私信保存一天
  	}
 /**
  *@ 获取所有聊天信息 包括世界信息与私信
