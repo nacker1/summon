@@ -19,7 +19,6 @@
 	private $userLog;					//用户金钱变化日志
 
 	public function __construct( $uid='' ){
-		dump($uid);
 		if( empty( $uid ) ){
 			$uid = (int)getReq('uid',381440);
 		}
