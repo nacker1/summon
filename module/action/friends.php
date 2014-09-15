@@ -96,7 +96,8 @@
 	 		$mail->sendMail($con, 2, $to, '收获体力', json_encode($goods), $user->getUserName());
 	 		$limit->addLimitTimes();
 	 		$limit->addLimitTimes(1,$to);
-	 		ret('suc');
+	 		$give['mFriend'] = 5;
+	 		ret( $user->sendGoodsFromConfig($give) );
 	 	}else{
 	 		ret( '今日次数已用完',-1 );
 	 	}
