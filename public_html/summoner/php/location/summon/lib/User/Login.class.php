@@ -31,7 +31,7 @@
 			if( empty( $uinfo ) ){
 				$uinfo = $this->_createRole();
 				$this->isNew = 1;
-				$hero = new User_Hero( $uinfo['userid'] );
+				$hero = new User_Hero( $uinfo['userid'], 10001 );
 				$hero->giveHero();
 			}
 			$uid = $uinfo['userid'];
