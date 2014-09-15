@@ -27,7 +27,7 @@
  			$chat = new Chat( $to );
  			$chat->sendChat( $con, $user->getUserName(), $user->getUid() );
  			if( $money > 0 ){
- 				$give['money'] = $money;
+ 				$give['money'] = -$money;
  				$ret = $user->sendGoodsFromConfig( $give );
  			}
  			ret( array( 'money'=>$user->getMoney() ) );
