@@ -23,6 +23,7 @@
  		$limit = new User_Limit( 'helloWorld' );
  		$money = $limit->getOneTimeCooldou();
  		if( $user->getMoney() >= $money ){
+ 			$limit->addLimitTimes();
  			$chat = new Chat( $to );
  			$chat->sendChat( $con, $user->getUserName(), $user->getUid() );
  			if( $money > 0 ){
