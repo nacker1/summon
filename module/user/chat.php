@@ -20,19 +20,25 @@
  		if( empty( $con ) || strlen( $con ) < 6 || strlen($con) > 60 ){
  			ret( '字数在2-60之内', -1 );
  		}
- 		$limit = new User_Limit( 'helloWorld' );
- 		$money = $limit->getOneTimeCooldou();
- 		if( $user->getMoney() >= $money ){
- 			$limit->addLimitTimes();
- 			$chat = new Chat( $to );
- 			$chat->sendChat( $con, $user->getUserName(), $user->getUid() );
- 			if( $money > 0 ){
- 				$give['money'] = -$money;
- 				$ret = $user->sendGoodsFromConfig( $give );
- 			}
- 			ret( array( 'money'=>$user->getMoney() ) );
- 		}
- 		ret( '喊话需要 '.$money.' 金币' );	
+ 		if( empty( $to ) ){
+	 		$limit = new User_Limit( 'helloWorld' );
+	 		$money = $limit->getOneTimeCooldou();
+	 		if( $user->getMoney() >= $money ){
+	 			$limit->addLimitTimes();
+	 			$chat = new Chat( $to );
+	 			$chat->sendChat( $con, $user->getUserName(), $user->getUid() );
+	 			if( $money > 0 ){
+	 				$give['money'] = -$money;
+	 				$ret = $user->sendGoodsFromConfig( $give );
+	 			}
+	 			ret( array( 'money'=>$user->getMoney() ) );
+	 		}
+	 		ret( '喊话需要 '.$money.' 金币' );	
+	 	}else{
+	 		$chat = new Chat( $to );
+	 		$chat->sendChat( $con, $user->getUserName(), $user->getUid() );
+	 		ret('发送成功');
+	 	}
  }
 
  ret( 'YMD'.__LINE__, -1 );
