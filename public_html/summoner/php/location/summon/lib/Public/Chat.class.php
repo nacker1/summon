@@ -7,7 +7,7 @@
  	private $uCond;				#玩家私信redis连接源
  	private $type;				#信息类型  1为世界信息  2为私信  5为公会信息
 
- 	function __construct( $type=1, $uid='' ){
+ 	function __construct( $uid='', $type=1 ){
  		# $uid: 如果是发送信息则为接收者的uid, 如果是拉信息则为当前用户的uid
  		parent::__construct( $uid );
  		$this->cond = new Cond( 'chat', 0, 600 );
