@@ -2,18 +2,17 @@
 /**
  *@ Chat 聊天系统类
  **/
- class Chat extends user_Base{
+ class Chat extends User_Base{
  	private $cond;				#世界信息redis连接源
  	private $uCond;				#玩家私信redis连接源
- 	private $type;				#信息类型  1为世界信息  3为私信  5为公会信息
+ 	private $type;				#信息类型  1为世界信息  2为私信  5为公会信息
 
- 	function __construct( $uid='' ){
+ 	function __construct( $uid, $type ){
  		# $uid: 如果是发送信息则为接收者的uid, 如果是拉信息则为当前用户的uid
  		parent::__construct( $uid );
  		$this->cond = new Cond( 'chat', 0, 600 );
- 		$this->type = 1;
- 		if( !empty( $this->uid ) ){
- 			$this->type = 3;
+ 		$this->type = $type;
+ 		if( $this->type == 2 ){
  			$this->uCond = new Cond( 'chat', $this->uid, 86400 );	#私信保存一天
  		}
  	}
@@ -79,7 +78,7 @@
 
  	private function _setChat( $con ){
  		switch( $this->type ){
- 			case '3': #发私信
+ 			case '2': #发私信
  				$this->setMessageFlag(1);
  				return $this->uCond->set( $con, uniqid(true) );
  			default:
