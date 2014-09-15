@@ -158,16 +158,10 @@
 					$this->addExp($v);
 					$uInfo = $this->getUserLastUpdInfo();
 					break;
-				case 'mFriend':
-					$this->addUserRecord('mFriend',$v);
-					$uInfo = $this->getUserLastUpdInfo();
-					break;
-				case 'mAction':
-					$this->addUserRecord('mAction',$v);
-					$uInfo = $this->getUserLastUpdInfo();
-					break;
-				case 'mArena':
-					$this->addUserRecord('mArena',$v);
+				case 'mFriend':		#友情点
+				case 'mAction':		#活动币
+				case 'mArena':		#竞技场币
+					$this->addUserRecord( $k,$v );
 					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'good':
