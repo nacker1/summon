@@ -265,6 +265,7 @@
 	{
 	    $len=strlen($str);
 	    $i=0;
+	    $length = 0;
 	    while($i<$len)
 	    {
 	        if(preg_match("/^[".chr(0xa1)."-".chr(0xff)."]+$/",$str[$i]))
@@ -275,8 +276,9 @@
 	        {
 	            $i+=1;
 	        }
+	        $length++;
 	    }
-	    return $i;
+	    return $length;
 	} 
 	function str2dechex( $str ){
 		for( $i=0;$i<strlen($str);$i++ ){
