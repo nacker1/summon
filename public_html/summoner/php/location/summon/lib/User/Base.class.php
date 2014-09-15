@@ -498,9 +498,7 @@
  *	$fName: 方法名
  *	$args:	 初始化类的构造参数
  **/
-	public function proxy( $type, $cName= 'User_Mission' , $fName= 'setUserMissing'  ){
-		$args['type'] = $type;
-		$args['uid'] = $this->uid;
+	public function proxy( $args=array(), $cName= 'User_Mission' , $fName= 'setUserMissing'  ){
 		$ret = new Proxy( $args,$cName,$fName );
 		return $ret;
 	}
@@ -607,7 +605,7 @@
 			$missionIdList = self::$missionIdList;
 			self::$missionIdList = array();
 			foreach( $missionIdList as $k=>$val ){
-				$proxy = $this->proxy( $k );
+				$proxy = $this->proxy( array('type'=>$k, 'uid'=>$this->uid) );
 				foreach( $val as $v ){
 					$proxy->exec( $v );
 				}
