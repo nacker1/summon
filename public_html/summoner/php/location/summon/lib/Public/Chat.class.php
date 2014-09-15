@@ -70,7 +70,6 @@
  		$chat = array(
  			'con'=>$con,
  			'name'=>$name,
- 			'type'=>$this->type,
  			'uid'=>$uid,
  			'time'=>time()
  		);
