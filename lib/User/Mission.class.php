@@ -20,7 +20,7 @@
 
  	function _init(){
  		$this->pre;
- 		if( C('test') || !$this->pre->hget( 'baseMissionConfig:check', 'checked' ) ){
+ 		if( C('test') || !$this->pre->hget( 'baseMissionConfig:'.$this->type.':check', 'checked' ) ){
  			$this->pre->hdel( 'baseMissionConfig:'.$this->type.':*' );
  			$this->cdb;
  			$ret = $this->cdb->find( $this->missionTable,'*',array('Task_Type'=>$this->type) );
@@ -47,7 +47,7 @@
 			}
  			$this->pre->del( 'baseMissionConfig:TaskClass_'.$this->type );
  			$this->pre->hmset( 'baseMissionConfig:TaskClass_'.$this->type, $initTaskClass );
- 			$this->pre->hset( 'baseMissionConfig:check', 'checked',1,get3time() );
+ 			$this->pre->hset( 'baseMissionConfig:'.$this->type.':check', 'checked',1,get3time() );
  		}
 
  		if( $this->type == 1 ){ //系统任务  取数据库
