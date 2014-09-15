@@ -144,6 +144,7 @@
 		$insert['channel'] = $channel ? $channel : 1;
 		$insert['time'] = date('Y-m-d H:i:s');
 		$insert['isNew'] = $this->isNew;
+		dump($insert);
 		$this->setThrowSQL( $this->loginLogTable,$insert,'',1,'stats' );
 		$this->setLoginTime();
 		//$this->sdb->insert( $this->loginLogTable, $insert );
