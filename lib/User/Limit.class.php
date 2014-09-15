@@ -73,7 +73,7 @@ class User_Limit extends User_Base{
  *@ 添加今日已使用次数
  **/
 	public function addLimitTimes( $nums=1,$key='' ){
-		if( $this->getTimeLimit( $key ) ) return true;
+		if( $this->getLastFreeTimes($key) > 0 && $this->getTimeLimit( $key ) ) return true;
 		$used = $this->getUsedTimes( $key );
 		$nums += $used;
 		$this->setTimeLimit( $key );
