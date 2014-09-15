@@ -50,6 +50,8 @@
 			}
 			self::$userinfo[$this->uid] = $uinfo;
 		}
+		self::$updinfo[$this->uid] = array();
+		self::$recordInfo[$this->uid] = array();
 		$this->uinfo = self::$userinfo[$this->uid];
 	}
 /**
