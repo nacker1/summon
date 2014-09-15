@@ -130,6 +130,7 @@
  		if( 2 == $this->type ){
  			$uMission = $this->cond->getAll();
  		}
+ 		$this->log->i( json_encode($uMission) );
  		return $uMission;
  	}
 /**
