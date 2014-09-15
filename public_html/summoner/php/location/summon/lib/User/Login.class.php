@@ -149,7 +149,7 @@
 		//$this->sdb->insert( $this->loginLogTable, $insert );
 		if( 1==$this->isNew ){
 			$hero = new User_Hero( $this->uid, 10001 );
-			$hero->giveHero();
+			dump($hero->giveHero());
 		}
 	}
  }
