@@ -17,7 +17,7 @@
  	case '2': #发送信息
  		$to = !empty( $input['to'] ) ? $input['to'] : '';
  		$con = $input['con'];
- 		if( empty( $con ) || strlen( $con ) < 6 || strlen($con) > 60 ){
+ 		if( empty( $con ) || mb_strlen( $con ) < 6 || mb_strlen($con) > 60 ){
  			ret( '字数在2-60之内', -1 );
  		}
  		if( empty( $to ) ){
