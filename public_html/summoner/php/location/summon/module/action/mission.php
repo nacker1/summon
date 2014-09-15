@@ -16,7 +16,7 @@
  	ret( "YMD",-1 );
  }
 
- $mission = new User_Mission($mType);
+ $mission = new User_Mission( array('type'=>$mType,'uid'=>$user->getUid()) );
 
  switch ($type) {
  	case '1': //拉取当前自己的任务列表
