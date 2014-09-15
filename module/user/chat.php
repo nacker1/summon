@@ -12,7 +12,7 @@
  switch( $type ){
  	case '1': #拉取信息
  		$lasttime = isset( $input['lt'] ) ? $input['lt'] : 0;
- 		$chat = new Chat();
+ 		$chat = new Chat( $user->getUid() );
  		ret( $chat->getChat( $lasttime ) );
  	case '2': #发送信息
  		$to = !empty( $input['to'] ) ? $input['to'] : '';
@@ -35,7 +35,7 @@
 	 		}
 	 		ret( '喊话需要 '.$money.' 金币' );	
 	 	}else{
-	 		$chat = new Chat( 2,$to );
+	 		$chat = new Chat( $to,2 );
 	 		$chat->sendChat( $con, $user->getUserName(), $user->getUid() );
 	 		ret('发送成功');
 	 	}
