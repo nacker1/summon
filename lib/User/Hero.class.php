@@ -119,12 +119,12 @@ class User_Hero extends User_Base{
 		$hero['star'] = 1;
 		$hero['color'] = $color;
 		$hero['uid'] = $this->uid;
-		$hero['equip1'] = '';
-		$hero['equip2'] = '';
-		$hero['equip3'] = '';
-		$hero['equip4'] = '';
-		$hero['equip5'] = '';
-		$hero['equip6'] = '';
+		$hero['equip1'] = '0';
+		$hero['equip2'] = '0';
+		$hero['equip3'] = '0';
+		$hero['equip4'] = '0';
+		$hero['equip5'] = '0';
+		$hero['equip6'] = '0';
 		$hero['config'] = json_encode($config);
 		$hero['add'] = 1;//$this->db->insert( $this->table, $hero );
 		return $hero;
