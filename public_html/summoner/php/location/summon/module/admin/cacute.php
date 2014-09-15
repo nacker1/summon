@@ -209,13 +209,14 @@
 		if(64 != $input['tasktype'] )
 			$add['life'] = -1;
 	}
-
-	$input['getList'] = $user->sendGoodsFromConfig( $add ); 	//所有条件通过后统一发放物品
-
 #============================每日刷副本日常任务=================================
 	if( in_array( $input['tasktype'], array( 11,12,13 ) ) ){
 		//====  日常任务处理  ===========
 		$user->setMissionId( 2, 14 ); //每日所有副本任务
+		if( isset($intpu['merc']) && is_numeric( $input['merc'] ))
+			$add['mFriend'] = 10;
 	}
 #============================每日刷副本日常任务=================================
+	$input['getList'] = $user->sendGoodsFromConfig( $add ); 	//所有条件通过后统一发放物品
+
 	ret( $input );
