@@ -16,9 +16,9 @@ class User_Draw extends User_Base{
 	private function _init(){
 		//初始化抽卡配置表   
 		$this->pre;
-		if( C('test') || !$this->pre->exists( 'baseDrawConfig:check' ) ){
+		if( C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
 			$this->cdb;
-			$ret = $this->cdb->find( $this->draw_table );
+			$ret = $this->cdb->find( $this->draw_table, '*', array( 'Box_Id'=>$this->type ) );
 			if( empty( $ret ) || !is_array( $ret ) ){
 				$this->log->e( '类型（'.$this->type.'）对应的配置信息未找到。' );
 				ret( 'no_config' ,-1);
@@ -26,7 +26,7 @@ class User_Draw extends User_Base{
 			foreach( $ret as $v ){
 				$this->pre->hmset( 'baseDrawConfig:'.$this->type.':'.$v['Item_Id'], $v );
 			}
-			$this->pre->hset( 'baseDrawConfig:check','checked', 1, get3time() );
+			$this->pre->hset( 'baseDrawConfig:'.$this->type.':check','checked', 1, get3time() );
 		}
 		$keys = $this->pre->keys( 'baseDrawConfig:'.$this->type.':*' );
 		$uLevel = $this->getLevel();
