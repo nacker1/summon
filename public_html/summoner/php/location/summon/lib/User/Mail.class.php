@@ -12,6 +12,7 @@
  *@ getEmailList 获取用户邮件列表
  **/
 	function getEmailList(){
+		$this->setNewMail(0);
 		$priMail = $this->mailRedis->getAll();
 		$publicMail = new Cond( 'publicMail' ); //公共邮件
 		$pubMail = $publicMail->getAll();
