@@ -31,8 +31,6 @@
 			if( empty( $uinfo ) ){
 				$uinfo = $this->_createRole();
 				$this->isNew = 1;
-				$hero = new User_Hero( $uinfo['userid'], 10001 );
-				$hero->giveHero();
 			}
 			$uid = $uinfo['userid'];
 			if( !empty( $uid ) )
@@ -149,6 +147,10 @@
 		$this->setThrowSQL( $this->loginLogTable,$insert,'',1,'stats' );
 		$this->setLoginTime();
 		//$this->sdb->insert( $this->loginLogTable, $insert );
+		if( 1==$this->isNew ){
+			$hero = new User_Hero( $uinfo['userid'], 10001 );
+			$hero->giveHero();
+		}
 	}
  }
 ?>
