@@ -10,6 +10,7 @@ class User_Progress extends User_Base{
 
 	function __construct( $cid='' ){
 		parent::__construct();
+		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		$this->type=substr($cid,1,1);
 		$this->cid=$cid;
 		$this->_init();

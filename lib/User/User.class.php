@@ -13,6 +13,7 @@
 		if( empty($skey) ) $skey = getReq('skey',-1);
 		$this->skey = $skey;
 		parent::__construct( $uid );
+		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		if( $this->skey != -1 && !C('test')){
 			$this->_check(); //检验用户登录
 		}
