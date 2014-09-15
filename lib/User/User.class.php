@@ -198,10 +198,12 @@
 				default:break;
 			}
 		}
-
+		$this->log->i( json_encode($ret) );
+		$this->log->i( json_encode($uInfo) );
 		if( is_array( $uInfo ) ){
 			$ret = array_merge( $ret, $uInfo );
 		}
+		$this->log->i( json_encode($ret) );
 		return $ret;
 	}
  }
