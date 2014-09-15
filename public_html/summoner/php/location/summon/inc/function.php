@@ -259,7 +259,6 @@
     }
 /**
 * 可以统计中文字符串长度的函数
-*
 */
 	function abslength($str)
 	{
