@@ -29,9 +29,9 @@
 	 **/
 	public function getHeartBeatInfo(){
 		$uInfo = $this->getUserInfo();
-		$ret['mail'] = $uInfo['mail'];
-		$ret['mission'] = $uInfo['mission'];
-		$ret['jewel'] = $uInfo['jewel'];
+		$ret['mail'] = (int)$uInfo['mail'];
+		$ret['mission'] = (int)$uInfo['mission'];
+		$ret['jewel'] = (int)$uInfo['jewel'];
 		$ret['now'] = time();
 		return $ret;
 	}
