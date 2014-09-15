@@ -25,7 +25,7 @@
 	 		$money = $limit->getOneTimeCooldou();
 	 		if( $user->getMoney() >= $money ){
 	 			$limit->addLimitTimes();
-	 			$chat = new Chat();
+	 			$chat = new Chat( $user->getUid() );
 	 			$chat->sendChat( $con, $user->getUserName(), $user->getUid() );
 	 			if( $money > 0 ){
 	 				$give['money'] = -$money;
