@@ -117,7 +117,7 @@ class Config {
 				'username' => 'root',
 				'password' => 'coolplay159357',
 				'dbname' => 'public',
-				'charset' => 'utf8'
+				'charset' => 'utf-8'
 			),
 			'login'=>array( //公共登录库         通用
 				'host' => '127.0.0.1',
