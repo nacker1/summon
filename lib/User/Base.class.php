@@ -574,7 +574,7 @@
  *	$value:	$key 对应需要添加的值
  **/
 	public function addUserRecord( $key, $value ){
-		return self::$recordInfo[$this->uid][$key] += $value;
+		return self::$recordInfo[$this->uid][$key] = (int)self::$recordInfo[$this->uid][$key] + $value;
 	}
 #============================================================================================
 	public function __destruct(){
