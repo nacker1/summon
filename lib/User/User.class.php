@@ -30,6 +30,7 @@
 	public function getHeartBeatInfo(){
 		$uInfo = $this->getUserInfo();
 		$ret['mail'] = (int)$uInfo['mail'];
+		$ret['message'] = (int)$uInfo['message'];
 		$ret['mission'] = (int)$uInfo['mission'];
 		$ret['jewel'] = (int)$uInfo['jewel'];
 		$ret['now'] = time();
@@ -59,7 +60,7 @@
 		$point = array( 'point'=>$max,'lastTime'=>$now );
 		if( $this->redis->exists('roleinfo:'.$this->uid.':skillPoint') ){
 			$point = $this->getUserSkill();
-			$tolTime = $now - $point['lastTime']; //已经恢复的总时间 秒
+			$tolTime = 	$now - $point['lastTime']; //已经恢复的总时间 秒
 			if( $tolTime >= $recover ){
 				$nowPoint = $point['point'] + floor( $tolTime/$recover );
 				$reduceTime = $tolTime%$recover;

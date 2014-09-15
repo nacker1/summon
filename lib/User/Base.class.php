@@ -277,6 +277,13 @@
 		return true;
 	}
 /**
+ *@ 设置用户私信标记
+ **/
+	public function setMessageFlag( $val ){
+		$this->setUpdTime(1);
+		return self::$userinfo[$this->uid]['message'] = $val;
+	}
+/**
  *@ 设置用户邮件标记
  **/
 	public function setNewMail(){

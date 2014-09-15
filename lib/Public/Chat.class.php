@@ -2,7 +2,7 @@
 /**
  *@ Chat 聊天系统类
  **/
- class Chat extends Base{
+ class Chat extends user_Base{
  	private $cond;				#世界信息redis连接源
  	private $uCond;				#玩家私信redis连接源
  	private $type;				#信息类型  1为世界信息  3为私信  5为公会信息
@@ -33,6 +33,7 @@
  *	$lasttime: 客户端收到的最后一条信息时间戳
  **/
  	private function _getUserChat( $lasttime ){
+ 		$this->setMessageFlag(0);
  		$ret=array();
  		$cList = $this->uCond->getAll();
  		if( is_array( $cList ) )
@@ -79,6 +80,7 @@
  	private function _setChat( $con ){
  		switch( $this->type ){
  			case '3': #发私信
+ 				$this->setMessageFlag(1);
  				return $this->uCond->set( $con, uniqid(true) );
  			default:
  				return $this->cond->set( $con, uniqid(true) );
