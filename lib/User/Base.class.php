@@ -42,7 +42,7 @@
 				}
 				$uinfo['skey'] = md5( gettimeofday(true).rand(1000,9999) ); //登录校验
 				$uinfo['lastUpdTime'] = time(); //用户信息最后更新时间
-				$uinfo['mail'] = 0; //用户信息最后更新时间
+				$uinfo['mail'] = 0; //邮件标记
 				$this->redis->del('roleinfo:'.$this->uid.':baseinfo');
 				$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',$uinfo);
 			}else{
@@ -565,7 +565,7 @@
  * 	$key: 	对应 zy_uniqRoleRecord 表中的属性值
  **/
 	public function getUserRecord( $key ){
-		return (int)self::$recordInfo[$this->uid][$key];
+		return (int)self::$userinfo[$this->uid][$key];
 	}
 /**
  *@ addUserRecord() 添加或减少用户的记录表信息
@@ -574,7 +574,7 @@
  *	$value:	$key 对应需要添加的值
  **/
 	public function addUserRecord( $key, $value ){
-		return self::$recordInfo[$this->uid][$key] = (int)self::$recordInfo[$this->uid][$key] + $value;
+		return self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
 	}
 #============================================================================================
 	public function __destruct(){

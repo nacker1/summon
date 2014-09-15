@@ -239,11 +239,12 @@
 				if( empty( $baseMission['Post_Task'] ) ){
 					$set['status'] = 1;
 				}
+				$this->setMissionNum();
 			}
 			if( $type < 14 ){
 				$set['progress'] = $baseMission[ 'Task_Goal' ];
 			}
-			$this->setMissionNum();
+			
 			$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$type ) );
 			if( empty( $baseMission[ 'Post_Task' ] ) ){
 				return $this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$type );
