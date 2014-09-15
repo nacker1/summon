@@ -257,7 +257,27 @@
 		if(strlen($slice)<$length)return $slice;
 			return $suffix ? $slice.'...' : $slice;
     }
-
+/**
+* 可以统计中文字符串长度的函数
+*
+*/
+	function abslength($str)
+	{
+	    $len=strlen($str);
+	    $i=0;
+	    while($i<$len)
+	    {
+	        if(preg_match("/^[".chr(0xa1)."-".chr(0xff)."]+$/",$str[$i]))
+	        {
+	            $i+=3;
+	        }
+	        else
+	        {
+	            $i+=1;
+	        }
+	    }
+	    return $i;
+	} 
 	function str2dechex( $str ){
 		for( $i=0;$i<strlen($str);$i++ ){
 			$str .= dechex(ord($str[$i])).' ';
