@@ -63,6 +63,8 @@
  *	$con:	 发送的内容
  *	$name:	 发信者信息
  *	$uid:	 发信者的uid 可用来直接加好友
+ *	$level:	 发信者等级
+ *	$image:	 发信者的头像id
  **/
  	function sendChat( $con, $name, $uid, $level, $image ){
  		$chat = array(
