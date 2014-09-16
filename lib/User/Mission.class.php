@@ -130,6 +130,7 @@
  		}
  		if( 2 == $this->type ){
  			$uMission = $this->cond->getAll();
+ 			dump($uMission);
  		}
  		$this->log->i( 'mList:'.json_encode($uMission) );
  		return $uMission;
@@ -255,8 +256,6 @@
 			}
 		}elseif( 2==$this->type ){ //处理日常任务
 			$dayMis = $this->cond->get($type);
-			dump($type);
-			dump($dayMis);
 			if( !empty( $dayMis ) ){
 				$dayMis['progress'] += 1 ;
 				$this->cond->set( $dayMis,$type );
