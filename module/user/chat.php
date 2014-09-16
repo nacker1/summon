@@ -27,7 +27,6 @@
 	 		if( $user->getMoney() >= $money ){
 	 			$limit->addLimitTimes();
 	 			$chat = new Chat( $user->getUid() );
-	 			dump($user);
 	 			$chat->sendChat( $con, $user->getUserName(), $user->getUid(), $user->getLevel(), $user->getImage() );
 	 			if( $money > 0 ){
 	 				$give['money'] = -$money;
@@ -38,7 +37,7 @@
 	 		ret( '喊话需要 '.$money.' 金币' );	
 	 	}else{
 	 		$chat = new Chat( $to,2 );
-	 		$chat->sendChat( $con, $user->getUserName(), $user->getUid() );
+	 		$chat->sendChat( $con, $user->getUserName(), $user->getUid(), $user->getLevel(), $user->getImage() );
 	 		ret('发送成功');
 	 	}
  }
