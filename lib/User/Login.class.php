@@ -123,12 +123,13 @@
 		$ret['maxHeroLevel'] = (int)$userinfo['maxHeroLevel'];
 		$ret['skey'] = $userinfo['skey'];
 		$ret['mail'] = (int)$userinfo['mail'];
-		$ret['guide'] = (int)$userinfo['guide'];			#新手引导完成的进度id
-		$ret['maxStageid'] = (int)$userinfo['maxStageid'];	#无尽之地的最大关卡id
-		$ret['mFriend'] = (int)$userinfo['mFriend'];		#用户的友情点数
-		$ret['mArena'] = (int)$userinfo['mArena'];		#用户的竞技场币数量
-		$ret['mAction'] = (int)$userinfo['mAction'];		#用户的
-		$ret['buff'] = $this->getRoleBuff();			#用户当前身上拥有的buff列表
+		$ret['guide'] = (int)$userinfo['guide'];										#新手引导完成的进度id
+		$ret['maxStageid'] = (int)$userinfo['maxStageid'];								#无尽之地的最大关卡id
+		$ret['mFriend'] = (int)$userinfo['mFriend'];									#用户的友情点数
+		$ret['mArena'] = (int)$userinfo['mArena'];										#用户的竞技场币数量
+		$ret['mAction'] = (int)$userinfo['mAction'];									#用户的
+		$ret['buff'] = $this->getRoleBuff();											#用户当前身上拥有的buff列表
+		$ret['maxPvpTop'] = (int)$userinfo['maxPvpTop'];								#用户当前身上拥有的buff列表
 		$this->_logInfo();
 		return $ret;
 	}
