@@ -64,10 +64,12 @@
  *	$name:	 发信者信息
  *	$uid:	 发信者的uid 可用来直接加好友
  **/
- 	function sendChat( $con, $name, $uid ){
+ 	function sendChat( $con, $name, $uid, $level, $image ){
  		$chat = array(
  			'con'=>$con,
  			'name'=>$name,
+ 			'level'=>$level,
+ 			'image'=>$image,
  			'uid'=>$uid,
  			'time'=>time()
  		);
