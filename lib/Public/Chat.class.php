@@ -78,7 +78,10 @@
  		switch( $this->type ){
  			case '2': #发私信
  				$this->setMessageFlag(1);
- 				return $this->uCond->set( $con, uniqid(true) );
+ 				$uniq = uniqid(true);
+ 				$mCond = new Cond( 'chat', $con['uid'], 86400 );	#私信保存一天
+ 				$mCond->set( $con, $uniq );
+ 				return $this->uCond->set( $con, $uniq );
  			default:
  				return $this->cond->set( $con, uniqid(true) );
  		}
