@@ -18,7 +18,7 @@
  		$to = !empty( $input['to'] ) ? $input['to'] : '';
  		$con = $input['con'];
  		$strLen = abslength($con);
- 		if( empty( $con ) || $strLen < 1 || $strLen > 30 ){
+ 		if( empty( $con ) || $strLen < 1 || $strLen > 100 ){
  			ret( '字数在1-30之内'.$strLen, -1 );
  		}
  		if( empty( $to ) ){
