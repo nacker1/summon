@@ -235,7 +235,7 @@
 			$missing = $this->getUserMissingByClass($type);
 			$set['progress'] = (int)$missing['progress'] + 1;
 			$key = empty( $missing['missing'] ) ? $missing['showMission'] : $missing['missing'] ;
-			$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal' ) );
+			$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal','Task_Level' ) );
 			if( $set['progress'] >= $baseMission['Task_Time'] ){
 				$set['missing'] = $baseMission[ 'Post_Task' ];
 				if( empty( $baseMission['Post_Task'] ) ){
@@ -255,6 +255,8 @@
 			}
 		}elseif( 2==$this->type ){ //处理日常任务
 			$dayMis = $this->cond->get($type);
+			dump($type);
+			dump($dayMis);
 			if( !empty( $dayMis ) ){
 				$dayMis['progress'] += 1 ;
 				$this->cond->set( $dayMis,$type );
