@@ -87,16 +87,13 @@ class User_Draw extends User_Base{
 			$list[$k] = number_format($v['Item_Random']/$tolRate, 2);
 		}
 		$index = $this->retRate( $list );
+		if( !isset( $tempInfo[$index] ) ){
+			$index = 0;
+		}
 		$good[]=$tempInfo[$index]['Item_Id'];
 		$good[] = mt_rand($tempInfo[$index]['Item_CountMin'],$tempInfo[$index]['Item_CountMax']);
 		if( $tempInfo[$index]['Item_Id'] < 11000 ){	#如果是英雄给定英雄的品质
 			$good[] = $tempInfo[$index]['Item_Color'];
-		}
-		if( empty( $tempInfo[$index] ) ){
-			dump($index);
-			dump($tempInfo);
-			dump($good);
-			dump($list);
 		}
 		$this->setMissionId( 2,65 );
 		return implode( ',', $good );
