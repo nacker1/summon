@@ -96,6 +96,7 @@ class User_Draw extends User_Base{
 			dump($index);
 			dump($tempInfo);
 			dump($good);
+			dump($list);
 		}
 		$this->setMissionId( 2,65 );
 		return implode( ',', $good );
