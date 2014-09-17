@@ -93,6 +93,7 @@ class User_Draw extends User_Base{
 		if( $tempInfo[$index]['Item_Id'] < 11000 ){	#如果是英雄给定英雄的品质
 			$good[] = $temp[$index]['Item_Color'];
 		}
+		dump($tempInfo[$index]);
 		$this->setMissionId( 2,65 );
 		return implode( ',', $good );
 	}
