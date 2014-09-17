@@ -80,7 +80,7 @@ class User_Draw extends User_Base{
 			$Group_Level = explode(',',$gInfo['Group_Level']);
 			if( $uLevel>=$Group_Level[0] ){
 				$tempInfo[] = $gInfo;
-				$tolRate += $gInfo['Item_Random'];
+				$tolRate += (int)$gInfo['Item_Random'];
 			}
 		}
 		foreach( $tempInfo as $k=>$v ){
