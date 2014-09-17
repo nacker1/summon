@@ -84,7 +84,7 @@ class User_Draw extends User_Base{
 			}
 		}
 		foreach( $tempInfo as $k=>$v ){
-			$list[$k] = number_format($v['Item_Random']/$tolRate, 2);
+			$list[$k] = number_format($v['Item_Random']/$tolRate, 3);
 		}
 		$index = $this->retRate( $list );
 		if( !isset( $tempInfo[$index] ) ){
@@ -107,7 +107,7 @@ class User_Draw extends User_Base{
 		$ret = array();
 		foreach( $this->userType as $k=>$v ){
 			if( $v['Item_Random']>0 ){
-				$list[$k] = number_format( $v['Item_Random']/$this->tolTypeRate, 2 );
+				$list[$k] = number_format( $v['Item_Random']/$this->tolTypeRate, 3 );
 			}
 		}
 		$index = $this->retRate( $list );
