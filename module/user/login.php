@@ -20,11 +20,6 @@
 		$ret['sinfo']['sList'] = $server->getServerList();
 		$ret['sinfo']['slt'] = $serverLast;
 	}
-	/*if( '3729952484' == getIp() || '167773376' == getIp() || getIp() != '-1221026606' ){
-		foreach( $ret['sinfo']['sList'] as $k=>$v ){
-			$ret['sinfo']['sList'][$k]['php'] = 'http://183.56.156.211:8082';
-		}
-	}*/
 	$ret['sinfo']['sStatus'] = $server->getServersStatus();
 	ret( $ret );
  }else{

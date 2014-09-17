@@ -97,7 +97,7 @@
 		}
 
 		if( isset( $input['buff'] ) && is_numeric( $input['buff'] ) ){ //活动添加buff  buff应对buff表中的buffid
-			$user->addRoleBuff( $input['buff'][0] );
+			$input['buff'] = $user->addRoleBuff( $input['buff'][0] );
 		}
 
 		switch( $input['tasktype'] ){  //通关扣除体力
