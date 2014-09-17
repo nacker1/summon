@@ -66,7 +66,7 @@
 			$ret['buff'] = $user->addRoleBuff( $gConfig );
 			ret( $ret );
 		}
-		ret($gConfig);
+		ret( '你确定他能吃？', -1 );
 	case '2': //物品出售
 		$gid = $input['gid'];	//物品id
 		$ugid = $input['ugid'];	//用户拥有物品id
