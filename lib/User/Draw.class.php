@@ -93,7 +93,9 @@ class User_Draw extends User_Base{
 			$good[] = $tempInfo[$index]['Item_Color'];
 		}
 		if( empty( $tempInfo[$index] ) ){
+			dump($index);
 			dump($tempInfo);
+			dump($good);
 		}
 		$this->setMissionId( 2,65 );
 		return implode( ',', $good );
