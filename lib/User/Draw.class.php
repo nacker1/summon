@@ -89,6 +89,8 @@ class User_Draw extends User_Base{
 		$index = $this->retRate( $list );
 		if( !isset( $tempInfo[$index] ) ){
 			$index = 0;
+			dump($list);
+			exit;
 		}
 		$good[]=$tempInfo[$index]['Item_Id'];
 		$good[] = mt_rand($tempInfo[$index]['Item_CountMin'],$tempInfo[$index]['Item_CountMax']);
