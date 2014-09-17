@@ -84,13 +84,12 @@ class User_Draw extends User_Base{
 			}
 		}
 		foreach( $tempInfo as $k=>$v ){
-			$list[$k] = number_format($v['Item_Random']/$tolRate, 3);
+			$list[$k] = number_format($v['Item_Random']/$tolRate, 4);
 		}
 		$index = $this->retRate( $list );
 		if( !isset( $tempInfo[$index] ) ){
+			$this->log->e( '随机得到的概率错误，概率列表如下：'.json_encode( $list ) );
 			$index = 0;
-			dump($list);
-			exit;
 		}
 		$good[]=$tempInfo[$index]['Item_Id'];
 		$good[] = mt_rand($tempInfo[$index]['Item_CountMin'],$tempInfo[$index]['Item_CountMax']);
@@ -107,7 +106,7 @@ class User_Draw extends User_Base{
 		$ret = array();
 		foreach( $this->userType as $k=>$v ){
 			if( $v['Item_Random']>0 ){
-				$list[$k] = number_format( $v['Item_Random']/$this->tolTypeRate, 3 );
+				$list[$k] = number_format( $v['Item_Random']/$this->tolTypeRate, 4 );
 			}
 		}
 		$index = $this->retRate( $list );
