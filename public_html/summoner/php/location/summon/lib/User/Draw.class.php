@@ -85,6 +85,7 @@ class User_Draw extends User_Base{
 			}
 		}
 		foreach( $tempInfo as $k=>$v ){
+			dump( $v['Item_Random'].'_'.$tolRate );
 			$list[$k] = number_format($v['Item_Random']/$tolRate, 2);
 		}
 		dump($list);
