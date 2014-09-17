@@ -25,18 +25,8 @@
 			if( 'role' == $gConfig['target'] ){ //消耗品针对召唤师
 				unset($gConfig['target']);
 				if( isset( $gConfig['Money'] ) ){
-					/*if( !$user->addMoney( $gConfig['Money'] * $nums ) ){
-						ret('fail_'.__LINE__,-1);
-					}else{
-						$ret['money'] = $user->getUserMoney();
-					}*/
 					$add['money'] = $gConfig['Money'] * $nums ;
 				}elseif( isset( $gConfig['Action'] ) ){
-					/*if( !$user->addLife( $gConfig['Action'] * $nums ) ){
-						ret('fail_'.__LINE__,-1);
-					}else{
-						$ret['life'] = $user->getLife();
-					}*/
 					$add['life'] = $gConfig['Action'] * $nums ;
 				}elseif( isset( $gConfig['time'] ) ){
 					if( !$user->addRoleBuff( $gConfig ) ){
