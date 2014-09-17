@@ -93,7 +93,7 @@
 	 		$life = $limit->getGiveNum();
 	 		$con = ' 亲，我给你赠送了 '.$life.' 点体力，记得回赠我哦。 ';
 	 		$goods = array('life'=>$life);
-	 		$mail->sendMail($con, 2, $to, '收获体力', json_encode($goods), $user->getUserName());
+	 		$mail->sendMail($con, 2, $to, '收获体力', json_encode($goods), $user->getUserName(),get3unix());
 	 		$limit->addLimitTimes();
 	 		$limit->addLimitTimes(1,$to);
 	 		$give['mFriend'] = 5;
