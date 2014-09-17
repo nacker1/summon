@@ -25,7 +25,6 @@ class User_Draw extends User_Base{
 			$this->cdb;
 			#=============  初始化类型配置表  =================================================
 			$ret = $this->cdb->find( $this->draw_type_table, 'id,Group_Level,Item_Type,Item_Color,Item_Random', array( 'Box_Id'=>$this->type ) );
-			dump($this->cdb->getLastSql());
 			if( empty( $ret ) || !is_array( $ret ) ){
 				$this->log->e( '类型（'.$this->type.'）对应的类型配置信息未找到。' );
 				ret( 'no_type_config' ,-1);
@@ -61,7 +60,7 @@ class User_Draw extends User_Base{
 		for( $i=0;$i<$nums;$i++ ){
 			array_push( $ret, $this->_getGood() );
 		}
-
+		dump($ret);
 		return implode('#',$ret);
 	}
 /**
