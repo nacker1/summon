@@ -87,6 +87,7 @@ class User_Draw extends User_Base{
 		foreach( $tempInfo as $k=>$v ){
 			$list[$k] = number_format($v['Item_Random']/$tolRate, 2);
 		}
+		dump($list);
 		$index = $this->retRate( $list );
 		$good[]=$tempInfo[$index]['Item_Id'];
 		$good[] = mt_rand($tempInfo[$index]['Item_CountMin'],$tempInfo[$index]['Item_CountMax']);
