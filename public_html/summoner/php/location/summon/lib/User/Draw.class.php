@@ -60,7 +60,6 @@ class User_Draw extends User_Base{
 		for( $i=0;$i<$nums;$i++ ){
 			array_push( $ret, $this->_getGood() );
 		}
-		dump($ret);
 		return implode('#',$ret);
 	}
 /**
@@ -85,21 +84,17 @@ class User_Draw extends User_Base{
 			}
 		}
 		foreach( $tempInfo as $k=>$v ){
-			dump( $v['Item_Random'].'_'.$tolRate );
 			$list[$k] = number_format($v['Item_Random']/$tolRate, 2);
 		}
-		dump($list);
 		$index = $this->retRate( $list );
 		$good[]=$tempInfo[$index]['Item_Id'];
 		$good[] = mt_rand($tempInfo[$index]['Item_CountMin'],$tempInfo[$index]['Item_CountMax']);
 		if( $tempInfo[$index]['Item_Id'] < 11000 ){	#如果是英雄给定英雄的品质
-			$good[] = $temp[$index]['Item_Color'];
+			$good[] = $tempInfo[$index]['Item_Color'];
 		}
-		dump($index);
 		if( empty( $tempInfo[$index] ) ){
 			dump($tempInfo);
 		}
-		dump($tempInfo[$index]);
 		$this->setMissionId( 2,65 );
 		return implode( ',', $good );
 	}
