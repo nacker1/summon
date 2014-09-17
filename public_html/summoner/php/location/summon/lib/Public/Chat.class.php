@@ -88,6 +88,7 @@
  				$uInfo['name'] = $this->getUserName();
  				$uInfo['image'] = $this->getImage();
  				$uInfo['level'] = $this->getLevel();
+ 				$uInfo['uid'] = $this->getUid();
  				$con['to'] = json_encode($uInfo);
  				$mCond->set( $con, $uniq );
  				return true;
