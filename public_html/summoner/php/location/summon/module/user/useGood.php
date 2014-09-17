@@ -61,7 +61,10 @@
 				}
 			}
 		}elseif( 65 == substr( $gid, 0 ,2 ) && is_numeric($gConfig) ){ //buff类药水特殊处理
-			ret( $user->addRoleBuff( $gConfig ) );
+			$good->reduceGoods( $nums );
+			$ret['list'] = $good->getLastUpdGoods();
+			$ret['buff'] = $user->addRoleBuff( $gConfig );
+			ret( $ret );
 		}
 		ret($gConfig);
 	case '2': //物品出售
