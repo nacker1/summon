@@ -2,7 +2,6 @@
 /**
  *@ 物品发放接口
  **/
-asdfasdfasdfasdfasd
 $type = $input['t'];
 $nums = $input['n'];
 $user=new User_User();
@@ -34,5 +33,6 @@ switch ($type) {
 		ret( ' YMD '.__LINE__, -1 );
 		break;
 }
+phpinfo();
 ret( '操作成功' );
 ?>
