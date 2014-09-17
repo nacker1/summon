@@ -81,11 +81,16 @@
  	private function _setChat( $con ){
  		switch( $this->type ){
  			case '2': #发私信
- 				$this->setMessageFlag(1);
  				$uniq = uniqid(true);
+ 				$this->uCond->set( $con, $uniq );
+ 				$this->setMessageFlag(1);
  				$mCond = new Cond( 'chat', $con['uid'], 86400 );	#私信保存一天
+ 				$uInfo['name'] = $this->getUserName();
+ 				$uInfo['image'] = $this->getImage();
+ 				$uInfo['level'] = $this->getLevel();
+ 				$con['to'] = json_encode($uInfo);
  				$mCond->set( $con, $uniq );
- 				return $this->uCond->set( $con, $uniq );
+ 				return true;
  			default:
  				return $this->cond->set( $con, uniqid(true) );
  		}
