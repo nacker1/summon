@@ -30,9 +30,10 @@ switch ($type) {
 		ret($user->getUserLastUpdInfo());
 	default:
 		# code...
-		# ret( ' YMD '.__LINE__, -1 );
+		phpinfo();
+		ret( ' YMD '.__LINE__, -1 );
 		break;
 }
-phpinfo();
+
 ret( '操作成功' );
 ?>
