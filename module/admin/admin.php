@@ -2,7 +2,7 @@
 /**
  *@ 物品发放接口
  **/
-
+asdfasdfasdfasdfasd
 $type = $input['t'];
 $nums = $input['n'];
 $user=new User_User();
