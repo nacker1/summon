@@ -103,6 +103,7 @@
  							$set[] = 0;				#'progress' 进度
 		 					$set[] = (int)$val;		#'tid'		任务id
 		 					$this->cond->set( implode('|',$set),$key );
+		 					unset($set);
  						}
  					}else{
 	 					$set[0] = 0; 		#'progress' 进度
