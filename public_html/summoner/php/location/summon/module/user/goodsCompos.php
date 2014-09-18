@@ -114,7 +114,7 @@
  		}else{
  			$hero = new User_Hero( $uid, $hid );
  			$hero->heroPutOnEquip( $index, $comid+1 );
- 			$result['hero'] = $heor->getLastUpdField();
+ 			$result['hero'] = $hero->getLastUpdField();
  		}
  		
  		$give['good'] = implode( '#', $goods );
