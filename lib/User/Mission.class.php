@@ -111,6 +111,7 @@
 	 						$set[0] = $this->isMonthCode();
 	 					}
 	 					$this->cond->set( implode('|',$set),$k );
+	 					unset($set);
 	 				}
 	 				$this->log->i( json_encode($set).'_'.$k );
  				}
