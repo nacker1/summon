@@ -36,9 +36,9 @@
  				$this->pre->hmset( 'baseMissionConfig:'.$v['Task_Type'].':'.$v['Task_Id'], $v );
  				if( substr($v['Task_Id'], -3) == 1 || $v['Task_Class'] == 61 ){ //初始化用户默认任务
  					if( $v['Task_Class'] == 61 ){
- 						$initTaskClass[ $v['Task_Class'] ][] = $v['Task_Id'].'|'.$v['Task_Goal'];
+ 						$initTaskClass[ $v['Task_Class'] ][] = $v['Task_Id'];
  					}else{
- 						$initTaskClass[ $v['Task_Class'] ] = $v['Task_Id'].'|'.$v['Task_Goal'];
+ 						$initTaskClass[ $v['Task_Class'] ] = $v['Task_Id'];
  					}
  				}
  				unset($temp);
@@ -65,10 +65,9 @@
  					$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
  					$this->redis->hdel( 'roleinfo:'.$this->uid.':mission:*' );
  					foreach( $taskClass as $k=>$v ){
- 						$gInfo = explode('|',$v);
  						$uMission[ $k ]['type'] = $k;			//任务类型
- 						$uMission[ $k ]['showMission'] = $gInfo[0];
- 						$uMission[ $k ]['missing'] = $gInfo[0];
+ 						$uMission[ $k ]['showMission'] = $v;
+ 						$uMission[ $k ]['missing'] = $v;
  						$uMission[ $k ]['time'] = time();
  						$uMission[ $k ]['progress'] = 0;
  						$uMission[ $k ]['uid'] = $this->uid;
@@ -97,9 +96,8 @@
  			if( empty( $uMission ) ){ //初始化用户当日日常任务记录
  				$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
  				foreach( $taskClass as $k=>$v ){
- 					$gInfo = explode('|',$v);
  					if( 61 == $k ){
- 						$tasks = explode(',',$gInfo[0]);
+ 						$tasks = explode(',',$v);
  						foreach( $tasks as $val ){
  							$key = $k.':'.$val;
  							$set['progress'] = 0;
@@ -107,9 +105,8 @@
 		 					$this->cond->set( $set,$key );
  						}
  					}else{
- 						$set['target'] = $gInfo[1];
 	 					$set['progress'] = 0;
-	 					$set['tid'] = $gInfo[0];
+	 					$set['tid'] = $v;
 	 					if( $k == 60 ){
 	 						$set['progress'] = $this->isMonthCode();
 	 					}
