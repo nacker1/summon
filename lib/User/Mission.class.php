@@ -110,7 +110,7 @@
  						$set['target'] = $gInfo[1];
 	 					$set['progress'] = 0;
 	 					$set['tid'] = $gInfo[0];
-	 					if( $k == 73 ){
+	 					if( $k == 60 ){
 	 						$set['progress'] = $this->isMonthCode();
 	 					}
 	 					$this->cond->set( $set,$k );
