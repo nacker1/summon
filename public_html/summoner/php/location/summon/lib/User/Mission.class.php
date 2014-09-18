@@ -38,7 +38,7 @@
  					if( $v['Task_Class'] == 61 ){
  						$initTaskClass[ $v['Task_Class'] ][] = $v['Task_Id'].'|'.$v['Task_Goal'];
  					}else{
- 						$initTaskClass[ $v['Task_Class'] ][] = $v['Task_Id'].'|'.$v['Task_Goal'];
+ 						$initTaskClass[ $v['Task_Class'] ] = $v['Task_Id'].'|'.$v['Task_Goal'];
  					}
  				}
  				unset($temp);
