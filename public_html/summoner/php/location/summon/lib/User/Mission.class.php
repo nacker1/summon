@@ -120,7 +120,7 @@
  /**
   *@ getUserMission
   **/
- 	function getUserMission(){
+ 	private function getUserMission(){
  		if( 1 == $this->type ){
  			$keys = $this->redis->keys( 'roleinfo:'.$this->uid.':mission:*' );
  			foreach( $keys as $v ){
