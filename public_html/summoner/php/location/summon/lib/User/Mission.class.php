@@ -125,7 +125,10 @@
  			$keys = $this->redis->keys( 'roleinfo:'.$this->uid.':mission:*' );
  			foreach( $keys as $v ){
  				$mis = $this->redis->hgetall( $v );
- 				$uMission[ $mis['type'] ] = implode('|',$mis);
+ 				$set[] = $mis['showMission'];
+ 				$set[] = $mis['missing'];
+ 				$set[] = $mis['progress'];
+ 				$uMission[ $mis['type'] ] = implode('|',$set);
  			}
  		}
  		if( 2 == $this->type ){
