@@ -100,9 +100,9 @@
  						$tasks = explode(',',$v);
  						foreach( $tasks as $val ){
  							$key = $k.':'.$val;
- 							$set['progress'] = 0;
-		 					$set['tid'] = (int)$val;
-		 					$this->cond->set( $set,$key );
+ 							$set[] = 0;				#'progress' 进度
+		 					$set[] = (int)$val;		#'tid'		任务id
+		 					$this->cond->set( implode('|',$set),$key );
  						}
  					}else{
 	 					$set[0] = 0; 		#'progress' 进度
