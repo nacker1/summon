@@ -113,7 +113,7 @@
 	 					}
 	 					$this->cond->set( $set,$k );
 	 				}
-	 				$this->log->i( json_encode($set) );
+	 				$this->log->i( json_encode($v) );
  				}
  			} 			
  		}
