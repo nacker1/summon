@@ -15,6 +15,9 @@
 		parent::__construct($uid);
 		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		$this->gid = (int)$gid;
+		if( strlen( $this->gid ) == 5 ){
+			$this->gid *= 100;
+		}
 		$this->ugid = (int)$ugid;
 		$this->type = (int)substr($gid,0,1);
 		if( !empty( $this->gid ) ){
