@@ -60,8 +60,10 @@
 		 }
 	case '2': //装备强化
 		$tag = '装备强化';
- 		$comid = $input['comid']; 	//需要强化的装备id
- 		$iList = $input['items'];		//需要吞掉的物品id
+ 		$comid = $input['comid']; 					//需要强化的装备id
+ 		$iList = $input['items'];					//需要吞掉的物品id
+ 		$hid = $input['hid'];						//英雄id
+ 		$index = $input['index'];					//英雄需要强化装备对应的装备框
  		if( empty( $comid ) || empty( $iList ) ){
  			ret('YMD('.__LINE__.')',-1);
  		}
@@ -70,8 +72,12 @@
 
  		$good = new User_Goods( $user->getUid(),$comid );
 
- 		if( $good->getGoodsNum() < 1 ){
- 			ret( '['.$good->getGoodName().']不足，强化失败。', -1 );
+ 		# 强化背包中的物品  hid存在则强化用户身上的装备
+ 		if( empty( $hid ) ){ 
+ 			if( $good->getGoodsNum() < 1 ){
+	 			ret( '['.$good->getGoodName().']不足，强化失败。', -1 );
+	 		}
+ 			$goods[] = $comid.',-1';
  		}
 
  		$gCom = new Goodcompos( $comid, 2 );
@@ -99,13 +105,22 @@
  			ret( 'no_enough_energy_'.__LINE__, -1 );
  		}
  		$user->setMissionId( 2,37 );
- 		$goods[] = $comid.',-1';
- 		$goods[] = ($comid+1).',1';
+ 		
+ 		$result=array();
+ 		$ret = array();
 
+ 		if( empty( $hid ) ){ 
+ 			$goods[] = ($comid+1).',1';
+ 		}else{
+ 			$hero = new User_Hero( $uid, $hid );
+ 			$hero->heroPutOnEquip( $index, $comid+1 );
+ 			$result['hero'] = $heor->getLastUpdField();
+ 		}
+ 		
  		$give['good'] = implode( '#', $goods );
 
  		$ret = $user->sendGoodsFromConfig( $give );
- 		ret($ret);
+ 		ret( array_merge($ret, $result) );
  	case '3'://给用户发放物品接口
  		$gid   = isset($input['g']) ? $input['g'] : 0;
  		$num = isset($input['n']) ? $input['n'] : 10;
