@@ -14,9 +14,20 @@
  foreach( $types as $v ){
  	switch ($v) {
  		case '0': //获取用户当日限制使用次数
+ 			#初始化用户每日限制
  			$cond = new Cond( 'dayLimit',$user->getUid() );
 	  		$ret['dayLimit'] = $cond->getAll('',1);
+
+	  		#初始化用户技能点
 	  		$ret['skill'] = $user->getUserSkillInfo();
+
+	  		#初始化任务系统
+	  		$mis1 = new User_Mission( array( 'uid'=>$user->getUid(), 'type'=>1 ) );
+	  		$mis2 = new User_Mission( array( 'uid'=>$user->getUid(), 'type'=>2 ) );
+	  		$ret['mis'][1] = $mis1->getMissionList();
+	  		$ret['mis'][2] = $mis2->getMissionList();
+
+	  		#初始化vip商店 
 	  		$sRedis = new Cond( 'userShop_2', $user->getUid() );
 	  		$vshop = $sRedis->get();
 	  		$ret['vshop'] = 1;
