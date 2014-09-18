@@ -55,7 +55,7 @@
  			$this->redis;
  			if( C('test') || !$this->redis->exists( 'roleinfo:'.$this->uid.':mission:11' ) ){
  				$this->db;
- 				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress,status,type', array( 'uid'=>$this->uid,'status'=>0 ) ); 	
+ 				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress', array( 'uid'=>$this->uid,'status'=>0 ) ); 	
  				if( $ret && is_array( $ret ) ){
  					foreach( $ret as $v ){
  						$this->redis->del('roleinfo:'.$this->uid.':mission:'.$v['type']);
@@ -101,12 +101,12 @@
  						foreach( $tasks as $val ){
  							$key = $k.':'.$val;
  							$set['progress'] = 0;
-		 					$set['tid'] = $val;
+		 					$set['tid'] = (int)$val;
 		 					$this->cond->set( $set,$key );
  						}
  					}else{
 	 					$set['progress'] = 0;
-	 					$set['tid'] = $v;
+	 					$set['tid'] = (int)$v;
 	 					if( $k == 60 ){
 	 						$set['progress'] = $this->isMonthCode();
 	 					}
@@ -125,7 +125,7 @@
  			$keys = $this->redis->keys( 'roleinfo:'.$this->uid.':mission:*' );
  			foreach( $keys as $v ){
  				$mis = $this->redis->hgetall( $v );
- 				$uMission[ $mis['type'] ] = $mis;
+ 				$uMission[ $mis['type'] ] = implode('|',$mis);
  			}
  		}
  		if( 2 == $this->type ){
