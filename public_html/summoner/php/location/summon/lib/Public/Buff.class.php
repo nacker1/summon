@@ -31,7 +31,10 @@ class Buff extends Base{
 	#获取buff的有效时长
 	function getTime(){
 		$config = $this->getConfig();
-		return $config[ 'time' ];
+		if( !isset( $config[ 'time' ] ) || (int)$config[ 'time' ] < 10 ){
+			$config['time'] = 3600;
+		}
+		return $config['time'];
 	}
 
 	#获取buff的配置信息
