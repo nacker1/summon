@@ -9,18 +9,27 @@ AUTHENTICATED	.\apc.php	/^	$AUTHENTICATED=0;$/;"	v
 AUTHENTICATED	.\apc.php	/^	$AUTHENTICATED=1;$/;"	v
 Act_Code	.\lib\Act\Code.class.php	/^ class Act_Code extends User_Base{$/;"	c
 Act_Sign	.\lib\Act\Sign.class.php	/^class Act_Sign extends User_Base{$/;"	c
+AttCri	.\lib\Public\Equipbase.class.php	/^		$AttCri = (int)$this->eInfo['Equip_AttCri'] + (int)$this->eInfo['Equip_UpAttCri'] * $level;					#物理爆机$/;"	v
+AttHit	.\lib\Public\Equipbase.class.php	/^		$AttHit = (int)$this->eInfo['Equip_AttHit'] + (int)$this->eInfo['Equip_UpAttHit'] * $level;					#物理命中$/;"	v
+AttPierce	.\lib\Public\Equipbase.class.php	/^		$AttPierce = (int)$this->eInfo['Equip_AttPierce'] + (int)$this->eInfo['Equip_UpAttPierce'] * $level;		#装备护甲穿透$/;"	v
+AttSpd	.\lib\Public\Equipbase.class.php	/^		$AttSpd = (int)$this->eInfo['Equip_AttSpd'] + (int)$this->eInfo['Equip_UpAttSpd'] * $level;					#攻击速度$/;"	v
+AttSteal	.\lib\Public\Equipbase.class.php	/^		$AttSteal = (int)$this->eInfo['Equip_AttSteal'] + (int)$this->eInfo['Equip_UpAttSteal'] * $level;			#物理吸血$/;"	v
 BOOT	.\inc\inc.php	/^	define('BOOT',dirname(__DIR__));$/;"	d
 Base	.\lib\Public\Base.class.php	/^class Base{$/;"	c
+Buff	.\lib\Public\Buff.class.php	/^class Buff extends Base{$/;"	c
 Buy	.\lib\Public\Buy.class.php	/^ class Buy extends Pbase{$/;"	c
 C	.\inc\function.php	/^	function C($name=null, $value=null) {$/;"	f
+Chat	.\lib\Public\Chat.class.php	/^ class Chat extends User_Base{$/;"	c
 Cond	.\lib\Public\Cond.class.php	/^ class Cond extends Base{$/;"	c
 Config	.\lib\Public\Config.class.php	/^class Config {$/;"	c
+CoolDown	.\lib\Public\Equipbase.class.php	/^		$CoolDown = (int)$this->eInfo['Equip_CoolDown'] + (int)$this->eInfo['Equip_UpCoolDown'] * $level;			#技能闪却$/;"	v
 Curl	.\lib\Public\Curl.class.php	/^class Curl {$/;"	c
 Db_Mysql	.\lib\Db\Mysql.class.php	/^class Db_Mysql{$/;"	c
 Equipbase	.\lib\Public\Equipbase.class.php	/^ class Equipbase extends Pbase{$/;"	c
 Filter	.\lib\Public\Filter.class.php	/^class Filter extends Pbase {$/;"	c
 Goodbase	.\lib\Public\Goodbase.class.php	/^ class Goodbase extends Pbase{$/;"	c
 Goodcompos	.\lib\Public\Goodcompos.class.php	/^class Goodcompos extends Goodbase{$/;"	c
+Group_Level	.\lib\User\Draw.class.php	/^			$Group_Level = explode(',',$gInfo['Group_Level']);$/;"	v
 Herobase	.\lib\Public\Herobase.class.php	/^class Herobase extends Base{$/;"	c
 ISLOG	.\lib\Public\Modinit.class.php	/^        return $this->islog==1 ? define('ISLOG',true) : define('ISLOG',false);$/;"	d
 LEVEL_DEBUG	.\lib\Public\Log.class.php	/^	define('LEVEL_DEBUG', 4);  $/;"	d
@@ -44,7 +53,11 @@ Proxy	.\lib\Public\Proxy.class.php	/^class Proxy {$/;"	c
 Public_Modinit	.\lib\Public\Modinit.class.php	/^class Public_Modinit{$/;"	c
 Redis_Redis	.\lib\Redis\Redis.class.php	/^ class Redis_Redis{$/;"	c
 Server	.\lib\Public\Server.class.php	/^ class Server extends Pbase{$/;"	c
+SkiHit	.\lib\Public\Equipbase.class.php	/^		$SkiHit = (int)$this->eInfo['Equip_SkiHit'] + (int)$this->eInfo['Equip_UpSkiHit'] * $level;					#法术命中$/;"	v
 Skillcost	.\lib\Public\Skillcost.class.php	/^ class Skillcost extends Pbase{$/;"	c
+SorCri	.\lib\Public\Equipbase.class.php	/^		$SorCri = (int)$this->eInfo['Equip_SorCri'] + (int)$this->eInfo['Equip_UpSorCri'] * $level;					#法术爆机$/;"	v
+SorPierce	.\lib\Public\Equipbase.class.php	/^		$SorPierce = (int)$this->eInfo['Equip_SorPierce'] + (int)$this->eInfo['Equip_UpSorPierce'] * $level;		#装备法术穿透$/;"	v
+SorSteal	.\lib\Public\Equipbase.class.php	/^		$SorSteal = (int)$this->eInfo['Equip_SorSteal'] + (int)$this->eInfo['Equip_UpSorSteal'] * $level;			#法术吸血$/;"	v
 Sync	.\lib\Public\Sync.class.php	/^class Sync extends Base{$/;"	c
 Top	.\lib\Public\Top.class.php	/^class Top extends Base{$/;"	c
 User_Base	.\lib\User\Base.class.php	/^ class User_Base extends Base{$/;"	c
@@ -56,6 +69,7 @@ User_Hero	.\lib\User\Hero.class.php	/^class User_Hero extends User_Base{$/;"	c
 User_Limit	.\lib\User\Limit.class.php	/^class User_Limit extends User_Base{$/;"	c
 User_Login	.\lib\User\Login.class.php	/^ class User_Login extends User_Base{$/;"	c
 User_Mail	.\lib\User\Mail.class.php	/^ class User_Mail extends User_Base{$/;"	c
+User_Merc	.\lib\User\Merc.class.php	/^class User_Merc extends User_Base{$/;"	c
 User_Mission	.\lib\User\Mission.class.php	/^ class User_Mission extends User_Base$/;"	c
 User_Pay	.\lib\User\Pay.class.php	/^class User_Pay extends User_Base{$/;"	c
 User_Progress	.\lib\User\Progress.class.php	/^class User_Progress extends User_Base{$/;"	c
@@ -74,8 +88,10 @@ __construct	.\lib\Act\Code.class.php	/^	public function __construct( $code ){$/;
 __construct	.\lib\Act\Sign.class.php	/^	function __construct(){$/;"	f
 __construct	.\lib\Db\Mysql.class.php	/^	private function __construct($config,$type=''){$/;"	f
 __construct	.\lib\Public\Base.class.php	/^	public function __construct($uid=''){$/;"	f
+__construct	.\lib\Public\Buff.class.php	/^	function __construct( $buffid ){$/;"	f
 __construct	.\lib\Public\Buy.class.php	/^ 	function __construct( $tag, $key ){$/;"	f
-__construct	.\lib\Public\Cond.class.php	/^	public function __construct( $tag, $uid='', $times=0, $node='Cond' ){$/;"	f
+__construct	.\lib\Public\Chat.class.php	/^ 	function __construct( $uid='', $type=1 ){$/;"	f
+__construct	.\lib\Public\Cond.class.php	/^	function __construct( $tag, $uid='', $times=0, $node='Cond' ){$/;"	f
 __construct	.\lib\Public\Curl.class.php	/^	function __construct( $url ) {$/;"	f
 __construct	.\lib\Public\Equipbase.class.php	/^	function __construct($eid=''){$/;"	f
 __construct	.\lib\Public\Filter.class.php	/^	public function __construct( $char ){$/;"	f
@@ -102,7 +118,8 @@ __construct	.\lib\User\Hero.class.php	/^	public function __construct( $uid='',$h
 __construct	.\lib\User\Limit.class.php	/^	public function __construct( $tag,$domain='dayLimit',$time='' ){$/;"	f
 __construct	.\lib\User\Login.class.php	/^	public function __construct( $rid,$sid ){$/;"	f
 __construct	.\lib\User\Mail.class.php	/^	function __construct( $uid='' ){$/;"	f
-__construct	.\lib\User\Mission.class.php	/^ 	function __construct( $type=1 )$/;"	f
+__construct	.\lib\User\Merc.class.php	/^	function __construct( $uid='' ){$/;"	f
+__construct	.\lib\User\Mission.class.php	/^ 	function __construct( $args )$/;"	f
 __construct	.\lib\User\Pay.class.php	/^	function __construct( $payinfo ){$/;"	f
 __construct	.\lib\User\Progress.class.php	/^	function __construct( $cid='' ){$/;"	f
 __construct	.\lib\User\Reg.class.php	/^	public function __construct($source,$source_id,$name='',$channel=''){$/;"	f
@@ -123,13 +140,20 @@ _config	.\inc\function.php	/^		static $_config = array();$/;"	v
 _createRole	.\lib\User\Login.class.php	/^	private function _createRole(){$/;"	f
 _createUser	.\lib\User\Reg.class.php	/^	private function _createUser(){ \/\/用户不存在时注册用户$/;"	f
 _exet	.\lib\Db\Mysql.class.php	/^	public function _exet($sql){$/;"	f
+_getDrawType	.\lib\User\Draw.class.php	/^	private function _getDrawType(){$/;"	f
+_getGood	.\lib\User\Draw.class.php	/^	private function _getGood(){$/;"	f
 _getModinfo	.\lib\Public\Modinit.class.php	/^    private function _getModinfo(){$/;"	f
+_getType	.\lib\User\Draw.class.php	/^	private function _getType(){$/;"	f
+_getUserChat	.\lib\Public\Chat.class.php	/^ 	private function _getUserChat( $lasttime ){$/;"	f
+_getWorldChat	.\lib\Public\Chat.class.php	/^ 	private function _getWorldChat( $lasttime ){$/;"	f
 _init	.\lib\Act\Sign.class.php	/^	private function _init(){$/;"	f
+_init	.\lib\Public\Buff.class.php	/^	private function _init(){$/;"	f
 _init	.\lib\Public\Buy.class.php	/^ 	private function _init(){$/;"	f
 _init	.\lib\Public\Cond.class.php	/^	private function _init(){$/;"	f
 _init	.\lib\Public\Equipbase.class.php	/^	private function _init(){$/;"	f
 _init	.\lib\Public\Goodbase.class.php	/^	private function _init(){$/;"	f
 _init	.\lib\Public\Goodcompos.class.php	/^	private function _init(){$/;"	f
+_init	.\lib\Public\Herobase.class.php	/^	private function _init(){$/;"	f
 _init	.\lib\Public\Levelup.class.php	/^	private function _init(){ \/\/初始化角色升级信息$/;"	f
 _init	.\lib\Public\Server.class.php	/^	private function _init(){$/;"	f
 _init	.\lib\Public\Skillcost.class.php	/^	private function _init(){$/;"	f
@@ -147,26 +171,40 @@ _init	.\lib\User\Reg.class.php	/^	private function _init(){$/;"	f
 _init	.\lib\User\Shop.class.php	/^	private function _init(){$/;"	f
 _insert_id	.\lib\Db\Mysql.class.php	/^	private function _insert_id(){$/;"	f
 _logInfo	.\lib\User\Login.class.php	/^	private function _logInfo(){$/;"	f
+_resetLife	.\lib\User\Base.class.php	/^	private function _resetLife(){$/;"	f
+_setChat	.\lib\Public\Chat.class.php	/^ 	private function _setChat( $con ){$/;"	f
 _setLastSql	.\lib\Db\Mysql.class.php	/^	private function _setLastSql($sql){$/;"	f
 a	.\apc.php	/^		$a=$cache['num_hits'];$/;"	v
 a	.\apc.php	/^		$a=$mem['avail_mem'];$/;"	v
+abslength	.\inc\function.php	/^	function abslength($str)$/;"	f
+actLimit	.\module\admin\cacute.php	/^					$actLimit = new User_Limit( 'hiryuTreasuresDay' );$/;"	v
+actLimit	.\module\admin\cacute.php	/^					$actLimit = new User_Limit( 'killDragonDay' );$/;"	v
+actLimit	.\module\admin\cacute.php	/^					$actLimit = new User_Limit( 'steelNestDay' );$/;"	v
+actLimit	.\module\admin\cacute.php	/^				$actLimit = new User_Limit( 'endLessFieldDay' );$/;"	v
+actLimit	.\module\admin\cacute.php	/^				$actLimit = new User_Limit( 'goldMineDay' );$/;"	v
+actLimit	.\module\admin\cacute.php	/^				$actLimit = new User_Limit( 'minBlueDay' );$/;"	v
+actLimit	.\module\admin\cacute.php	/^				$actLimit = new User_Limit( 'minRedDay' );$/;"	v
 actRedis	.\lib\User\Shop.class.php	/^		$this->actRedis = new Cond( 'userShop_'.$this->type,$this->uid,$this->overTime-10 );$/;"	v
 actRedis	.\lib\User\Shop.class.php	/^	 private $actRedis;					\/\/活动指向的redis$/;"	v
 adb	.\lib\Public\Base.class.php	/^				$this->adb = Db_Mysql::init('action');break;$/;"	v
+add	.\lib\Act\Sign.class.php	/^		$add = false;$/;"	v
 add	.\lib\Public\Cond.class.php	/^	public function add( $value,$key='' ){$/;"	f
 add	.\lib\Redis\Redis.class.php	/^    public function add($domain,$key,$val,$expire=0){$/;"	f
+add	.\module\action\daySign.php	/^ 		$add = $sign->signIn();$/;"	v
+add	.\module\action\daySign.php	/^ 		if( $add === false ){$/;"	v
 addCooldou	.\lib\User\Base.class.php	/^	public function addCooldou( $nums ){$/;"	f
 addExp	.\lib\User\Base.class.php	/^	public function addExp( $nums ){$/;"	f
 addGoods	.\lib\User\Goods.class.php	/^	public function addGoods( $nums=1 ){$/;"	f
-addGoods	.\module\action\shop.php	/^			$addGoods = $good->getLastUpdGoods();$/;"	v
+addHadUid	.\lib\User\Merc.class.php	/^	function addHadUid( $friendUid ){$/;"	f
 addHeroExp	.\lib\User\Hero.class.php	/^	public function addHeroExp( $nums ){$/;"	f
 addLife	.\lib\User\Base.class.php	/^	public function addLife( $nums ){$/;"	f
 addLimitTimes	.\lib\User\Limit.class.php	/^	public function addLimitTimes( $nums=1,$key='' ){$/;"	f
 addMoney	.\lib\User\Base.class.php	/^	public function addMoney( $nums ){$/;"	f
 addNums	.\lib\Act\Sign.class.php	/^		$addNums = $dayConfig['Item_Num'];$/;"	v
-addRoleBuff	.\lib\User\Base.class.php	/^	public function addRoleBuff($conf){$/;"	f
+addRoleBuff	.\lib\User\Base.class.php	/^	public function addRoleBuff( $buffid ){$/;"	f
 addTotalPay	.\lib\User\Base.class.php	/^	public function addTotalPay( $nums ){$/;"	f
 addUserRecord	.\lib\User\Base.class.php	/^	public function addUserRecord( $key, $value ){$/;"	f
+addUserSkillPoint	.\lib\User\User.class.php	/^	public function addUserSkillPoint( $nums = 10 ){$/;"	f
 agreeUserInvite	.\lib\User\Friend.class.php	/^	function agreeUserInvite(){$/;"	f
 aim_url	.\lib\Public\Curl.class.php	/^*	$aim_url='http:\/\/127.0.0.1\/b.php';  \/\/2.接受数据并单独处理的页面$/;"	v
 angle_from	.\apc.php	/^					$angle_from = $angle_to;$/;"	v
@@ -179,19 +217,21 @@ angle_to	.\apc.php	/^				$angle_to = $angle_from+($block['size'])\/$s;$/;"	v
 angle_to	.\apc.php	/^				if(($angle_to+$fuzz)>1) $angle_to = 1;$/;"	v
 apcversion	.\apc.php	/^		$apcversion = phpversion('apc');$/;"	v
 apcversion	.\apc.php	/^	$apcversion = phpversion('apc');$/;"	v
-args	.\lib\User\Base.class.php	/^	Public function proxy( $args=array(), $cName= 'User_Mission' , $fName= 'setUserMissing'  ){$/;"	v
+args	.\lib\User\Base.class.php	/^	public function proxy( $args=array(), $cName= 'User_Mission' , $fName= 'setUserMissing'  ){$/;"	v
 arr	.\inc\function.php	/^			$arr = $word;  $/;"	v
 arr	.\inc\function.php	/^			$arr = str_split($word);  $/;"	v
 array	.\inc\function.php	/^			if(!empty($value) && $array = S('c_'.$value)) {$/;"	v
+att	.\lib\Public\Equipbase.class.php	/^		$att = $this->eInfo['Equip_Att'] + $this->eInfo['Equip_UpAtt'] * $level;$/;"	v
+att	.\lib\Public\Herobase.class.php	/^		$att = self::$hInfo[$this->hid]['Hero_Att'] + self::$hInfo[$this->hid]['Hero_UpAtt'] * ( $level - 1 ) * $color; 								#英雄物理攻击$/;"	v
 autoCreateDir	.\inc\function.php	/^	 function autoCreateDir($path){$/;"	f
 autoCreateDir	.\lib\Public\Log.class.php	/^		 function autoCreateDir($path){$/;"	f
-bEquip	.\module\user\userHero.php	/^			$bEquip = new Equipbase($equipInfo[1]);$/;"	v
+bEquip	.\module\user\userHero.php	/^			$bEquip = new Equipbase( substr( $equipInfo[1], 0, 5 ) );$/;"	v
 bGood	.\module\user\useGood.php	/^			$bGood = new Goodbase( $gid );$/;"	v
 bGood	.\module\user\useGood.php	/^		$bGood = new Goodbase( $gid );$/;"	v
 bMC	.\lib\User\Mission.class.php	/^ 								$bMC = $this->pre->hmget( $v, array('Task_Id','Task_Time') );$/;"	v
-baseMission	.\lib\User\Mission.class.php	/^			$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal' ) );$/;"	v
+baseMission	.\lib\User\Mission.class.php	/^			$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal','Task_Level' ) );$/;"	v
 baseRecordTable	.\lib\User\Base.class.php	/^	protected $baseRecordTable = 'zy_uniqRoleRecord';	\/\/用户record信息表$/;"	v
-baseTable	.\lib\User\Base.class.php	/^	protected $baseTable='zy_uniqRole';	\/\/用户角色表$/;"	v
+baseTable	.\lib\User\Base.class.php	/^	protected $baseTable='zy_uniqRole';			\/\/用户角色表$/;"	v
 base_table	.\lib\Public\Goodbase.class.php	/^	private $base_table='zy_baseItem';	\/\/基础物品表$/;"	v
 based	.\lib\Public\Log.class.php	/^      * Simple logger class based on a similer class created by $/;"	c
 bgood	.\lib\User\Goods.class.php	/^			$this->bgood = new Goodbase( $this->gid );$/;"	v
@@ -202,13 +242,21 @@ bin_str	.\inc\function.php	/^		$bin_str = '';  $/;"	v
 bin_str	.\inc\function.php	/^		$bin_str = preg_replace('\/^.{4}(.{4}).{2}(.{6}).{2}(.{6})$\/','$1$2$3', $bin_str);  $/;"	v
 block_sort	.\apc.php	/^function block_sort($array1, $array2)$/;"	f
 bsize	.\apc.php	/^function bsize($s) {$/;"	f
+buff	.\lib\User\Base.class.php	/^		$buff = new Buff( $buffid );$/;"	v
+buffInfo	.\lib\Public\Buff.class.php	/^		$this->buffInfo = $this->pre->hgetall( 'baseBuffConfig:'.$this->buffid );$/;"	v
+buffInfo	.\lib\Public\Buff.class.php	/^	private $buffInfo;								\/\/指定buff的信息$/;"	v
+buffTable	.\lib\Public\Buff.class.php	/^	private $buffTable = 'zy_baseBuffConfig';					\/\/buff配置表$/;"	v
+buffid	.\lib\Public\Buff.class.php	/^		$this->buffid = $buffid;$/;"	v
+buffid	.\lib\Public\Buff.class.php	/^	private $buffid;									\/\/指定的buff id$/;"	v
 buyConfig	.\lib\Public\Buy.class.php	/^ 	private $buyConfig = array($/;"	v
-buyGold	.\module\user\buy.php	/^ 			$buyGold = new Buy( 'buyGold', $times );$/;"	v
+buyGold	.\module\user\buy.php	/^		$buyGold = new Buy( 'buyGold', ($times+1) );$/;"	v
 buyTimes	.\lib\User\Limit.class.php	/^			$buyTimes = $used - $this->freeTimes;$/;"	v
 c	.\module\action\system.php	/^		$c = new Act_Code( $code );$/;"	v
 cInfo	.\module\user\begin.php	/^		$cInfo = empty( $status['cInfo'] ) ? '服务器正在维护，请稍等' : $status['cInfo'];$/;"	v
 cLevel	.\module\user\userHero.php	/^			$cLevel = (int)$hInfo['color'] + 1;$/;"	v
 cLevel	.\module\user\userHero.php	/^		$cLevel = 1;$/;"	v
+cList	.\lib\Public\Chat.class.php	/^ 		$cList = $this->cond->getAll();$/;"	v
+cList	.\lib\Public\Chat.class.php	/^ 		$cList = $this->uCond->getAll();$/;"	v
 cache_mode	.\apc.php	/^	$cache_mode='user';$/;"	v
 cache_mode	.\apc.php	/^$cache_mode='opcode';$/;"	v
 cache_user	.\apc.php	/^$cache_user = apc_cache_info('user', 1);  $/;"	v
@@ -224,8 +272,12 @@ channel	.\module\user\login.php	/^ $channel = $input['cid']; \/\/登录平台角
 channel	.\pay.php	/^	$channel = getReq('ch');$/;"	v
 char	.\lib\Public\Filter.class.php	/^		$this->char = preg_replace('\/\\s\/','',$char);$/;"	v
 char	.\lib\Public\Filter.class.php	/^	private $char;					\/\/需要过滤的文字$/;"	v
+chat	.\lib\Public\Chat.class.php	/^ 		$chat = array($/;"	v
+chat	.\module\user\chat.php	/^	 			$chat = new Chat( $user->getUid() );$/;"	v
+chat	.\module\user\chat.php	/^	 		$chat = new Chat( $to,2 );$/;"	v
+chat	.\module\user\chat.php	/^ 		$chat = new Chat( $user->getUid() );$/;"	v
 checkLevel	.\lib\Public\Goodbase.class.php	/^	public function checkLevel(){$/;"	f
-checkTimeLimit	.\lib\User\Limit.class.php	/^	public function checkTimeLimit( $key='' ){$/;"	f
+checkTimeLimit	.\lib\User\Limit.class.php	/^	private function checkTimeLimit( $key='' ){$/;"	f
 cid	.\lib\User\Progress.class.php	/^		$this->cid=$cid;$/;"	v
 cid	.\lib\User\Progress.class.php	/^	function __construct( $cid='' ){$/;"	v
 cid	.\lib\User\Progress.class.php	/^	private $cid;									\/\/关卡id$/;"	v
@@ -245,11 +297,12 @@ col_black	.\apc.php	/^	$col_black = imagecolorallocate($image,   0,   0,   0);$/
 col_green	.\apc.php	/^	$col_green = imagecolorallocate($image, 0x60, 0xF0, 0x60);$/;"	v
 col_red	.\apc.php	/^	$col_red   = imagecolorallocate($image, 0xD0, 0x60,  0x30);$/;"	v
 col_white	.\apc.php	/^	$col_white = imagecolorallocate($image, 0xFF, 0xFF, 0xFF);$/;"	v
-color	.\lib\User\Hero.class.php	/^	public function giveHero( $color=1 ){$/;"	v
+color	.\lib\User\Hero.class.php	/^		empty( $color ) && $color = 1;$/;"	v
+color	.\lib\User\Hero.class.php	/^	public function giveHero( $color='' ){$/;"	v
 color	.\module\user\userHero.php	/^		$color = array( 1=>10,2=>20,3=>40,4=>80,5=>160 );$/;"	v
 colorUp	.\lib\User\Hero.class.php	/^	function colorUp( $level ){$/;"	f
 cols	.\apc.php	/^	$cols=6;$/;"	v
-columns	.\lib\Db\Mysql.class.php	/^	public function find($table, $columns='*', $where='', $other = ''){\/\/��ѯ������ʽ$/;"	v
+columns	.\lib\Db\Mysql.class.php	/^	public function find($table, $columns='*', $where='', $other = ''){\/\/²éÑ¯Êý×éÐÎÊ½$/;"	v
 columns	.\lib\Db\Mysql.class.php	/^	public function findOne($table, $columns='*', $where='', $other = ''){$/;"	v
 com	.\lib\Public\Sync.class.php	/^		$com = 'php \/data\/web\/summon\/syncDb.php -t '.$this->table.' -d \\''.serialize($this->data).'\\' -w \\''.serialize($this->where).'\\' -o '.$this->opt.' -f '.$this->dbTag.' &';$/;"	v
 comid	.\module\user\goodsCompos.php	/^ 		$comid = $input['comid']; 	\/\/需要强化的装备id$/;"	v
@@ -260,28 +313,34 @@ cominfo	.\module\user\goodsCompos.php	/^		 $cominfo = $goodcom->getComItemInfo()
 compos_table	.\lib\Public\Goodbase.class.php	/^	private $compos_table='zy_baseGoodCompound';	\/\/基础物品表$/;"	v
 con	.\module\action\friends.php	/^	 		$con = ' 亲，我给你赠送了 '.$life.' 点体力，记得回赠我哦。 ';$/;"	v
 con	.\module\action\system.php	/^		$con = $input['con'];$/;"	v
+con	.\module\user\chat.php	/^ 		$con = $input['con'];$/;"	v
 cond	.\lib\Act\Sign.class.php	/^		$this->cond = new Cond( 'actionSign_'.$this->month, $this->uid, $this->overTime );$/;"	v
 cond	.\lib\Act\Sign.class.php	/^	private $cond;				\/\/cond 对应的redis连接源$/;"	v
 cond	.\lib\Db\Mysql.class.php	/^		$cond = ' where 1=1';$/;"	v
 cond	.\lib\Db\Mysql.class.php	/^		$cond = 'where 1=1 ';$/;"	v
 cond	.\lib\Db\Mysql.class.php	/^        $cond = ' where 1=1';$/;"	v
+cond	.\lib\Public\Chat.class.php	/^ 		$this->cond = new Cond( 'chat', 0, 600 );$/;"	v
+cond	.\lib\Public\Chat.class.php	/^ 	private $cond;				#世界信息redis连接源$/;"	v
 cond	.\lib\User\Friend.class.php	/^		$cond = new Cond( 'userFriendOpt',$this->getUid(),3600,'Friend' );$/;"	v
 cond	.\lib\User\Friend.class.php	/^		$this->cond = new Cond( 'userFriendList',$this->getUid(),0,'Friend' );$/;"	v
 cond	.\lib\User\Friend.class.php	/^	private $cond;								\/\/当前用户的好友连接redis表$/;"	v
 cond	.\lib\User\Limit.class.php	/^		$this->cond = new Cond( $this->tag, $this->uid, $time );$/;"	v
 cond	.\lib\User\Limit.class.php	/^	private $cond;							\/\/限制类连接的redis源$/;"	v
+cond	.\lib\User\Merc.class.php	/^	static private $cond;				\/\/佣兵公共限制连接类$/;"	v
 cond	.\lib\User\Mission.class.php	/^ 			$this->cond = new Cond( $this->dayMissionTag,$this->uid,$overTime );$/;"	v
 cond	.\lib\User\Pay.class.php	/^		$this->cond = new Cond( 'uniqPay', $payinfo['uid'], 600 );$/;"	v
 cond	.\module\user\init.php	/^ 			$cond = new Cond( 'dayLimit',$user->getUid() );$/;"	v
+config	.\lib\Public\Buff.class.php	/^		$config = $this->getConfig();$/;"	v
+config	.\lib\Public\Buff.class.php	/^		$config = json_decode( $this->buffInfo['config'], true );$/;"	v
 config	.\lib\Public\Buy.class.php	/^ 		$this->config = $this->pre->hgetall( 'baseBuyGoldConfig:'.$this->key );$/;"	v
-config	.\lib\Public\Buy.class.php	/^ 	private $config;									\/\/指定标签的配置信息$/;"	v
+config	.\lib\Public\Buy.class.php	/^ 	private $config;											\/\/指定标签的配置信息$/;"	v
 config	.\lib\Public\Goodbase.class.php	/^		$config = json_decode( $this->ginfo['Item_value'], true );$/;"	v
 config	.\module\action\system.php	/^		$config = $c->getConfig();$/;"	v
 config	.\module\admin\cacute.php	/^			$config = $expBase->getGoodConfig();$/;"	v
-config	.\module\user\buy.php	/^ 			$config = $buyGold->getConfig();$/;"	v
+config	.\module\user\buy.php	/^		$config = $buyGold->getConfig();$/;"	v
 config	.\module\user\buy.php	/^ $config = array($/;"	v
 config	.\module\user\goodsCompos.php	/^		 $config = $cominfo['config'];$/;"	v
-connect	.\lib\Db\Mysql.class.php	/^		$this->connect = mysql_connect($config['host'].':'.$config['port'],$config['username'],$config['password']) or die('Mysql connect fail!'.self::error());$/;"	v
+connect	.\lib\Db\Mysql.class.php	/^		$this->connect = mysql_connect($config['host'].':'.$config['port'],$config['username'],$config['password']) or die('Mysql connect fail!'.mysql_error());$/;"	v
 connect	.\lib\Db\Mysql.class.php	/^	private $connect;$/;"	v
 connect	.\lib\Db\Mysql.class.php	/^        $this->connect = null;$/;"	v
 connect	.\lib\Redis\Redis.class.php	/^		$this->connect = new Redis();$/;"	v
@@ -289,11 +348,12 @@ connect	.\lib\Redis\Redis.class.php	/^	private $connect;$/;"	v
 consumeEnergy	.\module\user\goodsCompos.php	/^ 		$consumeEnergy = $gCom->getEnergy();$/;"	v
 cooldou	.\module\action\draw.php	/^			$cooldou = $cooldou * $nums;$/;"	v
 cooldou	.\module\action\draw.php	/^			$cooldou = $limit->getOneTimeCooldou();$/;"	v
-cooldou	.\module\action\shop.php	/^				$cooldou = $limit->getOneTimeCooldou();$/;"	v
+cooldou	.\module\action\shop.php	/^				$cooldou = $limit->getOneTimeCooldou(); \/\/刷新商店所需要费用$/;"	v
 cooldou	.\module\admin\cacute.php	/^			$cooldou = $limit->getOneTimeCooldou();$/;"	v
-cooldou	.\module\user\buy.php	/^ 			$cooldou = $limit->getOneTimeCooldou();$/;"	v
-cooldou	.\module\user\buy.php	/^ 			if( $cooldou==0 || $user->reduceCooldou( $cooldou ) !== false ){$/;"	v
+cooldou	.\module\user\buy.php	/^ 		$cooldou = $limit->getOneTimeCooldou();$/;"	v
 cost	.\module\user\userHero.php	/^			$cost = $skill->getCostMoney(); \/\/技能升级需要扣除的金币数量$/;"	v
+count	.\test.php	/^			$count = count($temp);$/;"	v
+count	.\test.php	/^		$count = count($temp);$/;"	v
 cre	.\lib\Public\Cond.class.php	/^		$this->cre = Redis_Redis::initRedis( $redisTag );$/;"	v
 cre	.\lib\Public\Cond.class.php	/^	private $cre;			\/\/Cond类连接的专门redis$/;"	v
 create	.\lib\Public\Curl.class.php	/^	function create() {$/;"	f
@@ -304,14 +364,14 @@ curl_p	.\lib\Public\Curl.class.php	/^*	$curl_p = new curl();  $/;"	v
 custLimit	.\module\admin\cacute.php	/^			$custLimit = new User_Limit( 'customsTimesDay' ); $/;"	v
 custLimit	.\module\admin\cacute.php	/^		$custLimit = new User_Limit( 'doArenaTimesDay' ); $/;"	v
 d	.\lib\Public\Logger.class.php	/^		public function d($msg) {$/;"	f
-dInfo	.\lib\User\Draw.class.php	/^	private $dInfo;									\/\/指定类型抽卡配置内容$/;"	v
+dInfo	.\lib\User\Draw.class.php	/^	private $dInfo;																	\/\/指定类型抽卡配置内容$/;"	v
 data	.\lib\Public\Sync.class.php	/^		$this->data = $data['data'];$/;"	v
 data	.\lib\Public\Sync.class.php	/^	private $data;				\/\/同步的数据$/;"	v
 date	.\lib\Public\Log.class.php	/^	            $date = date('[Y-m-d H:i:s]');$/;"	v
 dayConfig	.\lib\Act\Sign.class.php	/^		$dayConfig = $this->pre->hgetall( 'action:sign:month:'.$total );$/;"	v
 dayMis	.\lib\User\Mission.class.php	/^			$dayMis = $this->cond->get($type);$/;"	v
 dayMissionTag	.\lib\User\Mission.class.php	/^ 	private $dayMissionTag = 'missionTagEveryDay';		\/\/日常任务标签$/;"	v
-daySign	.\lib\Act\Sign.class.php	/^		$daySign = $this->cond->getDayTimes('common');$/;"	v
+daySign	.\lib\Act\Sign.class.php	/^		$daySign = $this->getCommonTimes();$/;"	v
 days	.\apc.php	/^    $days = (int)(($rem)\/86400) - $weeks*7;$/;"	v
 db	.\lib\Public\Base.class.php	/^				$this->db = Db_Mysql::init();break;$/;"	v
 db	.\lib\Public\Modinit.class.php	/^            $db = Db_Mysql::init('admin');$/;"	v
@@ -322,17 +382,22 @@ dbTag	.\lib\Public\Sync.class.php	/^	private $dbTag;				\/\/数据库标签$/;"	
 db_config	.\lib\Db\Mysql.class.php	/^		$db_config = isset(Config::$db_config[Config::$env][$type]) ? Config::$db_config[Config::$env][$type] : Config::$db_config[Config::$env]['slave'];$/;"	v
 db_config	.\lib\Public\Config.class.php	/^	public static $db_config = array( $/;"	v
 dbconf	.\lib\Db\Mysql.class.php	/^		$this->dbconf = $config;$/;"	v
-dbconf	.\lib\Db\Mysql.class.php	/^	private $dbconf;	\/\/���ݿ�������Ϣ$/;"	v
+dbconf	.\lib\Db\Mysql.class.php	/^	private $dbconf;		#当前类型值对应的配置信息$/;"	v
 dbsize	.\lib\Redis\Redis.class.php	/^	public function dbsize(){$/;"	f
 debug	.\lib\Public\Log.class.php	/^        public function debug($message){$/;"	f
+def	.\lib\Public\Equipbase.class.php	/^		$def = $this->eInfo['Equip_Def'] + $this->eInfo['Equip_UpDef'] * $level;$/;"	v
+def	.\lib\Public\Herobase.class.php	/^		$def = self::$hInfo[$this->hid]['Hero_Def'] + self::$hInfo[$this->hid]['Hero_UpDef'] * ( $level - 1 ) * $color;								#英雄物理护甲$/;"	v
 defaults	.\apc.php	/^function defaults($d,$v) {$/;"	f
 del	.\lib\Public\Cond.class.php	/^	public function del($key=''){$/;"	f
 del	.\lib\Redis\Redis.class.php	/^	public function del($keys){$/;"	f
+delCache	.\lib\Act\Sign.class.php	/^	function delCache(){$/;"	f
 delDayTimes	.\lib\Public\Cond.class.php	/^	public function delDayTimes( $key='' ){$/;"	f
 delFriend	.\lib\User\Friend.class.php	/^	public function delFriend(){$/;"	f
 delHeroInfo	.\lib\User\Hero.class.php	/^	public function delHeroInfo(){$/;"	f
 delInvite	.\lib\User\Friend.class.php	/^	function delInvite(){$/;"	f
+delLimit	.\lib\User\Limit.class.php	/^	public function delLimit( $key='' ){$/;"	f
 delMail	.\lib\User\Mail.class.php	/^	function delMail( $key ){$/;"	f
+delTimeLimit	.\lib\User\Limit.class.php	/^	public function delTimeLimit( $key='' ){$/;"	f
 delete	.\lib\Db\Mysql.class.php	/^	public function delete( $table,$where ){$/;"	f
 dirname	.\inc\function.php	/^		$dirname = dirname($path);$/;"	v
 dirname	.\lib\Public\Log.class.php	/^			$dirname = dirname($path);$/;"	v
@@ -342,22 +407,33 @@ domain	.\lib\Public\Cond.class.php	/^			$this->domain = $this->uid.':'.$this->ta
 domain	.\lib\Public\Cond.class.php	/^	private $domain;		\/\/组装的域$/;"	v
 downGoods	.\module\user\userHero.php	/^					$downGoods = new User_Goods( $user->getUid(), $eGid );$/;"	v
 draw	.\module\action\draw.php	/^	$draw = new User_Draw( $type );$/;"	v
-draw_table	.\lib\User\Draw.class.php	/^	private $draw_table='zy_baseDrawConfig';					\/\/抽卡配置表$/;"	v
+draw_table	.\lib\User\Draw.class.php	/^	private $draw_table='zy_baseDrawConfig';										\/\/抽卡物品配置表$/;"	v
+draw_type_table	.\lib\User\Draw.class.php	/^	private $draw_type_table='zy_baseDrawTypeConfig';								\/\/抽卡类型配置表$/;"	v
 dump	.\inc\function.php	/^	function dump($var, $echo=true, $label=null, $strict=true) {$/;"	f
 duration	.\apc.php	/^function duration($ts) {$/;"	f
 e	.\lib\Public\Logger.class.php	/^		public function e($msg) {$/;"	f
-eGid	.\module\user\userHero.php	/^			$eGid = $hero->getHeroEquip( $equipInfo[0] );\/\/卸下的兼备id$/;"	v
+eFire	.\lib\User\Hero.class.php	/^		$eFire = $equip->getFire( (int)substr( $eqId, 5 ) );$/;"	v
+eFire	.\lib\User\Hero.class.php	/^		$eFire = 0;$/;"	v
+eGid	.\module\user\userHero.php	/^			$eGid = $hero->getHeroEquipGid( $equipInfo[0] );\/\/卸下的兼备id$/;"	v
 eInfo	.\lib\Public\Equipbase.class.php	/^			$this->eInfo = $this->pre->hgetall( 'equip:baseinfo:'.$this->eid );$/;"	v
 eInfo	.\lib\Public\Equipbase.class.php	/^	private $eInfo;						\/\/装备信息$/;"	v
 eList	.\lib\Public\Goodcompos.class.php	/^		$eList = array($/;"	v
 echo	.\inc\function.php	/^	function dump($var, $echo=true, $label=null, $strict=true) {$/;"	v
+ehp	.\lib\Public\Equipbase.class.php	/^		$ehp = $this->eInfo['Equip_Hp'] + $this->eInfo['Equip_UpHp'] * $level;		$/;"	v
 eid	.\lib\Public\Equipbase.class.php	/^		$this->eid = $eid;$/;"	v
 eid	.\lib\Public\Equipbase.class.php	/^	private $eid;						\/\/装备id$/;"	v
+eid	.\lib\User\Hero.class.php	/^		$eid = substr( $eqId, 0, 5 );$/;"	v
+emp	.\lib\Public\Equipbase.class.php	/^		$emp = $this->eInfo['Equip_Mp'] + $this->eInfo['Equip_UpMp'] * $level;$/;"	v
 env	.\lib\Public\Config.class.php	/^	public static $env = 'test'; $/;"	v
 env	.\lib\Public\Modinit.class.php	/^        $env = Config::$env;$/;"	v
 env	.\lib\Public\Modinit.class.php	/^        if( $env == 'online'){$/;"	v
+eqConf	.\lib\User\Hero.class.php	/^		$eqConf = $this->getHeroEquip($index);$/;"	v
+eqConf	.\lib\User\Hero.class.php	/^		$eqConf = json_decode($eqConf,true);$/;"	v
+eqConf	.\lib\User\Hero.class.php	/^		$eqConf = json_encode($qConfig);$/;"	v
+eqConf	.\lib\User\Hero.class.php	/^		$eqConf = self::$heroInfo[$this->hid]['equip'.$index];$/;"	v
 equid	.\lib\Public\Goodbase.class.php	/^		$this->equid = substr($this->gid,0, 5);$/;"	v
 equid	.\lib\Public\Goodbase.class.php	/^	protected $equid;	\/\/物品对应的装备id$/;"	v
+equip	.\lib\User\Hero.class.php	/^		$equip = new Equipbase( $eid );$/;"	v
 equipConf	.\module\user\userHero.php	/^		$equipConf = explode('&',$equipInfo);$/;"	v
 equipInfo	.\module\user\userHero.php	/^			$equipInfo = explode(':',$v);$/;"	v
 equipInfo	.\module\user\userHero.php	/^		$equipInfo = $input['einfo'];$/;"	v
@@ -367,9 +443,10 @@ errInfo	.\lib\Act\Code.class.php	/^			$this->errInfo = ' 兑换码已过期 ';$/
 errInfo	.\lib\Act\Code.class.php	/^			$this->errInfo = ' 无效兑换码 ';$/;"	v
 errInfo	.\lib\Act\Code.class.php	/^	private $errInfo='兑换成功';		\/\/兑换码错误信息$/;"	v
 error	.\inc\function.php	/^				$error = $msg.'。'.$error;$/;"	v
-error	.\inc\function.php	/^			$error = "接口调用结束【{$times}秒】\\n";$/;"	v
+error	.\inc\function.php	/^			$error = "接口调用结束【{$times}秒】包长=".strlen($retString)."<>".strlen(json_encode($ret))."\\n";$/;"	v
 error	.\lib\Db\Mysql.class.php	/^    public function error() {$/;"	f
 error	.\lib\Public\Log.class.php	/^        public function error($message){$/;"	f
+error	.\module\action\shop.php	/^					$error = true;$/;"	v
 errorInfo	.\lib\User\Friend.class.php	/^			$this->errorInfo = ' 好友关系已经解除 ';$/;"	v
 errorInfo	.\lib\User\Friend.class.php	/^			$this->errorInfo = ' 对方好友人数已满 ';$/;"	v
 errorInfo	.\lib\User\Friend.class.php	/^			$this->errorInfo = ' 您的好友人数已达到上限 ';$/;"	v
@@ -388,7 +465,7 @@ errorInfo	.\lib\User\Pay.class.php	/^			$this->errorInfo = 'order_done '.__LINE_
 errorInfo	.\lib\User\Pay.class.php	/^			$this->errorInfo = 'uid_error '.__LINE__;$/;"	v
 errorInfo	.\lib\User\Pay.class.php	/^	private $errorInfo;						\/\/错误信息$/;"	v
 exec	.\lib\Public\Proxy.class.php	/^	function exec(){$/;"	f
-exec	.\lib\Public\Sync.class.php	/^	function exec(){$/;"	f
+exec	.\lib\Public\Sync.class.php	/^	function exec(){ \/\/执行sendCommand抛出来的sql$/;"	f
 execute	.\lib\Public\Curl.class.php	/^	function execute($method, $fields = '', $userAgent = '', $httpHeaders = '', $username = '', $password = '') {$/;"	f
 exist	.\lib\Public\Modinit.class.php	/^            $this->exist = false;$/;"	v
 exist	.\lib\Public\Modinit.class.php	/^            $this->exist = true;$/;"	v
@@ -409,6 +486,9 @@ f	.\lib\Public\Log.class.php	/^            if ( $f === false )$/;"	v
 f	.\lib\Public\Logger.class.php	/^		public function f($msg) {$/;"	f
 fInfo	.\module\action\friends.php	/^ 		$fInfo = $friend->getInfo( $find );$/;"	v
 fList	.\lib\User\Friend.class.php	/^		$fList = $this->cond->get( 'listInfo' );$/;"	v
+fList	.\lib\User\Hero.class.php	/^				$fList = json_decode( self::$heroInfo[$this->hid]['equip'.$i], true );$/;"	v
+fList	.\module\action\friends.php	/^ 		$fList = $friend->getFriendList();$/;"	v
+fMerc	.\module\action\friends.php	/^ 			$fMerc = $merc->getMercHero();$/;"	v
 fNums	.\lib\User\Base.class.php	/^		$fNums = self::$userinfo[$this->uid]['friends'];$/;"	v
 fatal	.\lib\Public\Log.class.php	/^        public function fatal($message){$/;"	f
 feedback	.\module\action\system.php	/^		$feedback = new User_Feedback( $type );$/;"	v
@@ -438,41 +518,53 @@ filter	.\module\action\friends.php	/^ 		$filter = new Filter( $find );$/;"	v
 filter	.\module\user\updateInfo.php	/^ 	$filter = new Filter( $name );$/;"	v
 filterSql	.\lib\Public\Filter.class.php	/^	public function filterSql(){$/;"	f
 filterTable	.\lib\Public\Filter.class.php	/^	private $filterTable = 'zy_baseFilter';		\/\/敏感词库$/;"	v
-find	.\lib\Db\Mysql.class.php	/^	public function find($table, $columns='*', $where='', $other = ''){\/\/��ѯ������ʽ$/;"	f
+find	.\lib\Db\Mysql.class.php	/^	public function find($table, $columns='*', $where='', $other = ''){\/\/²éÑ¯Êý×éÐÎÊ½$/;"	f
 find	.\module\action\friends.php	/^ 		$find = $filter->filterSql();						\/\/过滤SQL防注入$/;"	v
 find	.\module\action\friends.php	/^ 		$find = isset($input['find']) ? $input['find'] : null; 			\/\/$find 查找的用户名$/;"	v
 findOne	.\lib\Db\Mysql.class.php	/^	public function findOne($table, $columns='*', $where='', $other = ''){$/;"	f
 flag	.\lib\Public\Cond.class.php	/^				if( $flag==1 ){$/;"	v
 flag	.\lib\User\Base.class.php	/^		if( $flag == 2 ){ \/\/金币或钻石发生变化$/;"	v
+flag	.\lib\User\Draw.class.php	/^				$flag = '1,4';$/;"	v
+flag	.\lib\User\Draw.class.php	/^				$flag = '10,19';$/;"	v
+flag	.\lib\User\Draw.class.php	/^				$flag = '20,29';$/;"	v
+flag	.\lib\User\Draw.class.php	/^				$flag = '30,39';$/;"	v
+flag	.\lib\User\Draw.class.php	/^				$flag = '40,49';$/;"	v
+flag	.\lib\User\Draw.class.php	/^				$flag = '5,9';$/;"	v
+flag	.\lib\User\Draw.class.php	/^				$flag = '50,59';$/;"	v
+flag	.\lib\User\Draw.class.php	/^				$flag = '60,80';$/;"	v
 flag	.\lib\User\Hero.class.php	/^			$flag = true;$/;"	v
 flag	.\lib\User\Hero.class.php	/^		$flag = false;$/;"	v
 flag	.\lib\User\Limit.class.php	/^		$this->flag = $tag;$/;"	v
-flag	.\lib\User\Rolebase.class.php	/^	protected $flag=10;	\/\/登录服务器redis配置数量$/;"	v
+flag	.\lib\User\Rolebase.class.php	/^	protected $flag=2;	\/\/登录服务器redis配置数量$/;"	v
 format	.\hh8.php	/^	function format( $file ){$/;"	f
 frag	.\apc.php	/^		$frag = "0%";$/;"	v
 frag	.\apc.php	/^		$frag = sprintf("%.2f%% (%s out of %s in %d fragments)", ($fragsize\/$freetotal)*100,bsize($fragsize),bsize($freetotal),$freeseg);$/;"	v
 free	.\apc.php	/^			$free = $mem['block_lists'][$i];$/;"	v
 free	.\lib\Db\Mysql.class.php	/^    public function free() {$/;"	f
 freeTimes	.\lib\User\Limit.class.php	/^		$freeTimes = $this->getLastFreeTimes($key);$/;"	v
-freeTimes	.\lib\User\Limit.class.php	/^		$this->freeTimes = $this->tolLimit = $this->pre->hget('userLimit:'.$this->flag,'times');$/;"	v
-freeTimes	.\lib\User\Limit.class.php	/^	private $freeTimes;						\/\/当前标签当日的免费次数$/;"	v
+freeTimes	.\lib\User\Limit.class.php	/^		$this->freeTimes = (int)$this->pre->hget('userLimit:'.$this->flag,'freeTime');$/;"	v
+freeTimes	.\lib\User\Limit.class.php	/^	private $freeTimes;						\/\/当前标签当日的免费使用次数$/;"	v
 friend	.\module\action\friends.php	/^	 		$friend = new User_Friend( $user->getUid(),$uid );$/;"	v
 friend	.\module\action\friends.php	/^ 		$friend = new User_Friend(  );$/;"	v
 friend	.\module\action\friends.php	/^ 		$friend = new User_Friend( $user->getUid(), $to );$/;"	v
 friend	.\module\action\friends.php	/^ 		$friend = new User_Friend( $user->getUid(),$to );$/;"	v
 friend	.\module\action\friends.php	/^ 		$friend = new User_Friend();$/;"	v
 friendTable	.\lib\User\Friend.class.php	/^	private $friendTable = 'zy_uniqRoleFriends';				\/\/好友表$/;"	v
+friendUid	.\module\action\friends.php	/^ 		$friendUid = $input['fid'];$/;"	v
 friends	.\lib\User\Friend.class.php	/^					$friends = array();$/;"	v
 friends	.\lib\User\Friend.class.php	/^			$friends = $this->cond->getAll( 'lists' );$/;"	v
+friends	.\lib\User\Friend.class.php	/^		$friends = $this->getFriendList();$/;"	v
 fun	.\lib\Public\Proxy.class.php	/^		$this->fun = $funName;$/;"	v
 fun	.\lib\Public\Proxy.class.php	/^	private $fun;			\/\/代理类中的方法名$/;"	v
 fuzz	.\apc.php	/^		$fuzz = 0.000001;$/;"	v
 g	.\lib\User\Goods.class.php	/^					$g = explode( ':',$v );$/;"	v
 gCom	.\module\user\goodsCompos.php	/^ 		$gCom = new Goodcompos( $comid, 2 );$/;"	v
 gConfig	.\module\user\useGood.php	/^		$gConfig = $bGood->getGoodConfig();$/;"	v
+gInfo	.\lib\User\Draw.class.php	/^			$gInfo = $this->pre->hgetall( $v );$/;"	v
 gInfo	.\lib\User\User.class.php	/^								$gInfo = explode(',',$val);$/;"	v
 gLevel	.\lib\Public\Goodcompos.class.php	/^		$gLevel = $this->getColor();$/;"	v
-gList	.\lib\User\User.class.php	/^						$gList = explode( '#',$v );$/;"	v
+gList	.\lib\User\User.class.php	/^							$gList = $v;$/;"	v
+gList	.\lib\User\User.class.php	/^							$gList = explode( '#',$v );$/;"	v
 gTemp	.\module\user\goodsCompos.php	/^			$gTemp = array();$/;"	v
 gTemp	.\module\user\goodsCompos.php	/^ 			$gTemp = new User_Goods( $user->getUid(), $good[0] );$/;"	v
 gameid	.\lib\Public\Modinit.class.php	/^	private $gameid=2; \/\/游戏业务id  1 斗地主  2为召唤师$/;"	v
@@ -485,11 +577,13 @@ get3time	.\inc\function.php	/^	function get3time(){$/;"	f
 get3unix	.\inc\function.php	/^	function get3unix(){$/;"	f
 getAll	.\lib\Public\Cond.class.php	/^	public function getAll( $keys='' , $flag=0 ){$/;"	f
 getAllGoods	.\lib\User\Goods.class.php	/^	public function getAllGoods(){$/;"	f
+getChat	.\lib\Public\Chat.class.php	/^ 	function getChat( $lasttime ){$/;"	f
 getColor	.\lib\Public\Goodbase.class.php	/^	public function getColor(){$/;"	f
 getComItemInfo	.\lib\Public\Goodcompos.class.php	/^	public function getComItemInfo(){$/;"	f
 getCommonTimes	.\lib\Act\Sign.class.php	/^	public function getCommonTimes(){$/;"	f
 getConfig	.\lib\Act\Code.class.php	/^	public function getConfig(){$/;"	f
 getConfig	.\lib\Db\Mysql.class.php	/^	public function getConfig(){$/;"	f
+getConfig	.\lib\Public\Buff.class.php	/^	function getConfig(){$/;"	f
 getConfig	.\lib\Public\Buy.class.php	/^ 	public function getConfig(){$/;"	f
 getConn	.\lib\Db\Mysql.class.php	/^	public function getConn(){$/;"	f
 getCooldou	.\lib\User\Base.class.php	/^	public function getCooldou(){$/;"	f
@@ -513,6 +607,8 @@ getExtExchange	.\lib\Public\Vip.class.php	/^	public function getExtExchange(){$/
 getExtFriends	.\lib\Public\Vip.class.php	/^	public function getExtFriends(){$/;"	f
 getExtGeneralPve	.\lib\Public\Vip.class.php	/^	public function getExtGeneralPve(){$/;"	f
 getExtSweep	.\lib\Public\Vip.class.php	/^	public function getExtSweep(){$/;"	f
+getFire	.\lib\Public\Equipbase.class.php	/^	function getFire( $level=0 ){$/;"	f
+getFire	.\lib\Public\Herobase.class.php	/^	public function getFire( $level=1,$color=1,$skill='{"1":"1"}' ){$/;"	f
 getFriendList	.\lib\User\Friend.class.php	/^	public function getFriendList(){$/;"	f
 getGid	.\lib\Public\Goodbase.class.php	/^	public function getGid(){$/;"	f
 getGift	.\lib\User\Draw.class.php	/^	function getGift( $nums ){$/;"	f
@@ -523,15 +619,17 @@ getGoodName	.\lib\User\Goods.class.php	/^	public function getGoodName(){$/;"	f
 getGoodSuper	.\lib\Public\Goodbase.class.php	/^	public function getGoodSuper(){$/;"	f
 getGoodsNum	.\lib\User\Goods.class.php	/^	public function getGoodsNum(){$/;"	f
 getGoodsSuper	.\lib\Public\Goodbase.class.php	/^	public function getGoodsSuper(){$/;"	f
+getHadList	.\lib\User\Merc.class.php	/^	function getHadList(){$/;"	f
 getHeartBeatInfo	.\lib\User\User.class.php	/^	public function getHeartBeatInfo(){$/;"	f
 getHeroEquip	.\lib\User\Hero.class.php	/^	function getHeroEquip( $index ){$/;"	f
+getHeroEquipGid	.\lib\User\Hero.class.php	/^	function getHeroEquipGid( $index ){$/;"	f
 getHeroExp	.\lib\User\Hero.class.php	/^	function getHeroExp(){$/;"	f
 getHeroInfo	.\lib\User\Hero.class.php	/^	function getHeroInfo(){$/;"	f
 getHeroLevel	.\lib\User\Hero.class.php	/^	function getHeroLevel(){$/;"	f
 getHeroLevelAndExp	.\lib\User\Hero.class.php	/^	function getHeroLevelAndExp(){$/;"	f
 getHeroMaxLevel	.\lib\User\Base.class.php	/^	public function getHeroMaxLevel(){$/;"	f
 getImage	.\lib\User\Base.class.php	/^	public function getImage(){$/;"	f
-getInfo	.\lib\User\Friend.class.php	/^	function getInfo( $find ){$/;"	f
+getInfo	.\lib\User\Base.class.php	/^	function getInfo( $name ){$/;"	f
 getInviteLists	.\lib\User\Friend.class.php	/^	function getInviteLists(){$/;"	f
 getIp	.\inc\function.php	/^	function getIp(){$/;"	f
 getItemInfo	.\lib\User\Shop.class.php	/^	public function getItemInfo( $index ){$/;"	f
@@ -549,6 +647,7 @@ getMailGoodsByKey	.\lib\User\Mail.class.php	/^	function getMailGoodsByKey( $key 
 getMaxFriends	.\lib\User\Base.class.php	/^	public function getMaxFriends(){$/;"	f
 getMaxLevel	.\lib\Public\Goodbase.class.php	/^	public function getMaxLevel(){$/;"	f
 getMaxLevel	.\lib\Public\Levelup.class.php	/^	function getMaxLevel(){$/;"	f
+getMercHero	.\lib\User\Merc.class.php	/^	function getMercHero(){$/;"	f
 getMissionGoods	.\lib\User\Mission.class.php	/^ 	function getMissionGoods( $taskId ){$/;"	f
 getMissionList	.\lib\User\Mission.class.php	/^ 	function getMissionList(){$/;"	f
 getMoney	.\lib\User\Base.class.php	/^	public function getMoney(){$/;"	f
@@ -559,6 +658,7 @@ getOneTimeCooldou	.\lib\User\Limit.class.php	/^	public function getOneTimeCooldo
 getReq	.\inc\function.php	/^	function getReq($tag,$ret=null){	$/;"	f
 getRid	.\lib\User\Base.class.php	/^	public function getRid(){$/;"	f
 getRid	.\lib\User\Rolebase.class.php	/^	public function getRid(){$/;"	f
+getRoleBuff	.\lib\User\Base.class.php	/^	public function getRoleBuff(){$/;"	f
 getRule	.\lib\User\Limit.class.php	/^	public function getRule(){$/;"	f
 getSellPrice	.\lib\Public\Goodbase.class.php	/^	public function getSellPrice(){$/;"	f
 getServerId	.\lib\User\Base.class.php	/^	public function getServerId(){$/;"	f
@@ -569,13 +669,17 @@ getSignConfig	.\lib\Act\Sign.class.php	/^	public function getSignConfig( $month 
 getSkey	.\lib\User\Base.class.php	/^	public function getSkey(){$/;"	f
 getSkillConfig	.\lib\User\Hero.class.php	/^	function getSkillConfig(){$/;"	f
 getSkillLevel	.\lib\User\Hero.class.php	/^	function getSkillLevel( $skillIndex ){$/;"	f
-getStatus	.\lib\User\Pay.class.php	/^	function getStatus(){$/;"	f
+getStatus	.\lib\User\Pay.class.php	/^	private function getStatus(){$/;"	f
+getSysMercHero	.\lib\User\Merc.class.php	/^	function getSysMercHero(){$/;"	f
 getTables	.\lib\Db\Mysql.class.php	/^    public function getTables($dbName='') {$/;"	f
 getTagValue	.\lib\Public\Vip.class.php	/^	public function getTagValue( $tag ){$/;"	f
-getTimeLimit	.\lib\User\Limit.class.php	/^	public function getTimeLimit( $key='' ){$/;"	f
+getTime	.\lib\Public\Buff.class.php	/^	function getTime(){$/;"	f
+getTimeLimit	.\lib\User\Limit.class.php	/^	private function getTimeLimit( $key='' ){$/;"	f
 getTopList	.\lib\Public\Top.class.php	/^	function getTopList(){$/;"	f
+getTotalFire	.\lib\User\Hero.class.php	/^	function getTotalFire(){$/;"	f
 getTotalPay	.\lib\User\Base.class.php	/^	public function getTotalPay(){$/;"	f
 getTotalTimes	.\lib\Act\Sign.class.php	/^	public function getTotalTimes(){$/;"	f
+getType	.\lib\Public\Buff.class.php	/^	function getType(){$/;"	f
 getType	.\lib\Public\Goodbase.class.php	/^	public function getType(){$/;"	f
 getType	.\lib\User\Goods.class.php	/^	public function getType(){$/;"	f
 getTypeItems	.\lib\User\Shop.class.php	/^	public function getTypeItems(){$/;"	f
@@ -588,17 +692,25 @@ getUserHeroList	.\lib\User\Hero.class.php	/^	public function getUserHeroList(){$
 getUserHeroNum	.\lib\User\Hero.class.php	/^	public function getUserHeroNum(){$/;"	f
 getUserInfo	.\lib\User\Base.class.php	/^	public function getUserInfo(){$/;"	f
 getUserLastServerId	.\lib\User\Rolebase.class.php	/^	public function getUserLastServerId(){$/;"	f
+getUserLastUpdInfo	.\lib\User\Base.class.php	/^	public function getUserLastUpdInfo(){$/;"	f
+getUserMaxLife	.\lib\User\Base.class.php	/^	public function getUserMaxLife(){$/;"	f
 getUserMissingByClass	.\lib\User\Mission.class.php	/^	function getUserMissingByClass( $type ){$/;"	f
 getUserMission	.\lib\User\Mission.class.php	/^ 	function getUserMission(){$/;"	f
 getUserName	.\lib\User\Base.class.php	/^	public function getUserName(){$/;"	f
 getUserProgressList	.\lib\User\Progress.class.php	/^	public function getUserProgressList(){$/;"	f
 getUserRecord	.\lib\User\Base.class.php	/^	public function getUserRecord( $key ){$/;"	f
+getUserReductTime	.\lib\User\Base.class.php	/^	public function getUserReductTime(){$/;"	f
+getUserSkill	.\lib\User\User.class.php	/^	public function getUserSkill(){$/;"	f
 getUserSkillInfo	.\lib\User\User.class.php	/^	public function getUserSkillInfo(){$/;"	f
 getUserSkillPoint	.\lib\User\User.class.php	/^	public function getUserSkillPoint(){$/;"	f
 getValue	.\lib\User\Goods.class.php	/^	public function getValue(){$/;"	f
 getVipLevelByExp	.\lib\Public\Vip.class.php	/^	public function getVipLevelByExp( $exp ){$/;"	f
 getVipTimes	.\lib\Act\Sign.class.php	/^	public function getVipTimes(){$/;"	f
 getVlevel	.\lib\User\Base.class.php	/^	public function getVlevel(){$/;"	f
+gethp	.\lib\Public\Equipbase.class.php	/^		$gethp = $this->eInfo['Equip_GetHp'] + $this->eInfo['Equip_UpGetHp'] * $level;	$/;"	v
+gethp	.\lib\Public\Herobase.class.php	/^		$gethp = self::$hInfo[$this->hid]['Hero_GetHp'] + self::$hInfo[$this->hid]['Hero_UpGetHp'] * ( $level - 1 ) * $color;							#英雄的生命回复$/;"	v
+getmp	.\lib\Public\Equipbase.class.php	/^		$getmp = $this->eInfo['Equip_GetMp'] + $this->eInfo['Equip_UpGetMp'] * $level;$/;"	v
+getmp	.\lib\Public\Herobase.class.php	/^		$getmp = self::$hInfo[$this->hid]['Hero_GetMp'] + self::$hInfo[$this->hid]['Hero_UpGetMp'] * ( $level - 1 ) * $color;							#英雄的魔法回复$/;"	v
 gid	.\lib\Public\Goodbase.class.php	/^		$this->gid = $gid;$/;"	v
 gid	.\lib\Public\Goodbase.class.php	/^	protected $gid;		\/\/物品id$/;"	v
 gid	.\lib\Public\Goodbase.class.php	/^	public function __construct( $gid='' ){$/;"	v
@@ -610,11 +722,12 @@ gid	.\module\user\useGood.php	/^		$gid = $input['gid'];	\/\/物品id$/;"	v
 gid	.\module\user\userHero.php	/^		$gid = '11'.substr($hid,2);$/;"	v
 ginfo	.\lib\Public\Goodbase.class.php	/^			$this->ginfo = $this->pre->hgetall('goodBase:base:'.$this->gid);$/;"	v
 ginfo	.\lib\Public\Goodbase.class.php	/^	protected $ginfo;	\/\/物品信息$/;"	v
-giveHero	.\lib\User\Hero.class.php	/^	public function giveHero( $color=1 ){$/;"	f
-good	.\lib\Act\Sign.class.php	/^			$good = new User_Goods( $this->uid, $dayConfig['Item_Id'] );$/;"	v
+giveHero	.\lib\User\Hero.class.php	/^	public function giveHero( $color='' ){$/;"	f
+giveLife	.\lib\User\Base.class.php	/^		$giveLife = floor($tolTime\/$recover);$/;"	v
+good	.\lib\Act\Sign.class.php	/^			$good = new User_Goods( $this->uid, $dayConfig['Item_Id'] );*\/$/;"	v
 good	.\lib\User\Hero.class.php	/^				$good = new User_Goods( $this->uid, $gid );$/;"	v
+good	.\lib\User\User.class.php	/^									$good = new User_Goods( $this->uid, '11'.substr( $gInfo[0],2 ) );$/;"	v
 good	.\lib\User\User.class.php	/^									$good = new User_Goods($this->uid,$gInfo[0]);$/;"	v
-good	.\module\action\shop.php	/^			$good = new User_Goods( $user->getUid(), $shopInfo['gid'] );$/;"	v
 good	.\module\admin\cacute.php	/^						$good = new User_Goods( $user->getUid(), $k );$/;"	v
 good	.\module\admin\cacute.php	/^				$good = new User_Goods( $user->getUid(), $k );$/;"	v
 good	.\module\user\goodsCompos.php	/^				$good = explode(':',$val);$/;"	v
@@ -626,12 +739,13 @@ good	.\module\user\useGood.php	/^		$good = new User_Goods( $user->getUid(),$gid 
 good	.\module\user\useGood.php	/^		$good = new User_Goods( $user->getUid(),$gid,$ugid );$/;"	v
 goodbase	.\lib\User\Goods.class.php	/^				$goodbase = new Goodbase();$/;"	v
 goodcom	.\module\user\goodsCompos.php	/^		 $goodcom = new Goodcompos( $comid );$/;"	v
-goodid	.\module\user\userHero.php	/^			$goodid = $hero->getHeroEquip($v);$/;"	v
+goodid	.\module\user\userHero.php	/^			$goodid = $hero->getHeroEquipGid($v);$/;"	v
 goodinfo	.\lib\User\Goods.class.php	/^						$this->goodinfo = $insert;$/;"	v
 goodinfo	.\lib\User\Goods.class.php	/^					$this->goodinfo = $insert;$/;"	v
+goodinfo	.\lib\User\Goods.class.php	/^				$this->goodinfo = $insert;$/;"	v
 goodinfo	.\lib\User\Goods.class.php	/^				$this->goodinfo = $this->redis->hgetall( $keys );$/;"	v
 goodinfo	.\lib\User\Goods.class.php	/^	private $goodinfo;									\/\/物品清单   所有物品时存储所有物品是个数据   指定类型时存储指定类型的所有物品  指定物品存储指定物品信息$/;"	v
-goods	.\lib\User\Goods.class.php	/^				$goods = $this->db->find($this->table,'*',array('rid'=>$this->uid));$/;"	v
+goods	.\lib\User\Goods.class.php	/^				$goods = $this->db->find($this->table,'id,gid,nums,gtype',array('uid'=>$this->uid));$/;"	v
 goods	.\lib\User\User.class.php	/^			$goods = $config;$/;"	v
 goods	.\lib\User\User.class.php	/^			$goods = json_decode($config,true);$/;"	v
 goods	.\module\action\friends.php	/^	 		$goods = array('life'=>$life);$/;"	v
@@ -646,16 +760,20 @@ gsuper	.\lib\User\Goods.class.php	/^				$gsuper = $goodbase->getGoodsSuper();$/;
 h	.\apc.php	/^					$h=(GRAPH_SIZE-5)*($block['offset']-$ptr)\/$s;$/;"	v
 h	.\apc.php	/^				$h = (GRAPH_SIZE-5) * ($mem['seg_size'] - $ptr) \/ $s;$/;"	v
 h	.\apc.php	/^				$h=(GRAPH_SIZE-5)*($block['size'])\/$s;$/;"	v
+hInfo	.\lib\Public\Herobase.class.php	/^	static protected $hInfo;									\/\/指定英雄信息$/;"	v
 hInfo	.\lib\User\User.class.php	/^								$hInfo = $hero->getLastUpdField();$/;"	v
 hInfo	.\module\user\userHero.php	/^			$hInfo = $hero->getHeroInfo();$/;"	v
 hInfo	.\module\user\userHero.php	/^		$hInfo = $hero->getHeroInfo();$/;"	v
-hList	.\module\user\userHero.php	/^		$hList = array( 10001,10002,10003,10004,10005,10006,10007,10008,10009,10010,10028,10024,10015,10022,10036,10011 );$/;"	v
+hLevel	.\lib\User\Hero.class.php	/^		$hLevel = $this->getHeroMaxLevel();$/;"	v
+hList	.\module\user\userHero.php	/^		$hList = array( 10026,10022,10019,10031,10002,10008,10029,10023,10011,10015,10030,10012,10014,10006,10033,10032,10036,10024,10004,10013 );$/;"	v
+hasMerc	.\module\action\friends.php	/^ 		$hasMerc = $uMerc->getHadList();$/;"	v
 hdel	.\lib\Redis\Redis.class.php	/^	public function hdel($keys){$/;"	f
+head	.\test.php	/^			$head = array_shift($temp);$/;"	v
+hero	.\lib\User\Hero.class.php	/^					$hero = $this->redis->hgetall($v);$/;"	v
 hero	.\lib\User\Hero.class.php	/^			$hero = $this->initHero($color);$/;"	v
 hero	.\lib\User\Mission.class.php	/^ 							$hero  = new User_Hero();$/;"	v
 hero	.\lib\User\User.class.php	/^									$hero = new User_Hero( $this->uid, $gInfo[0] );$/;"	v
 hero	.\module\admin\admin.php	/^			$hero = new User_Hero( $user->getUid(), $hid );$/;"	v
-hero	.\module\admin\cacute.php	/^					$hero = new User_Hero( $uid, $v );$/;"	v
 hero	.\module\user\init.php	/^	 		$hero = new User_Hero( $user->getUid() );$/;"	v
 hero	.\module\user\useGood.php	/^				$hero = new User_Hero( $user->getUid(), $hid );$/;"	v
 hero	.\module\user\userHero.php	/^				$hero = new User_Hero( $user->getUid(), $hid );$/;"	v
@@ -663,20 +781,23 @@ hero	.\module\user\userHero.php	/^			$hero = new User_Hero( $user->getUid(),$v )
 hero	.\module\user\userHero.php	/^		$hero = new User_Hero( $user->getUid() );$/;"	v
 hero	.\module\user\userHero.php	/^		$hero = new User_Hero( $user->getUid(), $hid );$/;"	v
 hero	.\test.php	/^	$hero = new User_Hero( $user->getUid() );$/;"	v
-heroInfo	.\lib\User\Hero.class.php	/^	static $heroInfo=array();				\/\/英雄信息  如果是所有信息则记录英雄列表，如果指定hid则记录当前hid对应的英雄信息$/;"	v
+heroBase	.\lib\User\Hero.class.php	/^		$heroBase = new Herobase( $this->hid );$/;"	v
+heroBaseTable	.\lib\Public\Herobase.class.php	/^	protected $heroBaseTable = 'zy_baseHero'; 					\/\/英雄基类表$/;"	v
+heroFire	.\lib\User\Hero.class.php	/^		$heroFire = $heroBase->getFire( self::$heroInfo[$this->hid]['level'], self::$heroInfo[$this->hid]['color'],  self::$heroInfo[$this->hid]['config']);$/;"	v
+heroInfo	.\lib\User\Hero.class.php	/^	static $heroInfo=array();					\/\/英雄信息  如果是所有信息则记录英雄列表，如果指定hid则记录当前hid对应的英雄信息$/;"	v
 heroList	.\module\user\userHero.php	/^		$heroList = $hero->getUserHeroList();$/;"	v
 heroList	.\test.php	/^	$heroList = $hero->getUserHeroList();$/;"	v
 heroPutDownEquip	.\lib\User\Hero.class.php	/^	function heroPutDownEquip( $index ){$/;"	f
 heroPutOnEquip	.\lib\User\Hero.class.php	/^	function heroPutOnEquip( $index,$eqId ){$/;"	f
 heroSkillConfig	.\module\user\userHero.php	/^			$heroSkillConfig = $hero->getSkillConfig();$/;"	v
 hero_table	.\lib\Public\Levelup.class.php	/^	private $hero_table='zy_baseHeroLevelUp';$/;"	v
-heros	.\lib\User\Hero.class.php	/^				$heros = $this->db->find($this->table,'*',array('uid'=>$this->uid));$/;"	v
+heros	.\lib\User\Hero.class.php	/^				$heros = $this->db->find($this->table,'fire,hid,level,exp,color,star,equip1,equip2,equip3,equip4,equip5,equip6,config',array('uid'=>$this->uid));$/;"	v
 heros	.\module\admin\cacute.php	/^			$heros = $input['heros'];$/;"	v
 hexists	.\lib\Redis\Redis.class.php	/^	public function hexists($key){$/;"	f
 hget	.\lib\Redis\Redis.class.php	/^	public function hget($domain,$key){$/;"	f
 hgetall	.\lib\Redis\Redis.class.php	/^	public function hgetall($domain){$/;"	f
-hid	.\lib\Public\Herobase.class.php	/^		$this->hid = $hid;$/;"	v
-hid	.\lib\Public\Herobase.class.php	/^	protected $hid;		\/\/英雄id$/;"	v
+hid	.\lib\Public\Herobase.class.php	/^		$this->hid = (int)$hid;$/;"	v
+hid	.\lib\Public\Herobase.class.php	/^	protected $hid;												\/\/英雄id$/;"	v
 hid	.\lib\Public\Herobase.class.php	/^	public function __construct( $hid='' ){$/;"	v
 hid	.\lib\User\Hero.class.php	/^		$this->hid = (int)$hid;$/;"	v
 hid	.\lib\User\Hero.class.php	/^	protected $hid;					\/\/英雄id$/;"	v
@@ -685,7 +806,6 @@ hid	.\module\user\useGood.php	/^				$hid = $input['hid'];	\/\/英雄id$/;"	v
 hid	.\module\user\userHero.php	/^ $hid = $input['hid'];$/;"	v
 hincr	.\lib\Redis\Redis.class.php	/^	public function hincr($domain, $key, $val){$/;"	f
 hinfo	.\lib\User\Hero.class.php	/^					$this->hinfo = self::$heroInfo[$this->hid];$/;"	v
-hinfo	.\lib\User\Hero.class.php	/^				$this->hinfo = $heros;$/;"	v
 hinfo	.\lib\User\Hero.class.php	/^				$this->hinfo = self::$heroInfo[$this->hid];$/;"	v
 hinfo	.\lib\User\Hero.class.php	/^			$this->hinfo = $hero;$/;"	v
 hinfo	.\lib\User\Hero.class.php	/^	private $hinfo;					\/\/英雄信息$/;"	v
@@ -697,6 +817,7 @@ host	.\apc.php	/^$host = php_uname('n');$/;"	v
 host	.\apc.php	/^if($host) { $host = '('.$host.')'; }$/;"	v
 host	.\lib\Redis\Redis.class.php	/^		$host = $redisConfig['host'];$/;"	v
 hours	.\apc.php	/^    $hours = (int)(($rem)\/3600) - $days*24 - $weeks*7*24;$/;"	v
+hp	.\lib\Public\Herobase.class.php	/^		$hp = self::$hInfo[$this->hid]['Hero_Hp'] + self::$hInfo[$this->hid]['Hero_UpHp'] * ( $level - 1 ) * $color;									#英雄的生命值$/;"	v
 hset	.\lib\Redis\Redis.class.php	/^	public function hset($domain,$key,$val,$expire=0){$/;"	f
 hzyDecode	.\hh8.php	/^	function hzyDecode($str){$/;"	f
 hzyEncode	.\hh8.php	/^	function hzyEncode($file){$/;"	f
@@ -712,23 +833,29 @@ i	.\apc.php	/^          foreach($mem['adist'] as $i=>$v) {$/;"	v
 i	.\hh8.php	/^		for( $i=0;$i<strlen($file);$i++ ){$/;"	v
 i	.\hh8.php	/^		for( $i=0;$i<strlen($str);$i+=2 ){$/;"	v
 i	.\inc\function.php	/^		for( $i=0;$i<strlen($str);$i++ ){$/;"	v
+i	.\inc\function.php	/^	    $i=0;$/;"	v
 i	.\lib\Public\Logger.class.php	/^		public function i($msg) {$/;"	f
 i	.\lib\Public\Top.class.php	/^		for( $i=0;$i<10;$i++ ){$/;"	v
 i	.\lib\User\Draw.class.php	/^		for( $i=0;$i<$nums;$i++ ){$/;"	v
 i	.\lib\User\Goods.class.php	/^				for( $i=0;$i<$nums;$i++ ){ $/;"	v
+i	.\lib\User\Hero.class.php	/^					\/*for( $i=1;$i<7; $i++ ){$/;"	v
+i	.\lib\User\Hero.class.php	/^		for( $i=1; $i<7; $i++ ){$/;"	v
+i	.\lib\User\Hero.class.php	/^		for( $i=1; $i<=$skillIndex; $i++ ){$/;"	v
 i	.\lib\User\Hero.class.php	/^		for( $i=1;$i<=$color; $i++ ){$/;"	v
 i	.\lib\User\Login.class.php	/^		$i=0;$/;"	v
 i	.\lib\User\Shop.class.php	/^		$i=0;$/;"	v
 i	.\module\user\goodsCompos.php	/^			$i = 0;$/;"	v
+i	.\module\user\userHero.php	/^					for( $i=1;$i<=6;$i++ ){$/;"	v
 i	.\syncDb.php	/^	for( $i=1;$i<$nums;$i+=2 ){$/;"	v
+i	.\test.php	/^		$i=0;$/;"	v
 i	.\test.php	/^	for( $i=1;$i<1000;$i++ ){$/;"	v
 iList	.\module\user\goodsCompos.php	/^ 		$iList = $input['items'];		\/\/需要吞掉的物品id$/;"	v
 iList	.\module\user\goodsCompos.php	/^ 		$iList = explode( '#', $iList );$/;"	v
 image	.\apc.php	/^		$image = imagecreate($size+50, $size+10);$/;"	v
 image	.\apc.php	/^		$image = imagecreate(2*$size+150, $size+10);$/;"	v
 image	.\module\user\updateInfo.php	/^ $image = isset($input['img']) ? $input['img'] : '' ;$/;"	v
-index	.\lib\User\Draw.class.php	/^				$index = mt_rand(0, ( count( $oList )-1 ) );$/;"	v
-index	.\lib\User\Draw.class.php	/^			$index = $this->retRate( $list );$/;"	v
+index	.\lib\User\Draw.class.php	/^			$index = 0;$/;"	v
+index	.\lib\User\Draw.class.php	/^		$index = $this->retRate( $list );$/;"	v
 index	.\lib\User\Shop.class.php	/^				$index = mt_rand(0, ( count( $oList )-1 ) );$/;"	v
 index	.\lib\User\Shop.class.php	/^			$index = $this->retRate($list);$/;"	v
 index	.\module\action\shop.php	/^		$index = isset( $input['index']) ? $input['index'] : 0;$/;"	v
@@ -742,7 +869,7 @@ init	.\lib\Db\Mysql.class.php	/^	public static function init($type=''){$/;"	f
 init	.\lib\Redis\Redis.class.php	/^	public static function init($uid=''){$/;"	f
 initHero	.\lib\User\Hero.class.php	/^	private function initHero($color){$/;"	f
 initRedis	.\lib\Redis\Redis.class.php	/^	public function initRedis($uid=''){$/;"	f
-input	.\api.php	/^		$input = json_decode('{"sid":"100001","s":"1","n":"nacker1","slt":0,"sign":"95d7d3a4a8e52c08e120859a27ef805a","cid":"12","ts":"1407749759"}',true);$/;"	v
+input	.\api.php	/^		$input = json_decode('{"t":1,"n":1}',true);$/;"	v
 input	.\api.php	/^	$input = msgpack_unpack( $bin );$/;"	v
 insert	.\lib\Db\Mysql.class.php	/^	public function insert($table, $row) {$/;"	f
 insert_rate	.\apc.php	/^	$insert_rate = sprintf("%.2f",($cache['num_inserts'])\/($time-$cache['start_time']));$/;"	v
@@ -751,6 +878,7 @@ invite	.\lib\User\Friend.class.php	/^		$invite = $cond->get( $this->toUid );$/;"
 ips	.\inc\function.php	/^	        		$ips = preg_split('\/,\\s*\/', trim($_SERVER["HTTP_X_FORWARDED_FOR"]));$/;"	v
 isAjax	.\inc\function.php	/^    function isAjax(){$/;"	f
 isExist	.\lib\Public\Modinit.class.php	/^    public function isExist(){$/;"	f
+isFriend	.\lib\User\Friend.class.php	/^	public function isFriend( $uid ){$/;"	f
 isLucky	.\inc\function.php	/^	function isLucky($rate){\/\/返回是否是指定概率之内$/;"	f
 isMonthCode	.\lib\User\Base.class.php	/^	public function isMonthCode(){$/;"	f
 isNew	.\lib\User\Login.class.php	/^				$this->isNew = 1;$/;"	v
@@ -764,7 +892,7 @@ islog	.\lib\Public\Modinit.class.php	/^            $this->islog = $modinfo['islo
 islog	.\lib\Public\Modinit.class.php	/^        return $this->islog==1 ? define('ISLOG',true) : define('ISLOG',false);$/;"	v
 islog	.\lib\Public\Modinit.class.php	/^    private $islog;$/;"	v
 islog	.\lib\Public\Modinit.class.php	/^    public function islog(){$/;"	f
-isupd	.\lib\User\Base.class.php	/^	private static $isupd=array(); 		\/\/判断是否需要更新用户信息$/;"	v
+isupd	.\lib\User\Base.class.php	/^	private static $isupd=array(); 				\/\/判断是否需要更新用户信息$/;"	v
 j	.\apc.php	/^		$j = 1 - $j;$/;"	v
 j	.\apc.php	/^		$j=1;$/;"	v
 j	.\apc.php	/^		foreach($scope_list as $j => $list) {$/;"	v
@@ -783,26 +911,30 @@ k	.\apc.php	/^	foreach ($tmp as $k => $v) {$/;"	v
 k	.\apc.php	/^	foreach (ini_get_all('apc') as $k => $v) {$/;"	v
 k	.\inc\function.php	/^		foreach($rates as $k=>$v){$/;"	v
 k	.\lib\Db\Mysql.class.php	/^			foreach ($where as $k => $v) {$/;"	v
+k	.\lib\Db\Mysql.class.php	/^		foreach ($row as $k => $v) {$/;"	v
 k	.\lib\Db\Mysql.class.php	/^	            foreach ($where as $k => $v) {$/;"	v
 k	.\lib\Db\Mysql.class.php	/^        foreach ($row as $k => $v) {$/;"	v
 k	.\lib\Db\Mysql.class.php	/^        foreach ($where as $k => $v) {$/;"	v
 k	.\lib\Public\Base.class.php	/^		foreach($rates as $k=>$v){$/;"	v
 k	.\lib\Redis\Redis.class.php	/^			foreach($kvals as $k=>$v){$/;"	v
 k	.\lib\User\Base.class.php	/^			foreach( $missionIdList as $k=>$val ){$/;"	v
-k	.\lib\User\Draw.class.php	/^		foreach( $this->dInfo as $k=>$v ){$/;"	v
+k	.\lib\User\Draw.class.php	/^		foreach( $tempInfo as $k=>$v ){$/;"	v
+k	.\lib\User\Draw.class.php	/^		foreach( $this->userType as $k=>$v ){$/;"	v
 k	.\lib\User\Mission.class.php	/^	 					if( $k == 73 ){$/;"	v
 k	.\lib\User\Mission.class.php	/^ 						if( $k == 21 ){$/;"	v
 k	.\lib\User\Mission.class.php	/^ 					foreach( $taskClass as $k=>$v ){$/;"	v
 k	.\lib\User\Mission.class.php	/^ 				foreach( $taskClass as $k=>$v ){$/;"	v
 k	.\lib\User\Shop.class.php	/^			foreach( $this->shopinfo[ $val ] as $k=>$v ){$/;"	v
 k	.\lib\User\User.class.php	/^		foreach( $goods as $k=>$v ){$/;"	v
+k	.\lib\User\User.class.php	/^		foreach( $point as $k=>$v ){$/;"	v
+k	.\module\action\friends.php	/^ 			if( $k == $user->getUid() )continue;$/;"	v
+k	.\module\action\friends.php	/^ 		foreach( $sysUser as $k=>$v ){$/;"	v
 k	.\module\admin\cacute.php	/^					foreach( $val as $k=>$v ){$/;"	v
 k	.\module\admin\cacute.php	/^			foreach( $nums as $k=>$v ){$/;"	v
-k	.\module\user\login.php	/^		foreach( $ret['sinfo']['sList'] as $k=>$v ){$/;"	v
-key	.\api.php	/^	$key = getReq('k','ed1bf251c05aee111f2ea3e89a2b5d27');$/;"	v
+key	.\api.php	/^	$key = getReq('k','6d3126a871959600866d3bc451fac21f');$/;"	v
 key	.\lib\Db\Mysql.class.php	/^        foreach ($result as $key => $val) {$/;"	v
 key	.\lib\Public\Buy.class.php	/^		$this->key = $key;$/;"	v
-key	.\lib\Public\Buy.class.php	/^ 	private $key;									\/\/主key 对应表中的主key和redis中的主key$/;"	v
+key	.\lib\Public\Buy.class.php	/^ 	private $key;											\/\/主key 对应表中的主key和redis中的主key$/;"	v
 key	.\lib\Public\Cond.class.php	/^			$this->key = $this->domain.':'.$key.':'.mktime(0,0,0);$/;"	v
 key	.\lib\Public\Cond.class.php	/^			$this->key = $this->domain.':'.$key;$/;"	v
 key	.\lib\Public\Cond.class.php	/^			$this->key = $this->domain.':'.mktime(0,0,0);$/;"	v
@@ -815,15 +947,16 @@ key	.\lib\Public\Curl.class.php	/^				foreach($fields AS $key =>$val){$/;"	v
 key	.\lib\Public\Modinit.class.php	/^            $this->key == $modinfo['key'] || ret('key error!',-1);$/;"	v
 key	.\lib\Public\Modinit.class.php	/^        $this->key = $key;$/;"	v
 key	.\lib\Public\Modinit.class.php	/^    private $key;$/;"	v
-key	.\lib\Redis\Redis.class.php	/^	 *@ ɾ��ָ��keyֵ��ָ��key��һ������ �� $key='name' �� $key=array('name','age','sex') �ɹ�����1 ʧ�ܷ���0$/;"	v
-key	.\lib\User\Base.class.php	/^		$key = 'roleinfo:'.$this->uid.':buff:'.$conf['gid'];$/;"	v
-key	.\lib\User\Limit.class.php	/^	public function checkTimeLimit( $key='' ){$/;"	v
+key	.\lib\Redis\Redis.class.php	/^	 *@ É¾³ýÖ¸¶¨keyÖµ»òÖ¸¶¨keyµÄÒ»¸öÊý¾Ý Èç $key='name' »ò $key=array('name','age','sex') ³É¹¦·µ»Ø1 Ê§°Ü·µ»Ø0$/;"	v
+key	.\lib\User\Limit.class.php	/^	private function checkTimeLimit( $key='' ){$/;"	v
+key	.\lib\User\Limit.class.php	/^	private function getTimeLimit( $key='' ){$/;"	v
+key	.\lib\User\Limit.class.php	/^	private function setTimeLimit( $key='' ){$/;"	v
+key	.\lib\User\Limit.class.php	/^	public function delLimit( $key='' ){$/;"	v
+key	.\lib\User\Limit.class.php	/^	public function delTimeLimit( $key='' ){$/;"	v
 key	.\lib\User\Limit.class.php	/^	public function getLastFreeTimes( $key='' ){$/;"	v
 key	.\lib\User\Limit.class.php	/^	public function getLastTimes( $key='' ){$/;"	v
 key	.\lib\User\Limit.class.php	/^	public function getOneTimeCooldou( $key='' ){$/;"	v
-key	.\lib\User\Limit.class.php	/^	public function getTimeLimit( $key='' ){$/;"	v
 key	.\lib\User\Limit.class.php	/^	public function getUsedTimes( $key='' ){$/;"	v
-key	.\lib\User\Limit.class.php	/^	public function setTimeLimit( $key='' ){$/;"	v
 key	.\lib\User\Mission.class.php	/^			$key = empty( $missing['missing'] ) ? $missing['showMission'] : $missing['missing'] ;$/;"	v
 key	.\lib\User\Mission.class.php	/^ 							$key = $k.':'.$val;$/;"	v
 key	.\module\action\mail.php	/^		$key = isset( $input['key']) ? $input['key'] : 0;$/;"	v
@@ -838,16 +971,19 @@ keys	.\lib\Public\Cond.class.php	/^	public function getAll( $keys='' , $flag=0 )
 keys	.\lib\Public\Goodbase.class.php	/^			$keys = $this->pre->keys('goodBase:base:*');$/;"	v
 keys	.\lib\Public\Vip.class.php	/^		$keys = $this->pre->keys( 'vipConfig:*' );$/;"	v
 keys	.\lib\Redis\Redis.class.php	/^	public function keys($key='*'){$/;"	f
-keys	.\lib\User\Draw.class.php	/^		$keys = $this->pre->keys( 'baseDrawConfig:'.$this->type.':*' );$/;"	v
+keys	.\lib\User\Base.class.php	/^		$keys = $this->redis->keys('roleinfo:'.$this->uid.':buff:*');$/;"	v
+keys	.\lib\User\Draw.class.php	/^		$keys = $this->pre->keys( 'baseDrawConfig:'.$this->type.':'.$type['type'].':'.$type['color'].':*' );$/;"	v
+keys	.\lib\User\Draw.class.php	/^		$keys = $this->pre->keys( 'baseDrawTypeConfig:'.$this->type.':'.$flag.':*' );$/;"	v
 keys	.\lib\User\Goods.class.php	/^				$keys = $this->redis->keys('roleinfo:'.$this->uid.':goods:'.$this->type.':*');$/;"	v
 keys	.\lib\User\Goods.class.php	/^				$keys = $this->redis->keys('roleinfo:'.$this->uid.':goods:*');$/;"	v
 keys	.\lib\User\Goods.class.php	/^				$keys = 'roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid.':'.$this->ugid;$/;"	v
 keys	.\lib\User\Goods.class.php	/^				$keys = 'roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid;$/;"	v
-keys	.\lib\User\Hero.class.php	/^				$keys = $this->redis->keys('roleinfo:'.$this->uid.':hero:*');$/;"	v
+keys	.\lib\User\Hero.class.php	/^			$keys = $this->redis->keys('roleinfo:'.$this->uid.':hero:*');$/;"	v
 keys	.\lib\User\Mission.class.php	/^ 							$keys = $this->pre->keys( 'baseMissionConfig:1:121*' );$/;"	v
 keys	.\lib\User\Mission.class.php	/^ 			$keys = $this->redis->keys( 'roleinfo:'.$this->uid.':mission:*' );$/;"	v
 keys	.\lib\User\Progress.class.php	/^		$keys = $this->redis->keys( 'role:'.$this->uid.':progress:*' );$/;"	v
 keys	.\lib\User\Shop.class.php	/^		$keys = $this->pre->keys('shopConfig:'.$this->type.':*');$/;"	v
+king	.\test.php	/^	function king( $total, $num ){$/;"	f
 kk	.\lib\Db\Mysql.class.php	/^						foreach( $v as $kk=>$vv){$/;"	v
 kn	.\apc.php	/^			case 'A': $kn=sprintf('%015d-',$v['size'] \/ $v['ents']);break;$/;"	v
 kn	.\apc.php	/^			case 'C': $kn=sprintf('%015d-',$v['hits'] \/ $v['ents']);break;$/;"	v
@@ -859,21 +995,28 @@ ks	.\lib\Redis\Redis.class.php	/^				$ks = $this->keys($k);$/;"	v
 ks	.\lib\Redis\Redis.class.php	/^			$ks = $this->keys($keys);$/;"	v
 label	.\inc\function.php	/^	    $label = ($label === null) ? '' : rtrim($label) . ' ';$/;"	v
 lastHeartTime	.\module\user\heartBeat.php	/^ $lastHeartTime = isset($input['lht'])?$input['lht']:0;$/;"	v
+lastInsertId	.\lib\Db\Mysql.class.php	/^		return $this->lastInsertId = $id;$/;"	v
+lastInsertId	.\lib\Db\Mysql.class.php	/^	private $lastInsertId;		#最后插入的id$/;"	v
 lastPoint	.\lib\User\User.class.php	/^				$lastPoint = $point['point'];$/;"	v
 lastPoint	.\lib\User\User.class.php	/^				$lastPoint = $userSkill['point'];$/;"	v
 lastPoint	.\lib\User\User.class.php	/^			$lastPoint = $max;$/;"	v
 lastSql	.\lib\Db\Mysql.class.php	/^		$this->lastSql = $sql;$/;"	v
 lastSql	.\lib\Db\Mysql.class.php	/^	private $lastSql;$/;"	v
+lastTime	.\lib\User\Base.class.php	/^			$lastTime = $this->getUserReductTime() + ( $giveLife * $recover );$/;"	v
 lastUpdGoods	.\lib\User\Goods.class.php	/^	private static $lastUpdGoods=array('new'=>array(),'old'=>array(),'del'=>array());	\/\/用户变化物品清单$/;"	v
 lastUpdHero	.\lib\User\Hero.class.php	/^	static $lastUpdHero = array();				\/\/英雄最后更新信息$/;"	v
+lasttime	.\module\user\chat.php	/^ 		$lasttime = isset( $input['lt'] ) ? $input['lt'] : 0;$/;"	v
+len	.\inc\function.php	/^	    $len=strlen($str);$/;"	v
+length	.\inc\function.php	/^	    $length = 0;$/;"	v
+level	.\lib\Public\Equipbase.class.php	/^	function getFire( $level=0 ){$/;"	v
 level	.\lib\Public\Goodbase.class.php	/^		$level = (int)substr($this->gid,5);$/;"	v
+level	.\lib\Public\Herobase.class.php	/^	public function getFire( $level=1,$color=1,$skill='{"1":"1"}' ){$/;"	v
 level	.\lib\Public\Levelup.class.php	/^		$this->level = $level;$/;"	v
 level	.\lib\Public\Levelup.class.php	/^	private $level;						\/\/等级$/;"	v
 level	.\lib\Public\Log.class.php	/^			$this->level = $status;$/;"	v
 level	.\lib\Public\Log.class.php	/^		private $level = LEVEL_INFO;$/;"	v
 level	.\lib\Public\Skillcost.class.php	/^		$this->level = $level;$/;"	v
 level	.\lib\Public\Skillcost.class.php	/^	private $level;		\/\/技能等级$/;"	v
-levelLimit	.\lib\User\Draw.class.php	/^			$levelLimit = explode(',',$info['Group_Level']);$/;"	v
 levelLimit	.\lib\User\Shop.class.php	/^				$levelLimit = explode(',',$v['Group_Level']);$/;"	v
 life	.\module\action\friends.php	/^	 		$life = $limit->getGiveNum();$/;"	v
 limit	.\module\action\draw.php	/^			$limit = new User_Limit( 'friendDrawDay','dayLimit', 3600*48 );$/;"	v
@@ -883,9 +1026,12 @@ limit	.\module\action\friends.php	/^ 		$limit = new User_Limit('giveLifeDay');$/
 limit	.\module\action\shop.php	/^			$limit = new User_Limit( 'freeRefShopDay');$/;"	v
 limit	.\module\admin\cacute.php	/^			$limit = new User_Limit( 'freeSweepTimesDay' );$/;"	v
 limit	.\module\user\buy.php	/^ $limit = new User_Limit( $config[$type]['tag'] );$/;"	v
+limit	.\module\user\chat.php	/^	 		$limit = new User_Limit( 'helloWorld' );$/;"	v
 limitConfig	.\lib\User\Limit.class.php	/^		$this->limitConfig = $this->pre->hgetall( 'userLimit:'.$this->flag );$/;"	v
 limitConfig	.\lib\User\Limit.class.php	/^	private $limitConfig;						\/\/限制的配置信息$/;"	v
 list	.\apc.php	/^	$list = array();$/;"	v
+list	.\lib\Public\Cond.class.php	/^			$list = (int)$list + $value;$/;"	v
+list	.\lib\Public\Cond.class.php	/^		$list = $this->get( $key );$/;"	v
 list	.\lib\User\Shop.class.php	/^			$list = $oList = array();$/;"	v
 log	.\api.php	/^	$log = new Logger($mod->tag());$/;"	v
 log	.\lib\Public\Base.class.php	/^			$this->log = $log;$/;"	v
@@ -900,6 +1046,7 @@ loginLogTable	.\lib\User\Login.class.php	/^	private $loginLogTable = 'zy_statsUs
 lrange	.\lib\Redis\Redis.class.php	/^	public function lrange($key,$start=0,$end=-1){$/;"	f
 m	.\apc.php	/^					$m=1-$m;$/;"	v
 m	.\apc.php	/^		$m=0;$/;"	v
+mCond	.\lib\Public\Chat.class.php	/^ 				$mCond = new Cond( 'chat', $con['uid'], 86400 );	#私信保存一天$/;"	v
 mList	.\lib\User\Mail.class.php	/^			$mList = array_merge( $mList, $priMail );$/;"	v
 mList	.\lib\User\Mail.class.php	/^			$mList = array_merge( $mList, $pubMail );$/;"	v
 mList	.\lib\User\Mail.class.php	/^		$mList = array();$/;"	v
@@ -916,8 +1063,11 @@ mailRedis	.\lib\User\Mail.class.php	/^	private $mailRedis;		\/\/邮件连接的r
 max	.\inc\function.php	/^		$max = 100000000;$/;"	v
 max	.\inc\function.php	/^		$max = 1000000;$/;"	v
 max	.\lib\Public\Base.class.php	/^		$max = 100000000;$/;"	v
+max	.\lib\User\Base.class.php	/^		$max = $this->getUserMaxLife();$/;"	v
 max	.\lib\User\User.class.php	/^			$max = 10;	\/\/最大技能点数$/;"	v
 max	.\lib\User\User.class.php	/^			$max = 20;$/;"	v
+maxFire	.\module\user\userHero.php	/^					$maxFire = $v['fire'];$/;"	v
+maxFire	.\module\user\userHero.php	/^		$maxFire = -1;$/;"	v
 maxLevel	.\lib\Public\Levelup.class.php	/^	private $maxLevel=80;					\/\/最大等级$/;"	v
 maxVipLevel	.\lib\Public\Vip.class.php	/^	private $maxVipLevel = 15;		\/\/最大vip等级$/;"	v
 mem	.\apc.php	/^$mem=apc_sma_info();$/;"	v
@@ -927,9 +1077,13 @@ mem_note	.\apc.php	/^		$mem_note = "Memory Usage<br \/><font size=-2>(multiple s
 mem_size	.\apc.php	/^	$mem_size = $mem['num_seg']*$mem['seg_size'];$/;"	v
 mem_used	.\apc.php	/^	$mem_used = $mem_size-$mem_avail;$/;"	v
 menu_entry	.\apc.php	/^function menu_entry($ob,$title) {$/;"	f
+merc	.\module\action\friends.php	/^ 			$merc = new User_Merc( $v['uid'] );$/;"	v
+merc	.\module\user\userHero.php	/^				$merc = new User_Merc();$/;"	v
+mercHero	.\module\user\userHero.php	/^					$mercHero = $v;$/;"	v
+mercHero	.\module\user\userHero.php	/^		$mercHero = '';$/;"	v
 method	.\lib\Public\Curl.class.php	/^		$method = strtolower($method);$/;"	v
 mget	.\lib\Redis\Redis.class.php	/^	public function mget($keys){$/;"	f
-mid	.\api.php	/^	$mid = getReq('cmd',1000);$/;"	v
+mid	.\api.php	/^	$mid = getReq('cmd',7003);$/;"	v
 mid	.\lib\Public\Modinit.class.php	/^        $this->mid = $mid;$/;"	v
 mid	.\lib\Public\Modinit.class.php	/^    private $mid;$/;"	v
 mid	.\pay.php	/^	$mid = getReq('cmd',1000);$/;"	v
@@ -941,9 +1095,9 @@ miss_rate_user	.\apc.php	/^	$miss_rate_user = sprintf("%.2f",($cache_user['num_m
 missing	.\lib\User\Mission.class.php	/^			$missing = $this->getUserMissingByClass($type);$/;"	v
 mission	.\lib\User\Mission.class.php	/^	 			$mission = $this->cond->get( $taskConfig['Task_Class'] );$/;"	v
 mission	.\lib\User\Mission.class.php	/^	 			$mission = $this->cond->get( $taskConfig['Task_Class'].':'.$taskId );$/;"	v
-mission	.\module\action\mission.php	/^ $mission = new User_Mission($mType);$/;"	v
+mission	.\module\action\mission.php	/^ $mission = new User_Mission( array('type'=>$mType,'uid'=>$user->getUid()) );$/;"	v
 missionIdList	.\lib\User\Base.class.php	/^			$missionIdList = self::$missionIdList;$/;"	v
-missionIdList	.\lib\User\Base.class.php	/^	protected static $missionIdList=array();	\/\/动作触发任务类型列表 如果有触发在析构函数中自动处理$/;"	v
+missionIdList	.\lib\User\Base.class.php	/^	protected static $missionIdList=array();			\/\/动作触发任务类型列表 如果有触发在析构函数中自动处理$/;"	v
 missionTable	.\lib\User\Mission.class.php	/^ 	private $missionTable='zy_baseMissionConfig';			\/\/任务配置表$/;"	v
 mod	.\api.php	/^	$mod = new Public_Modinit($mid,$key,$ver);$/;"	v
 mod	.\pay.php	/^	$mod = new Public_Modinit($mid,$key,$ver);$/;"	v
@@ -953,19 +1107,21 @@ money	.\lib\User\Pay.class.php	/^		$this->money = $payinfo['money'];$/;"	v
 money	.\lib\User\Pay.class.php	/^	private $money;						\/\/充值金额$/;"	v
 money	.\module\action\draw.php	/^			$money = $limit->getOneTimeCooldou();$/;"	v
 money	.\module\action\draw.php	/^			$money = $money * $nums;$/;"	v
+money	.\module\user\chat.php	/^	 		$money = $limit->getOneTimeCooldou();$/;"	v
 money	.\module\user\goodsCompos.php	/^			$money = $cominfo['Cost_Gold'];$/;"	v
 money	.\module\user\userHero.php	/^		$money = array(1=>5000,2=>10000,3=>20000,4=>40000,5=>80000);$/;"	v
 month	.\lib\Act\Sign.class.php	/^		$month = $this->pre->hget( 'action:sign:month_checked','month');$/;"	v
 month	.\lib\Act\Sign.class.php	/^		$this->month = !empty( $month ) ? $month : (int) date('m');$/;"	v
 month	.\lib\Act\Sign.class.php	/^	private $month;			\/\/当月缩写$/;"	v
 month	.\module\action\daySign.php	/^ $month = isset( $input['m'] ) ? $input['m'] : 1;$/;"	v
+mp	.\lib\Public\Herobase.class.php	/^		$mp = self::$hInfo[$this->hid]['Hero_Mp'] + self::$hInfo[$this->hid]['Hero_UpMp'] * ( $level - 1 ) * $color;									#英雄的魔法值$/;"	v
 mset	.\lib\Redis\Redis.class.php	/^	public function mset($kvals,$expire=0){$/;"	f
 msg	.\inc\function.php	/^			$msg = 'Null';$/;"	v
 msg	.\inc\function.php	/^			$msg = array('msg'=>$msg);$/;"	v
 msg	.\lib\Public\Log.class.php	/^	            $msg = $date.':['.$this->tag.']['.$status.'] - '.$message.PHP_EOL;$/;"	v
 msubstr	.\inc\function.php	/^    function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true) {$/;"	f
 myAutoload	.\inc\inc.php	/^	function myAutoload($classname){$/;"	f
-myFriends	.\lib\User\Friend.class.php	/^		$myFriends = $this->cond->get('tolFriends');$/;"	v
+myFriends	.\lib\User\Friend.class.php	/^		$myFriends = (int)$this->cond->get('tolFriends');$/;"	v
 mysql	.\lib\Db\Mysql.class.php	/^	static $mysql=array();$/;"	v
 n	.\apc.php	/^			$n = preg_replace("!^(\/?(?:[^\/\\\\\\\\]+[\/\\\\\\\\]){".($MYREQUEST['AGGR']-1)."}[^\/\\\\\\\\]*).*!", "$1", $n);$/;"	v
 n	.\apc.php	/^		$n = dirname($entry['filename']);$/;"	v
@@ -999,12 +1155,13 @@ now	.\inc\function.php	/^		$now = date('H');$/;"	v
 now	.\lib\Public\Levelup.class.php	/^			$this->now = $this->pre->hgetall('heroLevelUp:'.$this->level);$/;"	v
 now	.\lib\Public\Levelup.class.php	/^			$this->now = $this->pre->hgetall('roleLevelUp:'.$this->level);$/;"	v
 now	.\lib\Public\Levelup.class.php	/^	private $now;						\/\/当前等级对应信息$/;"	v
+now	.\lib\User\Base.class.php	/^		$now = time();$/;"	v
 now	.\lib\User\Shop.class.php	/^		$now = date('H');$/;"	v
 now	.\lib\User\User.class.php	/^		$now = time();$/;"	v
+nowPoint	.\lib\User\User.class.php	/^					$nowPoint = $userSkill['point'] + floor( $tolTime\/$recover );$/;"	v
 nowPoint	.\lib\User\User.class.php	/^				$nowPoint = $point['point'] + floor( $tolTime\/$recover );$/;"	v
-nowPoint	.\lib\User\User.class.php	/^				$nowPoint = $userSkill['point'] + floor( $tolTime\/$recover );$/;"	v
 nseg	.\apc.php	/^	$nseg = $freeseg = $fragsize = $freetotal = 0;$/;"	v
-num	.\module\action\draw.php	/^	$num = isset( $input['n'] ) ?  $input['n'] : 1;$/;"	v
+num	.\module\action\draw.php	/^	$num = $nums = isset( $input['n'] ) ?  $input['n'] : 1;$/;"	v
 num	.\module\user\goodsCompos.php	/^ 			$num = 1;$/;"	v
 num	.\module\user\goodsCompos.php	/^ 		$num = isset($input['n']) ? $input['n'] : 10;$/;"	v
 numArr	.\lib\User\Shop.class.php	/^				$numArr = array(3=>0.1,2=>0.2,1=>0.7);$/;"	v
@@ -1018,6 +1175,7 @@ nums	.\lib\User\Limit.class.php	/^	public function addLimitTimes( $nums=1,$key='
 nums	.\lib\User\Shop.class.php	/^				$nums = $this->retRate($numArr);$/;"	v
 nums	.\lib\User\Shop.class.php	/^				$nums = 1;$/;"	v
 nums	.\lib\User\Shop.class.php	/^				$nums = 5;$/;"	v
+nums	.\lib\User\User.class.php	/^	public function addUserSkillPoint( $nums = 10 ){$/;"	v
 nums	.\module\action\draw.php	/^		$nums = $num*0.9; 	\/\/10连抽打9折$/;"	v
 nums	.\module\admin\admin.php	/^$nums = $input['n'];$/;"	v
 nums	.\module\user\useGood.php	/^		$nums = isset( $input['nums'] ) && is_numeric( $input['nums'] ) && $input['nums'] > 0 ? $input['nums'] : 1;	\/\/消耗物品数量$/;"	v
@@ -1036,8 +1194,6 @@ opt	.\lib\User\Goods.class.php	/^			if( $opt == 'del' ){ \/\/出售物品做特�
 opt	.\module\action\friends.php	/^ 		$opt = isset( $input['opt'] ) ? $input['opt'] : 1 ;$/;"	v
 orderid	.\lib\User\Pay.class.php	/^		$this->orderid = $payinfo['orderid'];$/;"	v
 orderid	.\lib\User\Pay.class.php	/^	private $orderid;						\/\/充值订单id  来自充值方$/;"	v
-out	.\lib\User\Shop.class.php	/^				$this->out = 1;$/;"	v
-out	.\lib\User\Shop.class.php	/^	 private $out=0;						\/\/商店是否消失标记$/;"	v
 output	.\apc.php	/^					$output = var_export(apc_fetch($entry[$fieldkey]),true);$/;"	v
 output	.\inc\function.php	/^		    $output = "<pre>" . $label . htmlspecialchars($output, ENT_QUOTES) . "<\/pre>";$/;"	v
 output	.\inc\function.php	/^		    $output = $label . print_r($var, true);$/;"	v
@@ -1049,9 +1205,9 @@ overTime	.\lib\Act\Sign.class.php	/^		$this->overTime = mktime(3,0,0,($this->mon
 overTime	.\lib\Act\Sign.class.php	/^	private $overTime;			\/\/过期时间$/;"	v
 overTime	.\lib\User\Mission.class.php	/^ 			$overTime = get3time();$/;"	v
 overTime	.\lib\User\Shop.class.php	/^					$this->overTime = mktime( $v,0,0 ) - time();$/;"	v
-overTime	.\lib\User\Shop.class.php	/^				$this->overTime = $this->shopConfig[$this->type]['save']+time();$/;"	v
+overTime	.\lib\User\Shop.class.php	/^				$this->overTime = $this->shopConfig[$this->type]['save'];$/;"	v
 overTime	.\lib\User\Shop.class.php	/^			$this->overTime = mktime( $this->shopConfig[$this->type]['time'][0],0,0 )+86400 - time();$/;"	v
-overTime	.\lib\User\Shop.class.php	/^	 private $overTime;					\/\/距离下次刷新的秒数$/;"	v
+overTime	.\lib\User\Shop.class.php	/^	 private $overTime;					\/\/商店下一次刷新或消失的时间  用于倒计时$/;"	v
 pList	.\lib\User\Progress.class.php	/^	private $pList;									\/\/用户关卡进度列表$/;"	v
 pass	.\lib\Redis\Redis.class.php	/^		$pass = $redisConfig['pass'];$/;"	v
 pass	.\module\admin\cacute.php	/^	$pass = $input['pass'];$/;"	v
@@ -1059,10 +1215,12 @@ path	.\lib\Public\Modinit.class.php	/^            $this->path = $modinfo['path']
 path	.\lib\Public\Modinit.class.php	/^    private $path;$/;"	v
 path	.\lib\Public\Modinit.class.php	/^    public function path(){$/;"	f
 pay	.\lib\User\Pay.class.php	/^	function pay(){$/;"	f
+payLogTable	.\lib\User\Pay.class.php	/^	private $payLogTable='zy_statsPayLog';						\/\/充值流水表$/;"	v
 persist	.\lib\Redis\Redis.class.php	/^	public function persist($key){$/;"	f
 phpversion	.\apc.php	/^	$phpversion = phpversion();$/;"	v
-point	.\lib\User\User.class.php	/^			$point = $this->redis->hgetall( 'roleinfo:'.$this->uid.':skillPoint' );$/;"	v
+point	.\lib\User\User.class.php	/^			$point = $this->getUserSkill();$/;"	v
 point	.\lib\User\User.class.php	/^		$point = $point;$/;"	v
+point	.\lib\User\User.class.php	/^		$point = $this->redis->hgetall( 'roleinfo:'.$this->uid.':skillPoint' );$/;"	v
 point	.\lib\User\User.class.php	/^		$point = array( 'point'=>$max,'lastTime'=>$now );$/;"	v
 port	.\lib\Redis\Redis.class.php	/^		$port = $redisConfig['port'];$/;"	v
 post	.\lib\Public\Curl.class.php	/^	function post($fields, $userAgent = '', $httpHeaders = '', $username = '', $password = '') {$/;"	f
@@ -1074,10 +1232,11 @@ price	.\module\user\useGood.php	/^			$price = $bGood->getSellPrice();$/;"	v
 progress	.\module\admin\cacute.php	/^				$progress = new User_Progress( $input['stageid'] );$/;"	v
 progress	.\module\user\init.php	/^ 			$progress = new User_Progress();$/;"	v
 progress_table	.\lib\User\Progress.class.php	/^	private $progress_table = 'zy_uniqRoleProgress';				\/\/用户关卡进度表$/;"	v
-proxy	.\lib\User\Base.class.php	/^				$proxy = $this->proxy( $k );$/;"	v
+proxy	.\lib\User\Base.class.php	/^				$proxy = $this->proxy( array('type'=>$k, 'uid'=>$this->uid) );$/;"	v
 proxy	.\lib\User\Base.class.php	/^		$proxy = $this->proxy( $init, 'Sync', 'sendCommand' );$/;"	v
-proxy	.\lib\User\Base.class.php	/^	Public function proxy( $args=array(), $cName= 'User_Mission' , $fName= 'setUserMissing'  ){$/;"	f
-proxy	.\module\admin\cacute.php	/^			$proxy = new Proxy( 1, 'User_Mission', 'getUserMissingByClass' );$/;"	v
+proxy	.\lib\User\Base.class.php	/^	public function proxy( $args=array(), $cName= 'User_Mission' , $fName= 'setUserMissing'  ){$/;"	f
+proxy	.\module\admin\cacute.php	/^			$proxy = new Proxy( array('type'=>1,'uid'=>$user->getUid()), 'User_Mission', 'getUserMissingByClass' );$/;"	v
+pry	.\lib\Public\Equipbase.class.php	/^		$pry = (int)$this->eInfo['Equip_Pry'] + (int)$this->eInfo['Equip_UpPry'] * $level;							#装备闪避$/;"	v
 ptr	.\apc.php	/^				$ptr = $block['offset']+$block['size'];$/;"	v
 ptr	.\apc.php	/^			$ptr = $block['offset'] + $block['size'];$/;"	v
 ptr	.\apc.php	/^			$ptr = 0;$/;"	v
@@ -1086,14 +1245,14 @@ pubMail	.\lib\User\Mail.class.php	/^		$pubMail = $publicMail->getAll();$/;"	v
 publicMail	.\lib\User\Mail.class.php	/^		$publicMail = new Cond( 'publicMail' ); \/\/公共邮件$/;"	v
 putContents	.\lib\User\Feedback.class.php	/^ 	function putContents( $con ){$/;"	f
 put_login_link	.\apc.php	/^function put_login_link($s="Login")$/;"	f
-pvpTop	.\module\admin\cacute.php	/^		$pvpTop = $input['pvpTop'];$/;"	v
+pvpTop	.\module\admin\cacute.php	/^		$pvpTop = $input['currnk']; #当前排名$/;"	v
 px	.\apc.php	/^						$px=$x+40*2+100*intval(($placeindex-15)\/15);$/;"	v
 px	.\apc.php	/^						$px=$x+40*2;$/;"	v
 px	.\apc.php	/^					$px=5;$/;"	v
 py	.\apc.php	/^						$py=($placeindex%15)*12+6;$/;"	v
 py	.\apc.php	/^						$py=($placeindex-15)*12+6;$/;"	v
 py	.\apc.php	/^					$py=$placeindex*12+6;$/;"	v
-query	.\lib\Db\Mysql.class.php	/^	public function query($sql){ \/\/ֱ��ִ��sql���$/;"	f
+query	.\lib\Db\Mysql.class.php	/^	public function query($sql){ \/\/Ö±½ÓÖ´ÐÐsqlÓï¾ä$/;"	f
 queryID	.\lib\Db\Mysql.class.php	/^        $this->queryID = null;$/;"	v
 queryId	.\lib\Db\Mysql.class.php	/^		$this->queryId = $this->_exet($sql);$/;"	v
 queryId	.\lib\Db\Mysql.class.php	/^	private $queryId;$/;"	v
@@ -1106,19 +1265,22 @@ randomkey	.\lib\Redis\Redis.class.php	/^	public function randomkey(){$/;"	f
 range	.\apc.php	/^            else $range = "$cur - $nxt";$/;"	v
 range	.\apc.php	/^            if($i==0) $range = "1";$/;"	v
 rate	.\lib\User\Limit.class.php	/^				$rate = array( 1=>1, 2=>1, 3=>2, 4=>2, 5=>4, 6=>4, 7=>8 ); \/\/第7次封顶$/;"	v
-rate	.\module\user\buy.php	/^ 					$rate = $rate ;$/;"	v
-rate	.\module\user\buy.php	/^ 					$rate = 1;$/;"	v
-rate	.\module\user\buy.php	/^ 				$rate = retRate( $rates );$/;"	v
-reCooldou	.\module\user\buy.php	/^ 			$reCooldou = $user->reduceCooldou( $config['BuyGold_Cost'] );$/;"	v
-reCooldou	.\module\user\buy.php	/^ 			$reCooldou = true;$/;"	v
-recordInfo	.\lib\User\Base.class.php	/^ 	protected static $recordInfo;		\/\/用户对应的record信息 对就zy_uniqRoleRecord表 $/;"	v
+rate	.\module\admin\cacute.php	/^						$rate = 30 - ( 60-$uLevel ) * 0.5;$/;"	v
+rate	.\module\admin\cacute.php	/^						$rate = 30;$/;"	v
+rate	.\module\user\buy.php	/^				$rate = $rate ;$/;"	v
+rate	.\module\user\buy.php	/^				$rate = 1;$/;"	v
+rate	.\module\user\buy.php	/^			$rate = retRate( $rates );$/;"	v
+reCooldou	.\module\user\buy.php	/^		$reCooldou = $user->reduceCooldou( $config['BuyGold_Cost'] );$/;"	v
+reCooldou	.\module\user\buy.php	/^		$reCooldou = true;$/;"	v
+recordInfo	.\lib\User\Base.class.php	/^ 	protected static $recordInfo=array();		\/\/用户对应的record信息 对就zy_uniqRoleRecord表 $/;"	v
 recordTable	.\lib\User\Login.class.php	/^	private $recordTable='zy_uniqRoleRecord';		\/\/用户固定信息记录表$/;"	v
-recover	.\lib\User\User.class.php	/^		$recover = 600;	\/\/恢复一点需要时间$/;"	v
+recover	.\lib\User\Base.class.php	/^		$recover = 600;	\/\/恢复一点需要时间$/;"	v
+recover	.\lib\User\User.class.php	/^		$recover = 60;	\/\/恢复一点需要时间$/;"	v
 redis	.\lib\Public\Base.class.php	/^				$this->redis = Redis_Redis::init($this->uid);	$/;"	v
 redis	.\lib\Redis\Redis.class.php	/^	static $redis=array();$/;"	v
 redis	.\lib\User\Rolebase.class.php	/^		$this->redis = Redis_Redis::init( 'Login_'.$tag );$/;"	v
 redis	.\lib\User\Rolebase.class.php	/^	protected $redis; 	\/\/角色所在redis服务器初始化连接$/;"	v
-redisConfig	.\lib\Redis\Redis.class.php	/^			$redisConfig = $redis_config[$redname]; \/\/����match �� test����redis$/;"	v
+redisConfig	.\lib\Redis\Redis.class.php	/^			$redisConfig = $redis_config[$redname]; \/\/¼æÈÝmatch ºÍ testÁ½¸öredis$/;"	v
 redisConfig	.\lib\Redis\Redis.class.php	/^			$redisConfig = $redis_config[$redname];$/;"	v
 redisTag	.\lib\Public\Cond.class.php	/^		$redisTag = $this->node.'_'.( $tag2num%10 );$/;"	v
 redisTag	.\lib\Public\Top.class.php	/^	private $redisTag='topList';		\/\/排行榜在redis中的标签$/;"	v
@@ -1133,6 +1295,7 @@ reduceGoods	.\lib\User\Goods.class.php	/^	public function reduceGoods( $nums=1, 
 reduceLife	.\lib\User\Base.class.php	/^	public function reduceLife( $nums ){$/;"	f
 reduceMissionNum	.\lib\User\Base.class.php	/^	public function reduceMissionNum(){$/;"	f
 reduceMoney	.\lib\User\Base.class.php	/^	public function reduceMoney( $nums ){$/;"	f
+reduceTime	.\lib\User\User.class.php	/^					$reduceTime = $tolTime%$recover;$/;"	v
 reduceTime	.\lib\User\User.class.php	/^				$reduceTime = $tolTime%$recover;$/;"	v
 reduceUserSkillPoint	.\lib\User\User.class.php	/^	public function reduceUserSkillPoint(){$/;"	f
 ref	.\module\action\shop.php	/^		 $ref = isset( $input['ref']) ? $input['ref'] : 0;$/;"	v
@@ -1141,19 +1304,24 @@ rem	.\apc.php	/^    $rem = (int)(($time-$ts)-($years * 52.177457 * 7 * 86400));$
 rename	.\lib\Redis\Redis.class.php	/^	public function rename($key,$newkey){$/;"	f
 req_rate	.\apc.php	/^	$req_rate = sprintf("%.2f",($cache['num_hits']+$cache['num_misses'])\/($time-$cache['start_time']));$/;"	v
 req_rate_user	.\apc.php	/^	$req_rate_user = sprintf("%.2f",($cache_user['num_hits']+$cache_user['num_misses'])\/($time-$cache_user['start_time']));$/;"	v
+res	.\lib\Public\Equipbase.class.php	/^		$res = $this->eInfo['Equip_Res'] + $this->eInfo['Equip_UpRes'] * $level;$/;"	v
+res	.\lib\Public\Herobase.class.php	/^		$res = self::$hInfo[$this->hid]['Hero_Res'] + self::$hInfo[$this->hid]['Hero_UpRes'] * ( $level - 1 ) * $color;								#英雄法术抗性$/;"	v
 result	.\lib\Db\Mysql.class.php	/^        $result =   $this->query($sql);$/;"	v
+result	.\module\user\useGood.php	/^				$result = $user->sendGoodsFromConfig( $add );$/;"	v
 ret	.\hh8.php	/^		$ret = '';$/;"	v
 ret	.\inc\function.php	/^		$ret = array($/;"	v
 ret	.\inc\function.php	/^	function ret($msg='',$code=0){$/;"	f
-ret	.\lib\Act\Sign.class.php	/^						$ret = $good->getLastUpdGoods();$/;"	v
-ret	.\lib\Act\Sign.class.php	/^					$ret = $good->getLastUpdGoods();$/;"	v
+ret	.\lib\Act\Sign.class.php	/^						$ret = $good->getLastUpdGoods();*\/$/;"	v
+ret	.\lib\Act\Sign.class.php	/^					$ret = $good->getLastUpdGoods();*\/$/;"	v
+ret	.\lib\Act\Sign.class.php	/^				$ret = $this->adb->find( $this->table,'*',array( 'Sign_Month'=>0 ) );	\/\/默认配置$/;"	v
 ret	.\lib\Act\Sign.class.php	/^			$ret = $this->adb->find( $this->table,'*',array( 'Sign_Month'=>$this->month ) );$/;"	v
 ret	.\lib\Act\Sign.class.php	/^			$ret = array();$/;"	v
-ret	.\lib\Act\Sign.class.php	/^		$ret = '';$/;"	v
 ret	.\lib\Db\Mysql.class.php	/^		$ret = mysql_query($sql,$t->getConn());$/;"	v
 ret	.\lib\Db\Mysql.class.php	/^	    	$ret = $this->query($sql);$/;"	v
 ret	.\lib\Db\Mysql.class.php	/^            $ret = mysql_close($this->connect);$/;"	v
+ret	.\lib\Public\Buff.class.php	/^			$ret = $this->cdb->find( $this->buffTable, 'Buff_id bid,Buff_Type type,Buff_Value config' );$/;"	v
 ret	.\lib\Public\Buy.class.php	/^ 			$ret = $this->cdb->find( $this->buyConfig[$this->tag]['name'] );$/;"	v
+ret	.\lib\Public\Chat.class.php	/^ 		$ret=array();$/;"	v
 ret	.\lib\Public\Cond.class.php	/^			$ret = $this->cre->expire( $this->key,( mktime( 3,0,0 )+86400 - time() ) );$/;"	v
 ret	.\lib\Public\Cond.class.php	/^		$ret = $this->cre->hget( $this->key , 'total' );$/;"	v
 ret	.\lib\Public\Cond.class.php	/^		$ret = $this->cre->hincr($this->key,'total',$value);$/;"	v
@@ -1170,6 +1338,7 @@ ret	.\lib\Public\Goodbase.class.php	/^			$ret = $this->cdb->find($this->base_tab
 ret	.\lib\Public\Goodbase.class.php	/^			$ret = $this->cdb->find($this->compos_table);$/;"	v
 ret	.\lib\Public\Goodbase.class.php	/^			$ret = $this->cdb->find($this->equip_table);$/;"	v
 ret	.\lib\Public\Goodbase.class.php	/^		$ret = array();$/;"	v
+ret	.\lib\Public\Herobase.class.php	/^				$ret = $this->cdb->find( $this->heroBaseTable,'Hero_Id,Hero_Hp,Hero_UpHp,Hero_Mp,Hero_UpMp,Hero_Att,Hero_UpAtt,Hero_Sor,Hero_UpSor,Hero_Def,Hero_UpDef,Hero_Res,Hero_UpRes,Hero_GetHp,Hero_UpGetHp,Hero_GetMp,Hero_UpGetMp,Hero_AttSpd,Hero_UpAttSpd,Hero_Mov,Hero_Pry',array( 'Hero_Id'=>array('<'=>20000) ) );$/;"	v
 ret	.\lib\Public\Server.class.php	/^			$ret = $stats;	$/;"	v
 ret	.\lib\Public\Skillcost.class.php	/^		$ret = $this->sInfo[ 'skill'.$this->sIndex ];$/;"	v
 ret	.\lib\Public\Sync.class.php	/^				$ret = $this->db->delete( $this->table,$this->where );break;$/;"	v
@@ -1185,18 +1354,21 @@ ret	.\lib\Redis\Redis.class.php	/^        $ret = $this->connect->hSetNx($domain,
 ret	.\lib\User\Base.class.php	/^			$ret = 1;$/;"	v
 ret	.\lib\User\Base.class.php	/^		$ret = 0;$/;"	v
 ret	.\lib\User\Base.class.php	/^		$ret = new Proxy( $args,$cName,$fName );$/;"	v
-ret	.\lib\User\Draw.class.php	/^			$ret = $this->cdb->find( $this->draw_table );$/;"	v
+ret	.\lib\User\Base.class.php	/^		$ret=array();$/;"	v
+ret	.\lib\User\Draw.class.php	/^			$ret = $this->cdb->find( $this->draw_table, 'Group_Level,Item_Id,Item_Type,Item_Color,Item_Random,Item_CountMin,Item_CountMax', array( 'Box_Id'=>$this->type ) );$/;"	v
+ret	.\lib\User\Draw.class.php	/^			$ret = $this->cdb->find( $this->draw_type_table, 'id,Group_Level,Item_Type,Item_Color,Item_Random', array( 'Box_Id'=>$this->type ) );$/;"	v
 ret	.\lib\User\Draw.class.php	/^		$ret = array();$/;"	v
 ret	.\lib\User\Friend.class.php	/^				$ret = $this->db->find( $this->friendTable,'friendUid',array( 'uid'=>$this->getUid() ) );$/;"	v
 ret	.\lib\User\Goods.class.php	/^		$ret = array();$/;"	v
 ret	.\lib\User\Hero.class.php	/^		$ret = self::$heroInfo[$this->hid]['equip'.$index];$/;"	v
-ret	.\lib\User\Limit.class.php	/^			$ret = $this->cdb->findOne( $this->table,'tag,times,vip,expend,give,timeLimit,rule', array( 'tag'=>$this->flag ));$/;"	v
-ret	.\lib\User\Login.class.php	/^			$ret = $this->db->findOne( $this->recordTable, '*', array( 'uid'=>$this->uid ) );$/;"	v
+ret	.\lib\User\Limit.class.php	/^			$ret = $this->cdb->findOne( $this->table,'tag,times,vip,expend,give,timeLimit,rule,freeTime', array( 'tag'=>$this->flag ));$/;"	v
+ret	.\lib\User\Login.class.php	/^			$ret = $this->db->findOne( $this->recordTable, 'maxPvpTop,maxStageid,mArena,mFriend,mAction,guide,ext1,ext2,ext3,ext4', array( 'uid'=>$this->uid ) );$/;"	v
 ret	.\lib\User\Login.class.php	/^			$ret = $this->db->insert( $this->roleTable,$insert );$/;"	v
-ret	.\lib\User\Mission.class.php	/^ 				$ret = $this->db->find( $this->userMissionTable, '*', array( 'uid'=>$this->uid,'status'=>0 ) ); 				$/;"	v
+ret	.\lib\User\Merc.class.php	/^		$ret = array();$/;"	v
+ret	.\lib\User\Mission.class.php	/^ 				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress,status,type', array( 'uid'=>$this->uid,'status'=>0 ) ); 	$/;"	v
 ret	.\lib\User\Mission.class.php	/^ 			$ret = $this->cdb->find( $this->missionTable,'*',array('Task_Type'=>$this->type) );$/;"	v
 ret	.\lib\User\Mission.class.php	/^ 		$ret = array();$/;"	v
-ret	.\lib\User\Progress.class.php	/^			$ret = $this->db->find( $this->progress_table, '*', array( 'uid'=>$this->uid ) );$/;"	v
+ret	.\lib\User\Progress.class.php	/^			$ret = $this->db->find( $this->progress_table, 'cId,star,type', array( 'uid'=>$this->uid ) );$/;"	v
 ret	.\lib\User\Progress.class.php	/^		$ret = array();$/;"	v
 ret	.\lib\User\Reg.class.php	/^		$ret = $this->loginDb->findOne($this->table,'id,status',array( 'source'=>$this->source, 'source_id'=>$this->source_id ));$/;"	v
 ret	.\lib\User\Rolebase.class.php	/^		$ret = $this->redis->get('lastServer:'.$this->rid);$/;"	v
@@ -1204,25 +1376,28 @@ ret	.\lib\User\Rolebase.class.php	/^		$ret = $this->redis->set('lastServer:'.$th
 ret	.\lib\User\Shop.class.php	/^				$ret = $this->getTypeItems();$/;"	v
 ret	.\lib\User\Shop.class.php	/^			$ret = $this->actRedis->get();\/\/缓存的商店数据$/;"	v
 ret	.\lib\User\Shop.class.php	/^			$ret = $this->cdb->find( $this->table, '*' , $where );$/;"	v
-ret	.\lib\User\User.class.php	/^		$ret = $this->getUserInfo();$/;"	v
-ret	.\lib\User\User.class.php	/^		$ret = '';$/;"	v
+ret	.\lib\User\User.class.php	/^			$ret = array_merge( $ret, $uInfo );$/;"	v
+ret	.\lib\User\User.class.php	/^		$ret = array();$/;"	v
+ret	.\module\action\daySign.php	/^ 		$ret = $user->sendGoodsFromConfig( $add );$/;"	v
 ret	.\module\action\draw.php	/^	$ret = $user->sendGoodsFromConfig($give);$/;"	v
 ret	.\module\action\friends.php	/^ 			$ret = $friend->agreeUserInvite();$/;"	v
 ret	.\module\action\friends.php	/^ 			$ret = $friend->delInvite();$/;"	v
+ret	.\module\action\friends.php	/^ 		$ret = array();$/;"	v
 ret	.\module\action\mail.php	/^		$ret = $user->sendGoodsFromConfig( $goods );$/;"	v
-ret	.\module\action\shop.php	/^				$ret = $user->reduceCooldou( $shopInfo['price'] );break;$/;"	v
-ret	.\module\action\shop.php	/^				$ret = $user->reduceMoney( $shopInfo['price'] );break;$/;"	v
-ret	.\module\action\shop.php	/^				$ret = false;$/;"	v
 ret	.\module\action\system.php	/^			$ret = $user->sendGoodsFromConfig( $config );$/;"	v
-ret	.\module\user\buy.php	/^ 				$ret = $user->sendGoodsFromConfig(json_encode($good)) ;$/;"	v
-ret	.\module\user\buy.php	/^ 				$ret = $user->sendGoodsFromConfig(json_encode($good));$/;"	v
+ret	.\module\user\buy.php	/^			$ret = $user->sendGoodsFromConfig(json_encode($good));$/;"	v
+ret	.\module\user\buy.php	/^ 			$ret = $user->sendGoodsFromConfig($add);$/;"	v
+ret	.\module\user\chat.php	/^	 				$ret = $user->sendGoodsFromConfig( $give );$/;"	v
 ret	.\module\user\goodsCompos.php	/^			$ret = $user->sendGoodsFromConfig( $give );$/;"	v
 ret	.\module\user\goodsCompos.php	/^ 		$ret = $user->sendGoodsFromConfig( $give );$/;"	v
+ret	.\module\user\useGood.php	/^				$ret = array_merge( $ret, $result );$/;"	v
+ret	.\module\user\useGood.php	/^			$ret = array();$/;"	v
 ret	.\module\user\userHero.php	/^		$ret = $user->sendGoodsFromConfig( $give );$/;"	v
 ret	.\module\user\userHero.php	/^		$ret = $user->sendGoodsFromConfig($give);$/;"	v
 retList	.\lib\User\Shop.class.php	/^		$retList = $oList = array();$/;"	v
 retRate	.\inc\function.php	/^	function retRate($rates=array(10=>0.02,9=>0.03,8=>0.03,7=>0.03,6=>0.04,5=>0.05,4=>0.05,3=>0.05,2=>0.2,1=>0.5)){$/;"	f
 retRate	.\lib\Public\Base.class.php	/^	public function retRate($rates=array(10=>0.02,9=>0.03,8=>0.03,7=>0.03,6=>0.04,5=>0.05,4=>0.05,3=>0.05,2=>0.2,1=>0.5)){$/;"	f
+retString	.\inc\function.php	/^		$retString = msgpack_pack($ret);$/;"	v
 retVipLevel	.\lib\Public\Vip.class.php	/^					$retVipLevel = $vipInfo[ 'Vip_Level' ];$/;"	v
 retVipLevel	.\lib\Public\Vip.class.php	/^		$retVipLevel = $this->vLevel;$/;"	v
 rid	.\lib\User\Login.class.php	/^		$this->rid = $rid;$/;"	v
@@ -1246,10 +1421,13 @@ sIndex	.\module\user\userHero.php	/^		$sIndex = $input['sid']; \/\/技能id$/;"	
 sInfo	.\lib\Public\Skillcost.class.php	/^					$this->sInfo = $v;$/;"	v
 sInfo	.\lib\Public\Skillcost.class.php	/^			$this->sInfo = $this->pre->hgetall( 'heroSkillCost:list:'.$this->level );$/;"	v
 sInfo	.\lib\Public\Skillcost.class.php	/^	private $sInfo;		\/\/技能信息$/;"	v
+sRedis	.\module\user\init.php	/^	  		$sRedis = new Cond( 'userShop_2', $user->getUid() );$/;"	v
+sTolLevel	.\lib\Public\Herobase.class.php	/^		$sTolLevel = 0;						#英雄技能等级总和$/;"	v
 sadd	.\lib\Redis\Redis.class.php	/^	public function sadd($key,$val){$/;"	f
 scope_list	.\apc.php	/^$scope_list=array($/;"	v
 sdb	.\lib\Public\Base.class.php	/^				$this->sdb = Db_Mysql::init('stats');break;$/;"	v
 seg_size	.\apc.php	/^	$seg_size = bsize($mem['seg_size']);$/;"	v
+sendChat	.\lib\Public\Chat.class.php	/^ 	function sendChat( $con, $name, $uid, $level, $image ){$/;"	f
 sendCommand	.\lib\Public\Sync.class.php	/^	function sendCommand(){$/;"	f
 sendGoodsFromConfig	.\lib\User\User.class.php	/^	public function sendGoodsFromConfig( $config ){$/;"	f
 sendInvite	.\lib\User\Friend.class.php	/^	function sendInvite(){$/;"	f
@@ -1263,13 +1441,18 @@ set	.\lib\Public\Cond.class.php	/^	public function set( $value,$key='',$times=''
 set	.\lib\Redis\Redis.class.php	/^	public function set($key,$val,$expire=0){$/;"	f
 setCodeUsed	.\lib\Act\Code.class.php	/^	function setCodeUsed(){$/;"	f
 setDayTimes	.\lib\Public\Cond.class.php	/^	public function setDayTimes( $value=1,$key='' ){$/;"	f
+setInsertId	.\lib\Db\Mysql.class.php	/^	private function setInsertId( $id ){$/;"	f
 setItemStatus	.\lib\User\Shop.class.php	/^	public function setItemStatus( $index,$val=0 ){$/;"	f
 setLevel	.\lib\Public\Log.class.php	/^		public function setLevel($status) {$/;"	f
-setMissionId	.\lib\User\Base.class.php	/^	Public function setMissionId( $type, $class ){$/;"	f
+setLoginTime	.\lib\User\Base.class.php	/^	public function setLoginTime(){$/;"	f
+setMercHero	.\lib\User\Merc.class.php	/^	function setMercHero( $heroInfo ){$/;"	f
+setMessageFlag	.\lib\User\Base.class.php	/^	public function setMessageFlag( $val ){$/;"	f
+setMissionId	.\lib\User\Base.class.php	/^	public function setMissionId( $type, $class ){$/;"	f
 setMissionNum	.\lib\User\Base.class.php	/^	public function setMissionNum(){$/;"	f
-setNewMail	.\lib\User\Base.class.php	/^	public function setNewMail(){$/;"	f
+setMonthCode	.\lib\User\Base.class.php	/^	public function setMonthCode(){$/;"	f
+setNewMail	.\lib\User\Base.class.php	/^	public function setNewMail($val=1){$/;"	f
 setThrowSQL	.\lib\User\Base.class.php	/^	public function setThrowSQL( $table, $upd, $where='', $opt='', $db='' ){$/;"	f
-setTimeLimit	.\lib\User\Limit.class.php	/^	public function setTimeLimit( $key='' ){$/;"	f
+setTimeLimit	.\lib\User\Limit.class.php	/^	private function setTimeLimit( $key='' ){$/;"	f
 setTop	.\lib\Public\Server.class.php	/^	public function setTop(){ \/\/暂时删除redis数据$/;"	f
 setTopList	.\lib\Public\Top.class.php	/^	function setTopList(){$/;"	f
 setUpdTime	.\lib\User\Base.class.php	/^	private function setUpdTime($flag=1){$/;"	f
@@ -1281,7 +1464,7 @@ setUserName	.\lib\User\Base.class.php	/^	public function setUserName( $name ){$/
 setUserProgress	.\lib\User\Progress.class.php	/^	public function setUserProgress( $star ){$/;"	f
 setUserRecord	.\lib\User\Base.class.php	/^	public function setUserRecord( $key, $value ){$/;"	f
 setUserShowMission	.\lib\User\Mission.class.php	/^	function setUserShowMission( $type,$taskId ){$/;"	f
-setVip	.\lib\User\Base.class.php	/^	Public function setVip( $vLevel ){$/;"	f
+setVip	.\lib\User\Base.class.php	/^	public function setVip( $vLevel ){$/;"	f
 sets	.\lib\Public\Curl.class.php	/^				$sets = array();$/;"	v
 shop	.\module\action\shop.php	/^		 $shop = new User_Shop( $user->getUid(),$shopId,$ref );$/;"	v
 shop	.\module\action\shop.php	/^		$shop = new User_Shop( $user->getUid(),$shopId );$/;"	v
@@ -1315,6 +1498,7 @@ skey	.\lib\User\User.class.php	/^		if( empty($skey) ) $skey = getReq('skey',-1);
 skey	.\lib\User\User.class.php	/^	private $skey;	\/\/登录校验$/;"	v
 skeys	.\lib\Public\Server.class.php	/^				$skeys = $this->pre->hgetall('server:list:'.$this->sid);$/;"	v
 skeys	.\lib\Public\Server.class.php	/^				$skeys = $this->pre->keys('server:list:*');$/;"	v
+skill	.\lib\Public\Herobase.class.php	/^		$skill = json_decode( $skill, true );$/;"	v
 skill	.\module\user\userHero.php	/^			$skill = new Skillcost( $sIndex, ( $skillLevel+1 ) ); \/\/技能升级消耗金币类$/;"	v
 skillConf	.\lib\User\Hero.class.php	/^		$skillConf = $this->getSkillConfig();$/;"	v
 skillConf	.\lib\User\Hero.class.php	/^		$skillConf = json_decode( $skillConf, true );$/;"	v
@@ -1332,6 +1516,8 @@ slist	.\lib\Public\Server.class.php	/^				$slist = $this->pre->hgetall($v);$/;"	
 slist	.\lib\Public\Server.class.php	/^			$this->slist = $ret;$/;"	v
 slist	.\lib\Public\Server.class.php	/^			$this->slist = $slist;$/;"	v
 slist	.\lib\Public\Server.class.php	/^	private $slist = array();		  		\/\/服务器列表$/;"	v
+sor	.\lib\Public\Equipbase.class.php	/^		$sor = $this->eInfo['Equip_Sor'] + $this->eInfo['Equip_UpSor'] * $level;$/;"	v
+sor	.\lib\Public\Herobase.class.php	/^		$sor = self::$hInfo[$this->hid]['Hero_Sor'] + self::$hInfo[$this->hid]['Hero_UpSor'] * ( $level - 1 ) * $color;								#英雄法术强度$/;"	v
 sort	.\lib\Redis\Redis.class.php	/^	public function sort($key,$options=array()){$/;"	f
 sortheader	.\apc.php	/^function sortheader($key,$name,$extra='') {$/;"	f
 source	.\lib\User\Reg.class.php	/^		$this->source = $source ;$/;"	v
@@ -1340,18 +1526,21 @@ source	.\module\user\login.php	/^ $source = $input['s']; \/\/登录平台id$/;"	
 source_id	.\lib\User\Reg.class.php	/^		$this->source_id = $source_id ;$/;"	v
 source_id	.\lib\User\Reg.class.php	/^	private $source_id; 			\/\/合作登录平台对应用户uid$/;"	v
 source_id	.\module\user\login.php	/^ $source_id = $input['sid']; \/\/登录平台角色id (唯一id)$/;"	v
+speed	.\lib\Public\Equipbase.class.php	/^		$speed = $this->eInfo['Equip_Mov'] + $this->eInfo['Equip_UpMov'] * $level;$/;"	v
+speed	.\lib\Public\Herobase.class.php	/^		$speed = self::$hInfo[$this->hid]['Hero_AttSpd'] + self::$hInfo[$this->hid]['Hero_UpAttSpd'] * ( $level - 1 ) * $color;						#英雄的攻击速度$/;"	v
+sql	.\lib\Db\Mysql.class.php	/^		$sql = "insert INTO `{$table}` ( ".rtrim($keys,',')." ) values (".rtrim($values,',').")";$/;"	v
 sql	.\lib\Db\Mysql.class.php	/^		$sql = 'delete from `'.$table.'` '.$cond;$/;"	v
 sql	.\lib\Db\Mysql.class.php	/^	        	$sql = "select $columns FROM `{$table}` $cond $other limit 1";$/;"	v
 sql	.\lib\Db\Mysql.class.php	/^	        	$sql = "select $columns FROM `{$table}` $cond $other";$/;"	v
 sql	.\lib\Db\Mysql.class.php	/^           $sql    = 'SHOW TABLES ';$/;"	v
 sql	.\lib\Db\Mysql.class.php	/^           $sql    = 'SHOW TABLES FROM '.$dbName;$/;"	v
-sql	.\lib\Db\Mysql.class.php	/^        $sql = "insert INTO `{$table}` ( ".rtrim($keys,',')." ) values (".rtrim($values,',').")";$/;"	v
 sql	.\lib\Db\Mysql.class.php	/^        $sql = "update `{$table}` SET $stat $cond";$/;"	v
 sre	.\lib\User\Login.class.php	/^		$this->sre = Redis_Redis::init( $tid );$/;"	v
 sre	.\lib\User\Login.class.php	/^	private $sre;						\/\/注册号+服务器id 组成的健值对应redis 根据相应值找出 rid+sid 对应的 uid$/;"	v
 start	.\inc\function.php	/^    function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true) {$/;"	v
 startServer	.\lib\Public\Server.class.php	/^	public function startServer(){$/;"	f
-stat	.\lib\Db\Mysql.class.php	/^        $stat = $keys = $values = '';$/;"	v
+stat	.\lib\Db\Mysql.class.php	/^		$stat = $keys = $values = '';$/;"	v
+stat	.\lib\Db\Mysql.class.php	/^		$stat = substr($stat, 0, strlen($stat) - 1);$/;"	v
 stat	.\lib\Db\Mysql.class.php	/^        $stat = '';$/;"	v
 stat	.\lib\Db\Mysql.class.php	/^        $stat = substr($stat, 0, strlen($stat) - 1);$/;"	v
 stats	.\lib\Public\Server.class.php	/^						$stats = array('stats'=>1,'close'=>0,'cInfo'=>'');$/;"	v
@@ -1369,9 +1558,17 @@ stopServer	.\lib\Public\Server.class.php	/^	public function stopServer( $str='' 
 str	.\apc.php	/^    $str = '';$/;"	v
 str	.\lib\Public\Server.class.php	/^	public function stopServer( $str='' ){$/;"	v
 str2dechex	.\inc\function.php	/^	function str2dechex( $str ){$/;"	f
+strLen	.\module\user\chat.php	/^ 		$strLen = abslength($con);$/;"	v
 string_placement	.\apc.php	/^		$string_placement=array();$/;"	v
 sweepNum	.\module\admin\cacute.php	/^	$sweepNum = isset($input['sweepNum']) ? $input['sweepNum'] : 1;  \/\/结算次数$/;"	v
 sync	.\syncDb.php	/^	$sync = new Sync( $data );$/;"	v
+sysHero	.\lib\User\Merc.class.php	/^		$sysHero = explode( '#', trim( $sysHero,'#' ) );$/;"	v
+sysHero	.\lib\User\Merc.class.php	/^		$sysHero = self::$cond->get( 'sysTempUser' );$/;"	v
+sysList	.\lib\User\Merc.class.php	/^		$sysList = explode( '#', trim( $sysListString,'#' ) );$/;"	v
+sysListString	.\lib\User\Merc.class.php	/^			empty( $sysListString ) && $sysListString='';$/;"	v
+sysListString	.\lib\User\Merc.class.php	/^		$sysListString = self::$cond->get( 'sysTempUser' );$/;"	v
+sysUser	.\module\action\friends.php	/^ 		$sysUser = $uMerc->getSysMercHero();$/;"	v
+sysUserList	.\module\action\friends.php	/^ 		$sysUserList = array();$/;"	v
 t	.\lib\Db\Mysql.class.php	/^				$t = $this->init('master');$/;"	v
 t	.\lib\Db\Mysql.class.php	/^				$t = $this->init('slave');$/;"	v
 t	.\lib\Db\Mysql.class.php	/^			$t = $this->init( $this->type );$/;"	v
@@ -1380,7 +1577,6 @@ tProgress	.\lib\User\Progress.class.php	/^		$tProgress = $this->redis->hgetall( 
 table	.\lib\Act\Code.class.php	/^ 	private $table='zy_actionCdkey';	\/\/兑换码表$/;"	v
 table	.\lib\Act\Sign.class.php	/^	private $table='zy_baseSignConfig';	\/\/签到配置表$/;"	v
 table	.\lib\Public\Equipbase.class.php	/^	private $table='zy_baseEquip';	\/\/基础装备表名$/;"	v
-table	.\lib\Public\Herobase.class.php	/^	protected $table = 'zy_baseHero'; \/\/英雄基类表$/;"	v
 table	.\lib\Public\Server.class.php	/^	private $table = 'zy_baseServerList'; 		\/\/服务器列表表名$/;"	v
 table	.\lib\Public\Skillcost.class.php	/^	private $table = 'zy_baseHeroSkillCost'; \/\/技能升级表$/;"	v
 table	.\lib\Public\Sync.class.php	/^		$this->table = $data['table'];$/;"	v
@@ -1394,7 +1590,7 @@ table	.\lib\User\Shop.class.php	/^	 private $table='zy_baseShopConfig';	\/\/商�
 tag	.\api.php	/^	$tag = $mod->name();$/;"	v
 tag	.\lib\Db\Mysql.class.php	/^		$tag = $type;$/;"	v
 tag	.\lib\Public\Buy.class.php	/^		$this->tag = $tag;$/;"	v
-tag	.\lib\Public\Buy.class.php	/^ 	private $tag;									\/\/购买类型$/;"	v
+tag	.\lib\Public\Buy.class.php	/^ 	private $tag;											\/\/购买类型$/;"	v
 tag	.\lib\Public\Cond.class.php	/^		$this->tag = $tag;$/;"	v
 tag	.\lib\Public\Cond.class.php	/^	private $tag;			\/\/需要作统计的标签$/;"	v
 tag	.\lib\Public\Log.class.php	/^			$this->tag = $tag;$/;"	v
@@ -1441,18 +1637,18 @@ taskId	.\module\action\mission.php	/^ 		$taskId = isset( $input['tid'] ) ? $inpu
 tasks	.\lib\User\Mission.class.php	/^ 						$tasks = explode(',',$v);$/;"	v
 temp	.\inc\function.php	/^		$temp=1;$/;"	v
 temp	.\lib\Public\Base.class.php	/^		$temp=1;$/;"	v
-temp	.\lib\User\Draw.class.php	/^				$temp = $oList[$index];$/;"	v
-temp	.\lib\User\Draw.class.php	/^				$temp = $this->dInfo[$index];$/;"	v
 temp	.\lib\User\Shop.class.php	/^				$temp = $oList[$index];$/;"	v
 temp	.\lib\User\Shop.class.php	/^				$temp = $this->shopinfo[ $val ][$index];$/;"	v
 temp	.\lib\User\User.class.php	/^		$temp = array('new'=>array(),'old'=>array());$/;"	v
+temp	.\test.php	/^		$temp = range(1,$total);$/;"	v
+tempInfo	.\lib\User\Draw.class.php	/^		$tempInfo = array();$/;"	v
+tempUpdHero	.\lib\User\Hero.class.php	/^			$tempUpdHero = self::$lastUpdHero;$/;"	v
 text_arc	.\apc.php	/^	function text_arc($im, $centerX, $centerY, $diameter, $start, $end, $color1,$text,$placeindex=0) {$/;"	f
 throwSQL	.\lib\User\Base.class.php	/^			$throwSQL = self::$throwSQL;$/;"	v
 throwSQL	.\lib\User\Base.class.php	/^	public function throwSQL( $table, $upd, $where='',$opt='', $db='' ){$/;"	f
-throwSQL	.\lib\User\Base.class.php	/^ 	protected static $throwSQL=array();	\/\/需要异步同步的数据$/;"	v
+throwSQL	.\lib\User\Base.class.php	/^ 	protected static $throwSQL=array();			\/\/需要异步同步的数据$/;"	v
 tid	.\lib\User\Login.class.php	/^		$tid = (int)$this->rid + (int) $this->sid;$/;"	v
 time	.\apc.php	/^$time = time();$/;"	v
-time	.\lib\User\Base.class.php	/^		$time = $conf['time'];$/;"	v
 time	.\lib\User\Limit.class.php	/^					$time = 7;$/;"	v
 time	.\lib\User\Limit.class.php	/^				$time = $buyTimes + 1;$/;"	v
 time	.\lib\User\Limit.class.php	/^			$time= get3time();$/;"	v
@@ -1463,32 +1659,38 @@ time	.\module\user\login.php	/^ $time = $input['ts'];	\/\/登录时间$/;"	v
 times	.\inc\function.php	/^			$times = gettimeofday(true) - C('start');$/;"	v
 times	.\inc\function.php	/^		$times = strtotime( '+15 days' ) - time();$/;"	v
 times	.\lib\Public\Cond.class.php	/^		$this->times = $times;$/;"	v
-times	.\lib\Public\Cond.class.php	/^	private $times; 			\/\/组健过期时间 秒$/;"	v
+times	.\lib\Public\Cond.class.php	/^	private $times; 		\/\/组健过期时间 秒$/;"	v
 times	.\lib\User\Limit.class.php	/^		$times = (int)$this->limitConfig['timeLimit'];$/;"	v
-times	.\module\user\buy.php	/^ 			$times = $limit->getUsedTimes();$/;"	v
+times	.\module\user\buy.php	/^		$times = $limit->getUsedTimes();$/;"	v
 tmp	.\apc.php	/^	$tmp = $list = array();$/;"	v
 to	.\module\action\friends.php	/^ 		$to = $input['to'];$/;"	v
 to	.\module\action\friends.php	/^ 		$to = isset( $input['to'] ) ? $input['to'] : 0 ;$/;"	v
 to	.\module\action\friends.php	/^ 		if( $to == $user->getUid() ){$/;"	v
 to	.\module\action\friends.php	/^ 		if( empty( $to ) || $to == $user->getUid() ){$/;"	v
+to	.\module\user\chat.php	/^ 		$to = !empty( $input['to'] ) ? $input['to'] : '';$/;"	v
 to	.\module\user\userHero.php	/^		$to = $input['to'];$/;"	v
 toCond	.\lib\User\Friend.class.php	/^			$this->toCond = new Cond( 'userFriendList',$this->toUid,0,'Friend' );$/;"	v
 toCond	.\lib\User\Friend.class.php	/^			$toCond = new Cond( 'userFriendOpt',$this->toUid,3600,'Friend' );$/;"	v
 toCond	.\lib\User\Friend.class.php	/^	private $toCond;							\/\/接爱邀请玩家的初始化redis连接$/;"	v
+toLimit	.\module\user\buy.php	/^ 			$toLimit = new User_Limit( $config[$type]['to'] );$/;"	v
 toUid	.\lib\User\Friend.class.php	/^		$this->toUid = $toUid;$/;"	v
 toUid	.\lib\User\Friend.class.php	/^	private $toUid;								\/\/接爱邀请的玩家uid$/;"	v
 toUser	.\lib\User\Friend.class.php	/^		$toUser = new User_Base( $this->toUid );$/;"	v
 toUser	.\lib\User\Mail.class.php	/^			$toUser = new User_Base( $to );$/;"	v
-toUserHaveFriends	.\lib\User\Friend.class.php	/^		$toUserHaveFriends = $this->toCond->get('tolFriends');$/;"	v
+toUserHaveFriends	.\lib\User\Friend.class.php	/^		$toUserHaveFriends = (int)$this->toCond->get('tolFriends');$/;"	v
 tol	.\lib\User\Friend.class.php	/^				$tol = 0;$/;"	v
-tol	.\lib\User\Friend.class.php	/^			$tol = $this->cond->get( 'tolFriends' );$/;"	v
-tol	.\lib\User\Friend.class.php	/^			$tol = $this->toCond->get( 'tolFriends' );$/;"	v
+tol	.\lib\User\Friend.class.php	/^			$tol = (int)$this->cond->get( 'tolFriends' );$/;"	v
+tol	.\lib\User\Friend.class.php	/^			$tol = (int)$this->toCond->get( 'tolFriends' );$/;"	v
 tolDay	.\lib\Act\Sign.class.php	/^	private $tolDay;				\/\/累计签到天数$/;"	v
 tolEnergy	.\module\user\goodsCompos.php	/^ 		$tolEnergy = 0 ;$/;"	v
 tolHeroExp	.\module\admin\cacute.php	/^			$tolHeroExp = $input['heroexp'] * 5 * $sweepNum;$/;"	v
+tolLimit	.\lib\User\Limit.class.php	/^		$this->tolLimit = (int)$this->pre->hget('userLimit:'.$this->flag,'times');$/;"	v
 tolLimit	.\lib\User\Limit.class.php	/^	private $tolLimit;						\/\/当前标签的总参与次数$/;"	v
-tolTime	.\lib\User\User.class.php	/^			$tolTime = $now - $point['lastTime']; \/\/已经恢复的总时间 秒$/;"	v
+tolRate	.\lib\User\Draw.class.php	/^		$tolRate = 0;$/;"	v
+tolTime	.\lib\User\Base.class.php	/^		$tolTime = $now - $this->getUserReductTime(); \/\/已经恢复的总时间 $/;"	v
+tolTime	.\lib\User\User.class.php	/^			$tolTime = 	$now - $point['lastTime']; \/\/已经恢复的总时间 秒$/;"	v
 tolTime	.\lib\User\User.class.php	/^			$tolTime = $now - $userSkill['lastTime']; \/\/总恢复时间$/;"	v
+tolTypeRate	.\lib\User\Draw.class.php	/^	private $tolTypeRate=0;															\/\/抽卡类型的各概率总和$/;"	v
 tolexp	.\lib\User\Base.class.php	/^			$tolexp = $tolexp - $upinfo['exp'];$/;"	v
 tolexp	.\lib\User\Base.class.php	/^		$tolexp = $exp + $nums;$/;"	v
 tolexp	.\lib\User\Hero.class.php	/^			$tolexp = $tolexp - $upinfo['exp'];$/;"	v
@@ -1504,7 +1706,9 @@ ttl	.\lib\Redis\Redis.class.php	/^	public function ttl($key){$/;"	f
 tval	.\inc\function.php	/^		$tval = isset($_REQUEST[$tag])&&!empty($_REQUEST[$tag])?$_REQUEST[$tag]:null;$/;"	v
 type	.\lib\Db\Mysql.class.php	/^			$type = 'slave';$/;"	v
 type	.\lib\Db\Mysql.class.php	/^		$this->type = $type;$/;"	v
-type	.\lib\Db\Mysql.class.php	/^	private $type = '';\/\/Ĭ��Ϊ�ӿ� $/;"	v
+type	.\lib\Db\Mysql.class.php	/^	private $type = '';		#记录当前db初始化时的类型值$/;"	v
+type	.\lib\Public\Chat.class.php	/^ 		$this->type = $type;$/;"	v
+type	.\lib\Public\Chat.class.php	/^ 	private $type;				#信息类型  1为世界信息  2为私信  5为公会信息$/;"	v
 type	.\lib\Public\Goodbase.class.php	/^		$this->type = substr($gid,0,1);$/;"	v
 type	.\lib\Public\Goodbase.class.php	/^	protected $type;	\/\/物品类型  1	英雄碎片 2	英雄符文 3	英雄装备 4	合成卷轴 5	装备碎片 6	恢复召唤师体力道具 7	增加英雄经验道具 8	提高装备强化率道具 9	提高英雄属性道具$/;"	v
 type	.\lib\Public\Goodcompos.class.php	/^	public function __construct( $gid, $type=1 ){$/;"	v
@@ -1513,19 +1717,19 @@ type	.\lib\Public\Levelup.class.php	/^		if( $this->type == 'user' ){$/;"	v
 type	.\lib\Public\Levelup.class.php	/^		}elseif( $this->type == 'hero' ){$/;"	v
 type	.\lib\Public\Levelup.class.php	/^	private $type;						\/\/升级功能块  user:为召唤师升级  hero:英雄升级$/;"	v
 type	.\lib\Public\Top.class.php	/^		$this->type = $type;$/;"	v
-type	.\lib\Public\Top.class.php	/^	private $type;				\/\/排行榜类型 1为金币排行榜  2为等级排行$/;"	v
+type	.\lib\Public\Top.class.php	/^	private $type;				\/\/排行榜类型 1为金币排行榜  2为等级排行  3为钻石排行榜$/;"	v
 type	.\lib\Redis\Redis.class.php	/^	public function type($key){$/;"	f
 type	.\lib\User\Draw.class.php	/^		$this->type = $type;$/;"	v
-type	.\lib\User\Draw.class.php	/^	private $type;									\/\/抽卡类型  1为金币  2为钻石 3为友情点$/;"	v
+type	.\lib\User\Draw.class.php	/^		$type = $this->_getType();$/;"	v
+type	.\lib\User\Draw.class.php	/^	private $type;																	\/\/抽卡类型  1为金币  2为钻石 3为友情点$/;"	v
 type	.\lib\User\Feedback.class.php	/^ 			$this->type = 1;$/;"	v
 type	.\lib\User\Feedback.class.php	/^ 		$this->type = $type;$/;"	v
 type	.\lib\User\Feedback.class.php	/^ 	function __construct( $type=1 ){$/;"	v
 type	.\lib\User\Feedback.class.php	/^ 	private $type;				\/\/用户反馈类型  1 默认反馈类型$/;"	v
 type	.\lib\User\Goods.class.php	/^		$this->type = (int)substr($gid,0,1);$/;"	v
 type	.\lib\User\Goods.class.php	/^	private $type;										\/\/物品类型$/;"	v
-type	.\lib\User\Mission.class.php	/^ 		$this->type = $type;	$/;"	v
+type	.\lib\User\Mission.class.php	/^ 		$this->type = $args['type'];	$/;"	v
 type	.\lib\User\Mission.class.php	/^ 		if( $this->type == 1 ){ \/\/系统任务  取数据库$/;"	v
-type	.\lib\User\Mission.class.php	/^ 	function __construct( $type=1 )$/;"	v
 type	.\lib\User\Mission.class.php	/^ 	private $type;							\/\/任务类型  1为任务，2为日常$/;"	v
 type	.\lib\User\Progress.class.php	/^		$this->type=substr($cid,1,1);$/;"	v
 type	.\lib\User\Progress.class.php	/^	private $type;									\/\/关卡类型$/;"	v
@@ -1543,14 +1747,23 @@ type	.\module\action\system.php	/^		$type = $input['type'];$/;"	v
 type	.\module\action\system.php	/^ $type = isset( $input['t'] ) ? $input['t'] : 1;$/;"	v
 type	.\module\admin\admin.php	/^$type = $input['t'];$/;"	v
 type	.\module\user\buy.php	/^ $type = isset( $input['t'] ) ? $input['t'] : 0;$/;"	v
+type	.\module\user\chat.php	/^ $type = isset( $input['t'] ) ? $input['t'] : '';$/;"	v
 type	.\module\user\goodsCompos.php	/^ $type = isset( $input['t'] ) ? $input['t'] : 1;$/;"	v
 type	.\module\user\init.php	/^ $type = isset($input['t']) ? $input['t'] : 0;$/;"	v
 type	.\module\user\topList.php	/^	$type = isset( $input['t'] ) ? $input['t'] : 0;$/;"	v
 type	.\module\user\useGood.php	/^ $type = $input['t'];$/;"	v
 type	.\module\user\userHero.php	/^ $type = $input['t'];$/;"	v
 types	.\module\user\init.php	/^ $types = explode( ',', $type );$/;"	v
+uCond	.\lib\Public\Chat.class.php	/^		$this->uCond = new Cond( 'chat', $this->uid, 86400 );	#私信保存一天$/;"	v
+uCond	.\lib\Public\Chat.class.php	/^ 	private $uCond;				#玩家私信redis连接源$/;"	v
 uInfo	.\lib\User\Login.class.php	/^		$uInfo = $this->getUserInfo();$/;"	v
+uInfo	.\lib\User\User.class.php	/^					$uInfo = $this->getUserLastUpdInfo();$/;"	v
+uInfo	.\lib\User\User.class.php	/^		$uInfo = $this->getUserInfo();$/;"	v
+uLevel	.\lib\User\Draw.class.php	/^		$uLevel = $this->getLevel();$/;"	v
 uLevel	.\lib\User\Mission.class.php	/^ 		$uLevel = $this->getLevel();$/;"	v
+uLevel	.\lib\User\Shop.class.php	/^		$uLevel = $this->getVlevel();$/;"	v
+uLevel	.\module\admin\cacute.php	/^				$uLevel = $user->getLevel();$/;"	v
+uMerc	.\module\action\friends.php	/^ 		$uMerc = new User_Merc();$/;"	v
 uMissProgress	.\lib\User\Mission.class.php	/^	 		$uMissProgress = $this->redis->hgetall( 'roleinfo:'.$this->getUid().':mission:'.$taskConfig['Task_Class'] );$/;"	v
 uMission	.\lib\User\Mission.class.php	/^ 			$uMission = $this->cond->getAll();$/;"	v
 uMission	.\lib\User\Mission.class.php	/^ 		$uMission = $this->getUserMission();$/;"	v
@@ -1564,37 +1777,41 @@ ugid	.\module\user\useGood.php	/^		$ugid = $input['ugid'];	\/\/用户拥有物�
 ugood	.\lib\User\Goods.class.php	/^		$ugood = (int)$this->getGoodsNum();$/;"	v
 uid	.\lib\Public\Base.class.php	/^			$this->uid = (int)$uid;$/;"	v
 uid	.\lib\Public\Base.class.php	/^	protected $uid;			\/\/用户uid$/;"	v
-uid	.\lib\Public\Cond.class.php	/^	public function __construct( $tag, $uid='', $times=0, $node='Cond' ){$/;"	v
+uid	.\lib\Public\Chat.class.php	/^ 	function __construct( $uid='', $type=1 ){$/;"	v
+uid	.\lib\Public\Cond.class.php	/^	function __construct( $tag, $uid='', $times=0, $node='Cond' ){$/;"	v
 uid	.\lib\User\Base.class.php	/^			$uid = (int)getReq('uid',381440);$/;"	v
 uid	.\lib\User\Base.class.php	/^	public function __construct( $uid='' ){$/;"	v
+uid	.\lib\User\Friend.class.php	/^			if( $uid == $v['uid'] )return true;$/;"	v
 uid	.\lib\User\Friend.class.php	/^	function __construct( $uid='', $toUid='' ){$/;"	v
 uid	.\lib\User\Hero.class.php	/^	public function __construct( $uid='',$hid='' ){$/;"	v
 uid	.\lib\User\Login.class.php	/^			$uid = $this->sre->get( 'rid2uid_'.$this->rid.'_'.$this->sid );$/;"	v
-uid	.\lib\User\Login.class.php	/^			$uid = $uinfo['id'];$/;"	v
+uid	.\lib\User\Login.class.php	/^			$uid = $uinfo['userid'];$/;"	v
 uid	.\lib\User\Mail.class.php	/^	function __construct( $uid='' ){$/;"	v
+uid	.\lib\User\Merc.class.php	/^	function __construct( $uid='' ){$/;"	v
 uid	.\lib\User\User.class.php	/^		if( empty($uid) ) $uid = getReq('uid',381440);$/;"	v
 uid	.\lib\User\User.class.php	/^	public function __construct( $uid='',$skey='' ){$/;"	v
 uid	.\module\action\friends.php	/^	 		$uid = $fInfo['id'];$/;"	v
 uid	.\module\admin\cacute.php	/^	$uid = $input['uid'];$/;"	v
-uinfo	.\lib\User\Base.class.php	/^				$uinfo = $this->db->findOne($this->baseTable,'*',array( 'id'=>$this->uid ));$/;"	v
+uinfo	.\lib\User\Base.class.php	/^				$uinfo = $this->db->findOne($this->baseTable,'*',array( 'userid'=>$this->uid ));$/;"	v
 uinfo	.\lib\User\Base.class.php	/^				$uinfo = $this->redis->hgetall('roleinfo:'.$this->uid.':baseinfo');$/;"	v
 uinfo	.\lib\User\Base.class.php	/^		$this->uinfo = self::$userinfo[$this->uid];$/;"	v
-uinfo	.\lib\User\Base.class.php	/^	private $uinfo;	 			\/\/角色信息$/;"	v
+uinfo	.\lib\User\Base.class.php	/^	private $uinfo;	 					\/\/角色信息$/;"	v
 uinfo	.\lib\User\Login.class.php	/^				$uinfo = $this->_createRole();$/;"	v
-uinfo	.\lib\User\Login.class.php	/^			$uinfo = $this->db->findOne($this->roleTable,' `id` ',array( 'rid'=>$this->rid, 'sid'=>$this->sid ));$/;"	v
+uinfo	.\lib\User\Login.class.php	/^			$uinfo = $this->db->findOne($this->roleTable,' `userid` ',array( 'rid'=>$this->rid, 'sid'=>$this->sid ));$/;"	v
 ulife	.\lib\User\Base.class.php	/^		$ulife = $this->getLife();$/;"	v
 umoney	.\lib\User\Base.class.php	/^		$umoney = $this->getCooldou();$/;"	v
 umoney	.\lib\User\Base.class.php	/^		$umoney = $this->getMoney();$/;"	v
 unLockSkill	.\lib\User\Hero.class.php	/^	function unLockSkill( $skillIndex ){$/;"	f
+uniq	.\lib\Public\Chat.class.php	/^ 				$uniq = uniqid(true);$/;"	v
 uniqKey	.\lib\User\Mail.class.php	/^		$uniqKey = uniqid();$/;"	v
 upInfo	.\lib\User\Base.class.php	/^			$this->upInfo = new Levelup( $nextinfo['level'] );$/;"	v
 upInfo	.\lib\User\Base.class.php	/^		$this->upInfo = new Levelup( $this->uinfo['level'] ); \/\/角色升级表$/;"	v
-upInfo	.\lib\User\Base.class.php	/^	private $upInfo; 			\/\/角色升级对应参数表$/;"	v
+upInfo	.\lib\User\Base.class.php	/^	private $upInfo; 					\/\/角色升级对应参数表$/;"	v
 upInfo	.\lib\User\Hero.class.php	/^			$this->upInfo = new Levelup( $nextinfo['level'],'hero' );$/;"	v
 upInfo	.\lib\User\Hero.class.php	/^		$this->upInfo = new Levelup( $this->hinfo['level'],'hero' ); \/\/升级表$/;"	v
 upd	.\lib\User\Hero.class.php	/^	static $upd = 0;$/;"	v
 update	.\lib\Db\Mysql.class.php	/^	public function update($table, $row, $where='') {$/;"	f
-updinfo	.\lib\User\Base.class.php	/^	private static $updinfo=array(); 	\/\/角色所有信息$/;"	v
+updinfo	.\lib\User\Base.class.php	/^	private static $updinfo=array(); 			\/\/角色所有信息$/;"	v
 updtime	.\lib\Public\Server.class.php	/^						$this->updtime = $sinfo['updtime'];$/;"	v
 updtime	.\lib\Public\Server.class.php	/^						$this->updtime = $v['updtime'];$/;"	v
 updtime	.\lib\Public\Server.class.php	/^	private $updtime;				  \/\/服务器最后更新时间$/;"	v
@@ -1618,8 +1835,10 @@ user	.\module\action\shop.php	/^ $user = new User_User();$/;"	v
 user	.\module\action\system.php	/^ $user = new User_User();$/;"	v
 user	.\module\admin\admin.php	/^$user=new User_User();$/;"	v
 user	.\module\admin\cacute.php	/^	$user = new User_User( $uid,-1 );$/;"	v
+user	.\module\pay\douwan.php	/^	$user = new User_User();$/;"	v
 user	.\module\user\begin.php	/^	 $user = new User_Login( $rid,$sid );$/;"	v
 user	.\module\user\buy.php	/^ $user = new User_User();$/;"	v
+user	.\module\user\chat.php	/^ $user = new User_User();$/;"	v
 user	.\module\user\goodsCompos.php	/^ $user = new User_User();$/;"	v
 user	.\module\user\heartBeat.php	/^ $user = new User_User();$/;"	v
 user	.\module\user\init.php	/^ $user = new User_User();$/;"	v
@@ -1633,12 +1852,13 @@ user	.\test.php	/^	$user = new User_User(381440);$/;"	v
 userAgent	.\lib\Public\Curl.class.php	/^	function get( $userAgent = '', $httpHeaders = '', $username = '', $password = '') {$/;"	v
 userAgent	.\lib\Public\Curl.class.php	/^	function post($fields, $userAgent = '', $httpHeaders = '', $username = '', $password = '') {$/;"	v
 userLevel	.\lib\User\Shop.class.php	/^		$userLevel = $this->getLevel();$/;"	v
-userLog	.\lib\User\Base.class.php	/^	private $userLog;			\/\/用户金钱变化日志$/;"	v
+userLog	.\lib\User\Base.class.php	/^	private $userLog;					\/\/用户金钱变化日志$/;"	v
 userMissionTable	.\lib\User\Mission.class.php	/^ 	private $userMissionTable='zy_uniqUserMission';		\/\/用户任务进度表$/;"	v
 userSigninfo	.\lib\Act\Sign.class.php	/^	private $userSigninfo;			\/\/当前用户的签到信息$/;"	v
-userSkill	.\lib\User\User.class.php	/^			$userSkill = $this->redis->hgetall( 'roleinfo:'.$this->uid.':skillPoint' );$/;"	v
+userSkill	.\lib\User\User.class.php	/^			$userSkill = $this->getUserSkill();$/;"	v
 userSkill	.\lib\User\User.class.php	/^		$userSkill = $this->redis->hgetall( 'roleinfo:'.$this->uid.':skillPoint' );$/;"	v
-userinfo	.\lib\User\Base.class.php	/^	private static $userinfo=array(); 	\/\/角色所有信息$/;"	v
+userType	.\lib\User\Draw.class.php	/^	private $userType;																\/\/指定类型抽卡配置内容$/;"	v
+userinfo	.\lib\User\Base.class.php	/^	private static $userinfo=array(); 			\/\/角色所有信息$/;"	v
 userinfo	.\lib\User\Login.class.php	/^		$userinfo = $this->getUserInfo();$/;"	v
 userinfo	.\module\user\begin.php	/^	 $userinfo = $user->getUserBeginInfo();$/;"	v
 vLevel	.\lib\Public\Vip.class.php	/^		$this->vLevel = empty($vLevel) ? 0 : (int)$vLevel ;$/;"	v
@@ -1666,10 +1886,11 @@ vip	.\lib\User\Limit.class.php	/^			$vip = new Vip( $this->getVlevel() );$/;"	v
 vipConfig	.\lib\Public\Vip.class.php	/^		$this->vipConfig = $this->pre->hgetall( 'vipConfig:'.$this->vLevel );$/;"	v
 vipConfig	.\lib\Public\Vip.class.php	/^	private $vipConfig;			\/\/当前指定vip等级的配置信息$/;"	v
 vipInfo	.\lib\Public\Vip.class.php	/^			$vipInfo = $this->pre->hmget( $v,array( 'Vip_Level','Vip_Exp' ) );$/;"	v
-vipSign	.\lib\Act\Sign.class.php	/^		$vipSign =$this->cond->getDayTimes('vip');$/;"	v
+vipSign	.\lib\Act\Sign.class.php	/^		$vipSign =$this->getVipTimes();$/;"	v
 vipTable	.\lib\Public\Vip.class.php	/^	private $vipTable='zy_baseVipConfig';	\/\/vip配置表$/;"	v
 vipTag	.\lib\User\Limit.class.php	/^		$vipTag = $this->pre->hget('userLimit:'.$this->flag,'vip');$/;"	v
 vlevel	.\lib\User\Base.class.php	/^			$vlevel = $vip->getVipLevelByExp( self::$userinfo[$this->uid]['totalPay'] );$/;"	v
+vshop	.\module\user\init.php	/^	  		$vshop = $sRedis->get();$/;"	v
 w	.\apc.php	/^		$w=deg2rad((360+$start+($end-$start)\/2)%360);$/;"	v
 w	.\lib\Public\Logger.class.php	/^		public function w($msg) {$/;"	f
 warn	.\lib\Public\Log.class.php	/^        public function warn($message){$/;"	f
