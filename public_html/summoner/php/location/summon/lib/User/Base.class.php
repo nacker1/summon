@@ -279,6 +279,13 @@
 /**
  *@ 设置用户私信标记
  **/
+	public function setUserHeart( $tag, $val ){
+		$this->setUpdTime(1);
+		return self::$userinfo[$this->uid][ $tag ] = $val;
+	}
+/**
+ *@ 设置用户私信标记
+ **/
 	public function setMessageFlag( $val ){
 		$this->setUpdTime(1);
 		return self::$userinfo[$this->uid]['message'] = $val;

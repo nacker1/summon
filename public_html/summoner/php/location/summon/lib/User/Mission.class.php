@@ -5,10 +5,10 @@
  class User_Mission extends User_Base
  {
  	private $missionTable='zy_baseMissionConfig';			//任务配置表
- 	private $userMissionTable='zy_uniqUserMission';		//用户任务进度表
- 	private $dayMissionTag = 'missionTagEveryDay';		//日常任务标签
- 	private $type;							//任务类型  1为任务，2为日常
- 	private $errorInfo;						//错误信息
+ 	private $userMissionTable='zy_uniqUserMission';			//用户任务进度表
+ 	private $dayMissionTag = 'missionTagEveryDay';			//日常任务标签
+ 	private $type;											//任务类型  1为任务，2为日常
+ 	private $errorInfo;										//错误信息
 
  	function __construct( $args )
  	{
@@ -105,6 +105,7 @@
 		 					$this->cond->set( $set,$key );
  						}
  					}else{
+ 						$set['target'] = $v['Task_Goal'];
 	 					$set['progress'] = 0;
 	 					$set['tid'] = $v;
 	 					if( $k == 73 ){
@@ -208,8 +209,8 @@
 	 	}
  	}
 /**
-  *@ 任务奖励领取 
-  **/
+ *@ 任务奖励领取 
+ **/
  	function getErrorInfo(){
  		$this->log->e( '#'.$this->getUid().'# 任务接口返回错误信息 =*'.$this->errorInfo.'*=' );
  		return $this->errorInfo;
@@ -257,6 +258,9 @@
 			$dayMis = $this->cond->get($type);
 			if( !empty( $dayMis ) ){
 				$dayMis['progress'] += 1 ;
+				if( $dayMis['progress'] >= $dayMis['target'] ){
+					$this->setUserHeart( 'dayMis', 1 );
+				}
 				$this->cond->set( $dayMis,$type );
 			}
 			return true;
