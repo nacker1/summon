@@ -134,7 +134,7 @@ class User_Hero extends User_Base{
  *@ 添加英雄经验
  **/
 	public function addHeroExp( $nums ){
-		$this->log->i( '给用户#'.$this->uid.'#英雄#'.$this->hid.'#添加#'.$nums.'#经验。' );
+		$this->log->i( '给用户#'.$this->uid.'#英雄#'.$this->hid.'#添加#'.$nums.'#经验。hLevel:'.self::$heroInfo[$this->hid]['level'].', exp:'.self::$heroInfo[$this->hid]['exp'] );
 		if( empty(self::$heroInfo[$this->hid]) )return false;
 		$hLevel = $this->getHeroMaxLevel();
 		$this->upInfo = new Levelup( $this->hinfo['level'],'hero' ); //升级表
@@ -181,6 +181,7 @@ class User_Hero extends User_Base{
 		}
 		self::$lastUpdHero[$this->hid]['level'] = self::$heroInfo[$this->hid]['level'];
 		self::$lastUpdHero[$this->hid]['exp'] = self::$heroInfo[$this->hid]['exp'];
+		$this->log->i( '给用户#'.$this->uid.'#英雄#'.$this->hid.'#添加#'.$nums.'#经验。hLevel:'.self::$heroInfo[$this->hid]['level'].', exp:'.self::$heroInfo[$this->hid]['exp'] );
 		$this->setUpdTime();
 		return true;
 	}
