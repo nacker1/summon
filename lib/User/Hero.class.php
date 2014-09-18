@@ -142,7 +142,7 @@ class User_Hero extends User_Base{
 		$upinfo = $this->upInfo->getUpinfo();
 
 		if( self::$heroInfo[$this->hid]['level'] >= $hLevel && self::$heroInfo[$this->hid]['exp'] >= $upinfo['exp'] ){
-			$this->log->i('* 用户#'.$this->uid.'#升级英雄#'.$this->hid.'#已达最大等级 '.$this->getLevel());
+			$this->log->i('* 用户#'.$this->uid.'#升级英雄#'.$this->hid.'#已达最大等级 '.$this->getLevel().'uExp:'.self::$heroInfo[$this->hid]['exp'].',upExp:'.$upinfo['exp']);
 			return false;
 		}
 
