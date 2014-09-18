@@ -134,6 +134,7 @@ class User_Hero extends User_Base{
  *@ 添加英雄经验
  **/
 	public function addHeroExp( $nums ){
+		$this->log->i( '给用户#'.$this->uid.'#英雄#'.$this->hid.'#添加#'.$nums.'#经验。' );
 		if( empty(self::$heroInfo[$this->hid]) )return false;
 		$hLevel = $this->getHeroMaxLevel();
 		$this->upInfo = new Levelup( $this->hinfo['level'],'hero' ); //升级表
