@@ -234,7 +234,7 @@
  *	$type: 任务分类
  **/
 	function setUserMissing( $type ){
-		$this->log->i('setUserMissing:'.$type.',this->type:'.$this->type);
+		$this->log->i('missionClass:'.$type.',this->type:'.$this->type);
 		if( 1==$this->type ){ //处理系统任务
 			$missing = $this->getUserMissingByClass($type);
 			$set['progress'] = (int)$missing['progress'] + 1;
@@ -259,6 +259,7 @@
 			}
 		}elseif( 2==$this->type ){ //处理日常任务
 			$dayMis = $this->cond->get($type);
+			$this->log->i( json_encode($dayMis) );
 			if( !empty( $dayMis ) ){
 				$dayMis['progress'] += 1 ;
 				if( $dayMis['progress'] >= $dayMis['target'] ){
