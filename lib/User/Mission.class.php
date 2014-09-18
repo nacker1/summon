@@ -105,12 +105,12 @@
 		 					$this->cond->set( $set,$key );
  						}
  					}else{
-	 					$set['progress'] = 0;
-	 					$set['tid'] = (int)$v;
+	 					$set[0] = 0; 		#'progress' 进度
+	 					$set[1] = (int)$v; 	#'tid'		任务id
 	 					if( $k == 60 ){
-	 						$set['progress'] = $this->isMonthCode();
+	 						$set[0] = $this->isMonthCode();
 	 					}
-	 					$this->cond->set( $set,$k );
+	 					$this->cond->set( implode('|',$set),$k );
 	 				}
 	 				$this->log->i( json_encode($set).'_'.$k );
  				}
