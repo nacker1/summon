@@ -234,6 +234,7 @@
  *	$type: 任务分类
  **/
 	function setUserMissing( $type ){
+		$this->log->i('setUserMissing:'.$type);
 		if( 1==$this->type ){ //处理系统任务
 			$missing = $this->getUserMissingByClass($type);
 			$set['progress'] = (int)$missing['progress'] + 1;
