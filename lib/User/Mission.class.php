@@ -36,9 +36,9 @@
  				$this->pre->hmset( 'baseMissionConfig:'.$v['Task_Type'].':'.$v['Task_Id'], $v );
  				if( substr($v['Task_Id'], -3) == 1 || $v['Task_Class'] == 61 ){ //初始化用户默认任务
  					if( $v['Task_Class'] == 61 ){
- 						$initTaskClass[ $v['Task_Class'] ][] = $v['Task_Id'];
+ 						$initTaskClass[ $v['Task_Class'] ][] = $v['Task_Id'].'|'.$v['Task_Goal'];
  					}else{
- 						$initTaskClass[ $v['Task_Class'] ] = $v['Task_Id'];
+ 						$initTaskClass[ $v['Task_Class'] ][] = $v['Task_Id'].'|'.$v['Task_Goal'];
  					}
  				}
  				unset($temp);
@@ -65,9 +65,10 @@
  					$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
  					$this->redis->hdel( 'roleinfo:'.$this->uid.':mission:*' );
  					foreach( $taskClass as $k=>$v ){
+ 						$gInfo = explode('|',$v);
  						$uMission[ $k ]['type'] = $k;			//任务类型
- 						$uMission[ $k ]['showMission'] = $v;
- 						$uMission[ $k ]['missing'] = $v;
+ 						$uMission[ $k ]['showMission'] = $gInfo[0];
+ 						$uMission[ $k ]['missing'] = $gInfo[0];
  						$uMission[ $k ]['time'] = time();
  						$uMission[ $k ]['progress'] = 0;
  						$uMission[ $k ]['uid'] = $this->uid;
@@ -76,8 +77,8 @@
  							$uMission[ $k ]['progress'] = $hero->getUserHeroNum();
  							$keys = $this->pre->keys( 'baseMissionConfig:1:121*' );
  							rsort($keys);
- 							foreach( $keys as $v ){
- 								$bMC = $this->pre->hmget( $v, array('Task_Id','Task_Time') );
+ 							foreach( $keys as $val ){
+ 								$bMC = $this->pre->hmget( $val, array('Task_Id','Task_Time') );
  								if( $bMC['Task_Time'] <= $uMission[$k]['progress'] ){
  									$uMission[ $k ]['missing'] = $bMC['Post_Task'];
  								}
@@ -96,8 +97,9 @@
  			if( empty( $uMission ) ){ //初始化用户当日日常任务记录
  				$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
  				foreach( $taskClass as $k=>$v ){
+ 					$gInfo = explode('|',$v);
  					if( 61 == $k ){
- 						$tasks = explode(',',$v);
+ 						$tasks = explode(',',$gInfo[0]);
  						foreach( $tasks as $val ){
  							$key = $k.':'.$val;
  							$set['progress'] = 0;
@@ -105,9 +107,9 @@
 		 					$this->cond->set( $set,$key );
  						}
  					}else{
- 						$set['target'] = $v['Task_Goal'];
+ 						$set['target'] = $gInfo[1];
 	 					$set['progress'] = 0;
-	 					$set['tid'] = $v;
+	 					$set['tid'] = $gInfo[0];
 	 					if( $k == 73 ){
 	 						$set['progress'] = $this->isMonthCode();
 	 					}
