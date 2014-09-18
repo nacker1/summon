@@ -129,6 +129,7 @@
  				$set[] = $mis['missing'];
  				$set[] = $mis['progress'];
  				$uMission[ $mis['type'] ] = implode('|',$set);
+ 				unset($set);
  			}
  		}
  		if( 2 == $this->type ){
