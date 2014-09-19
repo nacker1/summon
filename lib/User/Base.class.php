@@ -646,6 +646,8 @@
 				$this->throwSQL( $val['table'], $val['data'], $val['where'], $val['opt'] );
 			}
 		}
+
+		$this->log->i( 'userBase__destruct:'.json_encode(self::$missionNotice[$this->uid]) );
 	}
  }
 ?>
