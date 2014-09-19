@@ -939,6 +939,7 @@ getLastUpdTime	lib\User\Base.class.php	/^	public function getLastUpdTime(){$/;"	
 getLevel	lib\User\Base.class.php	/^	public function getLevel(){$/;"	f
 getLife	lib\User\Base.class.php	/^	public function getLife(){$/;"	f
 getMaxFriends	lib\User\Base.class.php	/^	public function getMaxFriends(){$/;"	f
+getMissionNotice	lib\User\Base.class.php	/^	public function getMissionNotice(){$/;"	f
 getMoney	lib\User\Base.class.php	/^	public function getMoney(){$/;"	f
 getRid	lib\User\Base.class.php	/^	public function getRid(){$/;"	f
 getRoleBuff	lib\User\Base.class.php	/^	public function getRoleBuff(){$/;"	f
@@ -962,6 +963,7 @@ lastTime	lib\User\Base.class.php	/^			$lastTime = $this->getUserReductTime() + (
 max	lib\User\Base.class.php	/^		$max = $this->getUserMaxLife();$/;"	v
 missionIdList	lib\User\Base.class.php	/^			$missionIdList = self::$missionIdList;$/;"	v
 missionIdList	lib\User\Base.class.php	/^	protected static $missionIdList=array();			\/\/动作触发任务类型列表 如果有触发在析构函数中自动处理$/;"	v
+missionNotice	lib\User\Base.class.php	/^	protected static $missionNotice=array();			\/\/任务通知信息$/;"	v
 nextinfo	lib\User\Base.class.php	/^			$nextinfo = $this->upInfo->getNextUpinfo();$/;"	v
 nextinfo	lib\User\Base.class.php	/^		$nextinfo = $this->upInfo->getNextUpinfo();$/;"	v
 now	lib\User\Base.class.php	/^		$now = time();$/;"	v
@@ -982,11 +984,13 @@ ret	lib\User\Base.class.php	/^		$ret=array();$/;"	v
 setLoginTime	lib\User\Base.class.php	/^	public function setLoginTime(){$/;"	f
 setMessageFlag	lib\User\Base.class.php	/^	public function setMessageFlag( $val ){$/;"	f
 setMissionId	lib\User\Base.class.php	/^	public function setMissionId( $type, $class ){$/;"	f
+setMissionNotice	lib\User\Base.class.php	/^	public function setMissionNotice( $type, $config ){$/;"	f
 setMissionNum	lib\User\Base.class.php	/^	public function setMissionNum(){$/;"	f
 setMonthCode	lib\User\Base.class.php	/^	public function setMonthCode(){$/;"	f
 setNewMail	lib\User\Base.class.php	/^	public function setNewMail($val=1){$/;"	f
 setThrowSQL	lib\User\Base.class.php	/^	public function setThrowSQL( $table, $upd, $where='', $opt='', $db='' ){$/;"	f
 setUpdTime	lib\User\Base.class.php	/^	private function setUpdTime($flag=1){$/;"	f
+setUserHeart	lib\User\Base.class.php	/^	public function setUserHeart( $tag, $val ){$/;"	f
 setUserImage	lib\User\Base.class.php	/^	public function setUserImage( $img ){$/;"	f
 setUserName	lib\User\Base.class.php	/^	public function setUserName( $name ){$/;"	f
 setUserRecord	lib\User\Base.class.php	/^	public function setUserRecord( $key, $value ){$/;"	f
@@ -1348,11 +1352,12 @@ uid	lib\User\Merc.class.php	/^	function __construct( $uid='' ){$/;"	v
 User_Mission	lib\User\Mission.class.php	/^ class User_Mission extends User_Base$/;"	c
 __construct	lib\User\Mission.class.php	/^ 	function __construct( $args )$/;"	f
 _init	lib\User\Mission.class.php	/^ 	function _init(){$/;"	f
-bMC	lib\User\Mission.class.php	/^ 								$bMC = $this->pre->hmget( $v, array('Task_Id','Task_Time') );$/;"	v
+bMC	lib\User\Mission.class.php	/^ 								$bMC = $this->pre->hmget( $val, array('Task_Id','Task_Time') );$/;"	v
 baseMission	lib\User\Mission.class.php	/^			$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal','Task_Level' ) );$/;"	v
 cond	lib\User\Mission.class.php	/^ 			$this->cond = new Cond( $this->dayMissionTag,$this->uid,$overTime );$/;"	v
 dayMis	lib\User\Mission.class.php	/^			$dayMis = $this->cond->get($type);$/;"	v
-dayMissionTag	lib\User\Mission.class.php	/^ 	private $dayMissionTag = 'missionTagEveryDay';		\/\/日常任务标签$/;"	v
+dayMis	lib\User\Mission.class.php	/^ 			$dayMis = $this->cond->getAll();$/;"	v
+dayMissionTag	lib\User\Mission.class.php	/^ 	private $dayMissionTag = 'missionTagEveryDay';			\/\/日常任务标签$/;"	v
 errorInfo	lib\User\Mission.class.php	/^		 				$this->errorInfo = ' time_error ';$/;"	v
 errorInfo	lib\User\Mission.class.php	/^		 			$this->errorInfo = ' reward ';$/;"	v
 errorInfo	lib\User\Mission.class.php	/^		 			$this->errorInfo = 'no_finished';$/;"	v
@@ -1360,14 +1365,14 @@ errorInfo	lib\User\Mission.class.php	/^	 			$this->errorInfo = ' no_finished ';$
 errorInfo	lib\User\Mission.class.php	/^	 			$this->errorInfo = ' sys_fail_retry ';$/;"	v
 errorInfo	lib\User\Mission.class.php	/^ 			$this->errorInfo = ' min_level_'.(int)$taskConfig['Task_Level'];$/;"	v
 errorInfo	lib\User\Mission.class.php	/^ 			$this->errorInfo = 'no_config';$/;"	v
-errorInfo	lib\User\Mission.class.php	/^ 	private $errorInfo;						\/\/错误信息$/;"	v
+errorInfo	lib\User\Mission.class.php	/^ 	private $errorInfo;										\/\/错误信息$/;"	v
 getErrorInfo	lib\User\Mission.class.php	/^ 	function getErrorInfo(){$/;"	f
 getMissionGoods	lib\User\Mission.class.php	/^ 	function getMissionGoods( $taskId ){$/;"	f
 getMissionList	lib\User\Mission.class.php	/^ 	function getMissionList(){$/;"	f
 getUserMissingByClass	lib\User\Mission.class.php	/^	function getUserMissingByClass( $type ){$/;"	f
-getUserMission	lib\User\Mission.class.php	/^ 	function getUserMission(){$/;"	f
+getUserMission	lib\User\Mission.class.php	/^ 	private function getUserMission(){$/;"	f
 hero	lib\User\Mission.class.php	/^ 							$hero  = new User_Hero();$/;"	v
-k	lib\User\Mission.class.php	/^	 					if( $k == 73 ){$/;"	v
+k	lib\User\Mission.class.php	/^	 					if( $k == 60 ){$/;"	v
 k	lib\User\Mission.class.php	/^ 						if( $k == 21 ){$/;"	v
 k	lib\User\Mission.class.php	/^ 					foreach( $taskClass as $k=>$v ){$/;"	v
 k	lib\User\Mission.class.php	/^ 				foreach( $taskClass as $k=>$v ){$/;"	v
@@ -1382,7 +1387,7 @@ mission	lib\User\Mission.class.php	/^	 			$mission = $this->cond->get( $taskConf
 mission	lib\User\Mission.class.php	/^	 			$mission = $this->cond->get( $taskConfig['Task_Class'].':'.$taskId );$/;"	v
 missionTable	lib\User\Mission.class.php	/^ 	private $missionTable='zy_baseMissionConfig';			\/\/任务配置表$/;"	v
 overTime	lib\User\Mission.class.php	/^ 			$overTime = get3time();$/;"	v
-ret	lib\User\Mission.class.php	/^ 				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress,status,type', array( 'uid'=>$this->uid,'status'=>0 ) ); 	$/;"	v
+ret	lib\User\Mission.class.php	/^ 				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress', array( 'uid'=>$this->uid,'status'=>0 ) ); 	$/;"	v
 ret	lib\User\Mission.class.php	/^ 			$ret = $this->cdb->find( $this->missionTable,'*',array('Task_Type'=>$this->type) );$/;"	v
 ret	lib\User\Mission.class.php	/^ 		$ret = array();$/;"	v
 setUserMissing	lib\User\Mission.class.php	/^	function setUserMissing( $type ){$/;"	f
@@ -1395,12 +1400,12 @@ tasks	lib\User\Mission.class.php	/^ 						$tasks = explode(',',$v);$/;"	v
 time	lib\User\Mission.class.php	/^		 			$time = date( 'Hi' );$/;"	v
 type	lib\User\Mission.class.php	/^ 		$this->type = $args['type'];	$/;"	v
 type	lib\User\Mission.class.php	/^ 		if( $this->type == 1 ){ \/\/系统任务  取数据库$/;"	v
-type	lib\User\Mission.class.php	/^ 	private $type;							\/\/任务类型  1为任务，2为日常$/;"	v
+type	lib\User\Mission.class.php	/^ 	private $type;											\/\/任务类型  1为任务，2为日常$/;"	v
 uLevel	lib\User\Mission.class.php	/^ 		$uLevel = $this->getLevel();$/;"	v
 uMissProgress	lib\User\Mission.class.php	/^	 		$uMissProgress = $this->redis->hgetall( 'roleinfo:'.$this->getUid().':mission:'.$taskConfig['Task_Class'] );$/;"	v
 uMission	lib\User\Mission.class.php	/^ 			$uMission = $this->cond->getAll();$/;"	v
 uMission	lib\User\Mission.class.php	/^ 		$uMission = $this->getUserMission();$/;"	v
-userMissionTable	lib\User\Mission.class.php	/^ 	private $userMissionTable='zy_uniqUserMission';		\/\/用户任务进度表$/;"	v
+userMissionTable	lib\User\Mission.class.php	/^ 	private $userMissionTable='zy_uniqUserMission';			\/\/用户任务进度表$/;"	v
 User_Pay	lib\User\Pay.class.php	/^class User_Pay extends User_Base{$/;"	c
 __construct	lib\User\Pay.class.php	/^	function __construct( $payinfo ){$/;"	f
 __destruct	lib\User\Pay.class.php	/^	function __destruct(){$/;"	f
@@ -1513,6 +1518,7 @@ shopinfo	lib\User\Shop.class.php	/^	 private $shopinfo;					\/\/指定类型的�
 table	lib\User\Shop.class.php	/^	 private $table='zy_baseShopConfig';	\/\/商店配置表$/;"	v
 temp	lib\User\Shop.class.php	/^				$temp = $oList[$index];$/;"	v
 temp	lib\User\Shop.class.php	/^				$temp = $this->shopinfo[ $val ][$index];$/;"	v
+tolRate	lib\User\Shop.class.php	/^	 private $tolRate;					\/\/统计概率区域总和$/;"	v
 type	lib\User\Shop.class.php	/^		$this->type = (int)$type;$/;"	v
 type	lib\User\Shop.class.php	/^	 private $type;						\/\/指定商品类型(Shop_Id) 0为所有商店 1为普通商店 $/;"	v
 uLevel	lib\User\Shop.class.php	/^		$uLevel = $this->getVlevel();$/;"	v
@@ -1657,6 +1663,7 @@ goods	module\action\shop.php	/^		 $goods = $shop->getShopGoods();$/;"	v
 index	module\action\shop.php	/^		$index = isset( $input['index']) ? $input['index'] : 0;$/;"	v
 limit	module\action\shop.php	/^			$limit = new User_Limit( 'freeRefShopDay');$/;"	v
 ref	module\action\shop.php	/^		 $ref = isset( $input['ref']) ? $input['ref'] : 0;$/;"	v
+ret	module\action\shop.php	/^		$ret = $user->sendGoodsFromConfig( $add );$/;"	v
 shop	module\action\shop.php	/^		 $shop = new User_Shop( $user->getUid(),$shopId,$ref );$/;"	v
 shop	module\action\shop.php	/^		$shop = new User_Shop( $user->getUid(),$shopId );$/;"	v
 shop	module\action\shop.php	/^		$shop = new User_Shop( $user->getUid(),2 );$/;"	v
@@ -1755,7 +1762,7 @@ strLen	module\user\chat.php	/^ 		$strLen = abslength($con);$/;"	v
 to	module\user\chat.php	/^ 		$to = !empty( $input['to'] ) ? $input['to'] : '';$/;"	v
 type	module\user\chat.php	/^ $type = isset( $input['t'] ) ? $input['t'] : '';$/;"	v
 user	module\user\chat.php	/^ $user = new User_User();$/;"	v
-comid	module\user\goodsCompos.php	/^ 		$comid = $input['comid']; 	\/\/需要强化的装备id$/;"	v
+comid	module\user\goodsCompos.php	/^ 		$comid = $input['comid']; 					\/\/需要强化的装备id$/;"	v
 comid	module\user\goodsCompos.php	/^ 		$comid = $input['comid']; \/\/需要合成的装备id$/;"	v
 cominfo	module\user\goodsCompos.php	/^		 $cominfo = $goodcom->getComItemInfo();$/;"	v
 config	module\user\goodsCompos.php	/^		 $config = $cominfo['config'];$/;"	v
@@ -1769,15 +1776,20 @@ good	module\user\goodsCompos.php	/^ 			$good = explode( ',', $v );$/;"	v
 good	module\user\goodsCompos.php	/^ 		$good = new User_Goods( $user->getUid(),$comid );$/;"	v
 goodcom	module\user\goodsCompos.php	/^		 $goodcom = new Goodcompos( $comid );$/;"	v
 goods	module\user\goodsCompos.php	/^			$goods = explode('&',$config);$/;"	v
+hero	module\user\goodsCompos.php	/^ 			$hero = new User_Hero( $uid, $hid );$/;"	v
+hid	module\user\goodsCompos.php	/^ 		$hid = $input['hid'];						\/\/英雄id$/;"	v
 i	module\user\goodsCompos.php	/^			$i = 0;$/;"	v
-iList	module\user\goodsCompos.php	/^ 		$iList = $input['items'];		\/\/需要吞掉的物品id$/;"	v
+iList	module\user\goodsCompos.php	/^ 		$iList = $input['items'];					\/\/需要吞掉的物品id$/;"	v
 iList	module\user\goodsCompos.php	/^ 		$iList = explode( '#', $iList );$/;"	v
+index	module\user\goodsCompos.php	/^ 		$index = $input['index'];					\/\/英雄需要强化装备对应的装备框$/;"	v
 mail	module\user\goodsCompos.php	/^ 		$mail = new User_Mail();$/;"	v
 money	module\user\goodsCompos.php	/^			$money = $cominfo['Cost_Gold'];$/;"	v
 num	module\user\goodsCompos.php	/^ 			$num = 1;$/;"	v
 num	module\user\goodsCompos.php	/^ 		$num = isset($input['n']) ? $input['n'] : 10;$/;"	v
+result	module\user\goodsCompos.php	/^ 		$result=array();$/;"	v
 ret	module\user\goodsCompos.php	/^			$ret = $user->sendGoodsFromConfig( $give );$/;"	v
 ret	module\user\goodsCompos.php	/^ 		$ret = $user->sendGoodsFromConfig( $give );$/;"	v
+ret	module\user\goodsCompos.php	/^ 		$ret = array();$/;"	v
 tag	module\user\goodsCompos.php	/^		$tag = '装备强化';$/;"	v
 tag	module\user\goodsCompos.php	/^ 		$tag = '装备合成';$/;"	v
 tolEnergy	module\user\goodsCompos.php	/^ 		$tolEnergy = 0 ;$/;"	v
@@ -1789,6 +1801,8 @@ user	module\user\heartBeat.php	/^ $user = new User_User();$/;"	v
 cond	module\user\init.php	/^ 			$cond = new Cond( 'dayLimit',$user->getUid() );$/;"	v
 good	module\user\init.php	/^ 			$good = new User_Goods( $user->getUid() );$/;"	v
 hero	module\user\init.php	/^	 		$hero = new User_Hero( $user->getUid() );$/;"	v
+mis1	module\user\init.php	/^	  		$mis1 = new User_Mission( array( 'uid'=>$user->getUid(), 'type'=>1 ) );$/;"	v
+mis2	module\user\init.php	/^	  		$mis2 = new User_Mission( array( 'uid'=>$user->getUid(), 'type'=>2 ) );$/;"	v
 progress	module\user\init.php	/^ 			$progress = new User_Progress();$/;"	v
 sRedis	module\user\init.php	/^	  		$sRedis = new Cond( 'userShop_2', $user->getUid() );$/;"	v
 type	module\user\init.php	/^ $type = isset($input['t']) ? $input['t'] : 0;$/;"	v
