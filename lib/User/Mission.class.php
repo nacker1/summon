@@ -264,7 +264,7 @@
 			$notice[] = $set['progress'];
 			$this->setMissionNotice( $this->type, $notice );
 			#===========================================================
-
+			$this->log->i( json_encode($notice) );
 			$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$type ) );
 			if( empty( $baseMission[ 'Post_Task' ] ) ){
 				return $this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$type );

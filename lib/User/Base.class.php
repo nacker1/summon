@@ -526,6 +526,7 @@
  *		$config:	发生变化的任务信息
  **/
 	public function getMissionNotice(){
+		$this->log->i( json_encode(self::$missionNotice) );
 		return self::$missionNotice[$this->uid];
 	}
 /**
