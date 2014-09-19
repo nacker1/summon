@@ -141,7 +141,7 @@
 		}else{
 			$goods = $config;
 		}
-		if( empty( $goods ) )return true;
+		if( empty( $goods ) )return array();
 		$ret = array();
 		$temp = array('new'=>array(),'old'=>array());
 		foreach( $goods as $k=>$v ){
