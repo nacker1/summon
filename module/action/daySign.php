@@ -25,6 +25,12 @@
  		$ret['tol'] = $sign->getTotalTimes();
 		$ret['com']= $sign->getCommonTimes();
 		$ret['vip'] = $sign->getVipTimes();
+		#=========== 任务信息 ==================
+		$mis = $user->getMissionNotice();
+		if( !empty( $mis ) ){
+			$ret['mis'] = $mis;
+		}
+
  		ret( $ret );
  		break;
  	case '999':
