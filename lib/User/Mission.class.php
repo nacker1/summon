@@ -100,18 +100,18 @@
  						$tasks = explode(',',$v);
  						foreach( $tasks as $val ){
  							$key = $k.':'.$val;
-		 					$set[0] = (int)$val;		#'tid'		任务id
-		 					$set[1] = 0;				#'progress' 进度
-		 					$this->cond->set( implode('|',$set),$key );
+		 					$set['tid'] = (int)$val;		#'tid'		任务id
+		 					$set['progress'] = 0;				#'progress' 进度
+		 					$this->cond->set( $set,$key );
 		 					unset($set);
  						}
  					}else{
-	 					$set[0] = (int)$v; 	#'tid'		任务id
-	 					$set[1] = 0; 		#'progress' 进度
+	 					$set['tid'] = (int)$v; 	#'tid'		任务id
+	 					$set['progress'] = 0; 		#'progress' 进度
 	 					if( $k == 60 ){
-	 						$set[1] = $this->isMonthCode();
+	 						$set['progress'] = $this->isMonthCode();
 	 					}
-	 					$this->cond->set( implode('|',$set),$k );
+	 					$this->cond->set( $set,$k );
 	 					unset($set);
 	 				}
 	 				$this->log->i( json_encode($set).'_'.$k );
@@ -135,7 +135,13 @@
  			}
  		}
  		if( 2 == $this->type ){
- 			$uMission = $this->cond->getAll();
+ 			$dayMis = $this->cond->getAll();
+ 			foreach( $dayMis as $v ){
+ 				$set[0] = $v['tid'];
+ 				$set[1] = $v['progress'];
+ 				$uMission[] = implode( '|', $set );
+ 				unset($set);
+ 			}
  		}
  		$this->log->i( 'mList:'.json_encode($uMission) );
  		return $uMission;
@@ -248,7 +254,6 @@
 				if( empty( $baseMission['Post_Task'] ) ){
 					$set['status'] = 1;
 				}
-				$this->setMissionNum();
 			}
 			if( $type < 14 ){
 				$set['progress'] = $baseMission[ 'Task_Goal' ];
