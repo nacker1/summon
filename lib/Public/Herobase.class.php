@@ -53,7 +53,7 @@ class Herobase extends Base{
 			$sTolLevel += $v;
 		}
 
-		return floor( ( ($att+$def+$sor+$res)*$speed + ( $hp + $gethp * 2 + $mp + $getmp * 2 ) )/10 ) + $color*100*( 1+floor($sTolLevel/10) );
+		return floor( ( ($att+$def+$sor+$res)*$speed + ( $hp + $gethp * 2 + $mp + $getmp * 2 ) )/10 ) + $color*100*( 1+number_format($sTolLevel/10,2) );
 	}
 }
 ?>
