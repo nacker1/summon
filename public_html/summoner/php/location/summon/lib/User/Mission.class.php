@@ -297,7 +297,7 @@
 	}
 
 	function __destruct(){
-		$this->log->i( '__destruct:'.json_encode(self::$missionNotice[$this->uid]) );
+		$this->log->i( 'mission__destruct:'.json_encode(self::$missionNotice[$this->uid]) );
 	}
  }
 ?>
