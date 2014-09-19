@@ -252,6 +252,7 @@ class User_Hero extends User_Base{
  *@ 设置是否更新
  **/
 	function setUpdTime(){
+		self::$heroInfo[$this->hid]['fire'] = self::$lastUpdHero[$this->hid]['fire'] = $this->getTotalFire();
 		self::$upd = 1;
 	}
 /** 
@@ -339,7 +340,6 @@ class User_Hero extends User_Base{
 
 	function __destruct(){
 		if( self::$upd > 0 ){
-			self::$heroInfo[$this->hid]['fire'] = self::$lastUpdHero[$this->hid]['fire'] = $this->getTotalFire();
 			$this->redis->hmset( 'roleinfo:'.$this->uid.':hero:'.$this->hid,self::$heroInfo[$this->hid] );
 			$tempUpdHero = self::$lastUpdHero;
 			self::$lastUpdHero = '';
