@@ -98,6 +98,11 @@
 		$give['good'] = implode('#',$gList);
 		$ret = $user->sendGoodsFromConfig($give);
 		$ret['hero'] = $hero->getLastUpdField();
+		#=========== 任务信息 ==================
+		$mis = $user->getMissionNotice();
+		if( !empty( $mis ) ){
+			$ret['mis'] = $mis;
+		}
 		ret( $ret );
 	case '4'://取下英雄装备 equipInfo 格式=>(index&index 装备框下标&装备框下标)
 		$index = $input['index'];
@@ -124,6 +129,11 @@
 		}
 		$ret['hero'] = $hero->getLastUpdField();
 		$ret['list'] = $ug->getLastUpdGoods();
+		#=========== 任务信息 ==================
+		$mis = $user->getMissionNotice();
+		if( !empty( $mis ) ){
+			$ret['mis'] = $mis;
+		}
 		ret( $ret );
 	case '5': //英雄灵魂石召唤或提升品质
 		$tag = '英雄合成或品质升级';
@@ -170,7 +180,11 @@
 		$give['good'] = implode('#',$reGood);
 		$ret = $user->sendGoodsFromConfig( $give );
 		$ret['hero'] = $hero->getLastUpdField();
-		$ret['mis'] = $user->getMissionNotice();
+		#=========== 任务信息 ==================
+		$mis = $user->getMissionNotice();
+		if( !empty( $mis ) ){
+			$ret['mis'] = $mis;
+		}
 		ret( $ret );
 	case '6': //英雄技能升级
 		$tag = '英雄技能升级';
@@ -209,7 +223,11 @@
 					$hero->skillUp( $sIndex );
 					$ret['hero'] = $hero->getLastUpdField();
 					$ret['skill'] = $user->getUserSkillInfo();
-					$ret['mis'] = $user->getMissionNotice();
+					#=========== 任务信息 ==================
+					$mis = $user->getMissionNotice();
+					if( !empty( $mis ) ){
+						$ret['mis'] = $mis;
+					}
 					ret( $ret );
 				}else{
 					ret('服务器繁忙，请重试！',-1);
@@ -227,7 +245,13 @@
 			$hero->giveHero();
 			unset($hero);
 		}
-		ret('添加成功');
+		$ret['hero'] = $hero->getLastUpdField();
+		#=========== 任务信息 ==================
+		$mis = $user->getMissionNotice();
+		if( !empty( $mis ) ){
+			$ret['mis'] = $mis;
+		}
+		ret( $ret );
 	default:
 		ret('type error!',-1);
  }

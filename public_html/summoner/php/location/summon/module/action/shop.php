@@ -74,7 +74,11 @@
 		$shop->setItemStatus($index);
 		$add['good'] = array( $shopInfo['gid'].','.$shopInfo['nums'] );
 		$ret = $user->sendGoodsFromConfig( $add );
-		$ret['mis'] = $user->getMissionNotice();
+		#=========== 任务信息 ==================
+		$mis = $user->getMissionNotice();
+		if( !empty( $mis ) ){
+			$ret['mis'] = $mis;
+		}
 		ret( $ret );
 	case '3':
 		$shop = new User_Shop( $user->getUid(),2 );
