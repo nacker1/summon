@@ -248,6 +248,7 @@
 			$set['progress'] = (int)$missing['progress'] + 1;
 			$key = empty( $missing['missing'] ) ? $missing['showMission'] : $missing['missing'] ;
 			$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal','Task_Level' ) );
+			$this->log->i( 'baseMission:'.json_encode($baseMission) );
 			if( $set['progress'] >= $baseMission['Task_Time'] ){
 				$set['missing'] = $baseMission[ 'Post_Task' ];
 				if( empty( $baseMission['Post_Task'] ) ){
@@ -264,7 +265,8 @@
 			$notice[] = $set['progress'];
 			$this->setMissionNotice( $this->type, $notice );
 			#===========================================================
-			$this->log->i( json_encode($notice) );
+			$this->log->i( 'notice:'.json_encode($notice) );
+			$this->log->i( 'set:'.json_encode($set) );
 			$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$type ) );
 			if( empty( $baseMission[ 'Post_Task' ] ) ){
 				return $this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$type );
