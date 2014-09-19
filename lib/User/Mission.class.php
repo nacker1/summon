@@ -93,7 +93,7 @@
  			$overTime = get3time();
  			$this->cond = new Cond( $this->dayMissionTag,$this->uid,$overTime );
  			$uMission = $this->cond->getAll();
- 			if( true || empty( $uMission ) ){ //初始化用户当日日常任务记录
+ 			if( empty( $uMission ) ){ //初始化用户当日日常任务记录
  				$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
  				foreach( $taskClass as $k=>$v ){
  					if( 61 == $k ){
@@ -114,7 +114,6 @@
 	 					$this->cond->set( $set,$k );
 	 					unset($set);
 	 				}
-	 				$this->log->i( json_encode($set).'_'.$k );
  				}
  			} 			
  		}
