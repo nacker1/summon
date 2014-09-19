@@ -469,7 +469,7 @@
 			$this->upInfo = new Levelup( $nextinfo['level'] );
 			$upinfo = $this->upInfo->getUpinfo();
 			$nextinfo = $this->upInfo->getNextUpinfo();
-			self::$missionIdList[1][] = 51;
+			$this->setMissionId(1,51);
 			$this->log->i('* 用户#'.$this->uid.'#升级到 '.self::$userinfo[$this->uid]['level'].' 级 ');
 			if( self::$userinfo[$this->uid]['level'] >= $this->upInfo->getMaxLevel() && $tolexp >= $upinfo['exp'] ){
 				self::$updinfo[$this->uid]['exp'] = self::$userinfo[$this->uid]['exp'] = $upinfo['exp'];
@@ -497,18 +497,8 @@
  *@ setMissionId() 	设置相关任务完成进度
  **/
 	public function setMissionId( $type, $class ){
-		self::$missionIdList[$type][] = $class;
-		#同步用户任务信息
-		if( !empty( self::$missionIdList ) && count( self::$missionIdList ) > 0 ){
-			$missionIdList = self::$missionIdList;
-			self::$missionIdList = array();
-			foreach( $missionIdList as $k=>$val ){
-				$proxy = $this->proxy( array('type'=>$k, 'uid'=>$this->uid) );
-				foreach( $val as $v ){
-					$proxy->exec( $v );
-				}
-			}
-		}
+		$proxy = $this->proxy( array('type'=>$type, 'uid'=>$this->uid) );
+		$proxy->exec( $class );
 		return true;
 	}
 /**

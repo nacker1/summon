@@ -144,9 +144,9 @@
 			if( empty($this->ugid) && !$this->redis->exists('roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid.':'.$this->ugid) ){
 				for( $i=0;$i<$nums;$i++ ){ 
 					switch( $this->bgood->getColor() ){
-						case '3':self::$missionIdList[1][] = 33;break;
-						case '4':self::$missionIdList[1][] = 34;break;
-						case '5':self::$missionIdList[1][] = 35;break;
+						case '3':$this->setMissionId(1,33);break;
+						case '4':$this->setMissionId(1,34);break;
+						case '5':$this->setMissionId(1,35);break;
 					}
 					unset($insert);
 					$insert['gid'] = $this->gid;

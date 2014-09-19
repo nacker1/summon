@@ -97,7 +97,7 @@ class User_Hero extends User_Base{
 				return false;
 			}
 		}else{ //添加英雄数量
-			self::$missionIdList[1][] = 21;
+			$this->setMissionId(1,21);
 			$hero = $this->initHero($color);
 			self::$heroInfo[$this->hid] = $hero;
 			self::$lastUpdHero[$this->hid] = $hero;
@@ -156,7 +156,7 @@ class User_Hero extends User_Base{
 				self::$heroInfo[$this->hid]['level'] = $this->getHeroMaxLevel();
 				self::$heroInfo[$this->hid]['exp'] = $upinfo['exp'];
 				if( 40 == self::$heroInfo[$this->hid]['level'] ){
-					self::$missionIdList[1][] = 26;
+					$this->setMissionId(1,26);
 				}
 				break;
 			}else{
@@ -164,7 +164,7 @@ class User_Hero extends User_Base{
 				self::$heroInfo[$this->hid]['exp'] = $tolexp;
 			}
 			if( 40 == self::$heroInfo[$this->hid]['level'] ){
-				self::$missionIdList[1][] = 26;
+				$this->setMissionId(1,26);
 			}
 			$this->upInfo = new Levelup( $nextinfo['level'],'hero' );
 			$upinfo = $this->upInfo->getUpinfo();
@@ -325,9 +325,9 @@ class User_Hero extends User_Base{
 		$skillConf = json_decode( $skillConf, true );
 		if( isset( $skillConf[ $skillIndex ] ) ){return true;}
 		switch( $skillIndex ){ //技能真正解锁后品质任务加1
-			case '2':self::$missionIdList[1][] = 22;break;
-			case '3':self::$missionIdList[1][] = 23;break;
-			case '4':self::$missionIdList[1][] = 24;break;
+			case '2':$this->setMissionId(1,22);break;
+			case '3':$this->setMissionId(1,23);break;
+			case '4':$this->setMissionId(1,24);break;
 		}
 		for( $i=1; $i<=$skillIndex; $i++ ){
 			if( !isset( $skillConf[ $i ] ) )
