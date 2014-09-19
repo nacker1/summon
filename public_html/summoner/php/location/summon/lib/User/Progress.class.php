@@ -56,6 +56,7 @@ class User_Progress extends User_Base{
 			$insert['uid'] = $this->getUid();
 			$this->redis->hmset( 'role:'.$this->uid.':progress:'.$this->type.':'.$this->cid, $insert );
 			$this->setThrowSQL( $this->progress_table, $insert ); 
+			$this->setMissionId(1,substr($this->cid,1,2), start));
 		}else{
 			if( $tProgress['star'] < $star ){
 				$this->setThrowSQL( $this->progress_table, array('star'=>$star), array( 'id'=>$tProgress['id'] ) ); 
