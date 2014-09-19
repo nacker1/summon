@@ -45,8 +45,9 @@ class User_Progress extends User_Base{
  *@ 设置用户的关卡进度
  *@param
  *	$star:	通关星级
+ *	$tasktype: 通关任务类型
  **/
-	public function setUserProgress( $star ){
+	public function setUserProgress( $star, $tasktype ){
 		$tProgress = $this->redis->hgetall( 'role:'.$this->uid.':progress:'.$this->type.':'.$this->cid );
 		if( empty( $tProgress ) ){
 			$insert['cId'] = $this->cid;
@@ -56,7 +57,7 @@ class User_Progress extends User_Base{
 			$insert['uid'] = $this->getUid();
 			$this->redis->hmset( 'role:'.$this->uid.':progress:'.$this->type.':'.$this->cid, $insert );
 			$this->setThrowSQL( $this->progress_table, $insert ); 
-			$this->setMissionId(1,substr($this->cid,1,2));
+			$this->setMissionId( 1, $tasktype );
 		}else{
 			if( $tProgress['star'] < $star ){
 				$this->setThrowSQL( $this->progress_table, array('star'=>$star), array( 'id'=>$tProgress['id'] ) ); 

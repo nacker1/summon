@@ -91,7 +91,7 @@
 			//-==============处理用户通关进度 PVE 包括普通本 精英本 练狱本==============
 			if( in_array($input['stagetype'],array(1) ) && $input['stageid'] > 0 && $input['passlevel'] > 0 ){
 				$progress = new User_Progress( $input['stageid'] );
-				$progress->setUserProgress( $input['passlevel'] );
+				$progress->setUserProgress( $input['passlevel'], $input['tasktype'] );
 			}
 			
 		}
