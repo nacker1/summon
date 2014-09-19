@@ -31,6 +31,7 @@
  			$add['jewel'] = -$cooldou;
  			$add['life'] = $limit->getGiveNum();
  			$ret = $user->sendGoodsFromConfig($add);
+ 			$ret['mis'] = $user->getMissionNotice();
  		}else{
  			ret( 'no_jewel', -1 );
  		}
@@ -61,6 +62,7 @@
 			$ret['rate'] = $rate;
 			$ret['times'] = $times+1;
 			$user->setMissionId( 2, 67 );
+			$ret['mis'] = $user->getMissionNotice();
 		}else{
 			ret( '钻石不足',-1 );
 		}
