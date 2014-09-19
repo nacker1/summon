@@ -152,7 +152,7 @@ class User_Draw extends User_Base{
 		}
 
 		$keys = $this->pre->keys( 'baseDrawTypeConfig:'.$this->type.':'.$flag.':*' );
-		$this->log->i( json_encode( $keys ) );
+		$this->log->i('typeKeys:'.json_encode( $keys ) );
 		foreach( $keys as $v ){
 			$info = $this->pre->hgetall( $v );
 			$this->userType[] = $info;
