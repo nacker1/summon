@@ -120,6 +120,7 @@
  		$give['good'] = implode( '#', $goods );
 
  		$ret = $user->sendGoodsFromConfig( $give );
+ 		$ret['mis'] = $user->getMissionNotice();
  		ret( array_merge($ret, $result) );
  	case '3'://给用户发放物品接口
  		$gid   = isset($input['g']) ? $input['g'] : 0;

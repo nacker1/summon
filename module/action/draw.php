@@ -55,7 +55,7 @@
 	$ret = $user->sendGoodsFromConfig($give);
 
 	$ret['get'] = $give['good'];
-
+	$ret['mis'] = $user->getMissionNotice();
 	ret( $ret );
 
 ?>
