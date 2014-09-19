@@ -265,8 +265,6 @@
 			$notice[] = $set['progress'];
 			$this->setMissionNotice( $this->type, $notice );
 			#===========================================================
-			$this->log->i( 'notice:'.json_encode($notice) );
-			$this->log->i( 'set:'.json_encode($set) );
 			$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$type ) );
 			if( empty( $baseMission[ 'Post_Task' ] ) ){
 				return $this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$type );
@@ -275,7 +273,6 @@
 			}
 		}elseif( 2==$this->type ){ //处理日常任务
 			$dayMis = $this->cond->get($type);
-			$this->log->i( json_encode($dayMis) );
 			if( !empty( $dayMis ) ){
 				$dayMis['progress'] += 1 ;
 				$this->cond->set( $dayMis,$type );
@@ -293,10 +290,6 @@
  **/
 	function getUserMissingByClass( $type ){
 		return $this->redis->hgetall( 'roleinfo:'.$this->getUid().':mission:'.$type);
-	}
-
-	function __destruct(){
-		$this->log->i( 'mission__destruct:'.json_encode(self::$missionNotice[$this->uid]) );
 	}
  }
 ?>

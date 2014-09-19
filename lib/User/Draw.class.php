@@ -54,6 +54,7 @@ class User_Draw extends User_Base{
 		$ret = array();
 		if( !is_array( $this->userType ) ){
 			$this->log->e( '抽奖获取类型错误，没有读取到配置信息' );
+			$this->log->e( 'this->type:'.$this->type);
 			ret(' no_type_config'.__LINE__,-1);
 		}
 
@@ -151,6 +152,7 @@ class User_Draw extends User_Base{
 		}
 
 		$keys = $this->pre->keys( 'baseDrawTypeConfig:'.$this->type.':'.$flag.':*' );
+		$this->log->i( json_encode( $keys ) );
 		foreach( $keys as $v ){
 			$info = $this->pre->hgetall( $v );
 			$this->userType[] = $info;
