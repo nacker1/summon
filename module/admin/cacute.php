@@ -103,6 +103,7 @@
 		switch( $input['tasktype'] ){  //通关扣除体力
 			case '11': 	//普通关卡
 				$add['life'] = -6*$sweepNum;
+				$user->setMissionId( 2, 14 ); //每日所有副本任务
 				break;
 			case '12':	//精英关卡
 				$add['life'] = -12*$sweepNum;
@@ -211,8 +212,7 @@
 	}
 #============================每日刷副本日常任务=================================
 	if( in_array( $input['tasktype'], array( 11,12,13 ) ) ){
-		//====  日常任务处理  ===========
-		$user->setMissionId( 2, 14 ); //每日所有副本任务
+		//====  佣兵友情点处理  ===========
 		if( isset($intpu['merc']) && is_numeric( $input['merc'] ))
 			$add['mFriend'] = 10;
 	}
