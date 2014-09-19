@@ -212,11 +212,9 @@
 			$add['life'] = -1;
 	}
 #============================每日刷副本日常任务=================================
-	if( in_array( $input['tasktype'], array( 11,12,13 ) ) ){
-		//====  佣兵友情点处理  ===========
-		if( isset($intpu['merc']) && is_numeric( $input['merc'] ))
-			$add['mFriend'] = 10;
-	}
+	if( isset($intpu['merc']) && is_numeric( $input['merc'] ))
+		$add['mFriend'] = 10;
+
 #============================每日刷副本日常任务=================================
 	$input['getList'] = $user->sendGoodsFromConfig( $add ); 	//所有条件通过后统一发放物品
 	$input['getList']['mis'] = $user->getMissionNotice();
