@@ -9,6 +9,7 @@
 	private static $updinfo=array(); 			//角色所有信息
 	private static $isupd=array(); 				//判断是否需要更新用户信息
 	protected static $missionIdList=array();			//动作触发任务类型列表 如果有触发在析构函数中自动处理
+	protected static $missionNotice=array();			//任务通知信息
 	
 	protected $baseTable='zy_uniqRole';			//用户角色表
 	protected $baseRecordTable = 'zy_uniqRoleRecord';	//用户record信息表
@@ -510,6 +511,24 @@
 		return $ret;
 	}
 /**
+ *@ setMissionNotice 设置任务标记
+ *	param:
+ *		$type: 		任务类型  1为系统任务  2为日常
+ *		$config:	发生变化的任务信息
+ **/
+	public function setMissionNotice( $type, $config ){
+		return self::$missionNotice[$this->uid][$type][] = implode('|', $config);
+	}
+/**
+ *@ getMissionNotice 设置任务标记
+ *	param:
+ *		$type: 		任务类型  1为系统任务  2为日常
+ *		$config:	发生变化的任务信息
+ **/
+	public function getMissionNotice(){
+		return self::$missionNotice[$this->uid];
+	}
+/**
  *@ setUpdTime() 设置信息更新标志
  *@ param:
  *	$flag:	标志位  为0时标记需要更新redis，1 标记需要更新心跳，2 金币或钻石数量发生变化需要插入财富流水日志库
@@ -608,7 +627,7 @@
 			self::$recordInfo[$this->uid]='';
 		}
 		#同步用户任务信息
-		if( !empty( self::$missionIdList ) && count( self::$missionIdList>0 ) ){
+		if( !empty( self::$missionIdList ) && count( self::$missionIdList ) > 0 ){
 			$missionIdList = self::$missionIdList;
 			self::$missionIdList = array();
 			foreach( $missionIdList as $k=>$val ){

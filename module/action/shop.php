@@ -73,7 +73,9 @@
 		$user->setMissionId(2,63);
 		$shop->setItemStatus($index);
 		$add['good'] = array( $shopInfo['gid'].','.$shopInfo['nums'] );
-		ret( $user->sendGoodsFromConfig( $add ) );
+		$ret = $user->sendGoodsFromConfig( $add );
+		$ret['mis'] = $user->getMissionNotice();
+		ret( $ret );
 	case '3':
 		$shop = new User_Shop( $user->getUid(),2 );
 		$shop->getTypeItems();

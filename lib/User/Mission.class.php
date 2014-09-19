@@ -259,6 +259,13 @@
 				$set['progress'] = $baseMission[ 'Task_Goal' ];
 			}
 			
+			#=====================  设置任务通知  ======================
+			$notice[] = $missing['showMission'];
+			$notice[] = $set['missing'];
+			$notice[] = $set['progress'];
+			$this->setMissionNotice( $this->type, $notice );
+			#===========================================================
+
 			$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$type ) );
 			if( empty( $baseMission[ 'Post_Task' ] ) ){
 				return $this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$type );
@@ -270,11 +277,14 @@
 			$this->log->i( json_encode($dayMis) );
 			if( !empty( $dayMis ) ){
 				$dayMis['progress'] += 1 ;
-				if( $dayMis['progress'] >= $dayMis['target'] ){
-					$this->setUserHeart( 'dayMis', 1 );
-				}
 				$this->cond->set( $dayMis,$type );
 			}
+
+			#=====================  设置任务通知  ======================
+			$notice[] = $dayMis['tid'];
+			$notice[] = $dayMis['progress'];
+			$this->setMissionNotice( $this->type, $notice );
+			#===========================================================
 			return true;
 		}
 	}
