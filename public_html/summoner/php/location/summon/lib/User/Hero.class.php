@@ -254,6 +254,7 @@ class User_Hero extends User_Base{
 	function setUpdTime(){
 		self::$heroInfo[$this->hid]['fire'] = self::$lastUpdHero[$this->hid]['fire'] = $this->getTotalFire();
 		self::$upd = 1;
+		return true;
 	}
 /** 
  *@ 英雄品质升级或使用灵魂石合成英雄 $level: 品质等级  1=>白  2=>绿  3=>蓝 4=>紫 5=>橙

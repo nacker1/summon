@@ -3,21 +3,20 @@
  *@ 用户基类
  **/
  class User_Base extends Base{
- 	protected static $recordInfo=array();		//用户对应的record信息 对就zy_uniqRoleRecord表 
- 	protected static $throwSQL=array();			//需要异步同步的数据
-	private static $userinfo=array(); 			//角色所有信息
-	private static $updinfo=array(); 			//角色所有信息
-	private static $isupd=array(); 				//判断是否需要更新用户信息
-	protected static $missionIdList=array();			//动作触发任务类型列表 如果有触发在析构函数中自动处理
-	protected static $missionNotice=array();			//任务通知信息
-	
-	protected $baseTable='zy_uniqRole';			//用户角色表
-	protected $baseRecordTable = 'zy_uniqRoleRecord';	//用户record信息表
-	
-	private $upInfo; 					//角色升级对应参数表
-	private $uinfo;	 					//角色信息
-
-	private $userLog;					//用户金钱变化日志
+ 	protected static $recordInfo	=	array();									//用户对应的record信息 对就zy_uniqRoleRecord表 
+ 	protected static $throwSQL 		=	array();									//需要异步同步的数据
+	protected static $userinfo 		=	array(); 									//角色所有信息
+	protected static $updinfo 		=	array(); 									//角色所有信息
+	protected static $isupd 		=	array(); 									//判断是否需要更新用户信息
+	protected static $missionNotice =	array();									//任务通知信息
+			
+	protected $baseTable='zy_uniqRole';												//用户角色表
+	protected $baseRecordTable = 'zy_uniqRoleRecord';								//用户record信息表
+						
+	private $upInfo; 																//角色升级对应参数表
+	private $uinfo;	 																//角色信息
+											
+	private $userLog;																//用户金钱变化日志
 
 	public function __construct( $uid='' ){
 		if( empty( $uid ) ){
@@ -299,7 +298,8 @@
 		return self::$userinfo[$this->uid]['mail'] = $val;
 	}
 /**
- *@ 设置用户任务完成标记
+ *@ 设置用户任务完成标记    
+ * 2014-09-19  huangzy => 已废弃
  **/
 	public function setMissionNum(){
 		$this->setUpdTime(1);
@@ -310,7 +310,8 @@
 		}
 	}
 /**
- *@ 用户领取任务奖励后自动减1
+ *@ 用户领取任务奖励后自动减1	
+ * 2014-09-19  huangzy => 已废弃
  **/
 	public function reduceMissionNum(){
 		$this->setUpdTime(1);

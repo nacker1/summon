@@ -176,7 +176,6 @@
  			return false;
  		}
  		if( 1 == $this->type ){ //系统任务领取处理
- 			$this->reduceMissionNum();
 	 		$uMissProgress = $this->redis->hgetall( 'roleinfo:'.$this->getUid().':mission:'.$taskConfig['Task_Class'] );
 	 		if( $uMissProgress['showMission'] != $taskId || $taskId == $uMissProgress['missing'] ){  //用户当前领取的任务实际未完成  返回
 	 			$this->errorInfo = ' no_finished ';
