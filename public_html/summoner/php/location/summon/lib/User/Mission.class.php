@@ -246,6 +246,7 @@
 		if( 1==$this->type ){ //处理系统任务
 			$missing = $this->getUserMissingByClass($type);
 			$set['progress'] = (int)$missing['progress'] + 1;
+			$set['missing'] = (int)$missing['missing'];
 			$key = empty( $missing['missing'] ) ? $missing['showMission'] : $missing['missing'] ;
 			$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal','Task_Level' ) );
 			$this->log->i( 'baseMission:'.json_encode($baseMission) );
