@@ -278,13 +278,12 @@
 			if( !empty( $dayMis ) ){
 				$dayMis['progress'] += 1 ;
 				$this->cond->set( $dayMis,$type );
-			}
-
-			#=====================  设置任务通知  ======================
-			$notice[] = $dayMis['tid'];
-			$notice[] = $dayMis['progress'];
-			$this->setMissionNotice( $this->type, $notice );
-			#===========================================================
+				#=====================  设置任务通知  ======================
+				$notice[] = $dayMis['tid'];
+				$notice[] = $dayMis['progress'];
+				$this->setMissionNotice( $this->type, $notice );
+				#===========================================================
+			}			
 			return true;
 		}
 	}
