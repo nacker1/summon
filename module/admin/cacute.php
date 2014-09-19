@@ -218,5 +218,6 @@
 	}
 #============================每日刷副本日常任务=================================
 	$input['getList'] = $user->sendGoodsFromConfig( $add ); 	//所有条件通过后统一发放物品
+	$input['getList']['mis'] = $user->getMissionNotice();
 
 	ret( $input );
