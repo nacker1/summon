@@ -170,6 +170,7 @@
 		$give['good'] = implode('#',$reGood);
 		$ret = $user->sendGoodsFromConfig( $give );
 		$ret['hero'] = $hero->getLastUpdField();
+		$ret['mis'] = $user->getMissionNotice();
 		ret( $ret );
 	case '6': //英雄技能升级
 		$tag = '英雄技能升级';
@@ -208,6 +209,7 @@
 					$hero->skillUp( $sIndex );
 					$ret['hero'] = $hero->getLastUpdField();
 					$ret['skill'] = $user->getUserSkillInfo();
+					$ret['mis'] = $user->getMissionNotice();
 					ret( $ret );
 				}else{
 					ret('服务器繁忙，请重试！',-1);
@@ -218,7 +220,7 @@
 		}else{
 			ret('技能等级不能超过英雄等级',-1);
 		}
-	case '7':
+	case '7':#一次性发放前期所有英雄
 		$hList = array( 10026,10022,10019,10031,10002,10008,10029,10023,10011,10015,10030,10012,10014,10006,10033,10032,10036,10024,10004,10013 );
 		foreach ( $hList as $v ) {
 			$hero = new User_Hero( $user->getUid(),$v );
