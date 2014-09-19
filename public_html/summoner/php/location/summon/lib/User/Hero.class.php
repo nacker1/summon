@@ -110,7 +110,6 @@ class User_Hero extends User_Base{
  *@ 初始化英雄数据
  **/
 	private function initHero($color){
-		$this->setUpdTime();
 		for( $i=1;$i<=$color; $i++ ){
 			$config[$i]=1;
 		}
@@ -128,6 +127,7 @@ class User_Hero extends User_Base{
 		$hero['equip6'] = '0';
 		$hero['config'] = json_encode($config);
 		$hero['add'] = 1;//$this->db->insert( $this->table, $hero );
+		$this->setUpdTime();
 		return $hero;
 	}
 /**
@@ -189,7 +189,6 @@ class User_Hero extends User_Base{
  *@ 英雄穿装备  $index 指定英雄装备框
  **/
 	function heroPutOnEquip( $index,$eqId ){
-		$this->setUpdTime();
 		$qConfig['g'] = $eqId;
 		$eid = substr( $eqId, 0, 5 );
 		$equip = new Equipbase( $eid );
@@ -197,16 +196,18 @@ class User_Hero extends User_Base{
 		$qConfig['f'] = $eFire;
 		$eqConf = json_encode($qConfig);
 		self::$lastUpdHero[$this->hid]['equip'.$index] = $eqConf;
-		return self::$heroInfo[$this->hid]['equip'.$index] = $eqConf;
+		$ret = self::$heroInfo[$this->hid]['equip'.$index] = $eqConf;
+		$this->setUpdTime();
+		return $ret;
 	}
 /**
  *@ 英雄取下装备   $index 指定英雄装备框
  **/
 	function heroPutDownEquip( $index ){
-		$this->setUpdTime();
 		$ret = self::$heroInfo[$this->hid]['equip'.$index];
 		self::$lastUpdHero[$this->hid]['equip'.$index] = '0';
 		self::$heroInfo[$this->hid]['equip'.$index] = '0';
+		$this->setUpdTime();
 		return true;
 	}
 /**
@@ -260,10 +261,11 @@ class User_Hero extends User_Base{
  *@ 英雄品质升级或使用灵魂石合成英雄 $level: 品质等级  1=>白  2=>绿  3=>蓝 4=>紫 5=>橙
  **/
 	function colorUp( $level ){
-		$this->setUpdTime();
 		$this->unLockSkill( $level ); //品质升级技能解锁
 		self::$lastUpdHero[$this->hid]['color'] = $level;
-		return self::$heroInfo[$this->hid]['color'] = $level;
+		$ret = self::$heroInfo[$this->hid]['color'] = $level;
+		$this->setUpdTime();
+		return $ret;
 	}
 /**
  *@ 获取当前英雄的信息
@@ -309,19 +311,18 @@ class User_Hero extends User_Base{
  *@ 英雄指定技能的升级
  **/
 	function skillUp( $skillIndex ){
-		$this->setUpdTime();
 		$skillConf =$this->getSkillConfig();
 		$skillConf[ $skillIndex ] += 1;
 		$this->log->i('* 用户#'.$this->uid.'#升级英雄#'.$this->hid.'#'.$skillIndex.'技能->'.$skillConf[ $skillIndex ]);
 		$this->setMissionId( 2, 27 );
 		self::$lastUpdHero[$this->hid]['config'] = json_encode($skillConf);
-		return self::$heroInfo[$this->hid]['config'] = json_encode($skillConf);
+		self::$heroInfo[$this->hid]['config'] = json_encode($skillConf);
+		return $this->setUpdTime();
 	}
 /**
  *@ 英雄技能解锁 $skillIndex:技能下标  
  **/
 	function unLockSkill( $skillIndex ){
-		$this->setUpdTime();
 		$skillConf = self::$heroInfo[$this->hid]['config'];
 		$skillConf = json_decode( $skillConf, true );
 		if( isset( $skillConf[ $skillIndex ] ) ){return true;}
@@ -336,7 +337,8 @@ class User_Hero extends User_Base{
 		}
 		$this->log->i('* 用户#'.$this->uid.'#英雄#'.$this->hid.'#技能（'.$this->hid.$skillIndex.'）解锁！');
 		self::$lastUpdHero[$this->hid]['config'] = json_encode($skillConf);
-		return self::$heroInfo[$this->hid]['config'] = json_encode($skillConf);
+		self::$heroInfo[$this->hid]['config'] = json_encode($skillConf);
+		return $this->setUpdTime();
 	}
 
 	function __destruct(){
