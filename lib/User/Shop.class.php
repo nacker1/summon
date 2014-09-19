@@ -11,17 +11,17 @@
 		),  	           				
 		2=>array(				//高级vip商店 神密商店
 			'time'=>array(21),
-			'type'=>array(6,6,6,6,6,6,6,6,6,6,6,6),
-			'save'=>'60',			//商店保存时间
+			'type'=>array(1,1,1,6,6,3,3,3,3,3,3,3),
+			'save'=>'3600',			//商店保存时间
 			'vip'=>10			//该商店的vip要求
 		),	        				
 		3=>array(				//竞技场商店
 			'time'=>array(21),
-			'type'=>array(6,1,1,1,1,1)
+			'type'=>array(1,1,1,6,6,3,3,3,3,3,3,3)
 		),              				
 		4=>array(				//远征币  燃烧远征商店
 			'time'=>array(21),
-			'type'=>array(6,1,1,1,1,1)
+			'type'=>array(1,1,1,6,6,3,3,3,3,3,3,3)
 		),             				
 	);
 
@@ -126,6 +126,9 @@
 			ret('Config_Error! Code:'.__LINE__,-1);
 		}
 		foreach( $this->shopConfig[ $this->type ]['type'] as $val ){
+			if( $val == 3 ){
+				$val = mt_rand(3,5);
+			}
 			$list = $oList = array();
 			if( !isset( $this->shopinfo[ $val ] ) ){
 				$this->log->e('* 配置（'.json_encode($this->shopConfig[$this->type]['type']).'）错误，无商品类型（'.$val.'），类:'.__CLASS__);
