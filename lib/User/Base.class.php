@@ -594,6 +594,7 @@
  *	$value:	$key 对应的值
  **/
 	public function setUserRecord( $key, $value ){
+		$this->log->i( $key.'=>'.$value );
 		return self::$recordInfo[$this->uid][$key] = $value;
 	}
 /**
@@ -611,6 +612,7 @@
  *	$value:	$key 对应需要添加的值
  **/
 	public function addUserRecord( $key, $value ){
+		$this->log->i( $key.'+'.$value );
 		return self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
 	}
 #============================================================================================
