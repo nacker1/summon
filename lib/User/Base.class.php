@@ -530,7 +530,7 @@
  **/
 	public function getMissionNotice(){
 		$this->log->i( json_encode(self::$missionNotice) );
-		return self::$missionNotice[$this->uid];
+		return empty( self::$missionNotice[$this->uid] )? array():self::$missionNotice[$this->uid];
 	}
 /**
  *@ setUpdTime() 设置信息更新标志
