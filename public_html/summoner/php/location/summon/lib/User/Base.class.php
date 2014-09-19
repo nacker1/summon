@@ -497,7 +497,19 @@
  *@ setMissionId() 	设置相关任务完成进度
  **/
 	public function setMissionId( $type, $class ){
-		return self::$missionIdList[$type][] = $class;
+		self::$missionIdList[$type][] = $class;
+		#同步用户任务信息
+		if( !empty( self::$missionIdList ) && count( self::$missionIdList ) > 0 ){
+			$missionIdList = self::$missionIdList;
+			self::$missionIdList = array();
+			foreach( $missionIdList as $k=>$val ){
+				$proxy = $this->proxy( array('type'=>$k, 'uid'=>$this->uid) );
+				foreach( $val as $v ){
+					$proxy->exec( $v );
+				}
+			}
+		}
+		return true;
 	}
 /**
  *@ 公共代理类
@@ -627,17 +639,7 @@
 			$this->throwSQL( $this->baseRecordTable, self::$recordInfo[$this->uid], array('uid'=>$this->uid) );
 			self::$recordInfo[$this->uid]='';
 		}
-		#同步用户任务信息
-		if( !empty( self::$missionIdList ) && count( self::$missionIdList ) > 0 ){
-			$missionIdList = self::$missionIdList;
-			self::$missionIdList = array();
-			foreach( $missionIdList as $k=>$val ){
-				$proxy = $this->proxy( array('type'=>$k, 'uid'=>$this->uid) );
-				foreach( $val as $v ){
-					$proxy->exec( $v );
-				}
-			}
-		}
+		
 		#命令行模式启动，抛出sql语句
 		if( !empty( self::$throwSQL ) && count( self::$throwSQL>0 ) ){
 			$throwSQL = self::$throwSQL;
