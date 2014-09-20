@@ -485,6 +485,7 @@
 		}
 		$this->log->i('* 用户#'.$this->uid.'#获得'.$nums.'经验，'.$this->uinfo['exp'].'->'.self::$userinfo[$this->uid]['exp'] );
 		$this->setUpdTime(3);
+		$this->log->i('updinfo_des:'.json_encode(self::$updinfo[$this->uid]));
 		return true;
 	}
 /**
@@ -620,7 +621,6 @@
 	}
 #============================================================================================
 	public function __destruct(){
-		
 		# 同步用户信息
 		if( isset( self::$isupd[$this->uid] ) && self::$isupd[$this->uid] > 0 ){ 
 			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$userinfo[$this->uid]);

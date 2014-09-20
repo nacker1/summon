@@ -294,7 +294,6 @@
 	}
 
 	function __destruct(){
-		$this->log->i('updinfo——des:'.json_encode(self::$updinfo[$this->uid]));
 	}
  }
 ?>
