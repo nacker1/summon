@@ -90,9 +90,14 @@
 			}
 		}
 		$keys = $this->pre->keys('shopConfig:'.$this->type.':*');
+		$uLevel = $this->getLevel();
 		foreach( $keys as $v ){
 			$shopInfo = $this->pre->hgetall( $v );
-			$this->shopinfo[ $shopInfo['Item_Type'] ][] = $shopInfo;
+			$nLevel = explode( ',', $v['Group_Level'] );
+			if( $uLevel >= $nLevel[0] && $uLevel <= $nLevel[1] ){
+				$this->shopinfo[ $shopInfo['Item_Type'] ][] = $shopInfo;
+				$this->tolRate += (int)$shopInfo['Item_Random'];
+			}
 		}
 	}
 /**
@@ -136,21 +141,12 @@
 				ret('Config_Error! Code:'.__LINE__,-1);
 			}
 			foreach( $this->shopinfo[ $val ] as $k=>$v ){
-				$levelLimit = explode(',',$v['Group_Level']);
-				if( ( empty( $v['Group_Level'] ) && $v['Item_Rate'] > 0 ) || ( isset( $levelLimit[0] ) && isset( $levelLimit[1] ) && $userLevel>=$levelLimit[0] && $userLevel < $levelLimit[1] && $v['Item_Rate'] > 0 ) ){
-					$list[$k] = $v['Item_Rate']/10000;
-				}elseif( empty( $v['Group_Level'] ) || (isset( $levelLimit[0] ) && isset( $levelLimit[1] ) && $userLevel>=$levelLimit[0] && $userLevel < $levelLimit[1] ) ){
-					$oList[] = $v;
-				}
+				$list[$k] = number_format( $v['Item_Rate']/$this->tolRate, 4 );
 			}
-			asort($list);
 			$index = $this->retRate($list);
-			if( isset( $this->shopinfo[ $val ][$index] ) ){
-				$temp = $this->shopinfo[ $val ][$index];
-			}else{
-				$index = mt_rand(0, ( count( $oList )-1 ) );
-				$temp = $oList[$index];
-			}
+
+			$temp = $this->shopinfo[ $val ][$index];
+
 			if( 6 == $temp['Item_Type'] ){
 				$nums = 5;
 			}elseif( 1 == $temp['Item_Type'] ){
