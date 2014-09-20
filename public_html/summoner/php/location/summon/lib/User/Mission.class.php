@@ -55,7 +55,7 @@
 
  		if( $this->type == 1 ){ //系统任务  取数据库
  			$this->redis;
- 			if( C('test') || $this->redis->exists( 'roleinfo:'.$this->uid.':mission:check' ) ){
+ 			if( true || C('test') || $this->redis->exists( 'roleinfo:'.$this->uid.':mission:check' ) ){
  				$this->db;
  				$where = array( 'uid'=>$this->uid );
  				if( !empty( $this->class ) ){
