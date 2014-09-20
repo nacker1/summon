@@ -4,10 +4,7 @@
  **/
 class User_Hero extends User_Base{
 	static $heroInfo=array();					//英雄信息  如果是所有信息则记录英雄列表，如果指定hid则记录当前hid对应的英雄信息
-	static $upd = 0;
-	static $lastUpdHero = array();				//英雄最后更新信息
-
-
+	
 	protected $table = 'zy_uniqRoleHero'; 		//用户英雄表
 	protected $hid;					//英雄id
 	private $hinfo;					//英雄信息
@@ -254,7 +251,6 @@ class User_Hero extends User_Base{
  **/
 	function setUpdTime(){
 		self::$heroInfo[$this->hid]['fire'] = self::$lastUpdHero[$this->hid]['fire'] = $this->getTotalFire();
-		self::$upd = 1;
 		return true;
 	}
 /** 
@@ -342,23 +338,7 @@ class User_Hero extends User_Base{
 	}
 
 	function __destruct(){
-		if( self::$upd > 0 ){
-			$this->redis->hmset( 'roleinfo:'.$this->uid.':hero:'.$this->hid,self::$heroInfo[$this->hid] );
-			$tempUpdHero = self::$lastUpdHero;
-			self::$lastUpdHero = '';
-			if( is_array( $tempUpdHero ) )
-				foreach( $tempUpdHero as $v ){
-					if( $v['add'] == 1 ){
-						unset($v['add']);
-						$this->setThrowSQL( $this->table, $v );
-					}else{
-						$this->setThrowSQL( $this->table,$v,array('uid'=>$this->uid,'hid'=>$this->hid) );
-					}
-				}
-			self::$upd = 0;
-		}
-
-		$this->log->i( 'hero_destruct:'.json_encode( self::$lastUpdHero ) );
+		
 	}
 }
 ?>
