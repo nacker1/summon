@@ -292,5 +292,9 @@
 	function getUserMissingByClass( $type ){
 		return $this->redis->hgetall( 'roleinfo:'.$this->getUid().':mission:'.$type);
 	}
+
+	function __destruct(){
+		$this->log->i('updinfo——des:'.json_encode(self::$updinfo[$this->uid]));
+	}
  }
 ?>

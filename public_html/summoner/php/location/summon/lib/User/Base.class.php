@@ -620,7 +620,7 @@
 	}
 #============================================================================================
 	public function __destruct(){
-		$this->log->i('updinfo:'.json_encode(self::$updinfo[$this->uid]));
+		
 		# 同步用户信息
 		if( isset( self::$isupd[$this->uid] ) && self::$isupd[$this->uid] > 0 ){ 
 			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$userinfo[$this->uid]);
