@@ -100,6 +100,7 @@
 				$this->tolRate += (int)$shopInfo['Item_Random'];
 			}
 		}
+
 	}
 /**
  *@ getShopGoods() 随机抽取指定数量的商品
@@ -141,11 +142,13 @@
 				$this->log->e('* 无指定类型的商品配置（'.$val.'）,类:'.__CLASS__);
 				ret('Config_Error! Code:'.__LINE__,-1);
 			}
+			dump($this->tolRate);
 			foreach( $this->shopinfo[ $val ] as $k=>$v ){
 				$list[$k] = number_format( $v['Item_Random']/$this->tolRate, 4 );
 			}
+			dump($list);
 			$index = $this->retRate($list);
-
+			dump($index);
 			$temp = $this->shopinfo[ $val ][$index];
 
 			if( 6 == $temp['Item_Type'] ){
