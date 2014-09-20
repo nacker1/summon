@@ -77,7 +77,7 @@
  **/
 	private function _init(){
 		$this->pre;
-		if( C('test') || !$this->pre->hexists('shopConfig:'.$this->type.':*') ){
+		if( C('test') || !$this->pre->exists('shopConfig:'.$this->type.':check') ){
 			$where['Shop_Id'] = $this->type;
 			$this->cdb;
 			$ret = $this->cdb->find( $this->table, '*' , $where );
@@ -88,6 +88,7 @@
 				$this->pre->del('shopConfig:'.$v['Shop_Id'].':'.$v['Item_Type'].':'.$v['id']);
 				$this->pre->hmset( 'shopConfig:'.$v['Shop_Id'].':'.$v['Item_Type'].':'.$v['id'],$v );
 			}
+			$this->pre->hset('shopConfig:'.$this->type.':check','checked',1,get3time());
 		}
 		$keys = $this->pre->keys('shopConfig:'.$this->type.':*');
 		$uLevel = $this->getLevel();
