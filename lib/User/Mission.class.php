@@ -67,7 +67,7 @@
  					$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
  					$this->redis->hdel( 'roleinfo:'.$this->uid.':mission:*' );
  					foreach( $taskClass as $k=>$v ){
- 						$uMission[ $k ]['type'] = $k;			//任务类型
+ 						$set[$k]['type'] = $uMission[ $k ]['type'] = $k;			//任务类型
  						$set[$k]['showMission'] = $uMission[ $k ]['showMission'] = $v;
  						$set[$k]['missing'] = $uMission[ $k ]['missing'] = $v;
  						$uMission[ $k ]['time'] = time();
