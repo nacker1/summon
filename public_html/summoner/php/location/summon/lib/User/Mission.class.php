@@ -213,7 +213,7 @@
 		 			$this->errorInfo = 'no_finished';
 		 			return false;
 		 		}
-	 			$this->cond->del( $taskConfig['Task_Class'] );
+	 			#$this->cond->del( $taskConfig['Task_Class'] );
 	 		}
 	 		return $taskConfig['config']; 
 	 	}
