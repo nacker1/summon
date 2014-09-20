@@ -73,6 +73,7 @@
  					}
  				}else{
  					$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
+ 					dump($taskClass);
  					if( !empty( $this->class ) ){
 	 					$set['type'] = $uMission['type'] = $k;			//任务类型
  						$set['showMission'] = $uMission['showMission'] = $v;
