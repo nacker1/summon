@@ -202,6 +202,7 @@
 			$ret = array_merge( $ret, $uInfo );
 		}
 		$this->log->i('list:'.json_encode($ret));
+		$this->log->i('list:'.json_encode($ret));
 		return $ret;
 	}
  }
