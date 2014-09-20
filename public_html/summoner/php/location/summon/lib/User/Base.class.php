@@ -50,10 +50,12 @@
 			}
 			self::$userinfo[$this->uid] = $uinfo;
 		}
-		if( !isset( self::$updinfo[$this->uid] ) )
+		if( !isset( self::$updinfo[$this->uid] ) ){
 			self::$updinfo[$this->uid] = array();
-		if( !isset( self::$recordInfo[$this->uid] ) )
+		}
+		if( !isset( self::$recordInfo[$this->uid] ) ){
 			self::$recordInfo[$this->uid] = array();
+		}
 		$this->uinfo = self::$userinfo[$this->uid];
 	}
 /**
