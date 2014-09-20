@@ -175,7 +175,7 @@
  		$uMission = $this->getUserMission();
  		if( is_array( $uMission ) )
 	 		foreach( $uMission as $v ){
-	 			$mMinLevel = (int)$this->pre->hget( 'baseMissionConfig:'.$this->type.':'.$v['showMission'],'Task_Level' );
+	 			#$mMinLevel = (int)$this->pre->hget( 'baseMissionConfig:'.$this->type.':'.$v['showMission'],'Task_Level' );
 	 			#if( $uLevel >= $mMinLevel ){
 	 			$ret[] = $v;
 	 			#}
