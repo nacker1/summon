@@ -76,7 +76,7 @@
  						$set[$k]['progress'] = $uMission[ $k ]['progress'] = 0;
  						$uMission[ $k ]['uid'] = $this->uid;
  						if( $k == 21 ){
- 							$hero  = new User_Hero();
+ 							$hero  = new User_Hero($this->uid);
  							$set[$k]['progress'] = $uMission[ $k ]['progress'] = $hero->getUserHeroNum();
  							$keys = $this->pre->keys( 'baseMissionConfig:1:121*' );
  							rsort($keys);
