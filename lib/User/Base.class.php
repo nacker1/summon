@@ -589,6 +589,8 @@
 	public function getUserLastUpdInfo(){
 		$this->log->i('updinfo:'.json_encode(self::$updinfo[$this->uid]));
 		if( isset(self::$recordInfo[$this->uid]) && is_array( self::$recordInfo[$this->uid] ) ){
+			dump(self::$updinfo);
+			dump(self::$recordInfo);
 			return array_merge(self::$updinfo[$this->uid],self::$recordInfo[$this->uid]);
 		}else{
 			return self::$updinfo[$this->uid];
