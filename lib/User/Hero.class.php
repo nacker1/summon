@@ -357,6 +357,8 @@ class User_Hero extends User_Base{
 				}
 			self::$upd = 0;
 		}
+
+		$this->log->i( json_encode( self::$lastUpdHero ) );
 	}
 }
 ?>

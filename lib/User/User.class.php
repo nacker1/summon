@@ -185,7 +185,6 @@
 								}else{	#发放英雄
 									$hero = new User_Hero( $this->uid, $gInfo[0] );
 									$hero->giveHero( $gInfo[2] );
-									$good = new User_Goods( $this->uid, '11'.substr( $gInfo[0],2 ) );
 								}								
 							}
 							if( isset($good) && gettype( $good ) == 'object' ){
