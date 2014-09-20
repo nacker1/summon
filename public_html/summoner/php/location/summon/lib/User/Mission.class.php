@@ -55,60 +55,42 @@
 
  		if( $this->type == 1 ){ //系统任务  取数据库
  			$this->redis;
- 			if( true || C('test') || $this->redis->exists( 'roleinfo:'.$this->uid.':mission:check' ) ){
+ 			if( C('test') || !$this->redis->exists( 'roleinfo:'.$this->uid.':mission:11' ) ){
  				$this->db;
- 				$where = array( 'uid'=>$this->uid );
- 				if( !empty( $this->class ) ){
- 					$where['type'] = $this->class;
- 				}
- 				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress,type', $where ); 
+ 				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress,type', array( 'uid'=>$this->uid,'status'=>0 ) ); 
 
  				$this->log->i( 'db_mission:'.json_encode($ret) );	
  				if( $ret && is_array( $ret ) ){
  					foreach( $ret as $v ){
-						$this->redis->del('roleinfo:'.$this->uid.':mission:'.$v['type']);
- 						if( $v['status'] == 0 ){
- 							$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$v['type'],$v );
- 						}
+ 						$this->redis->del('roleinfo:'.$this->uid.':mission:'.$v['type']);
+ 						$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$v['type'],$v );
  					}
  				}else{
  					$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
- 					dump($taskClass);
- 					if( !empty( $this->class ) ){
-	 					$set['type'] = $uMission['type'] = $k;			//任务类型
- 						$set['showMission'] = $uMission['showMission'] = $v;
- 						$set['missing'] = $uMission['missing'] = $v;
- 						$uMission['time'] = time();
- 						$set[$k]['progress'] = $uMission['progress'] = 0;
- 						$uMission['uid'] = $this->uid;
- 						$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$this->class, $set );
- 						$this->setThrowSQL($this->userMissionTable,$uMission);
-	 				}else{
-	 					foreach( $taskClass as $k=>$v ){
-	 						$set[$k]['type'] = $uMission[ $k ]['type'] = $k;			//任务类型
-	 						$set[$k]['showMission'] = $uMission[ $k ]['showMission'] = $v;
-	 						$set[$k]['missing'] = $uMission[ $k ]['missing'] = $v;
-	 						$uMission[ $k ]['time'] = time();
-	 						$set[$k]['progress'] = $uMission[ $k ]['progress'] = 0;
-	 						$uMission[ $k ]['uid'] = $this->uid;
-	 						if( $k == 21 ){
-	 							$hero  = new User_Hero();
-	 							$set[$k]['progress'] = $uMission[ $k ]['progress'] = $hero->getUserHeroNum();
-	 							$keys = $this->pre->keys( 'baseMissionConfig:1:121*' );
-	 							rsort($keys);
-	 							foreach( $keys as $val ){
-	 								$bMC = $this->pre->hmget( $val, array('Task_Id','Task_Time') );
-	 								if( $bMC['Task_Time'] <= $uMission[$k]['progress'] ){
-	 									$set[$k]['missing'] = $uMission[ $k ]['missing'] = $bMC['Post_Task'];
-	 								}
-	 							}
-	 						}
-	 						$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$k, $set[$k] );
-	 						$this->setThrowSQL($this->userMissionTable,$uMission[$k]);
-	 					}
-	 				}
+ 					$this->redis->hdel( 'roleinfo:'.$this->uid.':mission:*' );
+ 					foreach( $taskClass as $k=>$v ){
+ 						$set[$k]['type'] = $uMission[ $k ]['type'] = $k;			//任务类型
+ 						$set[$k]['showMission'] = $uMission[ $k ]['showMission'] = $v;
+ 						$set[$k]['missing'] = $uMission[ $k ]['missing'] = $v;
+ 						$uMission[ $k ]['time'] = time();
+ 						$set[$k]['progress'] = $uMission[ $k ]['progress'] = 0;
+ 						$uMission[ $k ]['uid'] = $this->uid;
+ 						if( $k == 21 ){
+ 							$hero  = new User_Hero();
+ 							$set[$k]['progress'] = $uMission[ $k ]['progress'] = $hero->getUserHeroNum();
+ 							$keys = $this->pre->keys( 'baseMissionConfig:1:121*' );
+ 							rsort($keys);
+ 							foreach( $keys as $val ){
+ 								$bMC = $this->pre->hmget( $val, array('Task_Id','Task_Time') );
+ 								if( $bMC['Task_Time'] <= $uMission[$k]['progress'] ){
+ 									$set[$k]['missing'] = $uMission[ $k ]['missing'] = $bMC['Post_Task'];
+ 								}
+ 							}
+ 						}
+ 						$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$k, $set[$k] );
+ 						$this->setThrowSQL($this->userMissionTable,$uMission[$k]);
+ 					}
  				}
- 				$this->redis->set( 'roleinfo:'.$this->uid.':mission:check', 1, get3time() );
  			}
  		}else{//日常任务
  			$overTime = get3time();
@@ -175,7 +157,7 @@
  		$uMission = $this->getUserMission();
  		if( is_array( $uMission ) )
 	 		foreach( $uMission as $v ){
-	 			#$mMinLevel = (int)$this->pre->hget( 'baseMissionConfig:'.$this->type.':'.$v['showMission'],'Task_Level' );
+	 			$mMinLevel = (int)$this->pre->hget( 'baseMissionConfig:'.$this->type.':'.$v['showMission'],'Task_Level' );
 	 			#if( $uLevel >= $mMinLevel ){
 	 			$ret[] = $v;
 	 			#}
