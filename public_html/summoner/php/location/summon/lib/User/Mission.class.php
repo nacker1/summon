@@ -85,7 +85,7 @@
  								}
  							}
  						}
- 						$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$k, $set );
+ 						$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$k, $set[$k] );
  						$this->setThrowSQL($this->userMissionTable,$uMission[$k]);
  					}
  				}
