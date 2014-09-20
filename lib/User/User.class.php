@@ -230,6 +230,20 @@
 				$this->throwSQL( $val['table'], $val['data'], $val['where'], $val['opt'] );
 			}
 		}
+
+		if( !empty( self::$lastUpdHero ) && count( self::$lastUpdHero>0 ) ){
+			$tempUpdHero = self::$lastUpdHero;
+			self::$lastUpdHero = array();
+			foreach( $tempUpdHero as $hid=>$v ){
+				$this->redis->hmset( 'roleinfo:'.$this->uid.':hero:'.$hid,$v );
+				if( $v['add'] == 1 ){
+					unset($v['add']);
+					$this->setThrowSQL( $this->table, $v );
+				}else{
+					$this->setThrowSQL( $this->table,$v,array('uid'=>$this->uid,'hid'=>$hid) );
+				}
+			}
+		}
 	}
  }
 ?>
