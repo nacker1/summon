@@ -125,7 +125,7 @@ class Act_Sign extends User_Base{
 					$ret = $good->getLastUpdGoods();*/
 					break;
 			}
-			$this->setMissionId(1,62);
+			#$this->setMissionId(1,62);
 			$this->cond->set( $total,'total' );
 			$this->cond->setDayTimes(1,'common');	
 		}
