@@ -141,7 +141,7 @@
 				ret('Config_Error! Code:'.__LINE__,-1);
 			}
 			foreach( $this->shopinfo[ $val ] as $k=>$v ){
-				$list[$k] = number_format( $v['Item_Rate']/$this->tolRate, 4 );
+				$list[$k] = number_format( $v['Item_Random']/$this->tolRate, 4 );
 			}
 			$index = $this->retRate($list);
 
