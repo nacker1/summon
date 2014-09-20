@@ -55,7 +55,9 @@
  			$this->redis;
  			if( C('test') || !$this->redis->exists( 'roleinfo:'.$this->uid.':mission:11' ) ){
  				$this->db;
- 				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress', array( 'uid'=>$this->uid,'status'=>0 ) ); 	
+ 				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress', array( 'uid'=>$this->uid,'status'=>0 ) ); 
+
+ 				$this->log->i( 'db_mission:'.json_encode($ret) );	
  				if( $ret && is_array( $ret ) ){
  					foreach( $ret as $v ){
  						$this->redis->del('roleinfo:'.$this->uid.':mission:'.$v['type']);
@@ -66,26 +68,25 @@
  					$this->redis->hdel( 'roleinfo:'.$this->uid.':mission:*' );
  					foreach( $taskClass as $k=>$v ){
  						$uMission[ $k ]['type'] = $k;			//任务类型
- 						$uMission[ $k ]['showMission'] = $v;
- 						$uMission[ $k ]['missing'] = $v;
+ 						$set['showMission'] = $uMission[ $k ]['showMission'] = $v;
+ 						$set['missing'] = $uMission[ $k ]['missing'] = $v;
  						$uMission[ $k ]['time'] = time();
- 						$uMission[ $k ]['progress'] = 0;
+ 						$set['progress'] = $uMission[ $k ]['progress'] = 0;
  						$uMission[ $k ]['uid'] = $this->uid;
  						if( $k == 21 ){
  							$hero  = new User_Hero();
- 							$uMission[ $k ]['progress'] = $hero->getUserHeroNum();
+ 							$set['progress'] = $uMission[ $k ]['progress'] = $hero->getUserHeroNum();
  							$keys = $this->pre->keys( 'baseMissionConfig:1:121*' );
  							rsort($keys);
  							foreach( $keys as $val ){
  								$bMC = $this->pre->hmget( $val, array('Task_Id','Task_Time') );
  								if( $bMC['Task_Time'] <= $uMission[$k]['progress'] ){
- 									$uMission[ $k ]['missing'] = $bMC['Post_Task'];
+ 									$set['missing'] = $uMission[ $k ]['missing'] = $bMC['Post_Task'];
  								}
  							}
  						}
- 						$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$k, $uMission[$k] );
+ 						$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$k, $set );
  						$this->setThrowSQL($this->userMissionTable,$uMission[$k]);
- 						//$this->db->insert( $this->userMissionTable, $uMission[$k] ); //初始化用户系统任务
  					}
  				}
  			}
