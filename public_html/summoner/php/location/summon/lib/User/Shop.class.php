@@ -97,7 +97,6 @@
 			$nLevel = explode( ',', $shopInfo['Group_Level'] );
 			if( $uLevel >= $nLevel[0] && $uLevel <= $nLevel[1] ){
 				$this->shopinfo[ $shopInfo['Item_Type'] ][] = $shopInfo;
-				$this->tolRate += (int)$shopInfo['Item_Random'];
 			}
 		}
 
@@ -142,9 +141,13 @@
 				$this->log->e('* 无指定类型的商品配置（'.$val.'）,类:'.__CLASS__);
 				ret('Config_Error! Code:'.__LINE__,-1);
 			}
-			dump($this->tolRate);
+			$tolRate = 0;
+			foreach( $this->shopinfo[ $val ] as $v ){
+				$tolRate += (int)$v['Item_Random'];
+			}
+			dump($tolRate);
 			foreach( $this->shopinfo[ $val ] as $k=>$v ){
-				$list[$k] = number_format( $v['Item_Random']/$this->tolRate, 4 );
+				$list[$k] = number_format( $v['Item_Random']/$tolRate, 4 );
 			}
 			dump($list);
 			$index = $this->retRate($list);
