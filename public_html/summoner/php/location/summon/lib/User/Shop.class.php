@@ -39,9 +39,6 @@
 
 	 private $overTime;					//商店下一次刷新或消失的时间  用于倒计时
 
-	 private $tolRate;					//统计概率区域总和
-
-	
 	function __construct( $uid,$type=1,$isRef=0 ){
 		parent::__construct($uid);
 		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
@@ -145,13 +142,10 @@
 			foreach( $this->shopinfo[ $val ] as $v ){
 				$tolRate += (int)$v['Item_Random'];
 			}
-			dump($tolRate);
 			foreach( $this->shopinfo[ $val ] as $k=>$v ){
 				$list[$k] = number_format( $v['Item_Random']/$tolRate, 4 );
 			}
-			dump($list);
 			$index = $this->retRate($list);
-			dump($index);
 			$temp = $this->shopinfo[ $val ][$index];
 
 			if( 6 == $temp['Item_Type'] ){
