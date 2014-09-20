@@ -232,6 +232,7 @@
 		}
 
 		if( !empty( self::$lastUpdHero ) && count( self::$lastUpdHero>0 ) ){
+			dump(self::$lastUpdHero);
 			$tempUpdHero = self::$lastUpdHero;
 			self::$lastUpdHero = array();
 			foreach( $tempUpdHero as $hid=>$v ){
