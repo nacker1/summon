@@ -264,7 +264,7 @@
 			$notice[] = $missing['showMission'];
 			$notice[] = $set['missing'];
 			$notice[] = $set['progress'];
-			$this->setMissionNotice( $this->type, $notice );
+			$this->setMissionNotice( $this->type,$type, $notice );
 			#===========================================================
 			$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$type ) );
 			if( empty( $baseMission[ 'Post_Task' ] ) ){
@@ -280,7 +280,7 @@
 				#=====================  设置任务通知  ======================
 				$notice[] = $dayMis['tid'];
 				$notice[] = $dayMis['progress'];
-				$this->setMissionNotice( $this->type, $notice );
+				$this->setMissionNotice( $this->type,$type, $notice );
 				#===========================================================
 			}			
 			return true;
