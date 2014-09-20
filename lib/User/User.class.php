@@ -205,6 +205,7 @@
 		if( is_array( $uInfo ) ){
 			$ret = array_merge( $ret, $uInfo );
 		}
+		$this->log->i('list:'.json_encode($ret));
 		return $ret;
 	}
  }
