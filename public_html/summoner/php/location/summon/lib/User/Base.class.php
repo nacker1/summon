@@ -505,8 +505,8 @@
  *@ setMissionId() 	设置相关任务完成进度
  **/
 	public function setMissionId( $type, $class ){
-		$proxy = $this->proxy( array('type'=>$type, 'uid'=>$this->uid) );
-		$proxy->exec( $class );
+		$proxy = $this->proxy( array('type'=>$type, 'uid'=>$this->uid, 'class'=>$class ) );
+		$proxy->exec();
 		return true;
 	}
 /**

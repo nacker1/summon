@@ -8,6 +8,7 @@
  	private $userMissionTable='zy_uniqUserMission';			//用户任务进度表
  	private $dayMissionTag = 'missionTagEveryDay';			//日常任务标签
  	private $type;											//任务类型  1为任务，2为日常
+ 	private $class;											//任务小类型  对应任务表中的Class
  	private $errorInfo;										//错误信息
 
  	function __construct( $args )
@@ -16,6 +17,7 @@
  		parent::__construct( $args['uid'] );
  		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
  		$this->type = $args['type'];	
+ 		$this->class = $args['class'];
  		$this->_init();
  	}
 
@@ -228,23 +230,21 @@
 /**
  *@ setUserShowMission 设置用户指定类型任务的当前领取任务id
  *@ param:
- *	$type: 任务分类
+ *	$type:		 任务分类
  *	$taskId:	 任务id
  **/
-	function setUserShowMission( $type,$taskId ){
-		//$this->db->update( $this->userMissionTable, array('showMission'=>$taskId), array( 'uid'=>$this->uid, 'type'=>$type ) );
-		$this->setThrowSQL( $this->userMissionTable, array('showMission'=>$taskId), array( 'uid'=>$this->uid, 'type'=>$type ) );
-		return $this->redis->hset( 'roleinfo:'.$this->getUid().':mission:'.$type, 'showMission', $taskId );
+	function setUserShowMission( $class,$taskId ){
+		$this->setThrowSQL( $this->userMissionTable, array('showMission'=>$taskId), array( 'uid'=>$this->uid, 'type'=>$class ) );
+		return $this->redis->hset( 'roleinfo:'.$this->getUid().':mission:'.$class, 'showMission', $taskId );
 	}
 /**
  *@ setUserMissing 设置用户指定类型任务已完成任务的进度
- *@ param:
- *	$type: 任务分类
  **/
-	function setUserMissing( $type ){
-		$this->log->i('missionClass:'.$type.',this->type:'.$this->type);
+	function setUserMissing(){
+		$this->log->i('missionClass:'.$this->class.',this->type:'.$this->type);
 		if( 1==$this->type ){ //处理系统任务
-			$missing = $this->getUserMissingByClass($type);
+			$missing = $this->getUserMissingByClass( $this->class );
+			if( empty( $missing ) ) {return;}
 			$set['progress'] = (int)$missing['progress'] + 1;
 			$set['missing'] = (int)$missing['missing'];
 			$key = empty( $missing['missing'] ) ? $missing['showMission'] : $missing['missing'] ;
@@ -256,7 +256,7 @@
 					$set['status'] = 1;
 				}
 			}
-			if( $type < 14 ){
+			if( $this->class < 14 ){
 				$set['progress'] = $baseMission[ 'Task_Goal' ];
 			}
 			
@@ -264,23 +264,23 @@
 			$notice[] = $missing['showMission'];
 			$notice[] = $set['missing'];
 			$notice[] = $set['progress'];
-			$this->setMissionNotice( $this->type,$type, $notice );
+			$this->setMissionNotice( $this->type,$this->class, $notice );
 			#===========================================================
-			$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$type ) );
+			$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$this->class ) );
 			if( empty( $baseMission[ 'Post_Task' ] ) ){
-				return $this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$type );
+				return $this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$this->class );
 			}else{
-				return $this->redis->hmset( 'roleinfo:'.$this->getUid().':mission:'.$type, $set);
+				return $this->redis->hmset( 'roleinfo:'.$this->getUid().':mission:'.$this->class, $set);
 			}
 		}elseif( 2==$this->type ){ //处理日常任务
-			$dayMis = $this->cond->get($type);
+			$dayMis = $this->cond->get($this->class);
 			if( !empty( $dayMis ) ){
 				$dayMis['progress'] += 1 ;
-				$this->cond->set( $dayMis,$type );
+				$this->cond->set( $dayMis,$this->class );
 				#=====================  设置任务通知  ======================
 				$notice[] = $dayMis['tid'];
 				$notice[] = $dayMis['progress'];
-				$this->setMissionNotice( $this->type,$type, $notice );
+				$this->setMissionNotice( $this->type,$this->class, $notice );
 				#===========================================================
 			}			
 			return true;
