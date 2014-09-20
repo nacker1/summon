@@ -222,17 +222,7 @@
 			self::$recordInfo[$this->uid]=array();
 		}
 		
-		#命令行模式启动，抛出sql语句
-		if( !empty( self::$throwSQL ) && count( self::$throwSQL>0 ) ){
-			$throwSQL = self::$throwSQL;
-			self::$throwSQL = array();
-			foreach( $throwSQL as $val ){
-				$this->throwSQL( $val['table'], $val['data'], $val['where'], $val['opt'] );
-			}
-		}
-
 		if( !empty( self::$lastUpdHero ) && count( self::$lastUpdHero>0 ) ){
-			dump(self::$lastUpdHero);
 			$tempUpdHero = self::$lastUpdHero;
 			self::$lastUpdHero = array();
 			foreach( $tempUpdHero as $hid=>$v ){
@@ -243,6 +233,15 @@
 				}else{
 					$this->setThrowSQL( $this->table,$v,array('uid'=>$this->uid,'hid'=>$hid) );
 				}
+			}
+		}
+
+		#命令行模式启动，抛出sql语句
+		if( !empty( self::$throwSQL ) && count( self::$throwSQL>0 ) ){
+			$throwSQL = self::$throwSQL;
+			self::$throwSQL = array();
+			foreach( $throwSQL as $val ){
+				$this->throwSQL( $val['table'], $val['data'], $val['where'], $val['opt'] );
 			}
 		}
 	}
