@@ -126,9 +126,6 @@
 			ret('Config_Error! Code:'.__LINE__,-1);
 		}
 		foreach( $this->shopConfig[ $this->type ]['type'] as $val ){
-			if( $val == 3 ){
-				$val = mt_rand(3,5);
-			}
 			$list = $oList = array();
 			if( !isset( $this->shopinfo[ $val ] ) ){
 				$this->log->e('* 配置（'.json_encode($this->shopConfig[$this->type]['type']).'）错误，无商品类型（'.$val.'），类:'.__CLASS__);
