@@ -148,26 +148,21 @@
 			switch( $k ){
 				case 'money':
 					$this->addMoney($v);
-					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'life':
 					$this->addLife($v);
-					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'jewel':
 				case 'cooldou':
 					$this->addCooldou($v);
-					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'exp':
 					$this->addExp($v);
-					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'mFriend':		#友情点
 				case 'mAction':		#活动币
 				case 'mArena':		#竞技场币
 					$this->addUserRecord( $k,$v );
-					$uInfo = $this->getUserLastUpdInfo();
 					break;
 				case 'good':
 					if( !empty( $v ) ){
@@ -202,6 +197,7 @@
 				default:break;
 			}
 		}
+		$uInfo = $this->getUserLastUpdInfo();
 		if( is_array( $uInfo ) ){
 			$ret = array_merge( $ret, $uInfo );
 		}

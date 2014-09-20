@@ -584,7 +584,7 @@
 		if( isset(self::$recordInfo[$this->uid]) && is_array( self::$recordInfo[$this->uid] ) ){
 			return array_merge(self::$updinfo[$this->uid],self::$recordInfo[$this->uid]);
 		}else{
-			return self::$updinfo[$this->uid];
+			self::$updinfo[$this->uid];
 		}
 	}
 #====== * 用户设置或同步用户zy_uniqRoleRecord表中的信息 ==========================================================
