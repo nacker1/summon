@@ -589,8 +589,6 @@
 	public function getUserLastUpdInfo(){
 		$this->log->i('updinfo:'.json_encode(self::$updinfo[$this->uid]));
 		if( isset(self::$recordInfo[$this->uid]) && is_array( self::$recordInfo[$this->uid] ) ){
-			dump(self::$updinfo);
-			dump(self::$recordInfo);
 			return array_merge(self::$updinfo[$this->uid],self::$recordInfo[$this->uid]);
 		}else{
 			return self::$updinfo[$this->uid];
@@ -626,31 +624,6 @@
 		return self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
 	}
 #============================================================================================
-	public function __destruct(){
-		# 同步用户信息
-		if( isset( self::$isupd[$this->uid] ) && self::$isupd[$this->uid] > 0 ){ 
-			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$userinfo[$this->uid]);
-			if( self::$isupd[$this->uid] >= 2 && !empty( self::$updinfo[$this->uid] ) ){
-				$this->throwSQL( $this->baseTable, self::$updinfo[$this->uid], array('userid'=>$this->uid) );
-				self::$updinfo[$this->uid] = '';
-			}
-			self::$isupd[$this->uid] = 0;
-		}
-		#同步用户record信息
-		if( is_array( self::$recordInfo[$this->uid] ) && !empty( self::$recordInfo[$this->uid] ) ){
-			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$recordInfo[$this->uid]);
-			$this->throwSQL( $this->baseRecordTable, self::$recordInfo[$this->uid], array('uid'=>$this->uid) );
-			self::$recordInfo[$this->uid]='';
-		}
-		
-		#命令行模式启动，抛出sql语句
-		if( !empty( self::$throwSQL ) && count( self::$throwSQL>0 ) ){
-			$throwSQL = self::$throwSQL;
-			self::$throwSQL = array();
-			foreach( $throwSQL as $val ){
-				$this->throwSQL( $val['table'], $val['data'], $val['where'], $val['opt'] );
-			}
-		}
-	}
+	
  }
 ?>
