@@ -49,9 +49,10 @@ class Herobase extends Base{
 
 		$skill = json_decode( $skill, true );
 		$sTolLevel = 0;						#英雄技能等级总和
-		foreach( $skill as $v ){
-			$sTolLevel += $v;
-		}
+		if( is_array( $skill ) )
+			foreach( $skill as $v ){
+				$sTolLevel += $v;
+			}
 
 		return floor( ( ($att+$def+$sor+$res)*$speed + ( $hp + $gethp * 2 + $mp + $getmp * 2 ) )/10 ) + $color*100*( 1+number_format($sTolLevel/10,3) );
 	}
