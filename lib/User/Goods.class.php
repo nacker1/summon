@@ -92,7 +92,10 @@
 		if( !empty($this->goodinfo) ){
 			foreach( $this->goodinfo as $val ){
 				foreach( $val as $v ){
-					$ret[] = $v;
+					$t[] = $v['gid'];
+					$t[] = $v['nums'];
+					$ret[] = implode('|', $t);
+					unset($t);
 				}
 			}
 		}
