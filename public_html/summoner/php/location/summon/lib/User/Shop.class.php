@@ -94,7 +94,7 @@
 		$uLevel = $this->getLevel();
 		foreach( $keys as $v ){
 			$shopInfo = $this->pre->hgetall( $v );
-			$nLevel = explode( ',', $v['Group_Level'] );
+			$nLevel = explode( ',', $shopInfo['Group_Level'] );
 			if( $uLevel >= $nLevel[0] && $uLevel <= $nLevel[1] ){
 				$this->shopinfo[ $shopInfo['Item_Type'] ][] = $shopInfo;
 				$this->tolRate += (int)$shopInfo['Item_Random'];
