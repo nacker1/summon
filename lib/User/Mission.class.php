@@ -68,20 +68,20 @@
  					$this->redis->hdel( 'roleinfo:'.$this->uid.':mission:*' );
  					foreach( $taskClass as $k=>$v ){
  						$uMission[ $k ]['type'] = $k;			//任务类型
- 						$set['showMission'] = $uMission[ $k ]['showMission'] = $v;
- 						$set['missing'] = $uMission[ $k ]['missing'] = $v;
+ 						$set[$k]['showMission'] = $uMission[ $k ]['showMission'] = $v;
+ 						$set[$k]['missing'] = $uMission[ $k ]['missing'] = $v;
  						$uMission[ $k ]['time'] = time();
- 						$set['progress'] = $uMission[ $k ]['progress'] = 0;
+ 						$set[$k]['progress'] = $uMission[ $k ]['progress'] = 0;
  						$uMission[ $k ]['uid'] = $this->uid;
  						if( $k == 21 ){
  							$hero  = new User_Hero();
- 							$set['progress'] = $uMission[ $k ]['progress'] = $hero->getUserHeroNum();
+ 							$set[$k]['progress'] = $uMission[ $k ]['progress'] = $hero->getUserHeroNum();
  							$keys = $this->pre->keys( 'baseMissionConfig:1:121*' );
  							rsort($keys);
  							foreach( $keys as $val ){
  								$bMC = $this->pre->hmget( $val, array('Task_Id','Task_Time') );
  								if( $bMC['Task_Time'] <= $uMission[$k]['progress'] ){
- 									$set['missing'] = $uMission[ $k ]['missing'] = $bMC['Post_Task'];
+ 									$set[$k]['missing'] = $uMission[ $k ]['missing'] = $bMC['Post_Task'];
  								}
  							}
  						}
