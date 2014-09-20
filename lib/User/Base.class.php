@@ -459,6 +459,7 @@
 			self::$userinfo[$this->uid]['friends'] = $nextinfo['friends'];
 			#self::$userinfo[$this->uid]['pageNum'] = $nextinfo['pnum'];
 			self::$userinfo[$this->uid]['maxHeroLevel'] = $nextinfo['HeroLevel'];
+
 			self::$updinfo[$this->uid]['level'] = $nextinfo['level'];
 			self::$updinfo[$this->uid]['exp'] = $tolexp;
 			self::$updinfo[$this->uid]['life'] = $nextinfo['life'];
@@ -584,7 +585,7 @@
 		if( isset(self::$recordInfo[$this->uid]) && is_array( self::$recordInfo[$this->uid] ) ){
 			return array_merge(self::$updinfo[$this->uid],self::$recordInfo[$this->uid]);
 		}else{
-			self::$updinfo[$this->uid];
+			return self::$updinfo[$this->uid];
 		}
 	}
 #====== * 用户设置或同步用户zy_uniqRoleRecord表中的信息 ==========================================================
