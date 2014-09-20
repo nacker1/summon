@@ -516,11 +516,12 @@
 /**
  *@ setMissionNotice 设置任务标记
  *	param:
- *		$type: 		任务类型  1为系统任务  2为日常
- *		$config:	发生变化的任务信息
+ *		$type: 			大任务类型  1为系统任务  2为日常
+ *		$taskClass: 	任务小类型  对应mission表中的class
+ *		$config:		发生变化的任务信息
  **/
-	public function setMissionNotice( $type, $config ){
-		return self::$missionNotice[$this->uid][$type][] = implode('|', $config);
+	public function setMissionNotice( $type, $taskClass, $config ){
+		return self::$missionNotice[$this->uid][$type][$taskClass] = implode('|', $config);
 	}
 /**
  *@ getMissionNotice 设置任务标记
