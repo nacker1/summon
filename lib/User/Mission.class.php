@@ -81,12 +81,12 @@
  							$keys = $this->pre->keys( 'baseMissionConfig:1:121*' );
  							rsort($keys);
  							dump($keys);
+ 							dump($uMission[ $k ]['progress']);
  							foreach( $keys as $val ){
  								$bMC = $this->pre->hmget( $val, array('Task_Time','Post_Task') );
- 								if( $bMC['Task_Time'] <= $hero->getUserHeroNum() ){
+ 								if( $bMC['Task_Time'] <= $uMission[ $k ]['progress'] ){
  									$set[$k]['missing'] = $uMission[$k]['missing'] = (int)$bMC['Post_Task'];
  								}
- 								dump($set);
  								dump($bMC);
  							}
  						}
