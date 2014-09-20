@@ -80,7 +80,6 @@
  							$set[$k]['progress'] = $uMission[ $k ]['progress'] = $hero->getUserHeroNum();
  							$keys = $this->pre->keys( 'baseMissionConfig:1:121*' );
  							rsort($keys);
- 							dump($keys);
  							foreach( $keys as $val ){
  								$bMC = $this->pre->hmget( $val, array('Task_Time','Post_Task') );
  								if( (int)$bMC['Task_Time'] <= $uMission[ $k ]['progress'] ){
