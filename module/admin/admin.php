@@ -36,7 +36,11 @@ switch ($type) {
 }
 
 $ret = $user->getUserLastUpdInfo();
-$ret['mis'] = $user->getMissionNotice();
+$mis = $user->getMissionNotice();
+if( !empty( $mis ) ){
+	$ret['mis'] = $mis;
+}
+
 if( isset( $hero ) && gettype( $hero ) == 'object' ){
 	$ret['hero'] = $hreo->getLastUpdField();
 }
