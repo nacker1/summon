@@ -87,6 +87,9 @@
  								}
  							}
  						}
+ 						if( $k == 51 ){
+ 							$set[$k]['progress'] = $this->getLevel();
+ 						}
  						$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$k, $set[$k] );
  						$this->setThrowSQL($this->userMissionTable,$uMission[$k]);
  					}
