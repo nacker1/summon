@@ -15,7 +15,11 @@
 	switch( $type ){
 		case '1': //金币抽扣金币
 			$limit = new User_Limit( 'goldDrawDay' );
-			$money = $limit->getOneTimeCooldou();
+			if( $nums > 1 ){
+				$money = $limit->getExpend();
+			}else{
+				$money = $limit->getOneTimeCooldou();
+			}
 			$money = $money * $nums;
 			if( $user->getMoney() < $money ){
 				ret( 'no_money',-1 );
@@ -25,7 +29,11 @@
 			break;
 		case '2'://钻石抽钻石
 			$limit = new User_Limit( 'jewelDrawDay','dayLimit', 3600*48 );
-			$cooldou = $limit->getOneTimeCooldou();
+			if( $nums > 1 ){
+				$cooldou = $limit->getExpend();
+			}else{
+				$cooldou = $limit->getOneTimeCooldou();
+			}
 			
 			$cooldou = $cooldou * $nums;
 			if( $user->getCooldou() < $cooldou ){
@@ -37,7 +45,11 @@
 		case '3'://友情点抽友情点
 			$limit = new User_Limit( 'friendDrawDay','dayLimit', 3600*48 );
 			
-			$cooldou = $limit->getOneTimeCooldou();
+			if( $nums > 1 ){
+				$cooldou = $limit->getExpend();
+			}else{
+				$cooldou = $limit->getOneTimeCooldou();
+			}
 			
 			$cooldou = $cooldou * $nums;
 			if( $user->getUserRecord( 'mFriend' ) < $cooldou ){
