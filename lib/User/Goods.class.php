@@ -110,13 +110,13 @@
 		if( $this->bgood->getGoodSuper() == 1 ){ //可重叠物品计算数量
 			if( $this->redis->exists( 'roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid ) ){
 				$this->goodinfo['nums'] += $nums;
-				self::$lastUpdGoods['old'][$this->gid]=$this->goodinfo['nums'];
+				self::$lastUpdGoods['old'][$this->gid]=(int)$this->goodinfo['nums'];
 				$this->log->i('* 给用户('.$this->uid.')发放#'.$nums.'#个物品（'.$this->type.' -> '.$this->gid.'）成功');
 				$this->setThrowSQL( $this->table,array( 'nums'=>$this->goodinfo['nums'] ),array(  'uid'=>$this->uid,'gid'=>$this->gid ) );
 				return $this->redis->hincr( 'roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid, 'nums', $nums);
 			}else{
 				$insert['gid'] = $this->gid;
-				$insert['nums'] = $nums;
+				$insert['nums'] = (int)$nums;
 				$insert['gtype'] = $this->type;
 				$insert['uid'] = $this->uid;
 				$this->setThrowSQL( $this->table, $insert );
@@ -248,7 +248,7 @@
  **/
 	public function getGoodsNum(){
 		if( isset( $this->goodinfo['nums'] ) ){
-			return $this->goodinfo['nums'];
+			return (int)$this->goodinfo['nums'];
 		}
 		return 0;
 	}
