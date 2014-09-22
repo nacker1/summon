@@ -201,8 +201,6 @@
 		if( is_array( $uInfo ) ){
 			$ret = array_merge( $ret, $uInfo );
 		}
-		$this->log->i('list:'.json_encode($ret));
-		$this->log->i('list:'.json_encode($ret));
 		return $ret;
 	}
 	public function __destruct(){
@@ -222,9 +220,9 @@
 			self::$recordInfo[$this->uid]=array();
 		}
 		
-		if( !empty( self::$lastUpdHero ) && count( self::$lastUpdHero>0 ) ){
-			$tempUpdHero = self::$lastUpdHero;
-			self::$lastUpdHero = array();
+		if( !empty( self::$lastUpdHero[$this->uid] ) && count( self::$lastUpdHero[$this->uid]>0 ) ){
+			$tempUpdHero = self::$lastUpdHero[$this->uid];
+			self::$lastUpdHero[$this->uid] = array();
 			foreach( $tempUpdHero as $hid=>$v ){
 				$this->redis->hmset( 'roleinfo:'.$this->uid.':hero:'.$hid,$v );
 				if( $v['add'] == 1 ){
