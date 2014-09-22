@@ -68,7 +68,7 @@
 					$this->redis->hdel('roleinfo:'.$this->uid.':goods:*');
 					foreach( $goods as $v ){
 						$set['gid'] = $v['gid'];
-						$set['nums'] = $v['nums'];
+						$set['nums'] = (int)$v['nums'];
 						$set['gtype'] = $v['gtype'];
 						if( $gsuper[$v['gid']] ){
 							$this->redis->hmset( 'roleinfo:'.$this->uid.':goods:'.$v['gtype'].':'.$v['gid'], $set );
