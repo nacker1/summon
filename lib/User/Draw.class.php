@@ -93,7 +93,7 @@ class User_Draw extends User_Base{
 			$index = 0;
 		}
 		$good[]=$tempInfo[$index]['Item_Id'];
-		$good[] = mt_rand($tempInfo[$index]['Item_CountMin'],$tempInfo[$index]['Item_CountMax']);
+		$good[] = mt_rand( $type['min'], $type['min'] );
 		if( $tempInfo[$index]['Item_Id'] < 11000 ){	#如果是英雄给定英雄的品质
 			$good[] = $tempInfo[$index]['Item_Color'];
 		}
@@ -113,6 +113,8 @@ class User_Draw extends User_Base{
 		$index = $this->retRate( $list );
 		$ret['type'] = $this->userType[ $index ]['Item_Type'];
 		$ret['color'] = $this->userType[ $index ]['Item_Color'];
+		$ret['min'] = $this->userType[ $index ]['Item_CountMin'];
+		$ret['max'] = $this->userType[ $index ]['Item_CountMax'];
 		return $ret;
 	}
 /**
