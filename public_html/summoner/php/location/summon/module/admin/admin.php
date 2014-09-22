@@ -35,5 +35,11 @@ switch ($type) {
 		break;
 }
 
-ret( '操作成功' );
+$ret = $user->getUserLastUpdInfo();
+$ret['mis'] = $user->getMissionNotice();
+if( isset( $hero ) && gettype( $hero ) == 'object' ){
+	$ret['hero'] = $hreo->getLastUpdField();
+}
+
+ret($ret);
 ?>
