@@ -241,13 +241,11 @@
 		$set['showMission'] = $taskId;
 		if( empty( $baseMission['Post_Task'] ) ){
 			$set['status'] = 1;
-		}
-		$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$class ) );
-		if( $set['status'] == 1 ){
 			$this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$this->class );
 		}else{
 			$this->redis->hset( 'roleinfo:'.$this->getUid().':mission:'.$class, 'showMission', $taskId );	
 		}
+		$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$class ) );
 		return true;
 	}
 /**
