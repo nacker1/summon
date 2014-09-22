@@ -30,6 +30,7 @@ class User_Draw extends User_Base{
 				ret( 'no_type_config' ,-1);
 			}
 			foreach( $ret as $v ){
+				$this->pre->del( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'] );
 				$this->pre->hmset( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'], $v );
 			}
 			#=============  初始化物品配置表  =================================================
