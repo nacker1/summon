@@ -244,10 +244,11 @@
 		}
 		$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$class ) );
 		if( $set['status'] == 1 ){
-			return $this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$this->class );
+			$this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$this->class );
 		}else{
-			return $this->redis->hset( 'roleinfo:'.$this->getUid().':mission:'.$class, 'showMission', $taskId );	
+			$this->redis->hset( 'roleinfo:'.$this->getUid().':mission:'.$class, 'showMission', $taskId );	
 		}
+		return true;
 	}
 /**
  *@ setUserMissing 设置用户指定类型任务已完成任务的进度
