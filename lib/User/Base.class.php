@@ -13,6 +13,8 @@
 			
 	protected $baseTable='zy_uniqRole';												//用户角色表
 	protected $baseRecordTable = 'zy_uniqRoleRecord';								//用户record信息表
+	protected $heroTable = 'zy_uniqRoleHero'; 										//用户英雄表
+	protected $userMissionTable='zy_uniqUserMission';								//用户任务进度表
 						
 	private $upInfo; 																//角色升级对应参数表
 	private $uinfo;	 																//角色信息
@@ -528,7 +530,7 @@
  *		$config:		发生变化的任务信息
  **/
 	public function setMissionNotice( $type, $taskClass, $config ){
-		return self::$missionNotice[$this->uid][$type][$taskClass] = implode('|', $config);
+			return self::$missionNotice[$this->uid][$type][$taskClass] = $config;
 	}
 /**
  *@ getMissionNotice 设置任务标记
@@ -538,7 +540,27 @@
  **/
 	public function getMissionNotice(){
 		$this->log->i( json_encode(self::$missionNotice) );
-		return empty( self::$missionNotice[$this->uid] )? array():self::$missionNotice[$this->uid];
+		$ret = '';
+		if( is_array( self::$missionNotice[$this->uid] ) ){
+			foreach( self::$missionNotice[$this->uid] as $k=>$v ){
+				if( 1==$k ){
+					foreach( $v as $key=>$val ){
+						$set[] = $val['showMission'];
+						$set[] = $val['missing'];
+						$set[] = $val['progress'];
+						$ret[$k][$key] = implode('|',$set);
+					}
+				}else{
+					foreach( $v as $key=>$val ){
+						$set[] = $val['tid'];
+						$set[] = $val['progress'];
+						$ret[$k][$key] = implode('|',$set);
+					}
+				}
+			}
+		}
+		return $ret;
+		#return empty( self::$missionNotice[$this->uid] )? array():self::$missionNotice[$this->uid];
 	}
 /**
  *@ setUpdTime() 设置信息更新标志

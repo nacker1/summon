@@ -229,11 +229,18 @@
 				$this->redis->hmset( 'roleinfo:'.$this->uid.':hero:'.$hid,$v );
 				if( $v['add'] == 1 ){
 					unset($v['add']);
-					$this->setThrowSQL( $this->table, $v );
+					$this->setThrowSQL( $this->heroTable, $v );
 				}else{
-					$this->setThrowSQL( $this->table,$v,array('uid'=>$this->uid,'hid'=>$hid) );
+					$this->setThrowSQL( $this->heroTable,$v,array('uid'=>$this->uid,'hid'=>$hid) );
 				}
 			}
+		}
+
+		if( isset( self::$missionNotice[$this->uid][1] ) && count( self::$missionNotice[$this->uid][1] ) > 0 ){
+			foreach( self::$missionNotice[$this->uid][1] as $k=>$v ){
+				$this->setThrowSQL( $this->userMissionTable, $v, array( 'uid'=>$this->uid, 'type'=>$k ) );
+			}
+			unset(self::$missionNotice[$this->uid][1]);
 		}
 
 		#命令行模式启动，抛出sql语句
