@@ -244,9 +244,9 @@
 		}
 		$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$class ) );
 		if( $set['status'] == 1 ){
-			$this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$this->class );
+			return $this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$this->class );
 		}else{
-			$this->redis->hset( 'roleinfo:'.$this->getUid().':mission:'.$class, 'showMission', $taskId );	
+			return $this->redis->hset( 'roleinfo:'.$this->getUid().':mission:'.$class, 'showMission', $taskId );	
 		}
 	}
 /**
