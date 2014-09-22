@@ -30,7 +30,6 @@ switch ($type) {
 		ret($user->getUserLastUpdInfo());
 	default:
 		# code...
-		asdf
 		phpinfo();
 		ret( ' YMD '.__LINE__, -1 );
 		break;
