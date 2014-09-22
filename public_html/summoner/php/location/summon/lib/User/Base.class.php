@@ -530,6 +530,7 @@
  *		$config:		发生变化的任务信息
  **/
 	public function setMissionNotice( $type, $taskClass, $config ){
+			$this->log->i( json_encode($config) );
 			return self::$missionNotice[$this->uid][$type][$taskClass] = $config;
 	}
 /**
