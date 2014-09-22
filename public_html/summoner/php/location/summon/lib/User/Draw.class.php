@@ -154,7 +154,7 @@ class User_Draw extends User_Base{
 				$flag = '1,4';
 				break;
 		}
-
+		$this->log->i('Group_Level:'.$flag);
 		$keys = $this->pre->keys( 'baseDrawTypeConfig:'.$this->type.':'.$flag.':*' );
 		foreach( $keys as $v ){
 			$info = $this->pre->hgetall( $v );
