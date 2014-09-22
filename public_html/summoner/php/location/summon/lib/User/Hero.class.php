@@ -5,7 +5,6 @@
 class User_Hero extends User_Base{
 	static $heroInfo=array();					//英雄信息  如果是所有信息则记录英雄列表，如果指定hid则记录当前hid对应的英雄信息
 	
-	protected $table = 'zy_uniqRoleHero'; 		//用户英雄表
 	protected $hid;					//英雄id
 	private $hinfo;					//英雄信息
 
@@ -23,7 +22,7 @@ class User_Hero extends User_Base{
 				$this->db;
 				$this->redis->hdel('roleinfo:'.$this->uid.':hero:*');
 				#hid,level,exp,color,star,equip1,equip2,equip3,equip4,equip5,equip6,config
-				$heros = $this->db->find($this->table,'fire,hid,level,exp,color,star,equip1,equip2,equip3,equip4,equip5,equip6,config',array('uid'=>$this->uid));
+				$heros = $this->db->find($this->heroTable,'fire,hid,level,exp,color,star,equip1,equip2,equip3,equip4,equip5,equip6,config',array('uid'=>$this->uid));
 				if( is_array( $heros ) )
 					foreach( $heros as $v ){
 						$this->redis->del( 'roleinfo:'.$this->uid.':hero:'.$v['hid'] );
@@ -51,7 +50,7 @@ class User_Hero extends User_Base{
 			}else{
 				if( C('test') || !$this->redis->exists('roleinfo:'.$this->uid.':hero:'.$this->hid.':checked') ){
 					$this->db;
-					self::$heroInfo[$this->hid] = $this->db->findOne($this->table, 'hid,level,exp,color,star,equip1,equip2,equip3,equip4,equip5,equip6,config', array( 'uid'=>$this->uid, 'hid'=>$this->hid ));
+					self::$heroInfo[$this->hid] = $this->db->findOne($this->heroTable, 'hid,level,exp,color,star,equip1,equip2,equip3,equip4,equip5,equip6,config', array( 'uid'=>$this->uid, 'hid'=>$this->hid ));
 					$this->hinfo = self::$heroInfo[$this->hid];
 				}
 			}
