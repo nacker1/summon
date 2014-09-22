@@ -25,7 +25,7 @@
 		),             				
 	);
 
-	 private $table='zy_baseShopConfig';	//商店配置表
+	 private $table='zy_baseShopConfig';	//商店配置表 
 
 	 private $actRedis;					//活动指向的redis
 
