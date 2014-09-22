@@ -30,7 +30,6 @@ class User_Draw extends User_Base{
 				ret( 'no_type_config' ,-1);
 			}
 			foreach( $ret as $v ){
-				$this->log->i(json_encode($v));
 				$this->pre->del( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'] );
 				$this->pre->hmset( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'], $v );
 			}
@@ -157,10 +156,9 @@ class User_Draw extends User_Base{
 		}
 
 		$keys = $this->pre->keys( 'baseDrawTypeConfig:'.$this->type.':'.$flag.':*' );
-		$this->log->i('typeKeys:'.json_encode( $keys ) );
 		foreach( $keys as $v ){
 			$info = $this->pre->hgetall( $v );
-			$this->log->e(json_encode($info));
+			$this->log->i(json_encode($info));
 			$this->userType[] = $info;
 			$this->tolTypeRate += $info['Item_Random'];
 		}		
