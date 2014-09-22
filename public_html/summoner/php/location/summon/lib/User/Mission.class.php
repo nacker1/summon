@@ -188,13 +188,9 @@
 	 			return false;
 	 		}
 	 		#设置用户当前showMission为下一任务id
-	 		if( $this->setUserShowMission( $taskConfig['Task_Class'],$taskConfig['Post_Task'] ) ){
-	 			$this->log->i( json_encode($taskConfig) );
-	 			return $taskConfig['config']; 
-	 		}else{
-	 			$this->errorInfo = ' sys_fail_retry ';
-	 			return false;
-	 		}
+	 		$this->setUserShowMission( $taskConfig['Task_Class'],$taskConfig['Post_Task'] );
+ 			$this->log->i( json_encode($taskConfig) );
+ 			return $taskConfig['config']; 
 	 	}elseif( 2== $this->type ){ //日常任务领取处理
 	 		if( $taskConfig['Task_Class'] == 61 ){ //晚餐或午餐领取体力需要额外处理
 	 			$mission = $this->cond->get( $taskConfig['Task_Class'].':'.$taskId );
@@ -236,14 +232,14 @@
  *	$type:		 任务分类
  *	$taskId:	 任务id
  **/
-	function setUserShowMission( $class,$taskId ){
-		$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$taskId,array( 'Post_Task' ) );
-		$set['showMission'] = $taskId;
+	function setUserShowMission( $class,$nextTaskId ){
+		$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$nextTaskId,array( 'Post_Task' ) );
+		$set['showMission'] = $nextTaskId;
 		if( empty( $baseMission['Post_Task'] ) ){
 			$set['status'] = 1;
-			$this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$this->class );
+			$this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$class );
 		}else{
-			$this->redis->hset( 'roleinfo:'.$this->getUid().':mission:'.$class, 'showMission', $taskId );	
+			$this->redis->hset( 'roleinfo:'.$this->getUid().':mission:'.$class, 'showMission', $nextTaskId );	
 		}
 		$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$class ) );
 		return true;
