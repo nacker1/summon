@@ -158,6 +158,7 @@ class User_Draw extends User_Base{
 		$this->log->i('typeKeys:'.json_encode( $keys ) );
 		foreach( $keys as $v ){
 			$info = $this->pre->hgetall( $v );
+			$this->log->e(json_encode($info));
 			$this->userType[] = $info;
 			$this->tolTypeRate += $info['Item_Random'];
 		}		
