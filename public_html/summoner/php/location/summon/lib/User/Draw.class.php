@@ -146,12 +146,15 @@ class User_Draw extends User_Base{
 			case 49<$uLevel && $uLevel<60:#50-59级
 				$flag = '50,59';
 				break;
-			case 59<$uLevel:#60级及以上
-				$flag = '60,80';
+			case 59<$uLevel && $uLevel<70:#50-59级
+				$flag = '60,69';
+				break;
+			case 69<$uLevel && $uLevel<80:#50-59级
+				$flag = '70,79';
 				break;
 			default:
 				# code...
-				$flag = '1,4';
+				$flag = '80,80';
 				break;
 		}
 		$this->log->i('Group_Level:'.$flag);
