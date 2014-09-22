@@ -305,30 +305,6 @@
 		return self::$userinfo[$this->uid]['mail'] = $val;
 	}
 /**
- *@ 设置用户任务完成标记    
- * 2014-09-19  huangzy => 已废弃
- **/
-	public function setMissionNum(){
-		$this->setUpdTime(1);
-		if( isset( self::$userinfo[$this->uid]['mission'] ) ){
-			return self::$userinfo[$this->uid]['mission'] += 1;
-		}else{
-			return self::$userinfo[$this->uid]['mission'] = 1;
-		}
-	}
-/**
- *@ 用户领取任务奖励后自动减1	
- * 2014-09-19  huangzy => 已废弃
- **/
-	public function reduceMissionNum(){
-		$this->setUpdTime(1);
-		if( isset( self::$userinfo[$this->uid]['mission'] ) &&  self::$userinfo[$this->uid]['mission']>0 ){
-			return self::$userinfo[$this->uid]['mission'] -= 1;
-		}else{
-			return self::$userinfo[$this->uid]['mission'] = 0;
-		}
-	}
-/**
  *@ 添加用户金币
  **/
 	public function addMoney( $nums ){
