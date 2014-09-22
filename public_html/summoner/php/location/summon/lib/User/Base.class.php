@@ -551,12 +551,14 @@
 						$set[] = $val['missing'];
 						$set[] = $val['progress'];
 						$ret[$k][$key] = implode('|',$set);
+						unset($set);
 					}
 				}else{
 					foreach( $v as $key=>$val ){
 						$set[] = $val['tid'];
 						$set[] = $val['progress'];
 						$ret[$k][$key] = implode('|',$set);
+						unset($set);
 					}
 				}
 			}
