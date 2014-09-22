@@ -234,7 +234,12 @@
  *	$taskId:	 任务id
  **/
 	function setUserShowMission( $class,$taskId ){
-		$this->setThrowSQL( $this->userMissionTable, array('showMission'=>$taskId), array( 'uid'=>$this->uid, 'type'=>$class ) );
+		$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$taskId,array( 'Post_Task' ) );
+		$set['showMission'] = $taskId;
+		if( empty( $baseMission['Post_Task'] ) ){
+			$set['status'] = 1;
+		}
+		$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$class ) );
 		return $this->redis->hset( 'roleinfo:'.$this->getUid().':mission:'.$class, 'showMission', $taskId );
 	}
 /**
@@ -252,9 +257,7 @@
 			$this->log->i( 'baseMission:'.json_encode($baseMission) );
 			if( $set['progress'] >= $baseMission['Task_Time'] ){
 				$set['missing'] = $baseMission[ 'Post_Task' ];
-				if( empty( $baseMission['Post_Task'] ) ){
-					$set['status'] = 1;
-				}
+				
 			}
 			if( $this->class < 14 ){
 				$set['progress'] = $baseMission[ 'Task_Goal' ];
