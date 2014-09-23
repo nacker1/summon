@@ -50,7 +50,7 @@
 					if( $good->getGoodsNum() < $nums ){
 						ret('物品数量不足',-1);
 					}
-					if( $hero->addHeroExp( $gConfig['Hero_Exp'] ) ){
+					if( $hero->addHeroExp( $gConfig['Hero_Exp'] * $nums ) ){
 						$good->reduceGoods( $nums );
 						$ret['hero'][$hid] = $hero->getHeroLevelAndExp();
 						$ret['list'] = $good->getLastUpdGoods();
