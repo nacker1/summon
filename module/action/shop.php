@@ -20,6 +20,7 @@
 			$limit = new User_Limit( 'freeRefShopDay');
 			if( $limit->getLastTimes() < 1 ){ //获取剩余次数
 				$cooldou = $limit->getOneTimeCooldou(); //刷新商店所需要费用
+				echo $cooldou;
 				if( $cooldou>0 && $user->reduceCooldou( $cooldou ) === false ){
 					ret('钻石不足',-1);
 				}
