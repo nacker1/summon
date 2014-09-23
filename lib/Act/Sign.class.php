@@ -98,7 +98,7 @@ class Act_Sign extends User_Base{
 		}
 		$daySign = $this->getCommonTimes();
 		$vipSign =$this->getVipTimes();
-		$this->log->i( '用户#'.$this->uid.'#今日签到次数：com->'.$daySign.' & vip->'.$vipSign );
+		$this->log->i( '用户#'.$this->uid.'#今日签到次数：com->'.$daySign.' & vip->'.$vipSign.' & vLevel:'.$this->getVlevel() );
 		if( $daySign>0 && $vipSign>0 ){
 			return false;
 		}
