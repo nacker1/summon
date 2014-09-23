@@ -100,7 +100,7 @@ class Act_Sign extends User_Base{
 		$vipSign =$this->getVipTimes();
 		$this->log->i( '用户#'.$this->uid.'#今日签到次数：com->'.$daySign.' & vip->'.$vipSign );
 		if( $daySign>0 && $vipSign>0 ){
-			//return false;
+			return false;
 		}
 		$dayConfig = $this->pre->hgetall( 'action:sign:month:'.$total );
 		$addNums = $dayConfig['Item_Num'];
@@ -154,6 +154,8 @@ class Act_Sign extends User_Base{
 			$this->cond->setDayTimes(1,'vip');
 		}
 		
+		$this->log->i( 'add:'.json_encode($add) );
+
 		if( isset( $give ) )
 			$add['good'] = implode('#',$give);
 		return $add;
