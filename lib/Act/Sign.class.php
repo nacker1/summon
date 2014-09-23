@@ -159,6 +159,8 @@ class Act_Sign extends User_Base{
 
 		if( isset( $give ) )
 			$add['good'] = implode('#',$give);
+		else
+			$this->log->e('每日领取数据配置信息错误：'.json_encode($dayConfig));
 		return $add;
 	}
 }
