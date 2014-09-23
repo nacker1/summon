@@ -302,7 +302,7 @@
  **/
 	public function setNewMail($val=1){
 		$this->setUpdTime(1);
-		$this->log->i( $val.'_mail_' );
+		$this->log->e( $val.'_mail_' );
 		return self::$userinfo[$this->uid]['mail'] = $val;
 	}
 /**
