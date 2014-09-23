@@ -149,7 +149,7 @@
 		if( $hero->getHeroInfo() ){ //品质升级
 			$hInfo = $hero->getHeroInfo();
 			$cLevel = (int)$hInfo['color'] + 1;
-			if( $cLevel > 5 ){
+			if( $cLevel >= 5 ){
 				ret('技能已升级到顶级',-1);
 			}
 			if( $user->getMoney() < $money[ $cLevel ] ){
