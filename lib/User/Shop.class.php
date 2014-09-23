@@ -176,7 +176,6 @@
 		shuffle($retList['list']);
 		$retList['overTime'] = $this->overTime;
 		$retList['time'] = $this->nextTime;
-		$retList['out'] = $this->out;
 		$this->actRedis->set( $retList );
 		return $retList;
 	}
