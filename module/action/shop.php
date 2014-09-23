@@ -20,7 +20,6 @@
 
  switch( $type ){
 	case '1': //获取商店物品列表
-		$tag = '获取商店物品列表';
 		 $tag = '拉取商店'.$shopId.'物品';
 		 $ref = isset( $input['ref']) ? $input['ref'] : 0;
 		 if( !empty($ref) ){ //刷新普通商店次数添加
@@ -39,7 +38,6 @@
 		 $goods['jewel'] = $user->getCooldou();
 		 ret($goods);
 	case '2': //购买物品
-		$tag = '购买物品';
 		$tag = '商店'.$shopId.'购买商品';
 		$index = isset( $input['index']) ? $input['index'] : 0;
 		$shop = new User_Shop( $user->getUid(),$shopId );
