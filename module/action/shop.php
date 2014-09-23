@@ -12,18 +12,18 @@
  $shopId = isset( $input['sid']) ? $input['sid'] : 1;
 
  $tags = array(
- 		1=>'freeRefShopDay',
- 		2=>'vipRefShopDay',
- 		3=>'arenaRefShopDay',
- 		4=>'endRefShopDay',
+ 		1=>array('freeRefShopDay','普通商店'),
+ 		2=>array('vipRefShopDay','普通商店'),
+ 		3=>array('arenaRefShopDay','普通商店'),
+ 		4=>array('endRefShopDay','普通商店')
  	);
 
  switch( $type ){
 	case '1': //获取商店物品列表
-		 $tag = '拉取商店'.$shopId.'物品';
+		 $tag = '拉取商店'.$tags[$shopId][0][1].'物品';
 		 $ref = isset( $input['ref']) ? $input['ref'] : 0;
 		 if( !empty($ref) ){ //刷新普通商店次数添加
-			$limit = new User_Limit( $tags[$shopId] );
+			$limit = new User_Limit( $tags[$shopId][0] );
 			if( $limit->getLastTimes() < 1 ){ //获取剩余次数
 				$cooldou = $limit->getOneTimeCooldou(); //刷新商店所需要费用
 				dump( $cooldou );
@@ -38,7 +38,7 @@
 		 $goods['jewel'] = $user->getCooldou();
 		 ret($goods);
 	case '2': //购买物品
-		$tag = '商店'.$shopId.'购买商品';
+		$tag = '商店'.$tags[$shopId][0][1].'购买商品';
 		$index = isset( $input['index']) ? $input['index'] : 0;
 		$shop = new User_Shop( $user->getUid(),$shopId );
 		$shopInfo = $shop->getItemInfo( $index );
