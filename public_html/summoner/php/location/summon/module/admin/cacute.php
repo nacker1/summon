@@ -44,13 +44,13 @@
 			case '69':	//呆小红
 			case '70':	//呆小蓝
 			case '71':	//无尽之地
-				$reLife = -6*$sweepNum;
+				$reLife = 6*$sweepNum;
 				break;
 			case '12':	//精英关卡
-				$reLife = -12*$sweepNum;
+				$reLife = 12*$sweepNum;
 				break;
 			case '13':	//炼狱关卡
-				$reLife = -24*$sweepNum;
+				$reLife = 24*$sweepNum;
 				break;
 		}
 		if( $user->getLife() < $reLife ){
