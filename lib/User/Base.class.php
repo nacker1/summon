@@ -446,7 +446,7 @@
 
 			self::$updinfo[$this->uid]['level'] = $nextinfo['level'];
 			self::$updinfo[$this->uid]['exp'] = $tolexp;
-			self::$updinfo[$this->uid]['life'] = $nextinfo['life'];
+			self::$updinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life'];
 			self::$updinfo[$this->uid]['maxLife'] = self::$userinfo[$this->uid]['maxLife'];
 			#self::$updinfo[$this->uid]['lead'] = $nextinfo['lead'];
 			self::$updinfo[$this->uid]['friends'] = $nextinfo['friends'];
