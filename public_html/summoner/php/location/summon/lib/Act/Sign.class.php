@@ -151,6 +151,7 @@ class Act_Sign extends User_Base{
 				}
 				$this->cond->setDayTimes(1,'vip');
 			}
+			exit;
 		}else{
 			$this->cond->setDayTimes(1,'vip');
 		}
