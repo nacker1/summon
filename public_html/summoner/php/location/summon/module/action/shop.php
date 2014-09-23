@@ -24,9 +24,8 @@
 		 $ref = isset( $input['ref']) ? $input['ref'] : 0;
 		 if( !empty($ref) ){ //刷新普通商店次数添加
 			$limit = new User_Limit( $tags[$shopId][0] );
-			if( $limit->getLastTimes() < 1 ){ //获取剩余次数
+			if( $limit->getLastFreeTimes() < 1 ){ //获取剩余免费次数
 				$cooldou = $limit->getOneTimeCooldou(); //刷新商店所需要费用
-				dump( $cooldou );
 				if( $cooldou>0 && $user->reduceCooldou( $cooldou ) === false ){
 					ret('钻石不足',-1);
 				}
