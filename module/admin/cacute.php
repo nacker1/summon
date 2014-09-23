@@ -56,7 +56,7 @@
 			//--------------------------扫荡扣除钻石------------------------------
 			$limit = new User_Limit( 'freeSweepTimesDay' );
 			$cooldou = $limit->getOneTimeCooldou();
-			if( $cooldou > 0 && $user->getCooldou() > ( $limit->getExpend()*$sweepNum ) ){
+			if( $cooldou > 0 && $user->getCooldou() < ( $limit->getExpend()*$sweepNum ) ){
 				ret(' no_jewel ',-1);
 			}
 			$add['jewel'] = -( $limit->getExpend()*$sweepNum );
@@ -152,7 +152,7 @@
 				$actLimit->addLimitTimes();
 				break;
 		}
-		
+
 		if( isset( $input['buff'] ) && is_numeric( $input['buff'] ) ){ //活动添加buff  buff应对buff表中的buffid
 			$input['buff'] = $user->addRoleBuff( $input['buff'][0] );
 		}
