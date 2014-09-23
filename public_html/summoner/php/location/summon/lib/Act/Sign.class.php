@@ -102,10 +102,14 @@ class Act_Sign extends User_Base{
 		if( $daySign>0 && $vipSign>0 ){
 			return false;
 		}
-		if( $daySign>0 && $vipSign<1 ){
-			$total -= 1;
-		}
 		$dayConfig = $this->pre->hgetall( 'action:sign:month:'.$total );
+		$vLevel = $this->getVlevel();
+		if( $daySign>0 && $vipSign<1 ){
+			if( $vLevel >= $dayConfig['Double_NeedVip'] )
+				$total -= 1;
+			else
+				return false;
+		}
 		$addNums = $dayConfig['Item_Num'];
 		$add = false;
 		if( empty($daySign) ){//普通签到物品领取
@@ -132,7 +136,7 @@ class Act_Sign extends User_Base{
 		}
 		$this->log->i( 'dayConfig:'.json_encode($dayConfig) );
 		if( !empty($dayConfig['Double_NeedVip']) ){
-			if( empty($vipSign)  && $this->getVlevel() >=  (int)$dayConfig['Double_NeedVip'] ){//vip用户达到要求再奖励一次
+			if( empty($vipSign)  && $vLevel >=  (int)$dayConfig['Double_NeedVip'] ){//vip用户达到要求再奖励一次
 				$this->log->i('* 每日签到（vip'.$dayConfig['Double_NeedVip'].'及以上） 双倍奖励发放');
 				switch ( $dayConfig['Item_Id'] ) {
 					case '1':
