@@ -37,6 +37,7 @@
 	}
 # ----------------------------------------------------------每天竞技场打斗限制-------------------------------------------------------------------------------------	
 	if( $pass ){//通关成功需要处理的事务
+
 # ----------------------------------------------------------每天精英关卡与炼狱关卡通关次数限制-------------------------------------------------------------------------------------
 		if( in_array( $input['tasktype'], array( 12,13 ) ) ){					
 			$custLimit = new User_Limit( 'customsTimesDay' ); 
@@ -99,10 +100,6 @@
 			
 		}
 
-		if( isset( $input['buff'] ) && is_numeric( $input['buff'] ) ){ //活动添加buff  buff应对buff表中的buffid
-			$input['buff'] = $user->addRoleBuff( $input['buff'][0] );
-		}
-
 		switch( $input['tasktype'] ){  //通关扣除体力
 			case '11': 	//普通关卡
 				$add['life'] = -6*$sweepNum;
@@ -155,6 +152,12 @@
 				$actLimit->addLimitTimes();
 				break;
 		}
+		
+		if( isset( $input['buff'] ) && is_numeric( $input['buff'] ) ){ //活动添加buff  buff应对buff表中的buffid
+			$input['buff'] = $user->addRoleBuff( $input['buff'][0] );
+		}
+
+		
 		if( $input['playerexp'] > 0 ){
 			$add['exp'] = $input['playerexp'] * $sweepNum;		#添加召唤师经验
 		}
