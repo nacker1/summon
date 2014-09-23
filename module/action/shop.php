@@ -11,16 +11,23 @@
 
  $shopId = isset( $input['sid']) ? $input['sid'] : 1;
 
+ $tags = array(
+ 		1=>'freeRefShopDay',
+ 		2=>'freeRefShopDay',
+ 		3=>'freeRefShopDay',
+ 		4=>'freeRefShopDay',
+ 	);
+
  switch( $type ){
 	case '1': //获取商店物品列表
 		$tag = '获取商店物品列表';
 		 $tag = '拉取商店'.$shopId.'物品';
 		 $ref = isset( $input['ref']) ? $input['ref'] : 0;
 		 if( !empty($ref) && 1==$shopId ){ //刷新普通商店次数添加
-			$limit = new User_Limit( 'freeRefShopDay');
+			$limit = new User_Limit( $tags[$type] );
 			if( $limit->getLastTimes() < 1 ){ //获取剩余次数
 				$cooldou = $limit->getOneTimeCooldou(); //刷新商店所需要费用
-				echo $cooldou;
+				dump( $cooldou );
 				if( $cooldou>0 && $user->reduceCooldou( $cooldou ) === false ){
 					ret('钻石不足',-1);
 				}
