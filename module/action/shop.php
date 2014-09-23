@@ -13,9 +13,9 @@
 
  $tags = array(
  		1=>'freeRefShopDay',
- 		2=>'freeRefShopDay',
- 		3=>'freeRefShopDay',
- 		4=>'freeRefShopDay',
+ 		2=>'vipRefShopDay',
+ 		3=>'arenaRefShopDay',
+ 		4=>'endRefShopDay',
  	);
 
  switch( $type ){
@@ -23,8 +23,8 @@
 		$tag = '获取商店物品列表';
 		 $tag = '拉取商店'.$shopId.'物品';
 		 $ref = isset( $input['ref']) ? $input['ref'] : 0;
-		 if( !empty($ref) && 1==$shopId ){ //刷新普通商店次数添加
-			$limit = new User_Limit( $tags[$type] );
+		 if( !empty($ref) ){ //刷新普通商店次数添加
+			$limit = new User_Limit( $tags[$shopId] );
 			if( $limit->getLastTimes() < 1 ){ //获取剩余次数
 				$cooldou = $limit->getOneTimeCooldou(); //刷新商店所需要费用
 				dump( $cooldou );
