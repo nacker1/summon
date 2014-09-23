@@ -300,7 +300,7 @@ class User_Hero extends User_Base{
  *@ 获取英雄最后更新的信息
  **/
 	function getLastUpdField(){
-		return self::$lastUpdHero;
+		return self::$lastUpdHero[$this->uid];
 	}
 /**
  *@ 英雄指定技能的升级
