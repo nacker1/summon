@@ -61,7 +61,7 @@
 			}
 			$add['jewel'] = -( $limit->getExpend()*$sweepNum );
 
-			$limit->addLimitTimes(1);
+			$limit->addLimitTimes( $sweepNum );
 			//--------------------------------------------------------
 			$tolHeroExp = $input['heroexp'] * 5 * $sweepNum;
 			$expBase = new Goodbase( 63002 );
@@ -103,15 +103,18 @@
 		switch( $input['tasktype'] ){  //通关扣除体力
 			case '11': 	//普通关卡
 				$add['life'] = -6*$sweepNum;
-				$user->setMissionId( 2, 14 ); //每日所有副本任务
+				for( $i=0;$i<$sweepNum;$i++ )
+					$user->setMissionId( 2, 14 ); //每日所有副本任务
 				break;
 			case '12':	//精英关卡
 				$add['life'] = -12*$sweepNum;
-				$user->setMissionId(2,15);
+				for( $i=0;$i<$sweepNum;$i++ )
+					$user->setMissionId(2,15);
 				break;
 			case '13':	//炼狱关卡
 				$add['life'] = -24*$sweepNum;
-				$user->setMissionId(2,16);
+				for( $i=0;$i<$sweepNum;$i++ )
+					$user->setMissionId(2,16);
 				break;
 			case '69':	//呆小红
 				$add['life'] = -6;
