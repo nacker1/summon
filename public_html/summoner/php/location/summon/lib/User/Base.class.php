@@ -142,6 +142,7 @@
 			self::$updinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life'] += $giveLife;
 			self::$updinfo[$this->uid]['lastDeductTime'] = self::$userinfo[$this->uid]['lastDeductTime'] = $lastTime;
 		}
+		$this->log->d( '* 玩家#'.$this->uid.'#的体力恢复后的体力值为->'.(int)self::$userinfo[$this->uid]['life'] );
 		return (int)self::$userinfo[$this->uid]['life'];
 	}
 /**
@@ -155,6 +156,7 @@
 			self::$updinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life']-$nums;
 			return self::$userinfo[$this->uid]['life'];
 		}else{
+			$this->log->e( '* 扣除玩家#'.$nums.'#'.$this->uid.'#体力失败，剩余体力#'.self::$userinfo[$this->uid]['life'] );
 			return false;
 		}
 	}
@@ -302,7 +304,6 @@
  **/
 	public function setNewMail($val=1){
 		$this->setUpdTime(1);
-		$this->log->e( $val.'_mail_' );
 		return self::$userinfo[$this->uid]['mail'] = $val;
 	}
 /**
@@ -337,6 +338,7 @@
 			self::$updinfo[$this->uid]['money'] = self::$userinfo[$this->uid]['money'] - $nums;
 			return self::$userinfo[$this->uid]['money'] -= $nums;
 		}else{
+			$this->log->e( '* 扣除玩家#'.$this->uid.'#'.$nums.'#金币失败，剩余金币#'.self::$userinfo[$this->uid]['money'] );
 			return false;
 		}
 	}
@@ -373,6 +375,7 @@
 			self::$updinfo[$this->uid]['jewel'] = self::$userinfo[$this->uid]['jewel'] - $nums;
 			return self::$userinfo[$this->uid]['jewel'] -= $nums;
 		}else{
+			$this->log->e( '* 扣除玩家#'.$this->uid.'#'.$nums.'#钻石失败，剩余钻石#'.self::$userinfo[$this->uid]['jewel'] );
 			return false;
 		}
 	}
@@ -389,6 +392,7 @@
 			if( $vlevel > $this->getLevel() ){
 				$this->setVip( $vlevel );
 			}
+			$this->log->d('* 添加玩家#'.$this->uid.'#'.$nums.'充值总数为'.self::$userinfo[$this->uid]['totalPay']);
 			return true;
 		}else{
 			return false;
@@ -400,6 +404,7 @@
 	public function addRoleBuff( $buffid ){
 		$buff = new Buff( $buffid );
 		$this->redis->set( 'roleinfo:'.$this->uid.':buff:'.$buff->getType(), $buffid, $buff->getTime() );
+		$this->log->i( '* 玩家#'.$this->uid.'#添加buff('.$buffid.')，有效时长'.$buff->getTime() );
 		return array( 'overTime'=>$buff->getTime(), 'bid'=>$buffid );
 	}
 /**
@@ -455,7 +460,7 @@
 			$this->upInfo = new Levelup( $nextinfo['level'] );
 			$upinfo = $this->upInfo->getUpinfo();
 			$nextinfo = $this->upInfo->getNextUpinfo();
-			$this->log->i('* 用户#'.$this->uid.'#升级到 '.self::$userinfo[$this->uid]['level'].' 级 ');
+			$this->log->i('* 用户#'.$this->uid.'#升级到 '.self::$userinfo[$this->uid]['level'].' 级，经验：'.self::$userinfo[$this->uid]['exp'].', 体力：'.self::$userinfo[$this->uid]['life'].', maxLife：'.self::$userinfo[$this->uid]['maxLife'].', getLife:'.$nextinfo['getLife']);
 			if( self::$userinfo[$this->uid]['level'] >= $this->upInfo->getMaxLevel() && $tolexp >= $upinfo['exp'] ){
 				self::$updinfo[$this->uid]['exp'] = self::$userinfo[$this->uid]['exp'] = $upinfo['exp'];
 				$this->log->e( '* 召唤师#'.$this->uid.'#等级达到最大，经验已满->'.self::$userinfo[$this->uid]['exp'] );
@@ -468,9 +473,7 @@
 			self::$userinfo[$this->uid]['exp'] += $nums;
 			self::$updinfo[$this->uid]['exp'] = self::$userinfo[$this->uid]['exp'];
 		}
-		$this->log->i('* 用户#'.$this->uid.'#获得'.$nums.'经验，'.$this->uinfo['exp'].'->'.self::$userinfo[$this->uid]['exp'] );
 		$this->setUpdTime(3);
-		$this->log->i('updinfo_des:'.json_encode(self::$updinfo));
 		return true;
 	}
 /**
@@ -479,6 +482,7 @@
 	public function setVip( $vLevel ){
 		$this->setUpdTime(3);
 		self::$updinfo[$this->uid][ 'vlevel' ] = $vLevel ;
+		$this->log->i( '* 玩家#'.$this->uid.'#vip等级升致#'.$vLevel );
 		return self::$userinfo[$this->uid][ 'vlevel' ] = $vLevel ;
 	}
 /**
@@ -508,7 +512,7 @@
  *		$config:		发生变化的任务信息
  **/
 	public function setMissionNotice( $type, $taskClass, $config ){
-			$this->log->i( json_encode($config) );
+			$this->log->i( '设置任务配置信息:'.json_encode($config) );
 			return self::$missionNotice[$this->uid][$type][$taskClass] = $config;
 	}
 /**
@@ -606,7 +610,7 @@
  *	$value:	$key 对应的值
  **/
 	public function setUserRecord( $key, $value ){
-		$this->log->i( $key.'=>'.$value );
+		$this->log->i( '设置用户记录信息：'.$key.'=>'.$value );
 		return self::$recordInfo[$this->uid][$key] = $value;
 	}
 /**
@@ -624,7 +628,7 @@
  *	$value:	$key 对应需要添加的值
  **/
 	public function addUserRecord( $key, $value ){
-		$this->log->i( $key.'+'.$value );
+		$this->log->i( '添加用户记录信息：'.$key.'+='.$value );
 		return self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
 	}
 #============================================================================================
