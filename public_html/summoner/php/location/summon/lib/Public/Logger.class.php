@@ -1,7 +1,7 @@
 <?php
 	class Logger extends Log{
 		public function d($msg) {
-			ISLOG && $this->debug($msg);
+			$this->debug($msg);
 		}
 		public function i($msg) {
 			ISLOG && $this->info($msg);
