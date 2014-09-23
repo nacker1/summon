@@ -9,7 +9,7 @@
 	 *@ $skey: 登录校验码
 	 **/
 	public function __construct( $uid='',$skey='' ){
-		if( empty($uid) ) $uid = getReq('uid',381440);
+		if( empty($uid) ) $uid = getReq('uid');
 		if( empty($skey) ) $skey = getReq('skey',-1);
 		$this->skey = $skey;
 		parent::__construct( $uid );

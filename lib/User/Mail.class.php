@@ -59,7 +59,7 @@
 			$mailRedis = new Cond('publicMail','',$time);
 		}else{
 			$mailRedis = new Cond('userMail',$to,$time);
-			$toUser = new User_Base( $to );
+			$toUser = new User_User( $to,-1 );
 			$toUser->setNewMail(1); //标记有新邮件  心跳中提示
 		}
 		$this->log->e('mail_info:'.json_encode($send));
