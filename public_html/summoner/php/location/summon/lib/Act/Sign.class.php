@@ -102,14 +102,12 @@ class Act_Sign extends User_Base{
 		if( $daySign>0 && $vipSign>0 ){
 			return false;
 		}
-		$dayConfig = $this->pre->hgetall( 'action:sign:month:'.$total );
+		
 		$vLevel = $this->getVlevel();
 		if( $daySign>0 && $vipSign<1 ){
-			if( $vLevel >= $dayConfig['Double_NeedVip'] )
-				$total -= 1;
-			else
-				return false;
+			$total -= 1;
 		}
+		$dayConfig = $this->pre->hgetall( 'action:sign:month:'.$total );
 		$addNums = $dayConfig['Item_Num'];
 		$add = false;
 		if( empty($daySign) ){//普通签到物品领取
