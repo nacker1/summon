@@ -102,6 +102,9 @@ class Act_Sign extends User_Base{
 		if( $daySign>0 && $vipSign>0 ){
 			return false;
 		}
+		if( $daySign>0 && $vipSign<1 ){
+			$total -= 1;
+		}
 		$dayConfig = $this->pre->hgetall( 'action:sign:month:'.$total );
 		$addNums = $dayConfig['Item_Num'];
 		$add = false;
@@ -154,7 +157,6 @@ class Act_Sign extends User_Base{
 		}else{
 			$this->cond->setDayTimes(1,'vip');
 		}
-		exit;
 		$this->log->i( 'add:'.json_encode($add) );
 
 		if( isset( $give ) )
