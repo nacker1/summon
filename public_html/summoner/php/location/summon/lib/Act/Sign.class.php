@@ -129,6 +129,7 @@ class Act_Sign extends User_Base{
 			$this->cond->set( $total,'total' );
 			$this->cond->setDayTimes(1,'common');	
 		}
+		$this->log->i( 'dayConfig:'.json_encode($dayConfig) );
 		if( !empty($dayConfig['Double_NeedVip']) ){
 			if( empty($vipSign)  && $this->getVlevel() >=  $dayConfig['Double_NeedVip'] ){//vip用户达到要求再奖励一次
 				$this->log->i('* 每日签到（vip'.$dayConfig['Double_NeedVip'].'及以上） 双倍奖励发放');
