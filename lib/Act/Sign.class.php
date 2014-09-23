@@ -105,8 +105,6 @@ class Act_Sign extends User_Base{
 		$dayConfig = $this->pre->hgetall( 'action:sign:month:'.$total );
 		$addNums = $dayConfig['Item_Num'];
 		$add = false;
-		/*if( $dayConfig['Item_Id'] > 11000 )
-			$good = new User_Goods( $this->uid, $dayConfig['Item_Id'] );*/
 		if( empty($daySign) ){//普通签到物品领取
 			$this->log->i('* 每日签到普通用户物品发放');
 			switch ( $dayConfig['Item_Id'] ) {
@@ -150,12 +148,13 @@ class Act_Sign extends User_Base{
 						break;
 				}
 				$this->cond->setDayTimes(1,'vip');
+			}else{
+				$this->log->e('签到来这里了，vlevel:'.$this->getVlevel().', needVip:'.$dayConfig['Double_NeedVip']);
 			}
-			exit;
 		}else{
 			$this->cond->setDayTimes(1,'vip');
 		}
-		
+		exit;
 		$this->log->i( 'add:'.json_encode($add) );
 
 		if( isset( $give ) )
