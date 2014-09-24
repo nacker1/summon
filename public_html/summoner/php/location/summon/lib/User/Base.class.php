@@ -460,13 +460,12 @@
 			$this->upInfo = new Levelup( $nextinfo['level'] );
 			$upinfo = $this->upInfo->getUpinfo();
 			$nextinfo = $this->upInfo->getNextUpinfo();
+			$this->setMissionId(1,51);
 			$this->log->i('* 用户#'.$this->uid.'#升级到 '.self::$userinfo[$this->uid]['level'].' 级，经验：'.self::$userinfo[$this->uid]['exp'].', 体力：'.self::$userinfo[$this->uid]['life'].', maxLife：'.self::$userinfo[$this->uid]['maxLife'].', getLife:'.$nextinfo['getLife']);
 			if( self::$userinfo[$this->uid]['level'] >= $this->upInfo->getMaxLevel() && $tolexp >= $upinfo['exp'] ){
 				self::$updinfo[$this->uid]['exp'] = self::$userinfo[$this->uid]['exp'] = $upinfo['exp'];
 				$this->log->e( '* 召唤师#'.$this->uid.'#等级达到最大，经验已满->'.self::$userinfo[$this->uid]['exp'] );
 				break;
-			}else{
-				$this->setMissionId(1,51);
 			}
 		}
 		if( $upinfo['level'] == $this->uinfo['level'] ){
