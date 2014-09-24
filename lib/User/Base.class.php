@@ -196,7 +196,7 @@
  *@ 获取角色当前钻石数量
  **/
 	public function getMoney(){
-		return (int)self::$userinfo[$this->uid]['money'];
+		return (string)self::$userinfo[$this->uid]['money'];
 	}
 /**
  *@ 获取角色当前vip等级
