@@ -113,7 +113,7 @@
 		$ret['life'] = $this->getLife();
 		$ret['lastDeductTime'] = (int)$this->getUserReductTime();
 		$ret['jewel'] = (int)$userinfo['jewel'];
-		$ret['money'] = (int)$userinfo['money'];
+		$ret['money'] = (string)$userinfo['money'];
 		$ret['vlevel'] = (int)$userinfo['vlevel'];
 		$ret['monthCode'] = (int)$userinfo['monthCode'];
 		$ret['mCodeOverTime'] = (int)$userinfo['mCodeOverTime'];
