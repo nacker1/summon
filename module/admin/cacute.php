@@ -217,13 +217,13 @@
 			foreach( $input['goods'] as $val ){
 				if( is_array( $val ) && count( $val )>0 )
 					foreach( $val as $k=>$v ){
-						$good = new User_Goods( $user->getUid(), $k );
-						$good->addGoods( $v );
+						#$good = new User_Goods( $user->getUid(), $k );
+						#$good->addGoods( $v );
+						$temp_add_good[] = $k.','.$v;
 					}
 			}
-			gettype($good) == 'object' && $input['getGoods'] = $good->getLastUpdGoods();
+			isset($temp_add_good) && is_array($temp_add_good) && $add['good'] = implode('#',$temp_add_good);
 		}
-		$log->i( json_encode($add) );
 	}else{
 		$input['goods'] = '';
 		/*switch( $input['tasktype'] ){  //通关失败扣除体力
@@ -243,6 +243,7 @@
 		$add['mFriend'] = 10;
 
 #============================每日刷副本日常任务=================================
+	$log->i( json_encode($add) );
 	$input['getList'] = $user->sendGoodsFromConfig( $add ); 	//所有条件通过后统一发放物品
 	$mis = $user->getMissionNotice();
 	if( !empty( $mis ) )
