@@ -236,7 +236,7 @@
 		$input['getList'] = array();
 	}
 	if( isset( $updInfo ) && is_array( $updInfo ) )
-		array_merge( $input['getList'], $updInfo );
+		$input['getList'] = array_merge( $input['getList'], $updInfo );
 	$mis = $user->getMissionNotice();
 	if( !empty( $mis ) )
 		$input['getList']['mis'] = $mis;
