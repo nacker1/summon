@@ -95,8 +95,6 @@
 			$nums['63003'] = floor( ($tolHeroExp%$exp1)/$exp2 );
 			foreach( $nums as $k=>$v ){
 				if( $v<1 )continue;
-				#$good = new User_Goods( $user->getUid(), $k );
-				#$good->addGoods( $v );
 				$ext[$k] = $v;
 				$temp_add_good[] = $k.','.$v;
 			}
@@ -109,7 +107,7 @@
 					$hero[$v] = new User_Hero( $uid, $v );
 					$hero[$v]->addHeroExp( $input['heroexp'] );
 				}
-				$input['heros'] = $hero[$v]->getLastUpdField();
+				$input['getList']['hero'] = $hero[$v]->getLastUpdField();
 			}
 
 			//-==============处理用户通关进度 PVE 包括普通本 精英本 练狱本==============
@@ -117,7 +115,6 @@
 				$progress = new User_Progress( $input['stageid'] );
 				$progress->setUserProgress( $input['passlevel'] );
 			}
-			
 		}
 
 		switch( $input['tasktype'] ){  //通关扣除体力
@@ -197,10 +194,10 @@
 
 			#======================= 神密商店处理逻辑 ==============================
 			if( $user->getVlevel() > 9 ){
-				$input['vshop'] = 1;
+				$input['getList']['vshop'] = 1;
 			}else{
 				$uLevel = $user->getLevel();
-				$input['vshop'] = 0;
+				$input['getList']['vshop'] = 0;
 				if( $uLevel > 29 ){
 					if( $uLevel > 60 ){
 						$rate = 30;
@@ -208,7 +205,7 @@
 						$rate = 30 - ( 60-$uLevel ) * 0.5;
 					}
 					if( isLucky( $rate/100 ) ){
-						$input['vshop']  = 1;
+						$input['getList']['vshop']  = 1;
 					}
 				}
 			}
@@ -218,23 +215,12 @@
 			foreach( $input['goods'] as $val ){
 				if( is_array( $val ) && count( $val )>0 )
 					foreach( $val as $k=>$v ){
-						#$good = new User_Goods( $user->getUid(), $k );
-						#$good->addGoods( $v );
 						$temp_add_good[] = $k.','.$v;
 					}
 			}
 		}
 	}else{
 		$input['goods'] = '';
-		/*switch( $input['tasktype'] ){  //通关失败扣除体力
-			case '':		//其它活动
-			case '11':	//普通关卡
-			case '12':	//精英关卡
-			case '13':	//炼狱关卡
-				$add['life'] = -1;
-				break;
-		}*/
-
 		if(64 != $input['tasktype'] )
 			$add['life'] = -1;
 	}
