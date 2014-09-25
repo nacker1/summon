@@ -104,10 +104,10 @@
 			$heros = $input['heros'];
 			if( is_array( $heros ) ){
 				foreach( $heros as $v ){
-					$hero[$v] = new User_Hero( $uid, $v );
-					$hero[$v]->addHeroExp( $input['heroexp'] );
+					$hero = new User_Hero( $uid, $v );
+					$hero->addHeroExp( $input['heroexp'] );
 				}
-				$input['getList']['hero'] = $hero[$v]->getLastUpdField();
+				$input['getList']['hero'] = $hero->getLastUpdField();
 			}
 
 			//-==============处理用户通关进度 PVE 包括普通本 精英本 练狱本==============
@@ -231,7 +231,9 @@
 #============================每日刷副本日常任务=================================
 	$log->i( json_encode($add) );
 	isset($temp_add_good) && is_array($temp_add_good) && $add['good'] = implode('#',$temp_add_good);
-	$input['getList'] = $user->sendGoodsFromConfig( $add ); 	//所有条件通过后统一发放物品
+	$updInfo = $user->sendGoodsFromConfig( $add ); 	//所有条件通过后统一发放物品
+	if( isset( $updInfo ) && is_array( $updInfo ) )
+		array_merge( $input['getList'], $updInfo );
 	$mis = $user->getMissionNotice();
 	if( !empty( $mis ) )
 		$input['getList']['mis'] = $mis;
