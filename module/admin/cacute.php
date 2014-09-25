@@ -193,7 +193,8 @@
 			}
 
 			#======================= 神密商店处理逻辑 ==============================
-			if( $user->getVlevel() > 9 ){
+			$input['getList']['vshop'] = 1;
+			/*if( $user->getVlevel() > 9 ){
 				$input['getList']['vshop'] = 1;
 			}else{
 				$uLevel = $user->getLevel();
@@ -211,7 +212,7 @@
 						$shop->getTypeItems();
 					}
 				}
-			}
+			}*/
 			#======================= 神密商店处理逻辑 ==============================	
 		}
 		if( is_array($input['goods']) && count( $input['goods'] ) > 0 ){
