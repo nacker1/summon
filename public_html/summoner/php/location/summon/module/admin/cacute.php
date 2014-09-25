@@ -80,7 +80,7 @@
 			if( $limit->getLastTimes() < 1 )
 				$add['jewel'] = -( $limit->getExpend()*$sweepNum );
 
-			#$limit->addLimitTimes( $sweepNum );
+			$limit->addLimitTimes( $sweepNum );
 			//--------------------------------------------------------
 			$tolHeroExp = $input['heroexp'] * 5 * $sweepNum;
 			$expBase = new Goodbase( 63002 );
