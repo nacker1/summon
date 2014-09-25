@@ -193,14 +193,14 @@
 			}
 
 			#======================= 神密商店处理逻辑 ==============================
-			$input['getList']['vshop'] = 1;
+			$input['getList']['vshop'] = 3600;
 			$shop = new User_Shop( $uid, 2 );
-						$shop->getTypeItems();
+			$shop->getTypeItems();
 			/*if( $user->getVlevel() > 9 ){
-				$input['getList']['vshop'] = 1;
+				$input['getList']['vshop'] = 3600;
 			}else{
 				$uLevel = $user->getLevel();
-				$input['getList']['vshop'] = 0;
+				$input['getList']['vshop'] = -1;
 				if( $uLevel > 29 ){
 					if( $uLevel > 60 ){
 						$rate = 30;
@@ -209,7 +209,7 @@
 					}
 					$rate = 100;
 					if( isLucky( $rate/100 ) ){
-						$input['getList']['vshop']  = 1;
+						$input['getList']['vshop']  = 3600;
 						$shop = new User_Shop( $uid, 2 );
 						$shop->getTypeItems();
 					}

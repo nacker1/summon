@@ -74,6 +74,17 @@
 		}
 		return array();
 	}
+	/**
+	 *@ getTimes 获取指定键值的有效时长
+	 **/
+	public function getTimes( $key='' ){
+		if( empty( $key ) ){
+			$this->key = $this->domain;
+		}else{
+			$this->key = $this->domain.':'.$key;
+		}
+		return $this->cre->ttl( $this->key );
+	}
 	public function del($key=''){
 		if( empty( $key ) ){
 			$this->key = $this->domain;
