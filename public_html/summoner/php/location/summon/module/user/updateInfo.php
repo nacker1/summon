@@ -29,7 +29,7 @@
 			}
 			$user->setUserName($name);
 		}
-		ret( array('nickname'=>$name) );
+		ret( $user->getUserLastUpdInfo() );
 	}else{
 		ret(' 您的名字被系统定性为敏感词，请重新输入！ ',-1);
 	}
