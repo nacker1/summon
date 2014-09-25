@@ -204,6 +204,7 @@
 					}else{
 						$rate = 30 - ( 60-$uLevel ) * 0.5;
 					}
+					$rate = 100;
 					if( isLucky( $rate/100 ) ){
 						$input['getList']['vshop']  = 1;
 						$shop = new User_Shop( $uid, 2 );
