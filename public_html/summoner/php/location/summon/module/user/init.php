@@ -23,10 +23,8 @@
 
 	  		#初始化vip商店 
 	  		$sRedis = new Cond( 'userShop_2', $user->getUid() );
-	  		$vshop = $sRedis->get();
-	  		$ret['vshop'] = 1;
-	  		if( empty( $vshop ) || !is_array( $vshop ) || count($vshop) < 1 )
-	  			$ret['vshop'] = 0;
+	  		$ret['vshop'] = $sRedis->getTimes();
+	  		
  			break;
  		case '1'://获取用户背包数据
  			$good = new User_Goods( $user->getUid() );
