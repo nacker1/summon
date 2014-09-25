@@ -95,9 +95,10 @@
 			$nums['63003'] = floor( ($tolHeroExp%$exp1)/$exp2 );
 			foreach( $nums as $k=>$v ){
 				if( $v<1 )continue;
-				$good = new User_Goods( $user->getUid(), $k );
-				$good->addGoods( $v );
+				#$good = new User_Goods( $user->getUid(), $k );
+				#$good->addGoods( $v );
 				$ext[$k] = $v;
+				$temp_add_good[] = $k.','.$v;
 			}
 			$input['ext'] = $ext;
 			unset($nums,$exp1,$exp2,$expBase,$config,$tolHeroExp,$ext);
@@ -222,7 +223,6 @@
 						$temp_add_good[] = $k.','.$v;
 					}
 			}
-			isset($temp_add_good) && is_array($temp_add_good) && $add['good'] = implode('#',$temp_add_good);
 		}
 	}else{
 		$input['goods'] = '';
@@ -244,6 +244,7 @@
 
 #============================每日刷副本日常任务=================================
 	$log->i( json_encode($add) );
+	isset($temp_add_good) && is_array($temp_add_good) && $add['good'] = implode('#',$temp_add_good);
 	$input['getList'] = $user->sendGoodsFromConfig( $add ); 	//所有条件通过后统一发放物品
 	$mis = $user->getMissionNotice();
 	if( !empty( $mis ) )
