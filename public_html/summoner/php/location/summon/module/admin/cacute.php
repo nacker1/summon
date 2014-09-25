@@ -206,6 +206,8 @@
 					}
 					if( isLucky( $rate/100 ) ){
 						$input['getList']['vshop']  = 1;
+						$shop = new User_Shop( $uid, 2 );
+						$shop->getTypeItems();
 					}
 				}
 			}

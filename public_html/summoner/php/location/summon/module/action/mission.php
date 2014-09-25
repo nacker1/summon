@@ -37,9 +37,7 @@
 			if( !empty( $mis ) ){
 				$ret['mis'] = $mis;
 			}
-			if( empty( $ret ) ){
-				$ret['msg'] = '操作成功';
-			}
+			
  			ret( $ret );
  		}
  	default:
