@@ -73,8 +73,7 @@
 	function ret($msg='',$code=0){
 		global $log;
 		if( empty($msg) ){
-			$code = -1;
-			$msg = 'Null';
+			$msg = '操作成功';
 		}
 		$ret = array(
 			'Ret'=>$code
