@@ -79,7 +79,7 @@
 			}
 			$add['jewel'] = -( $limit->getExpend()*$sweepNum );
 
-			$limit->addLimitTimes( $sweepNum );
+			#$limit->addLimitTimes( $sweepNum );
 			//--------------------------------------------------------
 			$tolHeroExp = $input['heroexp'] * 5 * $sweepNum;
 			$expBase = new Goodbase( 63002 );
@@ -243,6 +243,8 @@
 
 #============================每日刷副本日常任务=================================
 	$input['getList'] = $user->sendGoodsFromConfig( $add ); 	//所有条件通过后统一发放物品
-	$input['getList']['mis'] = $user->getMissionNotice();
+	$mis = $user->getMissionNotice();
+	if( !empty( $mis ) )
+		$input['getList']['mis'] = $mis;
 
 	ret( $input );
