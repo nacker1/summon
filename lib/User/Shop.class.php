@@ -117,6 +117,12 @@
 		$ret['overTime'] = $this->overTime;
 		return $ret;
 	}
+/**
+ *@ getShopLastTime() 获取商店的过期剩余秒数
+ **/
+	function getShopLastTime(){
+		return (int)$this->actRedis->getTimes();//商店的过期时间秒数
+	}
 	/**
 	 *@ getTypeItems 执行具体的商店物品抽取
 	 **/
