@@ -73,7 +73,7 @@ class Config {
 			)
 		),
 		'online'=>array(
-			'master'=>array(
+			/*'master'=>array(
 				'host' => '127.0.0.1',
 				'port' => 3306,
 				'username' => 'root',
@@ -96,7 +96,7 @@ class Config {
 				'password' => 'coolplay159357',
 				'dbname' => 'summon',
 				'charset' => 'utf8'
-			),
+			),*/
 			'config'=>array( //公共配置信息库 + 所有服活动配置库         通用
 				'host' => '127.0.0.1',
 				'port' => 3306,
@@ -105,7 +105,7 @@ class Config {
 				'dbname' => 'summon',
 				'charset' => 'utf8'
 			),
-			'action'=>array( //所有服活动配置库                                   与config同一库
+			/*'action'=>array( //所有服活动配置库                                   与config同一库
 				'host' => '127.0.0.1',
 				'port' => 3306,
 				'username' => 'root',
@@ -128,7 +128,7 @@ class Config {
 				'password' => 'coolplay159357',
 				'dbname' => 'summon',
 				'charset' => 'utf8'
-			)
+			)*/
 		)
 	);
 	/**
@@ -179,7 +179,7 @@ class Config {
 			'default' => array('host' => '10.0.4.12', 'port' => 20010, 'pass' => 'coolplay159357')
 		),
 		'online'=>array( //ÐÅÏ¢´ýÉÏÏßÈ·ÈÏºóÔÙ½øÐÐÅäÖÃ
-			'redis0' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
+			/*'redis0' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'redis1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'redis2' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'redis3' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
@@ -210,33 +210,50 @@ class Config {
 			'Friend_8' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'Friend_9' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'Login_0' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Login_1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
+			'Login_1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),*/
 			'default' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          //公共配置 通用
 		));
 
 
 
-	function __construct(){
+	function __construct( $type='' ){
 		global $serverId;
-		if( self::$env == 'online' && !self::$checkDb ){
-			$ser = new Server($serverId);
-			$this->dbList = $ser->getDbList();
-			self::$checkDb = true;
+		$this->type = $type;
+		if( !empty( $type ) && !isset( self::$db_config[self::$env][$this->type] ) ){
+			if( self::$env == 'online' && !self::$checkDb ){
+				$ser = new Server($serverId);
+				$dbList = $ser->getDbList();
+				foreach( $dbList as $k=>$v ){
+					self::$db_config[self::$env][ $k ] = $v;
+				}
+			}
 		}
+
+		if( !empty( $type ) ) ){
+			if( is_numeric($this->type) ){
+				$this->type = 'redis'.( $this->type%self::$redis_count );
+			}
+			if( self::$env == 'online' && !self::$checkDb && !isset( self::$redis_config[self::$env][$this->type] ){
+				$ser = new Server($serverId);
+				$List = $ser->getRedisList();
+				foreach( $List as $k=>$v ){
+					self::$redis_config[self::$env][ $k ] = $v;
+				}
+			}
+		}
+
+		self::$checkDb = true;
 	}
 /**
  *@ 获取指定tag的Db配置信息
- * param:
- *	$type:	对应DB内容里的tag字段 。
  **/
-	function getDbConfig( $type='' ){
-		#dump(self::$db_config);
-		if( is_array( $this->dbList ) && count( $this->dbList ) > 0 && !self::$checkDb ){
-			foreach( $this->dbList as $k=>$v ){
-				self::$db_config[self::$env][ $k ] = $v;
-			}
-		}
-		#dump(self::$db_config);
-		return isset( self::$db_config[self::$env][$type] ) ? self::$db_config[self::$env][$type] : self::$db_config[self::$env]['slave'];
+	function getDbConfig(){
+		return isset( self::$db_config[self::$env][$this->type] ) ? self::$db_config[self::$env][$this->type] : self::$db_config[self::$env]['slave'];
+	}
+/**
+ *@ 获取指定tag的redis配置信息
+ **/
+	function getRedisList(){
+		return isset( self::$db_config[self::$env][$this->type] ) ? self::$db_config[self::$env][$this->type] : self::$db_config[self::$env]['default'];
 	}
 }
