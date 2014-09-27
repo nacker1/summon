@@ -24,24 +24,24 @@
 		return self::init($uid);
 	}
 	public static function init($uid=''){
-		$redis_config = Config::$redis_config[Config::$env];
-		if( !is_null($uid) && is_numeric($uid) ){
-			$redname = 'redis'.($uid%Config::$redis_count);
-			$redisConfig = $redis_config[$redname];
-		}elseif( !empty($uid) ){
-			$redname = $uid;
-			$redisConfig = $redis_config[$redname]; //¼æÈÝmatch ºÍ testÁ½¸öredis
-		}
-		dump($redis_config);
-		if( !isset($redisConfig) || empty($redisConfig) || !is_array($redisConfig)){
-			$redname = 'default';
-			$redisConfig = $redis_config[$redname];
-		}
-
-		$host = $redisConfig['host'];
-		$port = $redisConfig['port'];
-		$pass = $redisConfig['pass'];
 		if( !isset(self::$redis) || !is_array(self::$redis) || empty(self::$redis) || !isset(self::$redis[$redname]) ){
+			$redis_config = Config::$redis_config[Config::$env];
+			if( !is_null($uid) && is_numeric($uid) ){
+				$redname = 'redis'.($uid%Config::$redis_count);
+				$redisConfig = $redis_config[$redname];
+			}elseif( !empty($uid) ){
+				$redname = $uid;
+				$redisConfig = $redis_config[$redname]; //¼æÈÝmatch ºÍ testÁ½¸öredis
+			}
+			dump($redis_config);
+			if( !isset($redisConfig) || empty($redisConfig) || !is_array($redisConfig)){
+				$redname = 'default';
+				$redisConfig = $redis_config[$redname];
+			}
+
+			$host = $redisConfig['host'];
+			$port = $redisConfig['port'];
+			$pass = $redisConfig['pass'];
 			self::$redis[$redname] = new Redis_Redis($host,$port,$pass);
 		}
 		return self::$redis[$redname];
