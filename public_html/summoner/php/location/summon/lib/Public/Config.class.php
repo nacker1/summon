@@ -222,11 +222,13 @@ class Config {
 		$this->type = $type;
 		if( !empty( $type ) && !isset( self::$db_config[self::$env][$this->type] ) ){
 			if( self::$env == 'online' && !self::$checkDb ){
+				dump(self::$db_config[self::$env]);
 				$ser = new Server($serverId);
 				$dbList = $ser->getDbList();
 				foreach( $dbList as $k=>$v ){
 					self::$db_config[self::$env][ $k ] = $v;
 				}
+				dump(self::$db_config[self::$env]);
 			}
 		}
 
