@@ -228,13 +228,13 @@ class Config {
  *	$type:	对应DB内容里的tag字段 。
  **/
 	function getDbConfig( $type ){
-		dump(self::$db_config);
+		#dump(self::$db_config);
 		if( is_array( $this->dbList ) && count( $this->dbList ) > 0 && !self::$checkDb ){
 			foreach( $this->dbList as $k=>$v ){
 				self::$db_config[self::$env][ $k ] = $v;
 			}
 		}
-		dump(self::$db_config);
+		#dump(self::$db_config);
 		return isset( self::$db_config[self::$env][$type] ) ? self::$db_config[self::$env][$type] : self::$db_config[self::$env]['slave'];
 	}
 }
