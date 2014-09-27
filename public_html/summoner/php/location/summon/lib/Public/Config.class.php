@@ -233,7 +233,7 @@ class Config {
 			if( is_numeric($this->type) ){
 				$this->type = 'redis'.( $this->type%self::$redis_count );
 			}
-			if( self::$env == 'online' && !self::$checkDb && !isset( self::$redis_config[self::$env][$this->type] ){
+			if( self::$env == 'online' && !self::$checkDb && !isset( self::$redis_config[self::$env][$this->type] ) ){
 				$ser = new Server($serverId);
 				$List = $ser->getRedisList();
 				foreach( $List as $k=>$v ){
