@@ -14,7 +14,6 @@ class Db_Mysql{
 	private function __construct($config,$type=''){
 		$this->type = $type;
 		$this->dbconf = $config;
-		dump($config);
 		$this->connect = mysql_connect($config['host'].':'.$config['port'],$config['username'],$config['password']) or die('Mysql connect fail!'.mysql_error());
 		mysql_select_db($config['dbname'],$this->connect) or die('select_db fail'.mysql_error());
 		mysql_query('set names "'.$config['charset'].'"',$this->connect) or die('mysql_query set names fail'.mysql_error());
