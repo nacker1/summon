@@ -4,6 +4,8 @@ class Config {
 	 *@ ÔËÐÐ»·¾³  testÎª²âÊÔ»·¾³£¬onlineÎªÏßÉÏ»·¾³
 	 **/
 	public static $env = 'test'; 
+
+	public static $checkDb = false;	#标记是否检测过大区DB配置
 	/**
 	 *@ redisÓÃ»§ÇóÓàµÄ»ùÊý
 	 **/
@@ -213,12 +215,27 @@ class Config {
 		)
 	);
 
-	function __construct( $sid='' ){
-		$this->sid = $sid;
-		if( self::$env == 'online' ){
-			$ser = new Server();
-			$dbList = $ser->getDbList();
-			//dump($dbList);
+	function __construct(){
+		global $serverId;
+		if( self::$env == 'online' && !self::$checkDb ){
+			$ser = new Server($serverId);
+			$this->dbList = $ser->getDbList();
+			self::$checkDb = true;
 		}
+	}
+/**
+ *@ 获取指定tag的Db配置信息
+ * param:
+ *	$type:	对应DB内容里的tag字段 。
+ **/
+	function getDbConfig( $type ){
+		dump(self::$db_config);
+		if( is_array( $this->dbList ) && count( $this->dbList ) > 0 && !self::$checkDb ){
+			foreach( $this->dbList as $k=>$v ){
+				self::$db_config[self::$env][ $k ] = $v;
+			}
+		}
+		dump(self::$db_config);
+		return isset( self::$db_config[self::$env][$type] ) ? self::$db_config[self::$env][$type] : self::$db_config[self::$env]['slave'];
 	}
 }
