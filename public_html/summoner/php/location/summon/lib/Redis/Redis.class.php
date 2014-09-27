@@ -23,16 +23,17 @@
 	public function initRedis($uid=''){
 		return self::init($uid);
 	}
-	public static function init($uid=''){
-		$con = new Config( $uid );
+	public static function init($type=''){
+		dump($type);
+		$con = new Config( $type );
 		$redis_config = $con->getRedisList();
 
 		#$redis_config = Config::$redis_config[Config::$env];
-		if( !is_null($uid) && is_numeric($uid) ){
-			$redname = 'redis'.($uid%Config::$redis_count);
+		if( !is_null($type) && is_numeric($type) ){
+			$redname = 'redis'.($type%Config::$redis_count);
 			$redisConfig = $redis_config[$redname];
-		}elseif( !empty($uid) ){
-			$redname = $uid;
+		}elseif( !empty($type) ){
+			$redname = $type;
 			$redisConfig = $redis_config[$redname]; //¼æÈÝmatch ºÍ testÁ½¸öredis
 		}
 		
