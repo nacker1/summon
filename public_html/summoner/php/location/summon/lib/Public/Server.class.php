@@ -73,7 +73,18 @@
 	public function getServerList(){
 		return $this->slist;
 	}
-
+/**
+ *@ 获取指定区的DB配置信息		指定sid
+ **/
+	public function getDbList(){
+		$dbConf = json_decode( $this->slist['dbConf'], true );
+		$ret = array();
+		if(is_array( $dbConf ))
+			foreach( $dbConf as $v ){
+				$ret[$v['tag']] = $v;
+			}
+		return $ret;
+	}
 	public function getServersStatus(){
 		if( empty($this->sid) ){
 			foreach( $this->slist as $v ){
