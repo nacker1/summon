@@ -24,10 +24,7 @@ class Db_Mysql{
 
 	public static function init($type=''){
 		$tag = $type;
-		if( empty( $type ) ){
-			$type = 'slave';
-		}
-		dump($type);
+		
 		$con = new Config();
 		$db_config = $con->getDbConfig( $type );
 		dump($db_config);
