@@ -88,6 +88,21 @@
 			}
 		return $ret;
 	}
+/**
+ *@ 获取指定区的Redis配置信息		指定sid
+ **/
+	public function getRedisList(){
+		if( empty( $this->sid ) || !is_numeric( $this->sid ) )return array();
+		$conf = json_decode( $this->slist['redisConf'], true );
+		$ret = array();
+		if(is_array( $conf ))
+			foreach( $conf as $v ){
+				$tag = $v['tag'];
+				unset($v['tag']);
+				$ret[ $tag ] = $v;
+			}
+		return $ret;
+	}
 	public function getServersStatus(){
 		if( empty($this->sid) ){
 			foreach( $this->slist as $v ){
