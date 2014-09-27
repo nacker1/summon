@@ -220,8 +220,8 @@ class Config {
 	function __construct( $type='' ){
 		global $serverId;
 		$this->type = $type;
-		if( !empty( $type ) && !isset( self::$db_config[self::$env][$this->type] ) ){
-			if( self::$env == 'online' && !self::$checkDb ){
+		if( !empty( $type ) ) ){
+			if( !isset( self::$db_config[self::$env][$this->type] ){
 				dump(self::$db_config[self::$env]);
 				$ser = new Server($serverId);
 				$dbList = $ser->getDbList();
@@ -230,13 +230,11 @@ class Config {
 				}
 				dump(self::$db_config[self::$env]);
 			}
-		}
 
-		if( !empty( $type ) ){
 			if( is_numeric($this->type) ){
 				$this->type = 'redis'.( $this->type%self::$redis_count );
 			}
-			if( self::$env == 'online' && !self::$checkDb && !isset( self::$redis_config[self::$env][$this->type] ) ){
+			if( !isset( self::$redis_config[self::$env][$this->type] ) ){
 				$ser = new Server($serverId);
 				$List = $ser->getRedisList();
 				foreach( $List as $k=>$v ){
@@ -244,8 +242,6 @@ class Config {
 				}
 			}
 		}
-
-		self::$checkDb = true;
 	}
 /**
  *@ 获取指定tag的Db配置信息
