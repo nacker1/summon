@@ -1,16 +1,16 @@
 <?php
 class Public_Modinit{
-    private $mid;
-    private $key;
-    private $path;
-    private $version;
-    private $status;
-    private $tag;
-    private $islog;
-    private $exist;
-    private $online;
-	private $name;
-	private $gameid=2; //游戏业务id  1 斗地主  2为召唤师
+    private $mid;                       #模块id cmd
+    private $key;                       #校验key
+    private $path;                      #cmd对应的文件路径
+    private $version;                   #cmd对应的版本要求
+    private $status;                    #cmd的状态
+    private $tag;                       #cmd标签用于打日志
+    private $islog;                     #是否打印日志
+    private $exist;                     #指定cmd是否存在
+    private $online;                    #是否在线
+	private $name;                      #指定cmd的名称
+	private $gameid=2;                  #游戏业务id  1 斗地主  2为召唤师
 
     public function __construct($mid,$key,$ver){
         $this->key = $key;

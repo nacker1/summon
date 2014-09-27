@@ -77,11 +77,14 @@
  *@ 获取指定区的DB配置信息		指定sid
  **/
 	public function getDbList(){
+		if( empty( $this->sid ) || !is_numeric( $this->sid ) )return array();
 		$dbConf = json_decode( $this->slist['dbConf'], true );
 		$ret = array();
 		if(is_array( $dbConf ))
 			foreach( $dbConf as $v ){
-				$ret[$v['tag']] = $v;
+				$tag = $v['tag'];
+				unset($v['tag']);
+				$ret[ $tag ] = $v;
 			}
 		return $ret;
 	}
