@@ -229,7 +229,7 @@ class Config {
 			}
 		}
 
-		if( !empty( $type ) ) ){
+		if( !empty( $type ) ){
 			if( is_numeric($this->type) ){
 				$this->type = 'redis'.( $this->type%self::$redis_count );
 			}
