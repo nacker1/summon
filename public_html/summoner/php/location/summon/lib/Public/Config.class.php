@@ -218,7 +218,6 @@ class Config {
 
 	function __construct(){
 		global $serverId;
-		dump($_SERVER);
 		if( self::$env == 'online' && !self::$checkDb ){
 			$ser = new Server($serverId);
 			$this->dbList = $ser->getDbList();
