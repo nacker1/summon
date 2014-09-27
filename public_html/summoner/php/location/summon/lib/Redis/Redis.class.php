@@ -24,7 +24,6 @@
 		return self::init($uid);
 	}
 	public static function init($type=''){
-		dump($type);
 		$con = new Config( $type );
 		$redis_config = $con->getRedisList();
 

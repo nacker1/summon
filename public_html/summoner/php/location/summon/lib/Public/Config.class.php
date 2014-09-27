@@ -254,6 +254,6 @@ class Config {
  *@ 获取指定tag的redis配置信息
  **/
 	function getRedisList(){
-		return isset( self::$db_config[self::$env][$this->type] ) ? self::$db_config[self::$env][$this->type] : self::$db_config[self::$env]['default'];
+		return isset( self::$redis_config[self::$env][$this->type] ) ? self::$redis_config[self::$env][$this->type] : self::$redis_config[self::$env]['default'];
 	}
 }
