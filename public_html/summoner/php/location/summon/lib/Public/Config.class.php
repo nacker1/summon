@@ -256,4 +256,8 @@ class Config {
 	function getRedisList(){
 		return isset( self::$redis_config[self::$env][$this->type] ) ? self::$redis_config[self::$env][$this->type] : self::$redis_config[self::$env]['default'];
 	}
+
+	function getType(){
+		return $this->type;
+	}
 }

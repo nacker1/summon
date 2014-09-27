@@ -25,23 +25,9 @@
 	}
 	public static function init($type=''){
 		$con = new Config( $type );
-		$redis_config = $con->getRedisList();
-
-		#$redis_config = Config::$redis_config[Config::$env];
-		if( !is_null($type) && is_numeric($type) ){
-			$redname = 'redis'.($type%Config::$redis_count);
-			$redisConfig = $redis_config[$redname];
-		}elseif( !empty($type) ){
-			$redname = $type;
-			$redisConfig = $redis_config[$redname]; //¼æÈÝmatch ºÍ testÁ½¸öredis
-		}
 		
-		if( !isset($redisConfig) || empty($redisConfig) || !is_array($redisConfig)){
-			$redname = 'default';
-			$redisConfig = $redis_config[$redname];
-		}
-		
-		if( !isset(self::$redis) || !is_array(self::$redis) || empty(self::$redis) || !isset(self::$redis[$redname]) ){
+		if( !isset(self::$redis) || !is_array(self::$redis) || empty(self::$redis) || !isset(self::$redis[$con->getType()]) ){
+			$redis_config = $con->getRedisList();
 			$host = $redisConfig['host'];
 			$port = $redisConfig['port'];
 			$pass = $redisConfig['pass'];
