@@ -130,7 +130,6 @@
  *@ 更新或添加服务器信息
  **/
 	public function update( $config ){
-		dump($config);
 		$this->cdb;
 		if( !empty($this->sid) ){
 			if( $this->pre->exists('server:list:'.$this->sid) )
