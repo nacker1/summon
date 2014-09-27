@@ -24,11 +24,11 @@ class Db_Mysql{
 
 	public static function init($type=''){
 		$tag = $type;
-		
-		$con = new Config();
-		$db_config = $con->getDbConfig( $type );
+
 		#$db_config = isset(Config::$db_config[Config::$env][$type]) ? Config::$db_config[Config::$env][$type] : Config::$db_config[Config::$env]['slave'];
 		if( empty(self::$mysql) || !isset(self::$mysql[$type]) || !self::$mysql[$type] ){
+			$con = new Config();
+			$db_config = $con->getDbConfig( $type );
 			self::$mysql[$type] = new Db_Mysql($db_config,$tag);
 		}
 		return self::$mysql[$type];
