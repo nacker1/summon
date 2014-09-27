@@ -32,6 +32,7 @@
 			$redname = $uid;
 			$redisConfig = $redis_config[$redname]; //¼æÈÝmatch ºÍ testÁ½¸öredis
 		}
+		dump($redisConfig);
 		if( !isset($redisConfig) || empty($redisConfig) || !is_array($redisConfig)){
 			$redname = 'default';
 			$redisConfig = $redis_config[$redname];
