@@ -117,7 +117,7 @@ class Config {
 			'config'=>array( //公共配置信息库 + 所有服活动配置库         通用
 				'host' => '127.0.0.1',
 				'port' => 3306,
-				'username' => 'root',
+				'username' => 'hzy',
 				'password' => 'coolplay159357',
 				'dbname' => 'summon',
 				'charset' => 'utf8'
@@ -125,7 +125,7 @@ class Config {
 			'admin'=>array( //管理后台公用库  接口信息         	   与config同一库
 				'host' => '127.0.0.1',
 				'port' => 3306,
-				'username' => 'root',
+				'username' => 'hzy',
 				'password' => 'coolplay159357',
 				'dbname' => 'public',
 				'charset' => 'utf8'
