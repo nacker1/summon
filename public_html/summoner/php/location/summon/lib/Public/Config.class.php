@@ -212,8 +212,9 @@ class Config {
 			'Login_0' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'Login_1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'default' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          //公共配置 通用
-		)
-	);
+		));
+
+
 
 	function __construct(){
 		global $serverId;
@@ -229,7 +230,7 @@ class Config {
  * param:
  *	$type:	对应DB内容里的tag字段 。
  **/
-	function getDbConfig( $type ){
+	function getDbConfig( $type='' ){
 		#dump(self::$db_config);
 		if( is_array( $this->dbList ) && count( $this->dbList ) > 0 && !self::$checkDb ){
 			foreach( $this->dbList as $k=>$v ){
