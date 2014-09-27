@@ -130,13 +130,13 @@
  *@ 更新或添加服务器信息
  **/
 	public function update( $config ){
+		$this->cdb;
 		if( !empty($this->sid) ){
 			if( $this->pre->exists('server:list:'.$this->sid) )
 				$this->pre->hmset('server:list:'.$this->sid,$config);
-			$this->cdb;
 			return $this->cdb->update( $this->table, $config, array( 'id'=>$this->sid ) ) );
 		}else{
-			return this->cdb->insert( $this->table, $config );
+			return $this->cdb->insert( $this->table, $config );
 		}				
 	}
  }
