@@ -214,8 +214,10 @@ class Config {
 			'default' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          //公共配置 通用
 		)
 	);
+
 	function __construct(){
 		global $serverId;
+		dump($_SERVER);
 		if( self::$env == 'online' && !self::$checkDb ){
 			$ser = new Server($serverId);
 			$this->dbList = $ser->getDbList();
