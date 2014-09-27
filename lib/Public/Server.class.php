@@ -126,5 +126,18 @@
 	public function startServer(){
 		return $this->pre->hmset('server:status:'.$this->sid,array('close'=>0,'cInfo'=>''));
 	}
+/**
+ *@ 更新或添加服务器信息
+ **/
+	public function update( $config ){
+		if( !empty($this->sid) ){
+			if( $this->pre->exists('server:list:'.$this->sid) )
+				$this->pre->hmset('server:list:'.$this->sid,$config);
+			$this->cdb;
+			return $this->cdb->update( $this->table, $config, array( 'id'=>$this->sid ) ) );
+		}else{
+			return this->cdb->insert( $this->table, $config );
+		}				
+	}
  }
 ?>
