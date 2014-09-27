@@ -216,6 +216,6 @@ class Config {
 	if( self::$env == 'online' ){
 		$ser = new Server();
 		$dbList = $ser->getDbList();
-		dump($dbList);
+		//dump($dbList);
 	}
 }
