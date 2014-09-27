@@ -1,6 +1,6 @@
 <?php
-	error_reporting(0);
-	global $log,$tag,$version,$channel;
+	#error_reporting(0);
+	global $log,$tag,$version,$channel,$serverId;
 	require dirname(__FILE__).'/inc/inc.php';
 	C('test',false);
 	C('start', gettimeofday( true ));
@@ -8,6 +8,7 @@
 	$key = getReq('k','6d3126a871959600866d3bc451fac21f');
 	$version = $ver = getReq('ver','1.0.0');
 	$channel = getReq('ch');
+	$serverId = getReq('sid');
 	if( empty($mid) || empty($key) ){ //mid和key必须存在
 		ret('cmd or key not null!',-1);
 	}

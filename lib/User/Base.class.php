@@ -60,7 +60,6 @@
 			self::$recordInfo[$this->uid] = array();
 		}
 		$this->uinfo = self::$userinfo[$this->uid];
-		global $serverId = (int)self::$userinfo[$this->uid]['sid'];
 	}
 /**
  *@ 根据名称查找好友信息
