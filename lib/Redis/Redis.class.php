@@ -25,8 +25,9 @@
 	}
 	public static function init($type=''){
 		$con = new Config( $type );
+		$redname = $con->getType();
 		
-		if( !isset(self::$redis) || !is_array(self::$redis) || empty(self::$redis) || !isset(self::$redis[$con->getType()]) ){
+		if( !isset(self::$redis) || !is_array(self::$redis) || empty(self::$redis) || !isset(self::$redis[ $redname ]) ){
 			$redisConfig = $con->getRedisList();
 			$host = $redisConfig['host'];
 			$port = $redisConfig['port'];
