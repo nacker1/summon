@@ -221,7 +221,7 @@ class Config {
 		global $serverId;
 		$this->type = $type;
 		if( !empty( $type ) ){
-			if( !isset( self::$db_config[self::$env][$this->type] ){
+			if( !isset( self::$db_config[self::$env][$this->type] ) ){
 				dump(self::$db_config[self::$env]);
 				$ser = new Server($serverId);
 				$dbList = $ser->getDbList();
