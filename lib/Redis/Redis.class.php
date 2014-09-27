@@ -27,7 +27,7 @@
 		$con = new Config( $type );
 		
 		if( !isset(self::$redis) || !is_array(self::$redis) || empty(self::$redis) || !isset(self::$redis[$con->getType()]) ){
-			$redis_config = $con->getRedisList();
+			$redisConfig = $con->getRedisList();
 			$host = $redisConfig['host'];
 			$port = $redisConfig['port'];
 			$pass = $redisConfig['pass'];
