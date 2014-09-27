@@ -162,10 +162,14 @@
 		$this->cdb;
 		$this->pre->hmset('server:list:'.$this->sid,$config);
 		if( !empty($this->sid) ){
-			return $this->cdb->update( $this->table, $config, array( 'id'=>$this->sid ) );
+			$ret = $this->cdb->update( $this->table, $config, array( 'id'=>$this->sid ) );
 		}else{
-			return $this->cdb->insert( $this->table, $config );
-		}				
+			$ret = $this->cdb->insert( $this->table, $config );
+		}		
+		if( !$ret ){
+			dump($this->cdb->getLastSql());
+		}
+		return $ret;
 	}
  }
 ?>
