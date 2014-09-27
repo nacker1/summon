@@ -220,7 +220,7 @@ class Config {
 	function __construct( $type='' ){
 		global $serverId;
 		$this->type = $type;
-		if( !empty( $type ) ) ){
+		if( !empty( $type ) ){
 			if( !isset( self::$db_config[self::$env][$this->type] ){
 				dump(self::$db_config[self::$env]);
 				$ser = new Server($serverId);
