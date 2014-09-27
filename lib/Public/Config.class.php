@@ -213,9 +213,12 @@ class Config {
 		)
 	);
 
-	if( self::$env == 'online' ){
-		$ser = new Server();
-		$dbList = $ser->getDbList();
-		//dump($dbList);
+	function __construct( $sid='' ){
+		$this->sid = $sid;
+		if( self::$env == 'online' ){
+			$ser = new Server();
+			$dbList = $ser->getDbList();
+			//dump($dbList);
+		}
 	}
 }
