@@ -62,8 +62,7 @@
 					$this->pre->hmset('server:status:'.$slist['id'],$stats);
 				}
 			}else{
-				$skeys = $this->pre->hgetall('server:list:'.$this->sid);
-				$slist = $this->pre->hgetall($v);
+				$slist = $this->pre->hgetall('server:list:'.$this->sid);
 			}
 			$this->slist = $slist;
 		}
