@@ -27,8 +27,10 @@ class Db_Mysql{
 		if( empty( $type ) ){
 			$type = 'slave';
 		}
+		dump($type);
 		$con = new Config();
 		$db_config = $con->getDbConfig( $type );
+		dump($db_config);
 		#$db_config = isset(Config::$db_config[Config::$env][$type]) ? Config::$db_config[Config::$env][$type] : Config::$db_config[Config::$env]['slave'];
 		if( empty(self::$mysql) || !isset(self::$mysql[$type]) || !self::$mysql[$type] ){
 			self::$mysql[$type] = new Db_Mysql($db_config,$tag);
