@@ -131,9 +131,8 @@
  **/
 	public function update( $config ){
 		$this->cdb;
+		$this->pre->hmset('server:list:'.$this->sid,$config);
 		if( !empty($this->sid) ){
-			if( $this->pre->exists('server:list:'.$this->sid) )
-				$this->pre->hmset('server:list:'.$this->sid,$config);
 			return $this->cdb->update( $this->table, $config, array( 'id'=>$this->sid ) );
 		}else{
 			return $this->cdb->insert( $this->table, $config );
