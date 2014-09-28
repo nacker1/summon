@@ -102,7 +102,7 @@ class User_Hero extends User_Base{
 			$merc = new User_Merc( $this->uid );
 			$merc->setMercHero( $mercHero );
 		}
-		return $ret;
+		return $this->hinfo;
 	}
 /**
  *@ 获取用户拥有英雄的总数
