@@ -54,7 +54,7 @@
 
  		if( $this->type == 1 ){ //系统任务  取数据库
  			$this->redis;
- 			if( C('test') || !$this->redis->exists( 'roleinfo:'.$this->uid.':mission:11' ) ){
+ 			if( true || C('test') || !$this->redis->exists( 'roleinfo:'.$this->uid.':mission:11' ) ){
  				$this->db;
  				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress,type', array( 'uid'=>$this->uid,'status'=>0 ) ); 
 
