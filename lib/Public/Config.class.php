@@ -218,7 +218,7 @@ class Config {
 
 	function __construct( $type='' ){
 		global $serverId;
-		if( empty($serverId) )$serverId=2;
+		empty( $serverId ) && $serverId = 2;
 		$this->type = $type;
 		if( !empty( $type ) ){
 			if( !isset( self::$db_config[self::$env][$this->type] ) ){
@@ -245,6 +245,8 @@ class Config {
  *@ 获取指定tag的Db配置信息
  **/
 	function getDbConfig(){
+		dump(self::$db_config[self::$env][$this->type]);
+		dump(self::$db_config[self::$env]['slave']);
 		return isset( self::$db_config[self::$env][$this->type] ) ? self::$db_config[self::$env][$this->type] : self::$db_config[self::$env]['slave'];
 	}
 /**
