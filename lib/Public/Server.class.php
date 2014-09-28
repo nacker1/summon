@@ -83,7 +83,6 @@
 		if(is_array( $dbConf ))
 			foreach( $dbConf as $v ){
 				$tag = $v['tag'];
-				unset($v['tag']);
 				$ret[ $tag ] = $v;
 			}
 		return $ret;
@@ -98,7 +97,6 @@
 		if(is_array( $conf ))
 			foreach( $conf as $v ){
 				$tag = $v['tag'];
-				unset($v['tag']);
 				$ret[ $tag ] = $v;
 			}
 		return $ret;
