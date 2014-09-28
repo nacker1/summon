@@ -220,13 +220,12 @@ class Config {
 		empty( $serverId ) && $serverId = 2;
 		$this->type = $type;
 		$this->sid = $serverId;
-		dump($this->sid);
 	}
 /**
  *@ 获取指定tag的Db配置信息
  **/
 	function getDbConfig(){
-		if( !empty( $type ) ){
+		if( !empty( $this->type ) ){
 			if( !isset( self::$db_config[self::$env][$this->type] ) ){
 				$ser = new Server($this->sid);
 				$dbList = $ser->getDbList();
@@ -241,7 +240,7 @@ class Config {
  *@ 获取指定tag的redis配置信息
  **/
 	function getRedisList(){
-		if( !empty( $type ) ){
+		if( !empty( $this->type ) ){
 			if( is_numeric($this->type) ){
 				$this->type = 'redis'.( $this->type%self::$redis_count );
 			}
