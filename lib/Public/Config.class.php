@@ -5,7 +5,6 @@ class Config {
 	 **/
 	public static $env = 'test'; 
 
-	public static $checkDb = false;	#标记是否检测过大区DB配置
 	/**
 	 *@ redisÓÃ»§ÇóÓàµÄ»ùÊý
 	 **/
@@ -73,7 +72,7 @@ class Config {
 			)
 		),
 		'online'=>array(
-			/*'master'=>array(
+			'master'=>array(
 				'host' => '127.0.0.1',
 				'port' => 3306,
 				'username' => 'root',
@@ -104,7 +103,7 @@ class Config {
 				'password' => 'coolplay159357',
 				'dbname' => 'summon',
 				'charset' => 'utf8'
-			),*/
+			),
 			'login'=>array( //公共登录库         通用登录接口使用   配置必须写在代码中  
 				'host' => '127.0.0.1',
 				'port' => 3306,
@@ -179,7 +178,7 @@ class Config {
 			'default' => array('host' => '10.0.4.12', 'port' => 20010, 'pass' => 'coolplay159357')
 		),
 		'online'=>array( //ÐÅÏ¢´ýÉÏÏßÈ·ÈÏºóÔÙ½øÐÐÅäÖÃ
-			/*'redis0' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
+			'redis0' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'redis1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'redis2' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'redis3' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
@@ -210,7 +209,7 @@ class Config {
 			'Friend_8' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'Friend_9' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'Login_0' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Login_1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),*/
+			'Login_1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
 			'default' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          //公共配置 通用
 		));
 
@@ -222,7 +221,6 @@ class Config {
 		$this->type = $type;
 		if( !empty( $type ) ){
 			if( !isset( self::$db_config[self::$env][$this->type] ) ){
-				dump(self::$db_config[self::$env][$this->type]);
 				$ser = new Server($serverId);
 				$dbList = $ser->getDbList();
 				foreach( $dbList as $k=>$v ){
