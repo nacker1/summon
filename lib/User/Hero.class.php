@@ -84,7 +84,7 @@ class User_Hero extends User_Base{
 			$ret[ $v['hid'] ] = implode( '|', $temp );
 			unset($temp);
 		}
-		return $this->hinfo;
+		return $ret;
 	}
 /**
  *@ 获取用户拥有英雄的总数
