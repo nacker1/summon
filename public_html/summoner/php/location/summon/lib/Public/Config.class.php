@@ -215,7 +215,7 @@ class Config {
 
 
 
-	function __construct( $type='' ){
+/*	function __construct( $type='' ){
 		global $serverId;
 		empty( $serverId ) && $serverId = 2;
 		$this->type = $type;
@@ -239,7 +239,7 @@ class Config {
 				}
 			}
 		}
-	}
+	}*/
 /**
  *@ 获取指定tag的Db配置信息
  **/
