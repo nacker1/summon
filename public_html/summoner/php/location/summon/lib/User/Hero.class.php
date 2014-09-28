@@ -68,6 +68,8 @@ class User_Hero extends User_Base{
  **/
 	public function getUserHeroList(){
 		$ret = array();
+		$maxFire = -1;
+		$mercHero = '';
 		foreach( $this->hinfo as $v ){
 			$temp[] = $v['fire'];
 			$temp[] = $v['level'];
@@ -83,6 +85,22 @@ class User_Hero extends User_Base{
 			$temp[] = $v['config'];
 			$ret[ $v['hid'] ] = implode( '|', $temp );
 			unset($temp);
+			# ================= 佣兵处理 ====================
+			if( $v['fire'] > $maxFire ){
+				$maxFire = $v['fire'];
+				$v['uName'] = $user->getUserName();
+				for( $i=1;$i<=6;$i++ ){
+					if( empty( $v['equip'.$i] ) ){
+						unset( $v['equip'.$i] );
+					}
+				}
+				$mercHero = $v;
+			}
+
+		}
+		if( !empty( $mercHero ) ){
+			$merc = new User_Merc( $this->uid );
+			$merc->setMercHero( $mercHero );
 		}
 		return $this->hinfo;
 	}
