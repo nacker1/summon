@@ -105,7 +105,7 @@ class Config {
 				'dbname' => 'summon',
 				'charset' => 'utf8'
 			),*/
-			'login'=>array( //公共登录库         通用
+			'login'=>array( //公共登录库         通用登录接口使用   配置必须写在代码中  
 				'host' => '127.0.0.1',
 				'port' => 3306,
 				'username' => 'root',
@@ -113,7 +113,7 @@ class Config {
 				'dbname' => 'summon',
 				'charset' => 'utf8'
 			),
-			'config'=>array( //公共配置信息库 + 所有服活动配置库         通用
+			'config'=>array( //公共配置信息库 + 所有服活动配置库         通用  配置必须写在代码中  
 				'host' => '127.0.0.1',
 				'port' => 3306,
 				'username' => 'root',
@@ -121,7 +121,7 @@ class Config {
 				'dbname' => 'summon',
 				'charset' => 'utf8'
 			),
-			'admin'=>array( //管理后台公用库  接口信息         	   与config同一库
+			'admin'=>array( //管理后台公用库  接口信息         	   与config同一库   配置必须写在代码中  
 				'host' => '127.0.0.1',
 				'port' => 3306,
 				'username' => 'root',
@@ -244,6 +244,8 @@ class Config {
  *@ 获取指定tag的Db配置信息
  **/
 	function getDbConfig(){
+		dump(self::$db_config[self::$env][$this->type]);
+		dump(self::$db_config[self::$env]['slave']);
 		return isset( self::$db_config[self::$env][$this->type] ) ? self::$db_config[self::$env][$this->type] : self::$db_config[self::$env]['slave'];
 	}
 /**
