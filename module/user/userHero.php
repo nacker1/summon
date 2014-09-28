@@ -10,27 +10,6 @@
 	case '1'://获取用户所有英雄 
 		$hero = new User_Hero( $user->getUid() );
 		$heroList = $hero->getUserHeroList();
-		$maxFire = -1;
-		$mercHero = '';
-		if( is_array( $heroList ) ){
-			foreach( $heroList as $v ){
-				if( $v['fire'] > $maxFire ){
-					$maxFire = $v['fire'];
-					$v['uName'] = $user->getUserName();
-					for( $i=1;$i<=6;$i++ ){
-						if( empty( $v['equip'.$i] ) ){
-							unset( $v['equip'.$i] );
-						}
-					}
-					unset( $v['star'] );
-					$mercHero = $v;
-				}
-			}
-			if( !empty( $mercHero ) ){
-				$merc = new User_Merc();
-				$merc->setMercHero( $mercHero );
-			}
-		}
 		if( empty( $heroList ) ){
 			ret('no_hero',404);
 		}else{
