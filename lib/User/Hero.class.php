@@ -88,7 +88,7 @@ class User_Hero extends User_Base{
 			# ================= 佣兵处理 ====================
 			if( $v['fire'] > $maxFire ){
 				$maxFire = $v['fire'];
-				$v['uName'] = $user->getUserName();
+				$v['uName'] = $this->getUserName();
 				for( $i=1;$i<=6;$i++ ){
 					if( empty( $v['equip'.$i] ) ){
 						unset( $v['equip'.$i] );
