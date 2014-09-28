@@ -79,6 +79,7 @@
 	public function getDbList(){
 		if( empty( $this->sid ) || !is_numeric( $this->sid ) )return array();
 		$dbConf = json_decode( $this->slist['dbConf'], true );
+		dump($dbConf);
 		$ret = array();
 		if(is_array( $dbConf ))
 			foreach( $dbConf as $v ){
