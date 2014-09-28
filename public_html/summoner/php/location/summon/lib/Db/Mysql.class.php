@@ -28,6 +28,7 @@ class Db_Mysql{
 		if( empty(self::$mysql) || !isset(self::$mysql[$type]) || !self::$mysql[$type] ){
 			$con = new Config($type);
 			$db_config = $con->getDbConfig( $type );
+			dump($db_config);
 			self::$mysql[$type] = new Db_Mysql($db_config,$tag);
 		}
 		return self::$mysql[$type];
