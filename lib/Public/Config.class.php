@@ -109,7 +109,7 @@ class Config {
 				'host' => '127.0.0.1',
 				'port' => 3306,
 				'username' => 'root',
-				'password' => 'root',
+				'password' => '',
 				'dbname' => 'summon',
 				'charset' => 'utf8'
 			),
@@ -117,7 +117,7 @@ class Config {
 				'host' => '127.0.0.1',
 				'port' => 3306,
 				'username' => 'root',
-				'password' => 'root',
+				'password' => '',
 				'dbname' => 'summon',
 				'charset' => 'utf8'
 			),
@@ -125,7 +125,7 @@ class Config {
 				'host' => '127.0.0.1',
 				'port' => 3306,
 				'username' => 'root',
-				'password' => 'root',
+				'password' => '',
 				'dbname' => 'public',
 				'charset' => 'utf8'
 			)
