@@ -215,41 +215,43 @@ class Config {
 
 
 
-/*	function __construct( $type='' ){
+	function __construct( $type='' ){
 		global $serverId;
 		empty( $serverId ) && $serverId = 2;
 		$this->type = $type;
+		$this->sid = $serverId;
+	}
+/**
+ *@ 获取指定tag的Db配置信息
+ **/
+	function getDbConfig(){
 		if( !empty( $type ) ){
 			if( !isset( self::$db_config[self::$env][$this->type] ) ){
-				$ser = new Server($serverId);
+				$ser = new Server($this->sid);
 				$dbList = $ser->getDbList();
 				foreach( $dbList as $k=>$v ){
 					self::$db_config[self::$env][ $k ] = $v;
 				}
 			}
-
-			if( is_numeric($this->type) ){
-				$this->type = 'redis'.( $this->type%self::$redis_count );
-			}
-			if( !isset( self::$redis_config[self::$env][$this->type] ) ){
-				$ser = new Server($serverId);
-				$List = $ser->getRedisList();
-				foreach( $List as $k=>$v ){
-					self::$redis_config[self::$env][ $k ] = $v;
-				}
-			}
 		}
-	}*/
-/**
- *@ 获取指定tag的Db配置信息
- **/
-	function getDbConfig(){
 		return isset( self::$db_config[self::$env][$this->type] ) ? self::$db_config[self::$env][$this->type] : self::$db_config[self::$env]['slave'];
 	}
 /**
  *@ 获取指定tag的redis配置信息
  **/
 	function getRedisList(){
+		if( !empty( $type ) ){
+			if( is_numeric($this->type) ){
+				$this->type = 'redis'.( $this->type%self::$redis_count );
+			}
+			if( !isset( self::$redis_config[self::$env][$this->type] ) ){
+				$ser = new Server($this->sid);
+				$List = $ser->getRedisList();
+				foreach( $List as $k=>$v ){
+					self::$redis_config[self::$env][ $k ] = $v;
+				}
+			}
+		}
 		return isset( self::$redis_config[self::$env][$this->type] ) ? self::$redis_config[self::$env][$this->type] : self::$redis_config[self::$env]['default'];
 	}
 
