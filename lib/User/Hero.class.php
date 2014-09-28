@@ -67,6 +67,23 @@ class User_Hero extends User_Base{
  *@ 获取用户拥有的英雄列表
  **/
 	public function getUserHeroList(){
+		$ret = array();
+		foreach( $this->hinfo as $v ){
+			$temp[] = $v['fire'];
+			$temp[] = $v['level'];
+			$temp[] = $v['exp'];
+			$temp[] = $v['color'];
+			$temp[] = $v['star'];
+			$temp[] = $v['equip1'];
+			$temp[] = $v['equip2'];
+			$temp[] = $v['equip3'];
+			$temp[] = $v['equip4'];
+			$temp[] = $v['equip5'];
+			$temp[] = $v['equip6'];
+			$temp[] = $v['config'];
+			$ret[ $v['hid'] ] = implode( '|', $temp );
+			unset($temp);
+		}
 		return $this->hinfo;
 	}
 /**
