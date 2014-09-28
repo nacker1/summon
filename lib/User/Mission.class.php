@@ -177,13 +177,14 @@
  			return false;
  		}
  		if( (int)$taskConfig['Task_Level'] > $this->getLevel() ){ 	//用户当前等级小于任务要求的最低等级  返回
- 			$this->log->i( json_encode($taskConfig).':userLevel->'.$this->getLevel() );
+ 			$this->log->e( json_encode($taskConfig).':userLevel->'.$this->getLevel() );
  			$this->errorInfo = ' min_level_'.(int)$taskConfig['Task_Level'];
  			return false;
  		}
  		if( 1 == $this->type ){ //系统任务领取处理
 	 		$uMissProgress = $this->redis->hgetall( 'roleinfo:'.$this->getUid().':mission:'.$taskConfig['Task_Class'] );
 	 		if( !empty( $uMissProgress['missing'] ) && $uMissProgress['showMission'] >= $uMissProgress['missing'] ){  //用户当前领取的任务实际未完成  返回
+	 			$this->log->e( 'uMissProgress相应配置信息'.json_encode($uMissProgress) );
 	 			$this->errorInfo = ' no_finished ';
 	 			return false;
 	 		}
@@ -195,12 +196,13 @@
 	 		if( $taskConfig['Task_Class'] == 61 ){ //晚餐或午餐领取体力需要额外处理
 	 			$mission = $this->cond->get( $taskConfig['Task_Class'].':'.$taskId );
 		 		if( empty( $mission ) ){ //如果信息不存在说明键值已被删除，用户已领取过奖品
+		 			$this->log->e( $taskId.'_相应任务的配置信息为空' );
 		 			$this->errorInfo = ' reward ';
 		 			return false;
 		 		}
 		 			$time = date( 'Hi' );
-		 			$this->log->i( json_encode($taskConfig) );
 		 			if( $time < $taskConfig['Task_Goal'] || $time > $taskConfig['Task_Time'] ){
+		 				$this->log->e( $time.'_'.json_encode($taskConfig) );
 		 				$this->errorInfo = ' time_error ';
 		 				return false;
 		 			}
