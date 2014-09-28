@@ -221,7 +221,6 @@ class Config {
 		empty( $serverId ) && $serverId = 2;
 		$this->type = $type;
 		if( !empty( $type ) ){
-			dump( self::$db_config[self::$env][$this->type] );
 			if( !isset( self::$db_config[self::$env][$this->type] ) ){
 				$ser = new Server($serverId);
 				$dbList = $ser->getDbList();
