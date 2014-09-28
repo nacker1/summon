@@ -220,6 +220,7 @@ class Config {
 		global $serverId;
 		empty( $serverId ) && $serverId = 2;
 		$this->type = $type;
+		dump($this->type);
 		if( !empty( $type ) ){
 			if( !isset( self::$db_config[self::$env][$this->type] ) ){
 				$ser = new Server($serverId);
