@@ -199,6 +199,7 @@
 		 			return false;
 		 		}
 		 			$time = date( 'Hi' );
+		 			$this->log->i( json_encode($taskConfig) );
 		 			if( $time < $taskConfig['Task_Goal'] || $time > $taskConfig['Task_Time'] ){
 		 				$this->errorInfo = ' time_error ';
 		 				return false;
