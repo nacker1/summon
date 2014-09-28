@@ -3,7 +3,7 @@ class Config {
 	/**
 	 *@ ÔËÐÐ»·¾³  testÎª²âÊÔ»·¾³£¬onlineÎªÏßÉÏ»·¾³
 	 **/
-	public static $env = 'test'; 
+	public static $env = 'online'; 
 
 	public static $checkDb = false;	#标记是否检测过大区DB配置
 	/**
@@ -104,7 +104,7 @@ class Config {
 				'password' => 'coolplay159357',
 				'dbname' => 'summon',
 				'charset' => 'utf8'
-			),
+			),*/
 			'login'=>array( //公共登录库         通用
 				'host' => '127.0.0.1',
 				'port' => 3306,
@@ -113,7 +113,6 @@ class Config {
 				'dbname' => 'summon',
 				'charset' => 'utf8'
 			),
-			*/
 			'config'=>array( //公共配置信息库 + 所有服活动配置库         通用
 				'host' => '127.0.0.1',
 				'port' => 3306,
