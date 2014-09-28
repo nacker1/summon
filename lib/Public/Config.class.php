@@ -3,7 +3,7 @@ class Config {
 	/**
 	 *@ ÔËÐÐ»·¾³  testÎª²âÊÔ»·¾³£¬onlineÎªÏßÉÏ»·¾³
 	 **/
-	public static $env = 'online'; 
+	public static $env = 'test'; 
 
 	/**
 	 *@ redisÓÃ»§ÇóÓàµÄ»ùÊý
