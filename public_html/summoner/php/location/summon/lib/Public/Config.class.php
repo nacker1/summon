@@ -3,7 +3,7 @@ class Config {
 	/**
 	 *@ ÔËÐÐ»·¾³  testÎª²âÊÔ»·¾³£¬onlineÎªÏßÉÏ»·¾³
 	 **/
-	public static $env = 'test'; 
+	public static $env = 'online'; 
 
 	public static $checkDb = false;	#标记是否检测过大区DB配置
 	/**
