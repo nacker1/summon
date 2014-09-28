@@ -220,6 +220,7 @@ class Config {
 		empty( $serverId ) && $serverId = 2;
 		$this->type = $type;
 		$this->sid = $serverId;
+		dump($this->sid);
 	}
 /**
  *@ 获取指定tag的Db配置信息
