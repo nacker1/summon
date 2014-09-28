@@ -50,8 +50,8 @@
 				$cooldou = $limit->getExpend();
 			}else{
 				$cooldou = $limit->getOneTimeCooldou();
-				$limit->setTimeLimit();
 			}
+			$limit->addLimitTimes( $nums );
 			
 			$cooldou = $cooldou * $nums;
 			if( $user->getUserRecord( 'mFriend' ) < $cooldou ){
