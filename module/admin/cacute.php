@@ -107,7 +107,9 @@
 					$hero = new User_Hero( $uid, $v );
 					$hero->addHeroExp( $input['heroexp'] );
 				}
-				$input['getList']['hero'] = $hero->getLastUpdField();
+				$updHero = $hero->getLastUpdField();
+				if( !empty( $updHero ) )
+					$input['getList']['hero'] = $updHero;
 			}
 
 			//-==============处理用户通关进度 PVE 包括普通本 精英本 练狱本==============
