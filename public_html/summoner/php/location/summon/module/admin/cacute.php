@@ -2,7 +2,7 @@
 /**
  *@ 战场结算
  **/
-	$str = '{"bossid":910102,"cmd":8003,"errno":0,"goods":[{"11001":1,"3000100":1,"3000400":1}],"heroexp":20,"heros":[10029,10030,10031,10011],"isboss":0,"merc":1,"money":495,"pass":1,"passlevel":3,"playerexp":6,"roundid":910101,"stageid":910110,"stagetype":1,"tasktype":11,"uid":381529}';
+	$str = '{"bossid":910102,"cmd":8003,"errno":0,"goods":[{"11001":1,"3000100":1,"3000400":1}],"heroexp":20,"heros":[10029,10030,10031,10011],"isboss":0,"merc":1,"money":495,"pass":1,"passlevel":3,"playerexp":6,"roundid":910101,"stageid":910110,"stagetype":1,"tasktype":12,"uid":381529}';
 	
 	if( count( $input )<5 ){
 		$log->e( '* 战斗请求数据格式不对.'.json_encode($input) );
