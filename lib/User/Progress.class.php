@@ -5,7 +5,7 @@
 class User_Progress extends User_Base{
 	private $progress_table = 'zy_uniqRoleProgress';				//用户关卡进度表
 	private $pList;									//用户关卡进度列表
-	private $type;									//关卡类型
+	private $type;									//关卡类型  1普通， 2精英 ， 3炼狱
 	private $cid;									//关卡id
 
 	function __construct( $cid='' ){
