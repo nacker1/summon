@@ -30,11 +30,11 @@
 	 **/
 	public function getHeartBeatInfo(){
 		$uInfo = $this->getUserInfo();
-		$ret['mail'] = (int)$uInfo['mail'];
-		$ret['message'] = (int)$uInfo['message'];
-		$ret['mission'] = (int)$uInfo['mission'];
-		$ret['jewel'] = (int)$uInfo['jewel'];
-		$ret['now'] = time();
+		$ret[] = time();						#服务器当前时间
+		$ret[] = (int)$uInfo['mail'];			#邮件标记
+		$ret[] = (int)$uInfo['message'];		#私聊消息
+		$ret[] = (int)$uInfo['jewel'];			#当前钻石数量
+		$ret[] = $this->isMonthCode();			#是否月卡用户
 		return $ret;
 	}
 /**
