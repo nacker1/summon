@@ -610,7 +610,7 @@
  **/
 	public function setUserRecord( $key, $value ){
 		$this->log->i( '设置用户记录信息：'.$key.'=>'.$value );
-		return self::$recordInfo[$this->uid][$key] = $value;
+		return self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = $value;
 	}
 /**
  *@ getUserRecord() 设置用户的记录表信息
@@ -628,7 +628,7 @@
  **/
 	public function addUserRecord( $key, $value ){
 		$this->log->i( '添加用户记录信息：'.$key.'+='.$value );
-		return self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
+		return self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
 	}
 #============================================================================================
 	public function __destruct(){
