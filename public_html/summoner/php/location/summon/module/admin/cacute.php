@@ -31,7 +31,6 @@
 				$add['cooldou'] = $input['diamond'];		#添加钻石   当前排名高于历史最高排名奖励钻石
 			}
 		}
-		dump($user->getUserRecord( 'maxPvpTop' ));
 		$input['hrank'] = $user->getUserRecord( 'maxPvpTop' );
 		$custLimit->addLimitTimes( 1 );
 		unset( $custLimit );
