@@ -198,6 +198,7 @@
 			}
 		}
 		$uInfo = $this->getUserLastUpdInfo();
+		dump($uInfo);
 		if( is_array( $uInfo ) ){
 			$ret = array_merge( $ret, $uInfo );
 		}

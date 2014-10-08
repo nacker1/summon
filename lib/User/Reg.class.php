@@ -3,12 +3,13 @@
  *@ 用户登录注册接口
  **/
  class User_Reg extends User_Rolebase{
-	private $table='zy_loginRegister'; 	//用户注册表名
-	private $source;			//登录平台id
-	private $source_id; 			//合作登录平台对应用户uid
-	private $name;				//用户昵称
-	private $channel;			//用户渠道
-	private $loginDb;			//登录用Db
+	private $table='zy_loginRegister'; 				//用户注册表名
+	private $source;								//登录平台id
+	private $source_id; 							//合作登录平台对应用户uid
+	private $name;									//用户昵称
+	private $channel;								//用户渠道
+	private $loginDb;								//登录用Db
+	private $loginRedis;							//登录用redis
 
 
 	
