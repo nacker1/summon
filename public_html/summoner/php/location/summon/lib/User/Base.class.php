@@ -633,6 +633,7 @@
 #============================================================================================
 	public function __destruct(){
 		# 同步用户信息
+		dump(self::$updinfo[$this->uid]);
 		if( isset( self::$isupd[$this->uid] ) && self::$isupd[$this->uid] > 0 ){ 
 			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$userinfo[$this->uid]);
 			if( self::$isupd[$this->uid] >= 2 && !empty( self::$updinfo[$this->uid] ) ){
