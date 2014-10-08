@@ -32,11 +32,11 @@ class Base{
 				$this->redis = Redis_Redis::init($this->uid);	
 				break;
 			case 'pre': //存储配置信息的redis
-				$this->pre = Redis_Redis::init();break;
+				$this->pre = Redis_Redis::init('default');break;
 			case 'cdb': //存储配置信息的db
 				$this->cdb = Db_Mysql::init('config');break;
-			case 'db': //存储当前服务器用户盯着信息的db
-				$this->db = Db_Mysql::init();break;
+			case 'db': //存储当前服务器用户信息的db
+				$this->db = Db_Mysql::init('slave');break;
 			case 'sdb'://统计数据db
 				$this->sdb = Db_Mysql::init('stats');break;
 			case 'adb'://活动库db
