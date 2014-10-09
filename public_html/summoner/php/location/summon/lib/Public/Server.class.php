@@ -76,7 +76,6 @@
 			$temp[] = $v['name'];
 			$temp[] = $v['tcp'];
 			$temp[] = $v['php'];
-			$temp[] = $v['max'];
 			$temp[] = $v['top'];
 			$ret[ $v['id'] ] = $temp;
 			unset($temp);
