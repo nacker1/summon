@@ -66,7 +66,7 @@ class User_Friend extends User_Base{
  **/
 	function agreeUserInvite(){
 		// 第二步 判断用户以及对家好友数量是否已满
-		$toUser = new User_Base( $this->toUid );
+		$toUser = new User_User( $this->toUid, -1 );
 		$toUserHaveFriends = (int)$this->toCond->get('tolFriends');
 		if( $toUserHaveFriends >= $toUser->getMaxFriends() ){
 			$this->errorInfo = ' 对方好友人数已满 ';

@@ -205,6 +205,15 @@
 		return $ret;
 	}
 	public function __destruct(){
+		# 同步用户信息
+		if( isset( self::$isupd[$this->uid] ) && self::$isupd[$this->uid] > 0 ){ 
+			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$userinfo[$this->uid]);
+			if( self::$isupd[$this->uid] >= 2 && !empty( self::$updinfo[$this->uid] ) ){
+				$this->throwSQL( $this->baseTable, self::$updinfo[$this->uid], array('userid'=>$this->uid) );
+				self::$updinfo[$this->uid] = array();
+			}
+			self::$isupd[$this->uid] = 0;
+		}
 		#同步用户record信息
 		if( is_array( self::$recordInfo[$this->uid] ) && !empty( self::$recordInfo[$this->uid] ) ){
 			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$recordInfo[$this->uid]);
