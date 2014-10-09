@@ -31,7 +31,13 @@ switch ($type) {
 	case '999':
 		#添加所有道具
 		$gBase = new Goodbase();
-		dump($gBase->getAllBaseGood());
+		$gList = $gBase->getAllBaseGood();
+		foreach( $gList as $v ){
+			$good = new User_Goods($user->getUid(), $v['Item_Id']);
+			$good->addGoods(10);
+		}
+		ret('suc');
+		break;
 	default:
 		# code...
 		phpinfo();
