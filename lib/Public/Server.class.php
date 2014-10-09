@@ -115,16 +115,13 @@
 			foreach( $this->slist as $v ){
 				$stats = $this->pre->hgetall('server:status:'.$v['id']);
 				if( empty($stats) ){
-					/*$stats['stats'] = 1;
-					$stats['close'] = 0;
-					$stats['cInfo'] = '';*/
 					$temp[] = 1;
 					$temp[] = 0;
 					$temp[] = '';
 				}else{
-					$temp[] = $stats['stats'];
-					$temp[] = $stats['close'];
-					$temp[] = $stats['cInfo'];
+					$temp[] = (int)$stats['stats'];
+					$temp[] = (int)$stats['close'];
+					$temp[] = (int)$stats['cInfo'];
 				}
 				$ret[ $v['id'] ] = $temp;	
 				unset($temp);
@@ -132,9 +129,6 @@
 		}else{
 			$stats = $this->pre->hgetall('server:status:'.$this->sid);
 			if( empty($stats) ){
-				/*$stats['stats'] = 1;
-				$stats['close'] = 0;
-				$stats['cInfo'] = '';*/
 				$temp[] = 1;
 				$temp[] = 0;
 				$temp[] = '';
