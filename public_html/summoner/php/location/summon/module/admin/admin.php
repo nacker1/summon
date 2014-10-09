@@ -30,7 +30,7 @@ switch ($type) {
 		ret($user->getUserLastUpdInfo());
 	case '999':
 		#添加所有道具
-		$gBase = new GoodBase();
+		$gBase = new Goodbase();
 		dump($gBase->getAllBaseGood());
 	default:
 		# code...
