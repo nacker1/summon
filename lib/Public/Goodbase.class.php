@@ -128,6 +128,12 @@
 		return $ret;
 	}
 /**
+ *@getAllBaseGood 返回所有基础物品信息
+**/
+	public function getAllBaseGood(){
+		return $this->ginfo;
+	}
+/**
  *@checkLevel 检查当前物品是否可以继续强化
  **/
 	public function checkLevel(){
