@@ -73,13 +73,12 @@
 	public function getServerList(){
 		$ret = array();
 		foreach( $this->slist as $v ){
-			$temp[] = $v['id'];
 			$temp[] = $v['name'];
 			$temp[] = $v['tcp'];
 			$temp[] = $v['php'];
 			$temp[] = $v['max'];
 			$temp[] = $v['top'];
-			$ret[] = $temp;
+			$ret[ $v['id'] ] = $temp;
 			unset($temp);
 		}
 		return $ret;
