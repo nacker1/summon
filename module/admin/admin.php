@@ -28,6 +28,10 @@ switch ($type) {
 		#添加用户体力
 		$user->addLife( $nums );
 		ret($user->getUserLastUpdInfo());
+	case '999':
+		#添加所有道具
+		$gBase = new GoodBase();
+		dump($gBase->getAllBaseGood());
 	default:
 		# code...
 		phpinfo();
