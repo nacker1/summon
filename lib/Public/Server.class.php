@@ -71,7 +71,18 @@
  *@ 获取服务器列表
  **/
 	public function getServerList(){
-		return $this->slist;
+		$ret = array();
+		foreach( $this->slist as $v ){
+			$temp[] = $v['id'];
+			$temp[] = $v['name'];
+			$temp[] = $v['tcp'];
+			$temp[] = $v['php'];
+			$temp[] = $v['max'];
+			$temp[] = $v['top'];
+			$ret[] = $temp;
+			unset($temp);
+		}
+		return $ret;
 	}
 /**
  *@ 获取指定区的DB配置信息		指定sid
