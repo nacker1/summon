@@ -10,10 +10,12 @@
 	private $sid;						//用户选择服务器id
 	private $sre;						//注册号+服务器id 组成的健值对应redis 根据相应值找出 rid+sid 对应的 uid
 	private $isNew=0;					//标记是否为新角色
+	private $loginTime;					//此次登录时间
 	
 	public function __construct( $rid,$sid ){
 		$this->rid = $rid;
 		$this->sid = $sid;
+		$this->loginTime = time();
 		if( empty($this->rid)||empty($this->sid) ){
 			ret('参数错误',-1);
 		}
@@ -130,6 +132,8 @@
 		$ret['mAction'] = (int)$userinfo['mAction'];									#用户的
 		$ret['buff'] = $this->getRoleBuff();											#用户当前身上拥有的buff列表
 		$ret['maxPvpTop'] = (int)$userinfo['maxPvpTop'];								#用户当前身上拥有的buff列表
+		$ret['lastLoginTime'] = (int)$userinfo['logintime'];							#用户上次登录时间
+		$ret['logintime'] = $this->loginTime;											#用户本次登录时间
 		$this->_logInfo();
 		return $ret;
 	}
@@ -146,7 +150,7 @@
 		$insert['time'] = date('Y-m-d H:i:s');
 		$insert['isNew'] = $this->isNew;
 		$this->setThrowSQL( $this->loginLogTable,$insert,'',1,'stats' );
-		$this->setLoginTime();
+		$this->setLoginTime( $this->loginTime );
 	}
  }
 ?>
