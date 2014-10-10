@@ -36,7 +36,14 @@
  		if( is_array( $cList ) )
 	 		foreach( $cList as $v ){
 	 			if( $v['time'] > $lasttime ){
-	 				$ret[] = $v;
+	 				$temp[] = $v['con'];
+	 				$temp[] = $v['name'];
+	 				$temp[] = $v['level'];
+	 				$temp[] = $v['image'];
+	 				$temp[] = $v['uid'];
+	 				$temp[] = $v['time'];
+	 				$ret[] = $temp;
+	 				unset($temp);
 	 			}
 	 		}
  		return $ret;
@@ -52,7 +59,14 @@
  		if( is_array( $cList ) )
 	 		foreach( $cList as $v ){
 	 			if( $v['time'] > $lasttime ){
-	 				$ret[] = $v;
+	 				$temp[] = $v['con'];
+	 				$temp[] = $v['name'];
+	 				$temp[] = $v['level'];
+	 				$temp[] = $v['image'];
+	 				$temp[] = $v['uid'];
+	 				$temp[] = $v['time'];
+	 				$ret[] = $temp;
+	 				unset($temp);
 	 			}
 	 		}
  		return $ret;
