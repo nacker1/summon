@@ -42,6 +42,8 @@
 	 				$temp[] = $v['image'];
 	 				$temp[] = $v['uid'];
 	 				$temp[] = $v['time'];
+	 				$temp[] = $v['to'];
+	 				$temp[] = $v['other'];
 	 				$ret[] = $temp;
 	 				unset($temp);
 	 			}
@@ -65,6 +67,8 @@
 	 				$temp[] = $v['image'];
 	 				$temp[] = $v['uid'];
 	 				$temp[] = $v['time'];
+	 				$temp[] = $v['to'];
+	 				$temp[] = $v['other'];
 	 				$ret[] = $temp;
 	 				unset($temp);
 	 			}
@@ -80,14 +84,16 @@
  *	$level:	 发信者等级
  *	$image:	 发信者的头像id
  **/
- 	function sendChat( $con, $name, $uid, $level, $image ){
+ 	function sendChat( $con, $name, $uid, $level, $image, $other='' ){
  		$chat = array(
  			'con'=>$con,
  			'name'=>$name,
  			'level'=>$level,
  			'image'=>$image,
  			'uid'=>$uid,
- 			'time'=>time()
+ 			'time'=>time(),
+ 			'to'=>'',
+ 			'other'=>$other
  		);
  		return $this->_setChat( $chat );
  	}
