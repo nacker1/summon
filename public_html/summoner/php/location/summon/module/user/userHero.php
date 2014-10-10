@@ -57,6 +57,7 @@
 			$equipInfo = explode(':',$v);
 			$ug = new User_Goods( $user->getUid(), $equipInfo[1] );
 			$bEquip = new Equipbase( substr( $equipInfo[1], 0, 5 ) );
+			$log->i('heroLevel:'.$hero->getHeroLevel().', equipLevel:'.$bEquip->getEquipMinLevel());
 			if( $hero->getHeroLevel() < $bEquip->getEquipMinLevel() ){
 				ret( '英雄等级不够!', -1 );
 			}
