@@ -315,6 +315,7 @@ class User_Hero extends User_Base{
  *@ 获取当前英雄的等级
  **/
 	function getHeroLevel(){
+		$this->log->i( json_encode(self::$heroInfo[$this->uid][$this->hid]) );
 		return (int)self::$heroInfo[$this->uid][$this->hid]['level'];
 	}
 /**
