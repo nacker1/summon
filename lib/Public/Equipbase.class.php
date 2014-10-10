@@ -35,14 +35,13 @@
  *@ 装备需要的英雄最低等级
  **/
 	function getEquipMinLevel(){
-		#$this->log->i( 'mast level:'.$this->eInfo['Hero_Level'] );
-		return $this->eInfo['Hero_Level'];
+		return (int)$this->eInfo['Hero_Level'];
 	}
 /**
  *@ 装备的最大强化次数
  **/
 	function getEquipMax(){
-		return $this->eInfo['Hero_Level'];
+		return (int)$this->eInfo['Equip_Color'];
 	}
 /**
  *@ 计算装备战斗力
