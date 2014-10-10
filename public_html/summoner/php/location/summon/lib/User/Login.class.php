@@ -121,7 +121,6 @@
 		$ret['mCodeOverTime'] = (int)$userinfo['mCodeOverTime'];
 		$ret['sex'] = (int)$userinfo['sex'];
 		$ret['pageNum'] = (int)$userinfo['pageNum'];
-		#$ret['friends'] = (int)$userinfo['friends'];
 		$ret['maxHeroLevel'] = (int)$userinfo['maxHeroLevel'];
 		$ret['skey'] = $userinfo['skey'];
 		$ret['mail'] = (int)$userinfo['mail'];
