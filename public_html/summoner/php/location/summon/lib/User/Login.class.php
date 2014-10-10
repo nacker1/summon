@@ -151,5 +151,17 @@
 		$this->setThrowSQL( $this->loginLogTable,$insert,'',1,'stats' );
 		$this->setLoginTime( $this->loginTime );
 	}
+
+	public function __destruct(){
+		# 同步用户信息
+		if( isset( self::$isupd[$this->uid] ) && self::$isupd[$this->uid] > 0 ){ 
+			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$userinfo[$this->uid]);
+			if( self::$isupd[$this->uid] >= 2 && !empty( self::$updinfo[$this->uid] ) ){
+				$this->throwSQL( $this->baseTable, self::$updinfo[$this->uid], array('userid'=>$this->uid) );
+				self::$updinfo[$this->uid] = array();
+			}
+			self::$isupd[$this->uid] = 0;
+		}
+	}
  }
 ?>
