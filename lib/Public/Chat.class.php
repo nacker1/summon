@@ -96,7 +96,7 @@
  			'uid'=>$uid,
  			'time'=>time(),
  			'to'=>'',
- 			'other'=>implode('|',$other)
+ 			'other'=>$other
  		);
  		return $this->_setChat( $chat );
  	}
