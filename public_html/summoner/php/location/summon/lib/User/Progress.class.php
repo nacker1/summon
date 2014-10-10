@@ -37,7 +37,11 @@ class User_Progress extends User_Base{
 		if( is_array( $keys ) )
 			foreach( $keys as $v ){
 				$val = $this->redis->hgetall( $v );
-				array_push($ret, $val);
+				$temp[] = $val['cId'];
+				$temp[] = $val['star'];
+				$temp[] = $val['type'];
+				array_push($ret, $temp);
+				unset($temp);
 			}
 		return $ret;
 	}
