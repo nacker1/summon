@@ -35,6 +35,7 @@
  *@ 装备需要的英雄最低等级
  **/
 	function getEquipMinLevel(){
+		$this->log->i( 'mast level:'.$this->eInfo['Hero_Level'] );
 		return $this->eInfo['Hero_Level'];
 	}
 /**
