@@ -21,7 +21,7 @@ class User_Draw extends User_Base{
 	private function _init(){
 		//初始化抽卡配置表   
 		$this->pre;
-		if( C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
+		if( true || C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
 			$this->cdb;
 			#=============  初始化类型配置表  =================================================
 			$ret = $this->cdb->find( $this->draw_type_table, 'id,Group_Level,Item_Type,Item_Color,Item_Random,Item_CountMin,Item_CountMax', array( 'Box_Id'=>$this->type ) );
@@ -112,10 +112,10 @@ class User_Draw extends User_Base{
 			}
 		}
 		$index = $this->retRate( $list );
-		$ret['type'] = $this->userType[ $index ]['Item_Type'];
-		$ret['color'] = $this->userType[ $index ]['Item_Color'];
-		$ret['min'] = $this->userType[ $index ]['Item_CountMin'];
-		$ret['max'] = $this->userType[ $index ]['Item_CountMax'];
+		$ret['type'] = (int)$this->userType[ $index ]['Item_Type'];
+		$ret['color'] = (int)$this->userType[ $index ]['Item_Color'];
+		$ret['min'] = (int)$this->userType[ $index ]['Item_CountMin'];
+		$ret['max'] = (int)$this->userType[ $index ]['Item_CountMax'];
 		$this->log->e(json_encode($ret));
 		return $ret;
 	}
