@@ -153,20 +153,20 @@
 	}
 
 	public function __destruct(){
+		if( $this->isNew ){
+			$hero = new User_Hero($this->uid, 10002);
+			$hero->giveHero();
+		}
 		# 同步用户信息
-		if( isset( self::$isupd[$this->uid] ) && self::$isupd[$this->uid] > 0 ){ 
+		/*if( isset( self::$isupd[$this->uid] ) && self::$isupd[$this->uid] > 0 ){ 
 			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$userinfo[$this->uid]);
 			if( self::$isupd[$this->uid] >= 2 && !empty( self::$updinfo[$this->uid] ) ){
 				$this->throwSQL( $this->baseTable, self::$updinfo[$this->uid], array('userid'=>$this->uid) );
 				self::$updinfo[$this->uid] = array();
 			}
 			self::$isupd[$this->uid] = 0;
-		}
-
-		if( $this->isNew ){
-			$hero = new User_Hero($this->uid, 10002);
-			$hero->giveHero();
-		}
+		}*/
+		new User_User($this->uid);
 	}
  }
 ?>
