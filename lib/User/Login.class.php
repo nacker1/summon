@@ -66,7 +66,7 @@
 
 		$role = new User_Rolebase( $this->rid );
 		$role->setUserLastServerId( $this->sid ); //登录成功后设置用户最后登录服务器
-		$this->_other();
+
 	}
 /**
  *@ 创建新角色
@@ -159,6 +159,7 @@
 		$insert['isNew'] = $this->isNew;
 		$this->setThrowSQL( $this->loginLogTable,$insert,'',1,'stats' );
 		$this->setLoginTime( $this->loginTime );
+		$this->_other();
 	}
 
 	public function __destruct(){
