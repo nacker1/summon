@@ -33,8 +33,7 @@ class Sync extends Base{
 		$com = 'php /data/web/summon/syncDb.php -t '.$this->table.' -d \''.serialize($this->data).'\' -w \''.serialize($this->where).'\' -o '.$this->opt.' -f '.$this->dbTag.' &';
 		if( strpos( PHP_OS, 'Linux' ) !== -1 ){
 			$this->log->i($com.strpos( PHP_OS, 'Linux' ));
-			$ret = popen( $com,'r');
-			$this->log->e( json_encode($ret) );
+			@pclose(popen( $com,'r'));
 		}else
 			$this->log->e($com.PHP_OS);
 	}
