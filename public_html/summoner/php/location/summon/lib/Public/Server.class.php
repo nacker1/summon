@@ -87,6 +87,7 @@
  **/
 	public function getServerAllList(){
 		$ret = array();
+		dump($this->slist);
 		foreach( $this->slist as $v ){
 			$ret[] = $v;
 		}
