@@ -176,6 +176,7 @@
 
 		if( isset( $input['buff'][0] ) && is_numeric( $input['buff'][0] ) ){ //活动添加buff  buff应对buff表中的buffid
 			$input['getList']['buff'] = $user->addRoleBuff( $input['buff'][0] );
+			unset( $input['buff'] );
 		}
 
 		
