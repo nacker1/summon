@@ -34,7 +34,7 @@ class Sync extends Base{
 	function sendCommand(){
 		$com = 'php /data/web/summon/syncDb.php -t '.$this->table.' -d \''.serialize($this->data).'\' -w \''.serialize($this->where).'\' -o '.$this->opt.' -f '.$this->dbTag.' &';
 		@pclose( popen( $com,'r' ) );
-		$this->log->e($com.PHP_OS);
+		#$this->log->e($com.PHP_OS);
 	}
 /**
  *@ 将用户需要同步的数据同步到   暂时不用
