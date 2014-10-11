@@ -94,6 +94,12 @@
 		return $ret;
 	}
 /**
+ *@ 获取服务器信息
+ **/
+	public function getServerInfo(){
+		return $this->slist;
+	}
+/**
  *@ 获取指定区的DB配置信息		指定sid
  **/
 	public function getDbList(){
