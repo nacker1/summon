@@ -44,7 +44,7 @@
 	 				$temp[] = $v['time'];
 	 				$temp[] = $v['to'];
 	 				$temp[] = $v['other'];
-	 				$ret[] = $v;
+	 				$ret[] = $temp;
 	 				unset($temp);
 	 			}
 	 		}
@@ -69,7 +69,7 @@
 	 				$temp[] = $v['time'];
 	 				$temp[] = $v['to'];
 	 				$temp[] = $v['other'];
-	 				$ret[] = $v;
+	 				$ret[] = $temp;
 	 				unset($temp);
 	 			}
 	 		}
