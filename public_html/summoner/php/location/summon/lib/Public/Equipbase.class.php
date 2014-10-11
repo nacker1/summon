@@ -14,7 +14,7 @@
 	}
 
 	private function _init(){
-		if( true || C('test') || !$this->pre->exists('equip:baseinfo_check') ){
+		if( C('test') || !$this->pre->exists('equip:baseinfo_check') ){
 			$this->cdb;
 			$ret = $this->cdb->find($this->table);
 			foreach( $ret as $v ){

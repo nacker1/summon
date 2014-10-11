@@ -114,7 +114,7 @@
  */
 	public function getGoodConfig(){
 		$config = json_decode( $this->ginfo['Item_value'], true );
-		$this->log->i($config);
+		#$this->log->i( $this->ginfo['Item_value'] );
 		if( is_array( $config ) ){
 			$config['gid'] = $this->gid;
 		}
