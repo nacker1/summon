@@ -22,9 +22,11 @@ class User_Draw extends User_Base{
 		//初始化抽卡配置表   
 		$this->pre;
 		if( true || C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
+			$this->log->i('+++++++++++++++++ DB select ++++++++++++++++');
 			$this->cdb;
 			#=============  初始化类型配置表  =================================================
 			$this->pre->hdel('baseDrawTypeConfig:*');
+			$this->pre->hdel('baseDrawConfig:*');
 			$ret = $this->cdb->find( $this->draw_type_table, 'id,Group_Level,Item_Type,Item_Color,Item_Random,Item_CountMin,Item_CountMax', array( 'Box_Id'=>$this->type ) );
 			if( empty( $ret ) || !is_array( $ret ) ){
 				$this->log->e( '类型（'.$this->type.'）对应的类型配置信息未找到。' );
