@@ -83,6 +83,16 @@
 		return $ret;
 	}
 /**
+ *@ 获取服务器完整列表
+ **/
+	public function getServerList(){
+		$ret = array();
+		foreach( $this->slist as $v ){
+			$ret[] = $v;
+		}
+		return $ret;
+	}
+/**
  *@ 获取指定区的DB配置信息		指定sid
  **/
 	public function getDbList(){
