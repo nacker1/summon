@@ -22,6 +22,7 @@
 		$ret;
 		if( empty( $this->sid ) ){ //初始化所有服务器列表
 			if( C( 'test' ) || !$this->pre->exists( 'server:list:1' ) ){
+				$this->pre->hdel( 'server:list:*' );
 				$this->cdb;
 				$slist = $this->cdb->find($this->table);
 				foreach( $slist as $v ){
@@ -87,7 +88,6 @@
  **/
 	public function getServerAllList(){
 		$ret = array();
-		dump($this->slist);
 		foreach( $this->slist as $v ){
 			$ret[] = $v;
 		}
