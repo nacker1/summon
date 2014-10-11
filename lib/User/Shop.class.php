@@ -74,7 +74,7 @@
  **/
 	private function _init(){
 		$this->pre;
-		if( C('test') || !$this->pre->exists('shopConfig:'.$this->type.':check') ){
+		if( true || C('test') || !$this->pre->exists('shopConfig:'.$this->type.':check') ){
 			$where['Shop_Id'] = $this->type;
 			$this->cdb;
 			$ret = $this->cdb->find( $this->table, '*' , $where );
