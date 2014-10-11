@@ -177,7 +177,7 @@
  *@ 开启服务器
  **/
 	public function startServer(){
-		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>9,'cInfo'=>''));
+		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>1,'cInfo'=>''));
 	}
 /**
  *@ 更新或添加服务器信息
