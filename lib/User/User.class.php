@@ -205,7 +205,7 @@
 		return $ret;
 	}
 	public function __destruct(){
-		dump();
+		dump(self::$userinfo);
 		# 同步用户信息
 		if( isset( self::$isupd[$this->uid] ) && self::$isupd[$this->uid] > 0 ){ 
 			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$userinfo[$this->uid]);
