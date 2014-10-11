@@ -35,7 +35,7 @@
 						$this->newServer = $v['id'];
 					}
 					if( !$this->pre->exists('server:status:'.$v['id']) ){
-						$stats = array('stats'=>1,'close'=>0,'cInfo'=>'');
+						$stats = array('stats'=>1,'cInfo'=>'');
 						$this->pre->hmset('server:status:'.$v['id'],$stats);
 					}
 				}
@@ -59,7 +59,7 @@
 				$slist = $this->cdb->findOne($this->table,'*',array('id'=>$this->sid));
 				$this->pre->hmset( 'server:list:'.$slist['id'],$slist,86400 );
 				if( !$this->pre->exists('server:status:'.$slist['id']) ){
-					$stats = array('stats'=>1,'close'=>0,'cInfo'=>'');
+					$stats = array('stats'=>1,'cInfo'=>'');
 					$this->pre->hmset('server:status:'.$slist['id'],$stats);
 				}
 			}else{
@@ -140,6 +140,9 @@
 			if( empty($stats) ){
 				$temp[] = 1;
 				$temp[] = '';
+			}else{
+				$temp[] = $stats['stats'];
+				$temp[] = $stats['cInfo'];
 			}
 			$ret = $temp;	
 			unset($temp);
@@ -165,16 +168,16 @@
 		$this->pre->hdel('server:list:*');
 	}
 /**
- *@ 关闭服务器   stats=> 0:关闭  1:空闲   3：爆满
+ *@ 关闭服务器   stats=> 9:关闭  1:空闲   3：爆满
  **/
 	public function stopServer( $str='' ){
-		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>0,'cInfo'=>$str));
+		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>9,'cInfo'=>$str));
 	}
 /**
  *@ 开启服务器
  **/
 	public function startServer(){
-		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>1,'cInfo'=>''));
+		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>9,'cInfo'=>''));
 	}
 /**
  *@ 更新或添加服务器信息
