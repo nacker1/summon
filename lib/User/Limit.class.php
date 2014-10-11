@@ -46,14 +46,22 @@ class User_Limit extends User_Base{
 		}
 		$this->freeTimes = (int)$this->pre->hget('userLimit:'.$this->flag,'freeTime');
 		$this->tolLimit = (int)$this->pre->hget('userLimit:'.$this->flag,'times');
+		$vipLimit = (int)$this->pre->hget('userLimit:'.$this->flag,'vipLimit');
 		$vipTag = $this->pre->hget('userLimit:'.$this->flag,'vip');
+
 		if( !empty( $vipTag ) && $this->getVlevel() > 0 ){
 			$vip = new Vip( $this->getVlevel() );
 			$ext = $vip->getTagValue( $vipTag );
 			if( !empty( $ext ) ){
-				$this->tolLimit += $ext;
+				if( $vipLimit == 1 ){
+					$this->freeTimes += $ext;
+				}else{
+					$this->tolLimit += $ext;
+				}
 			}
 		}
+
+
 		$this->limitConfig = $this->pre->hgetall( 'userLimit:'.$this->flag );
 	}
 /**

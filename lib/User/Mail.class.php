@@ -69,6 +69,7 @@
 	function getMailGoodsByKey( $key ){
 		$mail = $this->mailRedis->get( $key );
 		if( empty( $mail ) || empty( $mail['goods'] ) )return false;
+		$this->log->e( 'mailConfig:'.json_encode($mail) );
 		return $mail['goods'];
 	}
 
