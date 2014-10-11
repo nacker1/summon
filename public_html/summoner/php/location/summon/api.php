@@ -1,5 +1,5 @@
 <?php
-	#error_reporting(E_ERROR);
+	error_reporting(E_ERROR);
 	global $log,$tag,$version,$channel,$serverId;
 	require dirname(__FILE__).'/inc/inc.php';
 	C('test',false);
