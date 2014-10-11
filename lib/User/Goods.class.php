@@ -265,7 +265,9 @@
  *@ 获取指定物品提供的能量点
  **/
 	public function getValue(){
-		return $this->bgood->getGoodConfig();
+		$ret = $this->bgood->getGoodConfig();
+		$this->log->i( json_encode($ret) );
+		return $ret;
 	}
  }
 ?>

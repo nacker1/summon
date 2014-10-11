@@ -444,18 +444,14 @@
 			self::$userinfo[$this->uid]['exp'] = $tolexp;
 			self::$userinfo[$this->uid]['maxLife'] = $nextinfo['life'];
 			self::$userinfo[$this->uid]['life'] += $nextinfo['getLife'];
-			#self::$userinfo[$this->uid]['lead'] = $nextinfo['lead'];
 			self::$userinfo[$this->uid]['friends'] = $nextinfo['friends'];
-			#self::$userinfo[$this->uid]['pageNum'] = $nextinfo['pnum'];
 			self::$userinfo[$this->uid]['maxHeroLevel'] = $nextinfo['HeroLevel'];
 
 			self::$updinfo[$this->uid]['level'] = $nextinfo['level'];
 			self::$updinfo[$this->uid]['exp'] = $tolexp;
 			self::$updinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life'];
 			self::$updinfo[$this->uid]['maxLife'] = self::$userinfo[$this->uid]['maxLife'];
-			#self::$updinfo[$this->uid]['lead'] = $nextinfo['lead'];
 			self::$updinfo[$this->uid]['friends'] = $nextinfo['friends'];
-			#self::$updinfo[$this->uid]['pageNum'] = $nextinfo['pnum'];
 			self::$updinfo[$this->uid]['maxHeroLevel'] = $nextinfo['HeroLevel'];
 			$this->upInfo = new Levelup( $nextinfo['level'] );
 			$upinfo = $this->upInfo->getUpinfo();

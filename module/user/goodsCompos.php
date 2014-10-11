@@ -97,7 +97,8 @@
  				ret( 'no_item_'.$v, -1 );
  			}
  			$goods[] = $good[0].',-'.$good[1];
- 			$tolEnergy += $gTemp->getValue()*$good[1];
+ 			$gTemp->getValue();exit;
+ 			$tolEnergy += (int)( $gTemp->getValue()*$good[1] );
  		}
 
  		if( $tolEnergy < $consumeEnergy ){
