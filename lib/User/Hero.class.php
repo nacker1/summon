@@ -374,8 +374,7 @@ class User_Hero extends User_Base{
 	}
 
 	function __destruct(){
-		$this->log->e('************** User_HERO ***************');
-		$this->log->e(json_encode( self::$lastUpdHero[$this->uid] );
+		
 	}
 }
 ?>
