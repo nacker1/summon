@@ -76,6 +76,7 @@
 		$this->pre;
 		if( true || C('test') || !$this->pre->exists('shopConfig:'.$this->type.':check') ){
 			$this->log->i('+++++++++++++++++ DB select ++++++++++++++++');
+			$this->pre->hdel('shopConfig:*');
 			$where['Shop_Id'] = $this->type;
 			$this->cdb;
 			$ret = $this->cdb->find( $this->table, '*' , $where );
@@ -83,7 +84,7 @@
 				ret('Config_Error! Code:'.__LINE__);
 			}
 			foreach( $ret as $v ){
-				$this->pre->del('shopConfig:'.$v['Shop_Id'].':'.$v['Item_Type'].':'.$v['id']);
+				
 				$this->pre->hmset( 'shopConfig:'.$v['Shop_Id'].':'.$v['Item_Type'].':'.$v['id'],$v );
 			}
 			$this->pre->hset('shopConfig:'.$this->type.':check','checked',1,get3time());
