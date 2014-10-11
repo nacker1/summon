@@ -180,6 +180,12 @@
 		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>2,'cInfo'=>''));
 	}
 /**
+ *@ 设置服务器状态
+ **/
+	public function setServerStart( $val ){
+		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>$val,'cInfo'=>''));
+	}
+/**
  *@ 更新或添加服务器信息
  **/
 	public function update( $config ){
