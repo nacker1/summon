@@ -127,11 +127,9 @@
 				$stats = $this->pre->hgetall('server:status:'.$v['id']);
 				if( empty($stats) ){
 					$temp[] = 1;
-					$temp[] = 0;
 					$temp[] = '';
 				}else{
 					$temp[] = (int)$stats['stats'];
-					$temp[] = (int)$stats['close'];
 					$temp[] = (int)$stats['cInfo'];
 				}
 				$ret[ $v['id'] ] = $temp;	
@@ -141,7 +139,6 @@
 			$stats = $this->pre->hgetall('server:status:'.$this->sid);
 			if( empty($stats) ){
 				$temp[] = 1;
-				$temp[] = 0;
 				$temp[] = '';
 			}
 			$ret = $temp;	
@@ -168,16 +165,16 @@
 		$this->pre->hdel('server:list:*');
 	}
 /**
- *@ 关闭服务器
+ *@ 关闭服务器   stats=> 0:关闭  1:空闲   3：爆满
  **/
 	public function stopServer( $str='' ){
-		return $this->pre->hmset('server:status:'.$this->sid,array('close'=>1,'cInfo'=>$str));
+		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>0,'cInfo'=>$str));
 	}
 /**
  *@ 开启服务器
  **/
 	public function startServer(){
-		return $this->pre->hmset('server:status:'.$this->sid,array('close'=>0,'cInfo'=>''));
+		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>1,'cInfo'=>''));
 	}
 /**
  *@ 更新或添加服务器信息
