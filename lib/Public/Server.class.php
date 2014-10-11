@@ -143,12 +143,13 @@
 			}
 		}else{
 			$stats = $this->pre->hgetall('server:status:'.$this->sid);
+			dump($stats);
 			if( empty($stats) ){
 				$temp[] = 1;
 				$temp[] = '';
 			}else{
-				$temp[] = $stats['stats'];
-				$temp[] = $stats['cInfo'];
+				$temp[] = (int)$stats['stats'];
+				$temp[] = (int)$stats['cInfo'];
 			}
 			$ret = $temp;	
 			unset($temp);
