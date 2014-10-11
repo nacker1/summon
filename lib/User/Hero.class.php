@@ -374,8 +374,6 @@ class User_Hero extends User_Base{
 	}
 
 	function __destruct(){
-		dump('************** User_HERO ***************');
-		dump(self::$lastUpdHero[$this->uid]);
 	}
 }
 ?>
