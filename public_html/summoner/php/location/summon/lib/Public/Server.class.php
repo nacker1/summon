@@ -3,12 +3,12 @@
  *@ Server 服务器类
  **/
  class Server extends Pbase{
-	private $table = 'zy_baseServerList'; 		//服务器列表表名
-	private $slist = array();		  		//服务器列表
-	private $updtime;				  //服务器最后更新时间
-	private $newServer;				  //最新大区id
+	private $table = 'zy_baseServerList'; 					//服务器列表表名
+	private $slist = array();		  						//服务器列表
+	private $updtime;				  						//服务器最后更新时间
+	private $newServer;				  						//最新大区id
 
-	private $sid;	//指定服务器id
+	private $sid;											//指定服务器id
 
 	public function __construct( $sid='' ){
 		parent::__construct();
@@ -168,16 +168,16 @@
 		$this->pre->hdel('server:list:*');
 	}
 /**
- *@ 关闭服务器   stats=> 9:关闭  1:空闲   3：爆满
+ *@ 关闭服务器   stats=> 1:关闭  2:空闲  3:繁忙 4：爆满
  **/
 	public function stopServer( $str='' ){
-		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>9,'cInfo'=>$str));
+		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>1,'cInfo'=>$str));
 	}
 /**
  *@ 开启服务器
  **/
 	public function startServer(){
-		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>1,'cInfo'=>''));
+		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>2,'cInfo'=>''));
 	}
 /**
  *@ 更新或添加服务器信息

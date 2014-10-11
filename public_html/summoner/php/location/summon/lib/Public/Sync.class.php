@@ -42,7 +42,7 @@ class Sync extends Base{
  *@ 将用户需要同步的数据同步到
  **/
 	function syncToRedis(){ 
-
+		
 	}
 
 	function exec(){ //执行sendCommand抛出来的sql
