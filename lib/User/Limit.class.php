@@ -44,10 +44,12 @@ class User_Limit extends User_Base{
 			$this->pre->hset( 'userLimit:'.$this->flag.'_check' , 'check' , 1 );
 			$this->pre->expire( 'userLimit:'.$this->flag.'_check',86400 );
 		}
-		$this->freeTimes = (int)$this->pre->hget('userLimit:'.$this->flag,'freeTime');
-		$this->tolLimit = (int)$this->pre->hget('userLimit:'.$this->flag,'times');
-		$vipLimit = (int)$this->pre->hget('userLimit:'.$this->flag,'vipLimit');
-		$vipTag = $this->pre->hget('userLimit:'.$this->flag,'vip');
+		$limitInfo = $this->pre->hgetall( 'userLimit:'.$this->flag );#$this->pre->hmget('userLimit:'.$this->flag,array('freeTime','times','vipLimit','vip'));
+
+		$this->freeTimes = (int)$limitInfo['freeTime'];
+		$this->tolLimit = (int)$limitInfo['times'];
+		$vipLimit = (int)$limitInfo['vipLimit'];
+		$vipTag = $limitInfo['vip'];
 
 		if( !empty( $vipTag ) && $this->getVlevel() > 0 ){
 			$vip = new Vip( $this->getVlevel() );
@@ -60,9 +62,7 @@ class User_Limit extends User_Base{
 				}
 			}
 		}
-
-
-		$this->limitConfig = $this->pre->hgetall( 'userLimit:'.$this->flag );
+		$this->limitConfig = $limitInfo;
 	}
 /**
  *@ 检测操作的时间间隔
@@ -162,8 +162,7 @@ class User_Limit extends User_Base{
  **/
 	public function getOneTimeCooldou( $key='' ){
 		$freeTimes = $this->getLastFreeTimes($key);
-		$this->log->i( 'freeTimes:'.$freeTimes );
-		
+
 		if( $freeTimes > 0 ){ //免费操作时间  作时间间隔判断
 			return $this->checkTimeLimit( $key );
 		}else{
