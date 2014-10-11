@@ -140,16 +140,12 @@ class Act_Sign extends User_Base{
 					case '1':
 						# code...
 						$add['money'] += $addNums;
-						#$this->addMoney( $addNums  );
 						break;
 					case '2':
 						$add['cooldou'] += $addNums;
-						#$this->addCooldou( $addNums  );
 						break;
 					default:
 						$give[] = $dayConfig['Item_Id'].','.$addNums;
-						/*$good->addGoods( $addNums  );
-						$ret = $good->getLastUpdGoods();*/
 						break;
 				}
 				$this->cond->setDayTimes(1,'vip');
