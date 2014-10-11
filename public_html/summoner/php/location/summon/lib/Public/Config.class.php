@@ -72,38 +72,6 @@ class Config {
 			)
 		),
 		'online'=>array(
-			/*'master'=>array(
-				'host' => '127.0.0.1',
-				'port' => 3306,
-				'username' => 'root',
-				'password' => 'coolplay159357',
-				'dbname' => 'summon',
-				'charset' => 'utf8'
-			),
-			'slave'=>array( //召唤师从库	 各服务器不同
-				'host' => '127.0.0.1',
-				'port' => 3306,
-				'username' => 'root',
-				'password' => 'coolplay159357',
-				'dbname' => 'summon',
-				'charset' => 'utf8'
-			),
-			'stats'=>array( //统计用数据库         通用
-				'host' => '127.0.0.1',
-				'port' => 3306,
-				'username' => 'root',
-				'password' => 'coolplay159357',
-				'dbname' => 'summon',
-				'charset' => 'utf8'
-			),
-			'action'=>array( //所有服活动配置库                                   与config同一库
-				'host' => '127.0.0.1',
-				'port' => 3306,
-				'username' => 'root',
-				'password' => 'coolplay159357',
-				'dbname' => 'summon',
-				'charset' => 'utf8'
-			),*/
 			'login'=>array( //公共登录库         通用登录接口使用   配置必须写在代码中  
 				'host' => '127.0.0.1',
 				'port' => 3306,
@@ -178,39 +146,7 @@ class Config {
 			'default' => array('host' => '10.0.4.12', 'port' => 20010, 'pass' => 'coolplay159357')
 		),
 		'online'=>array( //ÐÅÏ¢´ýÉÏÏßÈ·ÈÏºóÔÙ½øÐÐÅäÖÃ
-			/*'redis0' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'redis1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'redis2' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'redis3' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'redis4' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'redis5' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'redis6' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'redis7' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'redis8' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'redis9' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Cond_0' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Cond_1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Cond_2' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Cond_3' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Cond_4' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Cond_5' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Cond_6' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Cond_7' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Cond_8' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Cond_9' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Friend_0' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Friend_1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Friend_2' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Friend_3' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Friend_4' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Friend_5' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Friend_6' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Friend_7' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Friend_8' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Friend_9' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Login_0' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),
-			'Login_1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),*/
-			'default' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          //公共配置 通用
+			'default' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          #公共配置 通用
 		));
 
 
