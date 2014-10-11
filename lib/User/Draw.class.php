@@ -21,7 +21,7 @@ class User_Draw extends User_Base{
 	private function _init(){
 		//初始化抽卡配置表   
 		$this->pre;
-		if( true || C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
+		if( C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
 			$this->log->i('+++++++++++++++++ DB select ++++++++++++++++');
 			$this->cdb;
 			#=============  初始化类型配置表  =================================================
