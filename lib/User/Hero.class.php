@@ -130,9 +130,6 @@ class User_Hero extends User_Base{
 		}else{ //添加英雄数量
 			$this->setMissionId(1,21);
 			$hero = $this->initHero($color);
-			self::$heroInfo[$this->uid][$this->hid] = $hero;
-			self::$lastUpdHero[$this->uid][$this->hid] = $hero;
-			unset($hero['add']);
 			$this->hinfo = $hero;
 			return $this->redis->hmset( 'roleinfo:'.$this->uid.':hero:'.$this->hid, $hero );
 		}
@@ -158,6 +155,9 @@ class User_Hero extends User_Base{
 		$hero['equip6'] = '0';
 		$hero['config'] = json_encode($config);
 		$hero['add'] = 1;//$this->db->insert( $this->table, $hero );
+		self::$heroInfo[$this->uid][$this->hid] = $hero;
+		self::$lastUpdHero[$this->uid][$this->hid] = $hero;
+		unset($hero['add']);
 		$this->setUpdTime();
 		return $hero;
 	}
