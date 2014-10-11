@@ -2,7 +2,7 @@
 	error_reporting(E_ERROR);
 	global $log,$tag,$version,$channel,$serverId;
 	require dirname(__FILE__).'/inc/inc.php';
-	C('test',true);
+	C('test',false);
 	C('start', gettimeofday( true ));
 	$mid = getReq('cmd',7003);
 	$key = getReq('k','6d3126a871959600866d3bc451fac21f');
