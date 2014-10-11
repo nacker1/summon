@@ -9,6 +9,7 @@ class Sync extends Base{
 	private $opt;				//操作类型  1为insert, 2为updata, 3为删除
 	private $db;				//用户数据库
 	private $dbTag;				//数据库标签
+	private $cond;				//存储需要同步的DB信息
 
 	function __construct( $data ){
 		parent::__construct();
@@ -33,10 +34,12 @@ class Sync extends Base{
 		$com = 'php /data/web/summon/syncDb.php -t '.$this->table.' -d \''.serialize($this->data).'\' -w \''.serialize($this->where).'\' -o '.$this->opt.' -f '.$this->dbTag.' &';
 		if( strpos( PHP_OS, 'Linux' ) !== -1 ){
 			$this->log->i($com.strpos( PHP_OS, 'Linux' ));
-			@pclose(popen( $com,'r'));
+			@pclose( popen( $com,'r' ) );
 		}else
 			$this->log->e($com.PHP_OS);
 	}
+
+	function 
 
 	function exec(){ //执行sendCommand抛出来的sql
 		C('com_start',gettimeofday(true));
