@@ -79,8 +79,8 @@
 		$insert['maxLife'] = 60;							//最大体力值
 		$insert['life'] = 60;								//当前体力值
 		$insert['lead'] = 0;								//领导力
-		$insert['jewel'] = 0;								//钻石数量
-		$insert['money'] = 0;								//金币数量
+		$insert['jewel'] = 10000;							//钻石数量
+		$insert['money'] = 100000;							//金币数量
 		$insert['logintime'] = time();						//最后登录时间	
 		$insert['lastDeductTime'] = time();					//最后扣除体力时间
 		$insert['sex'] = 1;									//性别
@@ -139,11 +139,14 @@
 	}
 
 	private function _other(){
-		if( $this->isNew ){
-			$hero = new User_Hero($this->uid, 10002);
-			$hero->giveHero();
-		}
 		$tmpe = new User_User($this->uid,-1);
+		if( $this->isNew ){
+			$gHero = array( 10002,10015 );
+			foreach( $gHero as $v ){ 
+				$hero = new User_Hero( $this->uid, 10015 );
+				$hero->giveHero();
+			}
+		}
 	}
 
 	private function _logInfo(){
