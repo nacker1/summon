@@ -141,7 +141,7 @@
 	private function _other(){
 		$tmpe = new User_User($this->uid,-1);
 		if( $this->isNew ){
-			$gHero = array( 10002,10015 );
+			$gHero = array( 10002,10001 );
 			foreach( $gHero as $v ){ 
 				$hero = new User_Hero( $this->uid, $v );
 				$hero->giveHero();
