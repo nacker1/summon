@@ -66,6 +66,7 @@
 
 		$role = new User_Rolebase( $this->rid );
 		$role->setUserLastServerId( $this->sid ); //登录成功后设置用户最后登录服务器
+		$this->_other();
 	}
 /**
  *@ 创建新角色
@@ -94,7 +95,6 @@
 		}while(!$ret && $i<3);
 		if( $ret ){
 			$insert['userid'] = $ret;
-			$this->_other();
 			return $insert;
 		}else{
 			global $log;
