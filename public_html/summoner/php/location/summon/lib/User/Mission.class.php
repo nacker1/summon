@@ -4,6 +4,7 @@
  **/
  class User_Mission extends User_Base
  {
+ 	private static $dbCehck;								//DB模式下用户任务体系缓存
  	private $missionTable='zy_baseMissionConfig';			//任务配置表
  	private $dayMissionTag = 'missionTagEveryDay';			//日常任务标签
  	private $type;											//任务类型  1为任务，2为日常
@@ -23,33 +24,36 @@
  	function _init(){
  		$this->pre;
  		if( C('test') || !$this->pre->exists( 'baseMissionConfig:'.$this->type.':check' ) ){
- 			$this->pre->hdel( 'baseMissionConfig:'.$this->type.':*' );
- 			$this->cdb;
- 			$ret = $this->cdb->find( $this->missionTable,'*',array('Task_Type'=>$this->type) );
- 			foreach( $ret as $v ){
- 				empty( $v[ 'Item_Reward' ] ) ? '' : $temp['good'] = str_replace(array('#','*'),array(',',','),$v[ 'Item_Reward' ]);
-				empty( $v[ 'PlayerExp_Reward' ] ) ? '' : $temp['exp'] = $v[ 'PlayerExp_Reward' ];
-				empty( $v[ 'Money_Reward' ] ) ? '' : $temp['money'] = $v[ 'Money_Reward' ];
-				empty( $v[ 'Diamond_Reward' ] ) ? '' : $temp['cooldou'] = $v[ 'Diamond_Reward' ];
-				empty( $v[ 'PlayerAction_Reward' ] ) ? '' : $temp['life'] = $v[ 'PlayerAction_Reward' ];
-				unset( $v['Item_Reward'], $v['PlayerExp_Reward'], $v['Money_Reward'], $v['Diamond_Reward'], $v[ 'PlayerAction_Reward' ] );
-				$v['config'] = json_encode($temp);
- 				$this->pre->hmset( 'baseMissionConfig:'.$v['Task_Type'].':'.$v['Task_Id'], $v );
- 				if( substr($v['Task_Id'], -3) == 1 || $v['Task_Class'] == 61 ){ //初始化用户默认任务
- 					if( $v['Task_Class'] == 61 ){
- 						$initTaskClass[ $v['Task_Class'] ][] = $v['Task_Id'];
- 					}else{
- 						$initTaskClass[ $v['Task_Class'] ] = $v['Task_Id'];
- 					}
- 				}
- 				unset($temp);
- 			}
- 			if( isset( $initTaskClass['61'] ) ){ //午餐和晚餐任务特殊处理
-				$initTaskClass['61'] = implode(',', $initTaskClass['61']);
-			}
- 			$this->pre->del( 'baseMissionConfig:TaskClass_'.$this->type );
- 			$this->pre->hmset( 'baseMissionConfig:TaskClass_'.$this->type, $initTaskClass );
- 			$this->pre->hset( 'baseMissionConfig:'.$this->type.':check', 'checked',1,get3time() );
+ 			if( !isset( self::$dbCehck[$this->uid] ) || empty( self::$dbCehck[$this->uid] ) ){
+	 			$this->pre->hdel( 'baseMissionConfig:'.$this->type.':*' );
+	 			$this->cdb;
+	 			$ret = $this->cdb->find( $this->missionTable,'*',array('Task_Type'=>$this->type) );
+	 			foreach( $ret as $v ){
+	 				empty( $v[ 'Item_Reward' ] ) ? '' : $temp['good'] = str_replace(array('#','*'),array(',',','),$v[ 'Item_Reward' ]);
+					empty( $v[ 'PlayerExp_Reward' ] ) ? '' : $temp['exp'] = $v[ 'PlayerExp_Reward' ];
+					empty( $v[ 'Money_Reward' ] ) ? '' : $temp['money'] = $v[ 'Money_Reward' ];
+					empty( $v[ 'Diamond_Reward' ] ) ? '' : $temp['cooldou'] = $v[ 'Diamond_Reward' ];
+					empty( $v[ 'PlayerAction_Reward' ] ) ? '' : $temp['life'] = $v[ 'PlayerAction_Reward' ];
+					unset( $v['Item_Reward'], $v['PlayerExp_Reward'], $v['Money_Reward'], $v['Diamond_Reward'], $v[ 'PlayerAction_Reward' ] );
+					$v['config'] = json_encode($temp);
+	 				$this->pre->hmset( 'baseMissionConfig:'.$v['Task_Type'].':'.$v['Task_Id'], $v );
+	 				if( substr($v['Task_Id'], -3) == 1 || $v['Task_Class'] == 61 ){ //初始化用户默认任务
+	 					if( $v['Task_Class'] == 61 ){
+	 						$initTaskClass[ $v['Task_Class'] ][] = $v['Task_Id'];
+	 					}else{
+	 						$initTaskClass[ $v['Task_Class'] ] = $v['Task_Id'];
+	 					}
+	 				}
+	 				unset($temp);
+	 			}
+	 			if( isset( $initTaskClass['61'] ) ){ //午餐和晚餐任务特殊处理
+					$initTaskClass['61'] = implode(',', $initTaskClass['61']);
+				}
+	 			$this->pre->del( 'baseMissionConfig:TaskClass_'.$this->type );
+	 			$this->pre->hmset( 'baseMissionConfig:TaskClass_'.$this->type, $initTaskClass );
+	 			$this->pre->hset( 'baseMissionConfig:'.$this->type.':check', 'checked',1,get3time() );
+	 			self::$dbCehck[$this->uid] = 1;
+	 		}
  		}
 
  		if( $this->type == 1 ){ //系统任务  取数据库
