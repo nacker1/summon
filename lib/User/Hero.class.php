@@ -154,7 +154,7 @@ class User_Hero extends User_Base{
 		$hero['equip5'] = '0';
 		$hero['equip6'] = '0';
 		$hero['config'] = json_encode($config);
-		$hero['add'] = 1;//$this->db->insert( $this->table, $hero );
+		$hero['add'] = 1;
 		self::$heroInfo[$this->uid][$this->hid] = $hero;
 		self::$lastUpdHero[$this->uid][$this->hid] = $hero;
 		unset($hero['add']);

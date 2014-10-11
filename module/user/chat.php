@@ -17,6 +17,7 @@
  	case '2': #发送信息
  		$to = !empty( $input['to'] ) ? $input['to'] : '';
  		$con = $input['con'];
+ 		$other = $input['other'];
  		$strLen = abslength($con);
  		if( empty( $con ) || $strLen < 1 || $strLen > 65 ){
  			ret( '字数在1-65之内'.$strLen, -1 );
@@ -27,7 +28,7 @@
 	 		if( $user->getMoney() >= $money ){
 	 			$limit->addLimitTimes();
 	 			$chat = new Chat( $user->getUid() );
-	 			$chat->sendChat( $con, $user->getUserName(), $user->getUid(), $user->getLevel(), $user->getImage() );
+	 			$chat->sendChat( $con, $user->getUserName(), $user->getUid(), $user->getLevel(), $user->getImage(),$other );
 	 			if( $money > 0 ){
 	 				$give['money'] = -$money;
 	 				$ret = $user->sendGoodsFromConfig( $give );

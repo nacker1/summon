@@ -25,7 +25,7 @@
 		}
 		$goods = $mail->getMailGoodsByKey( $key );
 		if( empty( $goods ) ){
-			$mail->delMail( $key );
+			#$mail->delMail( $key );
 			$log->e(  '* 用户#'.$user->getUid().'#邮箱物品领取失败，物品配置为空，所传key值：'.$key );
 			ret('Key_Error!Code:'.__LINE__,-1);
 		}
