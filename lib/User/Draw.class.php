@@ -24,13 +24,13 @@ class User_Draw extends User_Base{
 		if( true || C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
 			$this->cdb;
 			#=============  初始化类型配置表  =================================================
+			$this->pre->hdel('baseDrawTypeConfig:*');
 			$ret = $this->cdb->find( $this->draw_type_table, 'id,Group_Level,Item_Type,Item_Color,Item_Random,Item_CountMin,Item_CountMax', array( 'Box_Id'=>$this->type ) );
 			if( empty( $ret ) || !is_array( $ret ) ){
 				$this->log->e( '类型（'.$this->type.'）对应的类型配置信息未找到。' );
 				ret( 'no_type_config' ,-1);
 			}
 			foreach( $ret as $v ){
-				$this->pre->del( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'] );
 				$this->pre->hmset( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'], $v );
 			}
 			#=============  初始化物品配置表  =================================================
