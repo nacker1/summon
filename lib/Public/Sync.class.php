@@ -12,7 +12,8 @@ class Sync extends Base{
 	private $cond;				//存储需要同步的DB信息
 
 	function __construct( $data ){
-		parent::__construct();
+		parent::__construct( 0 );
+		$this->serverid = $data['sid'];
 		$this->table = $data['table'];
 		$this->data = $data['data'];
 		$this->where = $data['where'];
@@ -32,17 +33,19 @@ class Sync extends Base{
 
 	function sendCommand(){
 		$com = 'php /data/web/summon/syncDb.php -t '.$this->table.' -d \''.serialize($this->data).'\' -w \''.serialize($this->where).'\' -o '.$this->opt.' -f '.$this->dbTag.' &';
-		if( strpos( PHP_OS, 'Linux' ) !== -1 ){
-			$this->log->i($com.strpos( PHP_OS, 'Linux' ));
-			@pclose( popen( $com,'r' ) );
-		}else
-			$this->log->e($com.PHP_OS);
+		@pclose( popen( $com,'r' ) );
+		$this->log->e($com.PHP_OS);
 	}
 /**
- *@ 将用户需要同步的数据同步到
+ *@ 将用户需要同步的数据同步到   暂时不用
  **/
 	function syncToRedis(){ 
-		
+		$this->redis;
+		$data['table'] = $this->table;
+		$data['data'] = $this->table;
+		$data['where'] = $this->table;
+		$data['opt'] = $this->table;
+		$data['target'] = $this->table;
 	}
 
 	function exec(){ //执行sendCommand抛出来的sql
