@@ -2,6 +2,7 @@
 /**
  *@ 数据库同步脚本
  **/
+	error_reporting(0);
 	require_once dirname(__FILE__).'/inc/inc.php';
 	$nums = $_SERVER['argc'];
 	for( $i=1;$i<$nums;$i+=2 ){
