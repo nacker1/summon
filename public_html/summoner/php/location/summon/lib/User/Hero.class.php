@@ -272,7 +272,8 @@ class User_Hero extends User_Base{
 				$eFire += (int)$fList['f'];
 			}
 		}
-		return $heroFire + $eFire;
+		$this->log->i( 'heroFire:'.$heroFire.'  eFire:'.$eFire );
+		return (int)($heroFire + $eFire);
 	}
 /**
  *@ 获取英雄当前经验值
