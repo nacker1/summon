@@ -22,7 +22,7 @@
 
  	function _init(){
  		$this->pre;
- 		if( C('test') || !$this->pre->exists( 'baseMissionConfig:'.$this->type.':check' ) ){
+ 		if( true || C('test') || !$this->pre->exists( 'baseMissionConfig:'.$this->type.':check' ) ){
  			$this->pre->hdel( 'baseMissionConfig:'.$this->type.':*' );
  			$this->cdb;
  			$ret = $this->cdb->find( $this->missionTable,'*',array('Task_Type'=>$this->type) );
