@@ -143,7 +143,7 @@
 		if( $this->isNew ){
 			$gHero = array( 10002,10015 );
 			foreach( $gHero as $v ){ 
-				$hero = new User_Hero( $this->uid, 10015 );
+				$hero = new User_Hero( $this->uid, $v );
 				$hero->giveHero();
 			}
 		}
