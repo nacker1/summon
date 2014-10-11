@@ -77,8 +77,7 @@
 			if( $cooldou > 0 && $user->getCooldou() < ( $limit->getExpend()*$sweepNum ) ){
 				ret(' no_jewel ',-1);
 			}
-			if( $limit->getLastTimes() < 1 )
-				$add['jewel'] = -( $limit->getExpend()*$sweepNum );
+			$add['jewel'] = -( $limit->getExpend()*$sweepNum );
 
 			$limit->addLimitTimes( $sweepNum );
 			//--------------------------------------------------------
