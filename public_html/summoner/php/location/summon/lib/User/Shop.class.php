@@ -93,6 +93,7 @@
 			$shopInfo = $this->pre->hgetall( $v );
 			$nLevel = explode( ',', $shopInfo['Group_Level'] );
 			if( $uLevel >= $nLevel[0] && $uLevel <= $nLevel[1] ){
+				$this->log->i( 'goodConfig:'.json_encode($shopInfo) );
 				$this->shopinfo[ $shopInfo['Item_Type'] ][] = $shopInfo;
 			}
 		}
