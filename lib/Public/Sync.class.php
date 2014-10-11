@@ -31,10 +31,10 @@ class Sync extends Base{
 
 	function sendCommand(){
 		$com = 'php /data/web/summon/syncDb.php -t '.$this->table.' -d \''.serialize($this->data).'\' -w \''.serialize($this->where).'\' -o '.$this->opt.' -f '.$this->dbTag.' &';
-		$this->log->i($com.strpos( PHP_OS, 'Linux' ));
-		if( strpos( PHP_OS, 'Linux' ) !== -1 )
-			pclose(popen( $com,'r' ));
-		else
+		if( strpos( PHP_OS, 'Linux' ) !== -1 ){
+			$this->log->i($com.strpos( PHP_OS, 'Linux' ));
+			pclose( popen( $com,'r') );
+		}else
 			$this->log->e($com.PHP_OS);
 	}
 
