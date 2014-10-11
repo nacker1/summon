@@ -85,7 +85,7 @@
 /**
  *@ 获取服务器完整列表
  **/
-	public function getServerList(){
+	public function getServerAllList(){
 		$ret = array();
 		foreach( $this->slist as $v ){
 			$ret[] = $v;
