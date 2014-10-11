@@ -166,7 +166,7 @@
 			}
 			self::$isupd[$this->uid] = 0;
 		}*/
-		new User_User($this->uid);
+		new User_User($this->uid,-1);
 	}
  }
 ?>
