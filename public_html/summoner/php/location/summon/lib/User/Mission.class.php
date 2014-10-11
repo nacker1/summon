@@ -58,7 +58,7 @@
  				$this->db;
  				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress,type', array( 'uid'=>$this->uid,'status'=>0 ) ); 
 
- 				$this->log->i( 'db_mission:'.json_encode($ret) );	
+ 				#$this->log->i( 'db_mission:'.json_encode($ret) );	
  				if( $ret && is_array( $ret ) ){
  					foreach( $ret as $v ){
  						$this->redis->del('roleinfo:'.$this->uid.':mission:'.$v['type']);
@@ -259,7 +259,7 @@
 			$set['missing'] = (int)$missing['missing'];
 			$key = empty( $missing['missing'] ) ? $missing['showMission'] : $missing['missing'] ;
 			$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal','Task_Level' ) );
-			$this->log->i( 'baseMission:'.json_encode($baseMission) );
+			#$this->log->i( 'baseMission:'.json_encode($baseMission) );
 			if( $set['progress'] >= $baseMission['Task_Time'] ){
 				$set['missing'] = $baseMission[ 'Post_Task' ];
 			}
