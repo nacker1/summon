@@ -18,7 +18,7 @@ class Sync extends Base{
 		$this->where = $data['where'];
 		$this->opt = isset($data['opt'])?$data['opt']:'';
 		$this->dbTag = isset($data['tag'])?$data['tag']:'master';
-		
+
 		if( empty($this->opt) ){
 			if( empty( $this->where ) ){
 				$this->opt = 1;
@@ -38,8 +38,12 @@ class Sync extends Base{
 		}else
 			$this->log->e($com.PHP_OS);
 	}
+/**
+ *@ 将用户需要同步的数据同步到
+ **/
+	function syncToRedis(){ 
 
-	function 
+	}
 
 	function exec(){ //执行sendCommand抛出来的sql
 		C('com_start',gettimeofday(true));
