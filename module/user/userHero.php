@@ -226,7 +226,7 @@
 		foreach ( $hList as $v ) {
 			$hero = new User_Hero( $user->getUid(),$v );
 			$hero->giveHero();
-			unset($hero);
+			#unset($hero);
 		}
 		$ret['hero'] = $hero->getLastUpdField();
 		#=========== 任务信息 ==================
