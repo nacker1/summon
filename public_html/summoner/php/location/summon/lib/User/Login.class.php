@@ -162,6 +162,11 @@
 			}
 			self::$isupd[$this->uid] = 0;
 		}
+
+		if( $this->isNew ){
+			$hero = new User_Hero($this->uid, 10002);
+			$hero->giveHero();
+		}
 	}
  }
 ?>
