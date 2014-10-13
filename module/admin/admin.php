@@ -28,6 +28,16 @@ switch ($type) {
 		#添加用户体力
 		$user->addLife( $nums );
 		ret($user->getUserLastUpdInfo());
+	case '998':
+		#清空所有配置缓存
+		$cache = array(
+			'baseDrawConfig:*','baseDrawTypeConfig:*','baseMissionConfig:*','shopConfig:*',
+			'baseBuffConfig:*','baseBuyGoldConfig:*','equip:baseinfo*','goodBase:base*','goodBase:equip*',
+			'goodBase:compos*','heroSkillCost:*','heroBase:*','roleLevelUp*','vipConfig*'
+		);
+		$user->clearConfig( $cache );
+		ret('suc');
+		break;  
 	case '999':
 		#添加所有道具
 		$gBase = new Goodbase();
