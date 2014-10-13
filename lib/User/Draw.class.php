@@ -164,6 +164,7 @@ class User_Draw extends User_Base{
 		$keys = $this->pre->keys( 'baseDrawTypeConfig:'.$this->type.':'.$flag.':*' );
 		foreach( $keys as $v ){
 			$info = $this->pre->hgetall( $v );
+			$this->log->i( 'draw_goodType_info:'.json_encode($info) );
 			$this->userType[] = $info;
 			$this->tolTypeRate += $info['Item_Random'];
 		}		
