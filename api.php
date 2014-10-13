@@ -26,7 +26,6 @@
 	}
 	$log->i( '接口调用开始['.($ver?$ver:0).'] - '.$tag.' IP:'.long2ip(getIp()) );
 	$log->i(json_encode($input));
-	$log->i( json_encode($_REQUEST) );
 	$filepath = $mod->path();
 	unset($mod);
 	if( is_file( BOOT.$filepath ) ){
