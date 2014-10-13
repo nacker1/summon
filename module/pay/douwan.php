@@ -12,7 +12,7 @@
 	$payinfo['money'] = $money;
 	$payinfo['channel'] = 'douwan';
 	$payinfo['isMonth'] = $info[2];
-	$payinfo['orderid'] = time();
+	$payinfo['orderid'] = $input['orderid'];
 	$payinfo['tag'] = $tag;
   
 	$pay = new Pay( $payinfo );
