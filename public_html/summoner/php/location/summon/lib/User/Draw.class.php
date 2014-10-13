@@ -81,6 +81,7 @@ class User_Draw extends User_Base{
 		$tempInfo = array();
 		foreach( $keys as $v ){
 			$gInfo = $this->pre->hgetall( $v );
+			$this->log->i( 'draw_good_info:'.json_encode($gInfo) );
 			$Group_Level = explode(',',$gInfo['Group_Level']);
 			if( $uLevel>=$Group_Level[0] && $uLevel<=$Group_Level[1] ){
 				$tempInfo[] = $gInfo;
