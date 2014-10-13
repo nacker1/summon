@@ -26,7 +26,6 @@ class Pay extends Base{
  *@ 初始化充值信息  判断订单重复性
  **/
 	private function _init(){
-		dump($this->cond->get( $this->orderid ));exit;
 		if( $this->cond->get( $this->orderid ) ){
 			$this->status = 0;
 			$this->errorInfo = '订单重复';
