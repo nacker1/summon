@@ -195,7 +195,7 @@
 			}
 
 			#======================= 神密商店处理逻辑    广宇确认只要是vip即可显示vip商店 ==============================
-			if( $user->getVlevel() > 0 ){
+			if( $user->getVlevel() > 2 ){
 				$input['getList']['vshop'] = 1;
 			}else{
 				$uLevel = $user->getLevel();
@@ -218,6 +218,7 @@
 					}
 				}
 			}
+
 			#======================= 神密商店处理逻辑 ==============================	
 		}
 		if( is_array($input['goods']) && count( $input['goods'] ) > 0 ){
