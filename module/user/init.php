@@ -20,7 +20,7 @@
 
 	  		#初始化用户技能点
 	  		$ret['skill'] = $user->getUserSkillInfo();
-
+			
 	  		#初始化vip商店 
 	  		$sRedis = new Cond( 'userShop_2', $user->getUid() );
 	  		$ret['vshop'] = $sRedis->getTimes();
