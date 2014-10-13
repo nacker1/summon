@@ -163,7 +163,7 @@
 			if( empty( $temp ) ){
 				$this->log->e( 'shopinfo: '.json_encode($this->shopinfo[ $val ]) );
 				$this->log->e( 'index: '.$index );
-				$this->log->e( 'list: '.json_encode($list) );
+				$this->log->e( 'shopList: '.json_encode($list) );
 				$this->log->e( 'oList: '.json_encode($oList) );
 			}
 			$retList['shopList'][$i]['gid'] = (int)$temp['Item_Id'];     			#gid
@@ -177,7 +177,7 @@
 			unset($index);
 			unset($temp);
 		}
-		shuffle($retList['list']);
+		shuffle($retList['shopList']);
 		$retList['overTime'] = $this->overTime;
 		$retList['time'] = $this->nextTime;
 		$this->actRedis->set( $retList );
@@ -192,14 +192,14 @@
 		if( empty( $shopInfo ) ){
 			return 0;
 		}
-		return $shopInfo['list'][$index];
+		return $shopInfo['shopList'][$index];
 	}
 /**
  *@ 设置商店的物品的出售标记
  **/
 	public function setItemStatus( $index,$val=0 ){
 		$shopInfo = $this->actRedis->get();
-		$shopInfo['list'][$index]['status'] = $val;
+		$shopInfo['shopList'][$index]['status'] = $val;
 		return $this->actRedis->set( $shopInfo );
 	}
  }
