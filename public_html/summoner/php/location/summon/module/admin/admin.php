@@ -33,7 +33,7 @@ switch ($type) {
 		$cache = array(
 			'baseDrawConfig:*','baseDrawTypeConfig:*','baseMissionConfig:*','shopConfig:*',
 			'baseBuffConfig:*','baseBuyGoldConfig:*','equip:baseinfo*','goodBase:base*','goodBase:equip*',
-			'goodBase:compos*','heroSkillCost:*','heroBase:*','roleLevelUp*','vipConfig*'
+			'goodBase:compos*','heroSkillCost:*','heroBase:*','roleLevelUp*','vipConfig*','server:list:*'
 		);
 		$user->clearConfig( $cache );
 		ret('suc');
