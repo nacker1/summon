@@ -9,11 +9,11 @@
 			'time'=>array(9,12,18,21),	//更新时间
 			'type'=>array(6,1,3,3,3,3)	//发放物品类型与个数
 		),  	           				
-		2=>array(				//高级vip商店 神密商店
+		2=>array(												//高级vip商店 神密商店
 			'time'=>array(21),
 			'type'=>array(1,1,1,6,6,3,3,3,3,3,3,3),
-			'save'=>'3600',			//商店保存时间
-			'vip'=>1			//该商店的vip要求
+			'save'=>'3600',										//商店保存时间
+			'vip'=>3											//该商店的vip最低等级要求
 		),	        				
 		3=>array(				//竞技场商店
 			'time'=>array(21),
@@ -51,7 +51,7 @@
 		}
 		$uLevel = $this->getVlevel();
 		foreach( $this->shopConfig[$this->type]['time'] as $v ){
-			if( isset( $this->shopConfig[$this->type]['vip'] ) && $uLevel < $this->shopConfig[$this->type]['vip'] ){
+			if( isset( $this->shopConfig[$this->type]['vip'] ) && $uLevel < $this->shopConfig[$this->type]['vip'] ){  #特殊处理vip等级低的玩家
 				$this->overTime = $this->shopConfig[$this->type]['save'];
 				$this->nextTime = date( 'H:i',time() + $this->shopConfig[$this->type]['save'] ).' 消失';
 			}else{
