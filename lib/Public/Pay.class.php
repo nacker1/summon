@@ -12,7 +12,6 @@ class Pay extends Base{
 	private $errorInfo;											//错误信息
 
 	function __construct( $payinfo ){
-		dump($payinfo);
 		parent::__construct($payinfo['uid']);
 		$this->money 		= 	(int)$payinfo['money'];
 		$this->channel 		= 	$payinfo['channel'];
@@ -20,7 +19,7 @@ class Pay extends Base{
 		$this->orderid 		= 	$payinfo['orderid'];
 		$this->payType		= 	$payinfo['tag'];
 		$this->serverId 	= 	(int)$payinfo['sid'];
-		$this->cond = new Cond( 'uniqPay_'.$this->serverId, $payinfo['uid'], 600 );
+		$this->cond = new Cond( 'uniqPay_'.$this->serverId, $this->uid, 600 );
 		$this->_init();
 	}
 /**
@@ -63,7 +62,7 @@ class Pay extends Base{
 			$this->status = 0;
 			$this->errorInfo = $ret['desc'];
 		}
-		$this->cond->set( $this->orderid );  //添加订单临时记录
+		$this->cond->set( 1, $this->orderid );  //添加订单临时记录
 		return true;
 	}
 /**
