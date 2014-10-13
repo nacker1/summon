@@ -67,5 +67,13 @@ class Base{
 		}
 		return -1;
 	}
+
+	public function clearConfig( $config ){
+		$this->pre;
+		foreach( $config as $v ){
+			$this->pre->hdel( $v );
+		}
+		return true;
+	}
 }
 ?>

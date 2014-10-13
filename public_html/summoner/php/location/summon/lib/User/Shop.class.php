@@ -84,7 +84,6 @@
 				ret('Config_Error! Code:'.__LINE__);
 			}
 			foreach( $ret as $v ){
-				
 				$this->pre->hmset( 'shopConfig:'.$v['Shop_Id'].':'.$v['Item_Type'].':'.$v['id'],$v );
 			}
 			$this->pre->hset('shopConfig:'.$this->type.':check','checked',1,get3time());
