@@ -327,6 +327,7 @@
  *@ 扣除用户金币
  **/
 	public function reduceMoney( $nums ){
+		if( $nums==0 )return true;
 		$umoney = $this->getMoney();
 		if( $nums>0 && $umoney>=$nums ){
 			$this->userLog['source'] = 1;
