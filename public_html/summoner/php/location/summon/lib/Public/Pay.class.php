@@ -48,7 +48,7 @@ class Pay extends Base{
 		$param['skey'] = -1;
 		$url .= '?'.http_build_query($param);
 		unset( $param );
-
+		$this->log->i('url:'.$url);
 		$curl = new Curl( $url );
 		$sendPay[] = $this->uid;
 		$sendPay[] = $this->money;
