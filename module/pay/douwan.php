@@ -9,10 +9,10 @@
 
 	$payinfo['sid'] = $info[0];
 	$payinfo['uid'] = $info[1];
-	$payinfo['money'] = $info[1];
-	$payinfo['channel'] = $info[1];
+	$payinfo['money'] = $money;
+	$payinfo['channel'] = 'douwan';
 	$payinfo['isMonth'] = $info[2];
-	$payinfo['orderid'] = $info[1];
+	$payinfo['orderid'] = time();
 	$payinfo['tag'] = $tag;
   
 	$pay = new Pay( $payinfo );
