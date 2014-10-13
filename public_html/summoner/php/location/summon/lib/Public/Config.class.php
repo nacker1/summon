@@ -146,8 +146,17 @@ class Config {
 			'default' => array('host' => '10.0.4.12', 'port' => 20010, 'pass' => 'coolplay159357')
 		),
 		'online'=>array( //ÐÅÏ¢´ýÉÏÏßÈ·ÈÏºóÔÙ½øÐÐÅäÖÃ
-			'uniqPay' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          #充值订单记录  通用
-			'default' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          #公共配置 通用
+			'uniqPay_0' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_2' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_3' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_4' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_5' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_6' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_7' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_8' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_9' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'default' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          				#公共配置 通用
 		));
 
 
