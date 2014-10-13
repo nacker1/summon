@@ -89,6 +89,7 @@ class Pay extends Base{
 		$pay['uid'] = $this->uid;
 		$pay['orderid'] = $this->orderid;
 		$pay['time'] = date('Y-m-d H:i:s');
+		$pay['info'] = $this->getError();
 		$this->throwSQL( $this->payLogTable, $pay, '', 1, 'stats' );
 	}
 }
