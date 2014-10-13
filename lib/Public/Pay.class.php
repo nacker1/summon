@@ -12,6 +12,7 @@ class Pay extends Base{
 	private $errorInfo;											//错误信息
 
 	function __construct( $payinfo ){
+		dump($payinfo);
 		parent::__construct($payinfo['uid']);
 		$this->money 		= 	(int)$payinfo['money'];
 		$this->channel 		= 	$payinfo['channel'];
@@ -26,6 +27,7 @@ class Pay extends Base{
  *@ 初始化充值信息  判断订单重复性
  **/
 	private function _init(){
+		dump($this->cond->get( $this->orderid ));exit;
 		if( $this->cond->get( $this->orderid ) ){
 			$this->status = 0;
 			$this->errorInfo = '订单重复';

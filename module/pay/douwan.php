@@ -14,7 +14,6 @@
 	$payinfo['isMonth'] = $info[2];
 	$payinfo['orderid'] = $input['orderid'];
 	$payinfo['tag'] = $tag;
-  	dump($payinfo);exit;
 	$pay = new Pay( $payinfo );
 	$pay->pay();
 	if( $pay->getStatus() ){
