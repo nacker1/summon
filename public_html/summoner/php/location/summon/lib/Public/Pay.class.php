@@ -73,7 +73,7 @@ class Pay extends Base{
 /**
  *@ 获取充值状态
  **/
-	private function getStatus(){
+	public function getStatus(){
 		return $this->status;
 	}
 /**
