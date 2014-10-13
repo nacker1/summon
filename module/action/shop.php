@@ -2,7 +2,6 @@
 /**
  *@ 商店接口
  **/
-
  $user = new User_User();
  
  $type = isset( $input['t']) ? $input['t'] : 1;
