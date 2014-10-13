@@ -83,21 +83,15 @@
 			if( empty( $ret ) ){
 				ret('Config_Error! Code:'.__LINE__);
 			}
-			/*foreach( $ret as $v ){
-				#$this->pre->hmset( 'shopConfig:'.$v['Shop_Id'].':'.$v['Item_Type'].':'.$v['id'],$v );
-				$shopConfig[ $v['Shop_Id'] ][] = $v;
-			}*/
 			$this->pre->set( 'shopConfig:'.$this->type, json_encode($ret), get3time() );
 		}
-		#$keys = $this->pre->keys('shopConfig:'.$this->type.':*');
 		$shops = $this->pre->get('shopConfig:'.$this->type);
 		$shops = json_decode( $shops,true );
 		$uLevel = $this->getLevel();
 		foreach( $shops as $v ){
-			#$shopInfo = $this->pre->hgetall( $v );
 			$nLevel = explode( ',', $v['Group_Level'] );
 			if( $uLevel >= $nLevel[0] && $uLevel <= $nLevel[1] ){
-				$this->log->i( 'goodConfig:'.json_encode($v) );
+				#$this->log->i( 'goodConfig:'.json_encode($v) );
 				$this->shopinfo[ $v['Item_Type'] ][] = $v;
 			}
 		}
