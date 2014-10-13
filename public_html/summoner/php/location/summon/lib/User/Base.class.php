@@ -380,11 +380,12 @@
 		}
 	}
 /**
- *@ 用户充值总数累加
+ *@ 用户充值钻石逻辑处理
  **/
 	public function addTotalPay( $nums ){
 		if( $nums>0 ){
 			$this->setUpdTime(3);
+			$this->addCooldou( $nums );
 			self::$userinfo[$this->uid]['totalPay'] += $nums;
 			self::$updinfo[$this->uid]['totalPay'] = self::$userinfo[$this->uid]['totalPay'];
 			$vip = new Vip( $this->getVlevel() );
@@ -574,18 +575,7 @@
 		$proxy = $this->proxy( $init, 'Sync', 'sendCommand' );
 		$proxy->exec();
 	}
-/**
- *@ setThrowSQL 如果信息有改动抛出sql语句后台自动同步
- **/
-	public function setThrowSQL( $table, $upd, $where='', $opt='', $db='' ){
-		$init['table'] = $table;
-		$init['data'] = $upd;
-		$init['where'] = $where;
-		$init['opt'] = $opt;
-		$init['db'] = $db;
-		self::$throwSQL[] = $init;
-		return true;
-	}
+
 /**
  *@ getUserLastUpdInfo 获取用户信息中发生变化的那部分
  **/

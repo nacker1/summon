@@ -2,8 +2,9 @@
 /**
  *@ 豆玩充值回调
  **/
-	$user = new User_User();
-	//$user->setMonthCode();
-	dump($_SERVER);
+	$money = $input['price'];
+	$ext = $input['ext'];
+	
+	$info = explode('a',$ext);
 	ret( $user->getUserInfo() );
 ?>
