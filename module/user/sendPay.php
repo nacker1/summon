@@ -1,12 +1,12 @@
 <?php
 /**
- *@ 充值发货接口   uid|money|isMonth    用户uid | 充值金额 | 是否充值月卡
+ *@ 充值发货接口   uid|money|tag|isMonth    用户uid | 充值金额 | 充值渠道标签 | 是否充值月卡
  **/
  $info = $input['pay'];
  
  if( empty( $info ) ){
  	$log->e( '充值请求数据有误，收到的信息配置如下:'.json_encode($input) );
- 	exit;
+ 	ret('400',-1);
  }
 
  $uInfo = explode( '|',$info );
