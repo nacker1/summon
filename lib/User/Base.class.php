@@ -384,8 +384,7 @@
  **/
 	public function addTotalPay( $nums ){
 		if( $nums>0 ){
-			$this->setUpdTime(3);
-			$this->addCooldou( $nums );
+			$this->setUpdTime(3);			
 			self::$userinfo[$this->uid]['totalPay'] += $nums;
 			self::$updinfo[$this->uid]['totalPay'] = self::$userinfo[$this->uid]['totalPay'];
 			$vip = new Vip( $this->getVlevel() );

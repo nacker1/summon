@@ -18,8 +18,8 @@
  if( isset( $uInfo[3] ) && $uInfo[3] == 1 ){
  	$user->setMonthCode();
  }else{
- 	$user->addTotalPay( $uInfo[1] );
+ 	$user->addCooldou( $uInfo[1] );
  }
- 
+ $user->addTotalPay( $uInfo[1] );
  ret('suc');
 ?>
