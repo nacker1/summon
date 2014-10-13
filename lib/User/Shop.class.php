@@ -74,7 +74,7 @@
  **/
 	private function _init(){
 		$this->pre;
-		if( true || C('test') || !$this->pre->exists('shopConfig:'.$this->type) ){
+		if( C('test') || !$this->pre->exists('shopConfig:'.$this->type) ){
 			$this->log->i('+++++++++++++++++ DB select ++++++++++++++++');
 			$this->pre->hdel('shopConfig:*');
 			$where['Shop_Id'] = $this->type;
