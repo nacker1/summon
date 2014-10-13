@@ -16,7 +16,7 @@
 	$payinfo['tag'] = $tag;
 	$pay = new Pay( $payinfo );
 	$pay->pay();
-	if( $pay->getStatus() ){
+	if( !$pay->getStatus() ){
 		ret( $pay->getError() );
 	}
 
