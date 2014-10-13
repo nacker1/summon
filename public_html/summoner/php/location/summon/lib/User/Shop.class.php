@@ -166,12 +166,12 @@
 				$this->log->e( 'list: '.json_encode($list) );
 				$this->log->e( 'oList: '.json_encode($oList) );
 			}
-			$retList['list'][$i]['gid'] = (int)$temp['Item_Id'];
-			$retList['list'][$i]['name'] = $temp['Item_Name'];
-			$retList['list'][$i]['type'] = (int)$temp['Currency_Type'];
-			$retList['list'][$i]['price'] = (int)$temp['Item__Price']*$nums;
-			$retList['list'][$i]['status'] = 1; //标记可出售
-			$retList['list'][$i++]['nums'] = $nums;
+			$retList['shopList'][$i]['gid'] = (int)$temp['Item_Id'];     			#gid
+			$retList['shopList'][$i]['name'] = $temp['Item_Name'];		 			#name
+			$retList['shopList'][$i]['type'] = (int)$temp['Currency_Type'];			#type
+			$retList['shopList'][$i]['price'] = (int)$temp['Item__Price']*$nums;	#price
+			$retList['shopList'][$i]['status'] = 1; //标记可出售					#status
+			$retList['shopList'][$i++]['nums'] = $nums;								#nums
 			unset($list);
 			unset($oList);
 			unset($index);
