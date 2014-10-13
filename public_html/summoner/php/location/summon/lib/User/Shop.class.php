@@ -113,7 +113,6 @@
 				$ret = $this->getTypeItems();
 			}
 		}
-		$ret['overTime'] = $this->overTime;
 		return $ret;
 	}
 /**
