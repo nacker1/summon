@@ -75,5 +75,29 @@ class Base{
 		}
 		return true;
 	}
+/**
+ *@ 公共代理类
+ *@ param:
+ *	$cName: 类名
+ *	$fName: 方法名
+ *	$args:	 初始化类的构造参数
+ **/
+	public function proxy( $args=array(), $cName= 'User_Mission' , $fName= 'setUserMissing'  ){
+		$ret = new Proxy( $args,$cName,$fName );
+		return $ret;
+	}
+	
+/**
+ *@ throwSQL 如果信息有改动抛出sql语句后台自动同步
+ **/
+	public function throwSQL( $table, $upd, $where='',$opt='', $db='' ){
+		$init['table'] = $table;
+		$init['data'] = $upd;
+		$init['where'] = $where;
+		$init['opt'] = $opt;
+		$init['tag'] = $db;
+		$proxy = $this->proxy( $init, 'Sync', 'sendCommand' );
+		$proxy->exec();
+	}
 }
 ?>
