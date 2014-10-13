@@ -202,6 +202,7 @@
 		if( is_array( $uInfo ) ){
 			$ret = array_merge( $ret, $uInfo );
 		}
+		$this->log->i( $ret );
 		return $ret;
 	}
 	public function __destruct(){
