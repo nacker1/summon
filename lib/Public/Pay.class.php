@@ -13,12 +13,12 @@ class Pay extends Base{
 
 	function __construct( $payinfo ){
 		parent::__construct($payinfo['uid']);
-		$this->money 		= 	$payinfo['money'];
+		$this->money 		= 	(int)$payinfo['money'];
 		$this->channel 		= 	$payinfo['channel'];
-		$this->isMonth 		= 	$payinfo['isMonth'];
+		$this->isMonth 		= 	(int)$payinfo['isMonth'];
 		$this->orderid 		= 	$payinfo['orderid'];
 		$this->payType		= 	$payinfo['tag'];
-		$this->serverId 	= 	$payinfo['sid'];
+		$this->serverId 	= 	(int)$payinfo['sid'];
 		$this->cond = new Cond( 'uniqPay_'.$this->serverId, $payinfo['uid'], 600 );
 		$this->_init();
 	}
