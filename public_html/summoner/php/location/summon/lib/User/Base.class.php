@@ -392,7 +392,7 @@
 			if( $vlevel > $this->getLevel() ){
 				$this->setVip( $vlevel );
 			}
-			$this->log->d('* 添加玩家#'.$this->uid.'#'.$nums.'充值总数为'.self::$userinfo[$this->uid]['totalPay']);
+			$this->log->e('* 添加玩家#'.$this->uid.'#'.$nums.'充值总数为'.self::$userinfo[$this->uid]['totalPay']);
 			return true;
 		}else{
 			return false;

@@ -56,7 +56,7 @@ class Pay extends Base{
 		$sendPay[] = $this->isMonth;
 
 		$param['pay'] = implode( '|', $sendPay );
-		$ret = msgpack_unpack( $curl->post( $param ) );
+		$ret = msgpack_unpack( $curl->post( msgpack_pack( $param ) ) );
 		if( $ret['Ret'] != 0 ){
 			$this->status = 0;
 			$this->errorInfo = $ret['desc'];
