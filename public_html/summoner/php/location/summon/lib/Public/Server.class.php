@@ -100,6 +100,12 @@
 		return $this->slist;
 	}
 /**
+ *@ 获取服务器php请求地址
+ **/
+	public function getServerPhpUrl(){
+		return $this->slist['php'];
+	}
+/**
  *@ 获取指定区的DB配置信息		指定sid
  **/
 	public function getDbList(){

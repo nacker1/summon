@@ -7,16 +7,19 @@ class Pay extends Base{
 	private $money;												//充值金额
 	private $channel;											//充值渠道
 	private $orderid;											//充值订单id  来自充值方
-	private $status;											//充值状态 0成功 1为失败
+	private $status=1;											//充值状态 1成功 0为失败
 				
 	private $errorInfo;											//错误信息
 
 	function __construct( $payinfo ){
 		parent::__construct();
-		$this->money = $payinfo['money'];
-		$this->channel = $payinfo['channel'];
-		$this->orderid = $payinfo['orderid'];
-		$this->cond = new Cond( 'uniqPay', $payinfo['uid'], 600 );
+		$this->money 		= 	$payinfo['money'];
+		$this->channel 		= 	$payinfo['channel'];
+		$this->isMonth 		= 	$payinfo['isMonth'];
+		$this->orderid 		= 	$payinfo['orderid'];
+		$this->payType		= 	$payinfo['tag'];
+		$this->serverId 	= 	$payinfo['sid'];
+		$this->cond = new Cond( 'uniqPay_'.$this->serverId, $payinfo['uid'], 600 );
 		$this->_init();
 	}
 /**
@@ -24,20 +27,40 @@ class Pay extends Base{
  **/
 	private function _init(){
 		if( $this->cond->get( $this->orderid ) ){
-			$this->status = 1;
-			$this->errorInfo = 'order_done '.__LINE__;
+			$this->status = 0;
+			$this->errorInfo = '订单重复';
 		}
 	}
 /**
  *@ 开始充值
  **/
 	function pay(){
-		if( $this->getStatus() ){
-			return false;
+		if( !$this->getStatus() ){
+			return;
 		}
-		$this->addCooldou($this->money);  //添加钻石
-		$this->addTotalPay($this->money);  //添加用户充值总金额
+		$server = new Server( $this->serverId );
+		$url = $server->getServerPhpUrl();
+		$param['cmd'] = 9040;
+		$param['k'] = '56d16d95fe54b6e69aec0fc8f1c71cf1';
+		$param['ver'] = '1.0.0';
+		$param['sid'] = $this->serverId;
+		$param['uid'] = $this->uid;
+		$param['skey'] = -1;
+		$url .= '?'.http_build_query($param);
+		unset( $param );
 
+		$curl = new Curl( $url );
+		$sendPay[] = $this->uid;
+		$sendPay[] = $this->money;
+		$sendPay[] = $this->payType;
+		$sendPay[] = $this->isMonth;
+
+		$param['pay'] = implode( '|', $sendPay );
+		$ret = msgpack_unpack( $curl->post( $param ) );
+		if( $ret['Ret'] != 0 ){
+			$this->status = 0;
+			$this->errorInfo = $ret['desc'];
+		}
 		$this->cond->set( $this->orderid );  //添加订单临时记录
 		return true;
 	}
@@ -61,9 +84,8 @@ class Pay extends Base{
 		$pay['money'] = $this->money;
 		$pay['channel'] = $this->channel;
 		$pay['status'] = $this->getStatus();
-		#$pay['error'] = $this->getError();
 		$pay['payType'] = $this->payType;
-		$pay['sid'] = $this->getServerId();
+		$pay['sid'] = $this->serverId;
 		$pay['uid'] = $this->getUid();
 		$pay['orderid'] = $this->orderid;
 		$pay['time'] = date('Y-m-d H:i:s');
