@@ -74,7 +74,7 @@
  **/
 	private function _init(){
 		$this->pre;
-		if( C('test') || !$this->pre->exists('shopConfig:'.$this->type.':check') ){
+		if( true || C('test') || !$this->pre->exists('shopConfig:'.$this->type) ){
 			$this->log->i('+++++++++++++++++ DB select ++++++++++++++++');
 			$this->pre->hdel('shopConfig:*');
 			$where['Shop_Id'] = $this->type;
@@ -83,19 +83,22 @@
 			if( empty( $ret ) ){
 				ret('Config_Error! Code:'.__LINE__);
 			}
-			foreach( $ret as $v ){
-				$this->pre->hmset( 'shopConfig:'.$v['Shop_Id'].':'.$v['Item_Type'].':'.$v['id'],$v );
-			}
-			$this->pre->hset('shopConfig:'.$this->type.':check','checked',1,get3time());
+			/*foreach( $ret as $v ){
+				#$this->pre->hmset( 'shopConfig:'.$v['Shop_Id'].':'.$v['Item_Type'].':'.$v['id'],$v );
+				$shopConfig[ $v['Shop_Id'] ][] = $v;
+			}*/
+			$this->pre->set( 'shopConfig:'.$this->type, json_encode($ret), get3time() );
 		}
-		$keys = $this->pre->keys('shopConfig:'.$this->type.':*');
+		#$keys = $this->pre->keys('shopConfig:'.$this->type.':*');
+		$shops = $this->pre->get('shopConfig:'.$this->type);
+		$shops = json_decode( $shops,true );
 		$uLevel = $this->getLevel();
-		foreach( $keys as $v ){
-			$shopInfo = $this->pre->hgetall( $v );
-			$nLevel = explode( ',', $shopInfo['Group_Level'] );
+		foreach( $shops as $v ){
+			#$shopInfo = $this->pre->hgetall( $v );
+			$nLevel = explode( ',', $v['Group_Level'] );
 			if( $uLevel >= $nLevel[0] && $uLevel <= $nLevel[1] ){
-				$this->log->i( 'goodConfig:'.json_encode($shopInfo) );
-				$this->shopinfo[ $shopInfo['Item_Type'] ][] = $shopInfo;
+				$this->log->i( 'goodConfig:'.json_encode($v) );
+				$this->shopinfo[ $v['Item_Type'] ][] = $v;
 			}
 		}
 
