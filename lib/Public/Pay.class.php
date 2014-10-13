@@ -12,7 +12,7 @@ class Pay extends Base{
 	private $errorInfo;											//错误信息
 
 	function __construct( $payinfo ){
-		parent::__construct();
+		parent::__construct($payinfo['uid']);
 		$this->money 		= 	$payinfo['money'];
 		$this->channel 		= 	$payinfo['channel'];
 		$this->isMonth 		= 	$payinfo['isMonth'];
