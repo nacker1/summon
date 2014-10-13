@@ -175,6 +175,27 @@
 		}
 	}
 /**
+ *@ 获取角色指定信息的内容
+ **/
+	public function getTypeInfo( $type ){
+		switch ( $type ) {
+			case 'jewel':
+			case 'cooldou':
+				return $this->getCooldou();
+				break;
+			case 'money':
+				return $this->getMoney();
+			case 'mFriend':		#友情点
+			case 'mAction':		#活动币
+			case 'mArena':		#竞技场币
+				return $this->getUserRecord( $type );
+			default:
+				# code...
+				break;
+		}
+		return 0;
+	}
+/**
  *@ 获取角色等级
  **/
 	public function getLevel(){

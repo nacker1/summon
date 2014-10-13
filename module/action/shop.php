@@ -12,10 +12,10 @@
  $shopId = isset( $input['sid']) ? $input['sid'] : 1;
 
  $tags = array(
- 		1=>array('freeRefShopDay','普通商店'),
- 		2=>array('vipRefShopDay','普通商店'),
- 		3=>array('arenaRefShopDay','普通商店'),
- 		4=>array('endRefShopDay','普通商店')
+ 		1=>array('freeRefShopDay','普通商店','jewel'),
+ 		2=>array('vipRefShopDay','神秘商店','jewel'),
+ 		3=>array('arenaRefShopDay','竞技场商店','mArena'),
+ 		4=>array('endRefShopDay','远征商店','')
  	);
 
  switch( $type ){
@@ -25,17 +25,19 @@
 		 if( !empty($ref) ){ //刷新普通商店次数添加
 			$limit = new User_Limit( $tags[$shopId][0] );
 			if( $limit->getLastFreeTimes() < 1 ){ //获取剩余免费次数
-				$cooldou = $limit->getOneTimeCooldou(); //刷新商店所需要费用
-				if( $cooldou>0 && $user->reduceCooldou( $cooldou ) === false ){
-					ret('钻石不足',-1);
+				$nums = $limit->getOneTimeCooldou(); //刷新商店所需要费用
+				if( $nums>0 && $user->getTypeInfo( $tags[$shopId][2] ) < $nums ){
+					ret('货币不足',-1);
+				}else{
+					$add[ $tags[$shopId][2] ] = -$nums;
 				}
 			}
 			$limit->addLimitTimes(1);
 		 }
 		 $shop = new User_Shop( $user->getUid(),$shopId,$ref );
 		 $goods = $shop->getShopGoods();
-		 $goods['jewel'] = $user->getCooldou();
-		 ret($goods);
+		 $u = $user->sendGoodsFromConfig($add);
+		 ret( array_merge($goods,$u) );
 	case '2': //购买物品
 		$tag = '商店'.$tags[$shopId][0][1].'购买商品';
 		$index = isset( $input['index']) ? $input['index'] : 0;
