@@ -208,6 +208,7 @@
 					if( !empty( $mis ) ){
 						$ret['mis'] = $mis;
 					}
+					$ret['money'] = $user->getMoney();
 					ret( $ret );
 				}else{
 					ret('服务器繁忙，请重试！',-1);
