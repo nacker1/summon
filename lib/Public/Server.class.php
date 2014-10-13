@@ -54,7 +54,7 @@
 			}
 			$this->slist = $ret;
 		}else{ //初始化指定id服务器
-			if( C( 'test' ) || !$this->pre->hexists( 'server:list:'.$this->sid ) ){
+			if( C( 'test' ) || !$this->pre->exists( 'server:list:'.$this->sid ) ){
 				$this->cdb;
 				$slist = $this->cdb->findOne($this->table,'*',array('id'=>$this->sid));
 				$this->pre->hmset( 'server:list:'.$slist['id'],$slist,86400 );
