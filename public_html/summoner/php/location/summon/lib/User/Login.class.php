@@ -142,9 +142,10 @@
 		$tmpe = new User_User($this->uid,-1);
 		if( $this->isNew ){
 			$gHero = array( 10002,10001 );
+			$gHero = array( 10001,10002,10004,10005,10006,10008,10009,10010,10011,10012,10013,10015,10018,10019,10021,10022,10023,10024,10025,10026,10027,10028,10029,10031,10032,10034,10036,10040 );
 			foreach( $gHero as $v ){ 
 				$hero = new User_Hero( $this->uid, $v );
-				$hero->giveHero();
+				$hero->giveHero(4);
 			}
 		}
 	}
