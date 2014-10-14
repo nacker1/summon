@@ -25,13 +25,13 @@
 		$custLimit = new User_Limit( 'doArenaTimesDay' ); 
 		$user->setMissionId(2,64);
 		$pvpTop = $input['currnk']; #当前排名
+		$input['hrank'] = $user->getUserRecord( 'maxPvpTop' );
 		if( $input['hrank'] < 1 || $pvpTop < $input['hrank'] ){
 			$user->setUserRecord('maxPvpTop', $pvpTop );
 			if( $input['diamond'] > 0 ){
 				$add['cooldou'] = $input['diamond'];		#添加钻石   当前排名高于历史最高排名奖励钻石
 			}
 		}
-		$input['hrank'] = $user->getUserRecord( 'maxPvpTop' );
 		$custLimit->addLimitTimes( 1 );
 		unset( $custLimit );
 	}
