@@ -203,7 +203,6 @@
  **/
 	public function update( $config ){
 		$this->cdb;
-		dump($this->cdb->getConfig());
 		$this->pre->hdel('server:list:*');
 		if( !empty($this->sid) ){
 			$ret = $this->cdb->update( $this->table, $config, array( 'id'=>$this->sid ) );
@@ -211,7 +210,8 @@
 			$ret = $this->cdb->insert( $this->table, $config );
 		}		
 		if( !$ret ){
-			dump($this->cdb->getLastSql());
+			$this->log->e( 'LastSql:'.$this->cdb->getLastSql() );
+			#dump($this->cdb->getLastSql());
 		}
 		return $ret;
 	}
