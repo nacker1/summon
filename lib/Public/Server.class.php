@@ -203,7 +203,7 @@
  **/
 	public function update( $config ){
 		$this->cdb;
-		$this->pre->hmset('server:list:'.$this->sid,$config);
+		$this->pre->hdel('server:list:*');
 		if( !empty($this->sid) ){
 			$ret = $this->cdb->update( $this->table, $config, array( 'id'=>$this->sid ) );
 		}else{
