@@ -211,7 +211,6 @@
 		}		
 		if( !$ret ){
 			$this->log->e( 'LastSql:'.$this->cdb->getLastSql() );
-			#dump($this->cdb->getLastSql());
 		}
 		return $ret;
 	}
