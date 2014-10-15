@@ -74,6 +74,7 @@
 	public function getServerList(){
 		$ret = array();
 		foreach( $this->slist as $v ){
+			if( empty( $v['name'] ) ){continue;}
 			$temp[] = $v['name'];
 			$temp[] = $v['tcp'];
 			$temp[] = $v['php'];
