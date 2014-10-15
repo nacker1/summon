@@ -203,6 +203,7 @@
  **/
 	public function update( $config ){
 		$this->cdb;
+		dump($this->cdb->getConfig());
 		$this->pre->hdel('server:list:*');
 		if( !empty($this->sid) ){
 			$ret = $this->cdb->update( $this->table, $config, array( 'id'=>$this->sid ) );
