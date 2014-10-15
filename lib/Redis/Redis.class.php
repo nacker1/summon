@@ -68,6 +68,7 @@
 				$this->del($key);
 			}
 		}
+		return true;
 	}
 	/**
 	 *@ ²éÕÒ·ûºÏ¸ø¶¨Ä£Ê½µÄkey¡£
