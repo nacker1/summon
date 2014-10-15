@@ -70,11 +70,7 @@ class Base{
 
 	public function clearConfig( $config ){
 		$this->pre;
-		if( $this->pre->hdel( $config ) )
-			$this->log->i( 'clear success - '.$v );
-		else
-			$this->log->e( 'clear fail - '.$v );
-		return true;
+		return $this->pre->hdel( $config );
 	}
 /**
  *@ 公共代理类
