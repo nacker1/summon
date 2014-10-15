@@ -109,7 +109,8 @@ class User_Limit extends User_Base{
  **/
 	public function getLastFreeTimes( $key='' ){
 		$used = $this->getUsedTimes( $key );
-		return (int)( $this->freeTimes - $used );
+		$fTime = (int)( $this->freeTimes - $used );
+		return $fTime>0?$fTime:0;
 	}
 /**
  *@ 获取当前标签的消耗基数值
