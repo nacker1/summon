@@ -44,7 +44,7 @@
 					ret('no user!');
 				}
 				$uinfo['skey'] = md5( gettimeofday(true).rand(1000,9999) ); //登录校验
-				$uinfo['lastUpdTime'] = time(); //用户信息最后更新时间
+				#$uinfo['lastUpdTime'] = time(); //用户信息最后更新时间
 				$uinfo['mail'] = 0; //邮件标记
 				$this->redis->del('roleinfo:'.$this->uid.':baseinfo');
 				$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',$uinfo);
@@ -317,15 +317,13 @@
  *@ 设置用户私信标记
  **/
 	public function setMessageFlag( $val ){
-		$this->setUpdTime(1);
-		return self::$userinfo[$this->uid]['message'] = $val;
+		return $this->redis->hset('roleinfo:'.$this->uid.':baseinfo','message',$val);#return self::$userinfo[$this->uid]['message'] = $val;
 	}
 /**
  *@ 设置用户邮件标记
  **/
 	public function setNewMail($val=1){
-		$this->setUpdTime(1);
-		return self::$userinfo[$this->uid]['mail'] = $val;
+		return $this->redis->hset('roleinfo:'.$this->uid.':baseinfo','mail',$val);#self::$userinfo[$this->uid]['mail'] = $val;
 	}
 /**
  *@ 添加用户金币
@@ -561,9 +559,10 @@
  **/
 	private function setUpdTime($flag=1){
 		self::$isupd[$this->uid] = $flag;
+		/*
 		if( $flag > 1 ){
 			self::$userinfo[$this->uid]['lastUpdTime'] = time();
-		}
+		}*/
 		if( $flag == 2 ){ //金币或钻石发生变化
 			global $tag;
 			$this->userLog['sid'] = self::$userinfo[$this->uid]['sid'];
