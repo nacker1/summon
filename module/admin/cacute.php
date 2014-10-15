@@ -74,7 +74,8 @@
 			//--------------------------扫荡扣除钻石------------------------------
 			$limit = new User_Limit( 'freeSweepTimesDay' );
 			$cooldou = $limit->getOneTimeCooldou();
-			if( $cooldou > 0 && $user->getCooldou() < ( $limit->getExpend()*$sweepNum ) ){
+			$freeTime = $limit->getLastFreeTimes();
+			if( $cooldou > 0 && $user->getCooldou() < ( $limit->getExpend()*( $sweepNum-$freeTime ) ) ){
 				ret(' no_jewel ',-1);
 			}
 			$add['jewel'] = -( $limit->getExpend()*$sweepNum );
