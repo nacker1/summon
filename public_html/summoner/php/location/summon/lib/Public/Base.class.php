@@ -71,7 +71,10 @@ class Base{
 	public function clearConfig( $config ){
 		$this->pre;
 		foreach( $config as $v ){
-			$this->pre->hdel( $v );
+			if( $this->pre->hdel( $v ) )
+				$this->log->i( 'clear success - '.$v );
+			else
+				$this->log->e( 'clear fail - '.$v );
 		}
 		return true;
 	}
