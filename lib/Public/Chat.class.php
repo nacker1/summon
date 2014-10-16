@@ -105,13 +105,14 @@
  **/
  	private function praseOther( $other ){
 		if( empty( $other ) )return $other;
-		$ret = $other;
+		
 		$ot = explode('|',$other);
+		$ret = $ot[0];
 		switch ($ot[0]) {
 			case 'pvp':  #分享pvp
 				if( isset( $ot[1] ) ){
 					$info = explode( ',', $ot[1] );
-					$ret .= '|【'.$info[3].' VS '.$info[3].'】';
+					$ret .= '|'.$info[0].','.$info[1].','.$info[2].'|【'.$info[3].' VS '.$info[4].'】';
 		 		}
 				break;
 			default:
