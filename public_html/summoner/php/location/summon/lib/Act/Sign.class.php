@@ -35,9 +35,10 @@ class Act_Sign extends User_Base{
 				#ret( 'no_config_'.$this->month );
 				$ret = $this->adb->find( $this->table,'*',array( 'Sign_Month'=>0 ) );	//默认配置
 			}
-			foreach( $ret as $v ){
+			/*foreach( $ret as $v ){
 				$this->pre->hmset( 'action:sign:month:'.$v['Sign_Day'],$v );
-			}
+			}*/
+			$this->pre->set( 'action:sign:month:'.$this->month, json_encode( $ret ) );
 			$this->pre->hset( 'action:sign:month_checked','check',1 );
 			$this->pre->hset( 'action:sign:month_checked','month',$this->month );
 			$this->pre->expire( 'action:sign:month_checked',$this->overTime  ); //签到过期时间为下月第一天的 3：00：00
@@ -56,11 +57,13 @@ class Act_Sign extends User_Base{
  **/
 	public function getSignConfig( $month ){
 		if( $month != $this->month ){
-			$keys = $this->pre->keys( 'action:sign:month:*' );
+			/*$keys = $this->pre->keys( 'action:sign:month:*' );
 			$ret = array();
 			foreach( $keys as $v ){
 				$ret['list'][] = $this->pre->hgetall( $v );
-			}
+			}*/
+			$info = $this->pre->get( 'action:sign:month:'.$this->month );
+			$ret['list'] = json_decode( $info, true );
 		}
 		$ret['tol'] = $this->getTotalTimes();
 		$ret['com']= $this->getCommonTimes();
