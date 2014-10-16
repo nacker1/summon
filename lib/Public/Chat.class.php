@@ -111,9 +111,7 @@
 			case 'pvp':  #分享pvp
 				if( isset( $ot[1] ) ){
 					$info = explode( ',', $ot[1] );
-					$challenger = new User_Base( $info[0] );
-					$enemy = new User_Base( $info[1] );
-					$ret .= '|【'.$challenger->getUserName().' VS '.$enemy->getUserName().'】';
+					$ret .= '|【'.$info[3].' VS '.$info[3].'】';
 		 		}
 				break;
 			default:
