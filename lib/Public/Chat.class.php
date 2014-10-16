@@ -101,13 +101,16 @@
  		return $this->_setChat( $chat );
  	}
  	private praseOther( $other ){
+ 		dump($other);
 		if( empty( $other ) )return $other;
 		$ret = '';
 		$ot = explode('|',$other);
+		dump($ot);
 		switch ($ot[0]) {
 			case 'pvp':  #分享pvp
 				if( isset( $ot[1] ) ){
 					$info = explode( ',', $ot[1] );
+					dump($info);
 					$challenger = new User_Base( $info[0] );
 					$enemy = new User_Base( $info[1] );
 					$ret = '【'.$challenger->getUserName().' VS '.$enemy->getUserName().'】';
