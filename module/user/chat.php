@@ -19,7 +19,7 @@
  		$con = $input['con'];
  		$other = $input['other'];  #pvp|key 
  		$strLen = abslength($con);
- 		if( empty( $con ) || $strLen > 65 ){
+ 		if( $strLen > 65 ){
  			ret( '内容不能超过65个汉字'.$strLen, -1 );
  		}
  		if( empty( $to ) ){
