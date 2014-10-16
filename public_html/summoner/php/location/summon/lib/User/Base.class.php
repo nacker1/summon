@@ -23,7 +23,7 @@
 
 	public function __construct( $uid='' ){
 		if( empty( $uid ) ){
-			$uid = (int)getReq('uid',381440);
+			$uid = (int)getReq('uid');
 		}
 		parent::__construct($uid);
 		if( empty($this->uid) ){
