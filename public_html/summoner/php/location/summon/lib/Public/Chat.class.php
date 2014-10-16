@@ -98,12 +98,10 @@
  			'to'=>'',
  			'other'=>$other
  		);
- 		dump($other);
  		return $this->_setChat( $chat );
  	}
 
  	private function _setChat( $con ){
- 		dump($con);
  		switch( $this->type ){
  			case '2': #发私信
  				$uniq = uniqid(true);
@@ -115,7 +113,6 @@
  				$uInfo['level'] = $this->getLevel();
  				$uInfo['uid'] = $this->getUid();
  				$con['to'] = json_encode($uInfo);
- 				dump($con);exit;
  				$mCond->set( $con, $uniq );
  				return true;
  			default:
