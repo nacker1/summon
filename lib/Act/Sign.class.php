@@ -26,7 +26,7 @@ class Act_Sign extends User_Base{
 		/**
 		 *@ 拉取签到奖品配置信息
 		 **/
-		if( C('test') || !$this->pre->exists('action:sign:month:1') || !$this->pre->hget('action:sign:month_checked','check') ){
+		if( C('test') || !$this->pre->hget('action:sign:month_checked','check') ){
 			$this->cdb;
 			$this->pre->hdel('action:sign:month:*');
 			$ret = $this->cdb->find( $this->table,'*',array( 'Sign_Month'=>$this->month ) );
@@ -38,7 +38,6 @@ class Act_Sign extends User_Base{
 			/*foreach( $ret as $v ){
 				$this->pre->hmset( 'action:sign:month:'.$v['Sign_Day'],$v );
 			}*/
-			dump($ret);
 			$this->pre->set( 'action:sign:month:'.$this->month, json_encode( $ret ) );
 			$this->pre->hset( 'action:sign:month_checked','check',1 );
 			$this->pre->hset( 'action:sign:month_checked','month',$this->month );
@@ -64,7 +63,6 @@ class Act_Sign extends User_Base{
 				$ret['list'][] = $this->pre->hgetall( $v );
 			}*/
 			$info = $this->pre->get( 'action:sign:month:'.$this->month );
-			dump($info);
 			$ret['list'] = json_decode( $info, true );
 		}
 		$ret['tol'] = $this->getTotalTimes();
