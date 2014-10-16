@@ -38,7 +38,7 @@
 	 		ret( '喊话需要 '.$money.' 金币' );	
 	 	}else{
 	 		$chat = new Chat( $to,2 );
-	 		$chat->sendChat( $con, $user->getUserName(), $user->getUid(), $user->getLevel(), $user->getImage() );
+	 		$chat->sendChat( $con, $user->getUserName(), $user->getUid(), $user->getLevel(), $user->getImage(),$other );
 	 		ret('发送成功');
 	 	}
  }
