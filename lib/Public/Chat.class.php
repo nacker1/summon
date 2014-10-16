@@ -25,6 +25,31 @@
  		return $ret;
  	}
 /**
+ *@ sendChat() 发布聊天信息
+ * param:
+ *	$con:	 发送的内容
+ *	$name:	 发信者信息
+ *	$uid:	 发信者的uid 可用来直接加好友
+ *	$level:	 发信者等级
+ *	$image:	 发信者的头像id
+ *  $other: 其它信息，如pvp战斗记录，挖矿记录等，数据结构
+ *		type|key|showCon   类型|唯一键(fromUid,toUid)|显示内容
+ *		pvp => type:1, key:pvp生成， showCon: 显示在页面上的内容
+ **/
+ 	function sendChat( $con, $name, $uid, $level, $image, $other='' ){
+ 		$chat = array(
+ 			'con'=>$con,
+ 			'name'=>$name,
+ 			'level'=>$level,
+ 			'image'=>$image,
+ 			'uid'=>$uid,
+ 			'time'=>time(),
+ 			'to'=>'',
+ 			'other'=>$this->praseOther($other)
+ 		);
+ 		return $this->_setChat( $chat );
+ 	}
+/**
  *@ _getUserChat 获取玩家的私信 
  * param:
  *	$lasttime: 客户端收到的最后一条信息时间戳
@@ -76,30 +101,8 @@
  		return $ret;
  	}
 /**
- *@ sendChat() 发布聊天信息
- * param:
- *	$con:	 发送的内容
- *	$name:	 发信者信息
- *	$uid:	 发信者的uid 可用来直接加好友
- *	$level:	 发信者等级
- *	$image:	 发信者的头像id
- *  $other: 其它信息，如pvp战斗记录，挖矿记录等，数据结构
- *		type|key|showCon   类型|唯一键(fromUid,toUid)|显示内容
- *		pvp => type:1, key:pvp生成， showCon: 显示在页面上的内容
+ *@ praseOther 根据业务解析other信息内容
  **/
- 	function sendChat( $con, $name, $uid, $level, $image, $other='' ){
- 		$chat = array(
- 			'con'=>$con,
- 			'name'=>$name,
- 			'level'=>$level,
- 			'image'=>$image,
- 			'uid'=>$uid,
- 			'time'=>time(),
- 			'to'=>'',
- 			'other'=>$this->praseOther($other)
- 		);
- 		return $this->_setChat( $chat );
- 	}
  	private function praseOther( $other ){
 		if( empty( $other ) )return $other;
 		$ret = $other;

@@ -11,7 +11,7 @@
 		}else if( is_file(BOOT.'/lib/Public/'.$classname.'.class.php') ){
 			require(BOOT.'/lib/Public/'.$classname.'.class.php');
 		}else{
-			ret($classname.' Class not find!',-1);
+			#ret($classname.' Class not find!',-1);
 		}
 	}
 
