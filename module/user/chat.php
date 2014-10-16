@@ -17,7 +17,7 @@
  	case '2': #发送信息
  		$to = !empty( $input['to'] ) ? $input['to'] : '';
  		$con = $input['con'];
- 		$other = $input['other'];
+ 		$other = $input['other'];  #pvp|key 
  		$strLen = abslength($con);
  		if( empty( $con ) || $strLen < 1 || $strLen > 65 ){
  			ret( '字数在1-65之内'.$strLen, -1 );
