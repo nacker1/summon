@@ -38,6 +38,7 @@ class Act_Sign extends User_Base{
 			/*foreach( $ret as $v ){
 				$this->pre->hmset( 'action:sign:month:'.$v['Sign_Day'],$v );
 			}*/
+			dump($ret);
 			$this->pre->set( 'action:sign:month:'.$this->month, json_encode( $ret ) );
 			$this->pre->hset( 'action:sign:month_checked','check',1 );
 			$this->pre->hset( 'action:sign:month_checked','month',$this->month );
