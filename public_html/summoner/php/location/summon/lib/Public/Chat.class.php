@@ -102,7 +102,7 @@
  	}
  	private function praseOther( $other ){
 		if( empty( $other ) )return $other;
-		$ret = '';
+		$ret = $other;
 		$ot = explode('|',$other);
 		switch ($ot[0]) {
 			case 'pvp':  #分享pvp
@@ -110,7 +110,7 @@
 					$info = explode( ',', $ot[1] );
 					$challenger = new User_Base( $info[0] );
 					$enemy = new User_Base( $info[1] );
-					$ret = '【'.$challenger->getUserName().' VS '.$enemy->getUserName().'】';
+					$ret .= '|【'.$challenger->getUserName().' VS '.$enemy->getUserName().'】';
 		 		}
 				break;
 			default:
