@@ -98,7 +98,7 @@
  			'to'=>'',
  			'other'=>$other
  		);
- 		dump($chat);
+ 		dump($other);
  		return $this->_setChat( $chat );
  	}
 
