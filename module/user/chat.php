@@ -19,8 +19,8 @@
  		$con = $input['con'];
  		$other = $input['other'];  #pvp|key 
  		$strLen = abslength($con);
- 		if( empty( $con ) || $strLen < 1 || $strLen > 65 ){
- 			ret( '字数在1-65之内'.$strLen, -1 );
+ 		if( empty( $con ) || $strLen > 65 ){
+ 			ret( '内容不能超过65个汉字'.$strLen, -1 );
  		}
  		if( empty( $to ) ){
 	 		$limit = new User_Limit( 'helloWorld' );
