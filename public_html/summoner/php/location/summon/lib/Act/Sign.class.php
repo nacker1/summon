@@ -31,13 +31,9 @@ class Act_Sign extends User_Base{
 			$this->pre->hdel('action:sign:month:*');
 			$ret = $this->cdb->find( $this->table,'*',array( 'Sign_Month'=>$this->month ) );
 			if( empty( $ret ) ){
-				$this->log->e( '本月（'.$this->month.'月）签到未配置' );
-				#ret( 'no_config_'.$this->month );
+				$this->log->e( '本月（'.$this->month.'月）签到未配置,使用默认配置 0' );
 				$ret = $this->cdb->find( $this->table,'*',array( 'Sign_Month'=>0 ) );	//默认配置
 			}
-			/*foreach( $ret as $v ){
-				$this->pre->hmset( 'action:sign:month:'.$v['Sign_Day'],$v );
-			}*/
 			$this->pre->set( 'action:sign:month:'.$this->month, json_encode( $ret ) );
 			$this->pre->hset( 'action:sign:month_checked','check',1 );
 			$this->pre->hset( 'action:sign:month_checked','month',$this->month );
@@ -57,11 +53,6 @@ class Act_Sign extends User_Base{
  **/
 	public function getSignConfig( $month ){
 		if( $month != $this->month ){
-			/*$keys = $this->pre->keys( 'action:sign:month:*' );
-			$ret = array();
-			foreach( $keys as $v ){
-				$ret['list'][] = $this->pre->hgetall( $v );
-			}*/
 			$info = $this->pre->get( 'action:sign:month:'.$this->month );
 			$ret['list'] = json_decode( $info, true );
 		}
