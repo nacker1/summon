@@ -113,6 +113,7 @@
  				$uInfo['level'] = $this->getLevel();
  				$uInfo['uid'] = $this->getUid();
  				$con['to'] = json_encode($uInfo);
+ 				dump($con);exit;
  				$mCond->set( $con, $uniq );
  				return true;
  			default:
