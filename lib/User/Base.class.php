@@ -292,8 +292,9 @@
 /**
  *@ 设置用户最后登录时间
  **/
-	public function setLoginTime( $time ){
+	public function setLoginTime( $time='' ){
 		$this->setUpdTime(3);
+		empty( $time ) && $time = time();
 		return self::$userinfo[$this->uid]['logintime'] = self::$updinfo[$this->uid]['logintime'] = $time;
 	}
 /**
