@@ -30,7 +30,7 @@ switch ($type) {
 		ret($user->getUserLastUpdInfo());
 	case '997':
 		$user->setLoginTime();
-		ret( $user->getUserBeginInfo() );
+		ret( $user->getUserInfo() );
 	case '998':
 		#清空所有配置缓存
 		$cache = array(
