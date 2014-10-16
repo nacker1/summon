@@ -84,7 +84,7 @@
  *	$level:	 发信者等级
  *	$image:	 发信者的头像id
  *  $other: 其它信息，如pvp战斗记录，挖矿记录等，数据结构
- *		type|key|showCon   类型|唯一键|显示内容
+ *		type|key|showCon   类型|唯一键(fromUid,toUid)|显示内容
  *		pvp => type:1, key:pvp生成， showCon: 显示在页面上的内容
  **/
  	function sendChat( $con, $name, $uid, $level, $image, $other='' ){
@@ -96,11 +96,29 @@
  			'uid'=>$uid,
  			'time'=>time(),
  			'to'=>'',
- 			'other'=>$other
+ 			'other'=>$this->praseOther($other)
  		);
  		return $this->_setChat( $chat );
  	}
-
+ 	private praseOther( $other ){
+		if( empty( $other ) )return $other;
+		$ret = '';
+		$ot = explode('|',$other);
+		switch ($ot[0]) {
+			case 'pvp':  #分享pvp
+				if( isset( $ot[1] ) ){
+					$info = explode( ',', $ot[1] );
+					$challenger = new User_Base( $info[0] );
+					$enemy = new User_Base( $info[1] );
+					$ret = '【'.$challenger->getUserName().' VS '.$enemy->getUserName().'】';
+		 		}
+				break;
+			default:
+				# code...
+				break;
+		}
+		return $ret;
+ 	}
  	private function _setChat( $con ){
  		switch( $this->type ){
  			case '2': #发私信
