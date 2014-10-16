@@ -102,6 +102,7 @@
  	}
 
  	private function _setChat( $con ){
+ 		dump($con);
  		switch( $this->type ){
  			case '2': #发私信
  				$uniq = uniqid(true);
