@@ -33,7 +33,15 @@ class User_Draw extends User_Base{
 				ret( 'no_type_config' ,-1);
 			}
 			foreach( $ret as $v ){
-				$this->pre->hmset( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'], $v );
+				#$this->pre->hmset( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'], $v );
+				$rret[$this->type][$v['Group_Level']][$id] = $v;
+			}
+			foreach ($rret as $key => $value) {
+				# code...
+				foreach ($value as $k => $v) {
+					# code...
+					$this->pre->set( 'baseDrawTypeConfig:'.$key.':'.$k, json_encode($v) );
+				}
 			}
 			#=============  初始化物品配置表  =================================================
 			$ret = $this->cdb->find( $this->draw_table, 'Group_Level,Item_Id,Item_Type,Item_Color,Item_Random', array( 'Box_Id'=>$this->type ) );
@@ -161,12 +169,14 @@ class User_Draw extends User_Base{
 				break;
 		}
 		$this->log->i('Group_Level:'.$flag);
-		$keys = $this->pre->keys( 'baseDrawTypeConfig:'.$this->type.':'.$flag.':*' );
-		foreach( $keys as $v ){
-			$info = $this->pre->hgetall( $v );
-			$this->log->i( 'draw_goodType_info:'.json_encode($info) );
-			$this->userType[] = $info;
-			$this->tolTypeRate += $info['Item_Random'];
+		#$keys = $this->pre->keys( 'baseDrawTypeConfig:'.$this->type.':'.$flag.':*' );
+		$ret = $this->pre->get( 'baseDrawTypeConfig:'.$this->type.':'.$flag );
+		$ret = json_decode($ret,true);
+		foreach( $ret as $v ){
+			#$info = $this->pre->hgetall( $v );
+			$this->log->i( 'draw_goodType_info:'.json_encode($v) );
+			$this->userType[] = $v;
+			$this->tolTypeRate += $v['Item_Random'];
 		}		
 	}
 
