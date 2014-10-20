@@ -48,8 +48,14 @@ class User_Draw extends User_Base{
 				$this->log->e( '类型（'.$this->type.'）对应的物品配置信息未找到。' );
 				ret( 'no_config' ,-1);
 			}
+			unset($ret);
 			foreach( $ret as $v ){
-				$this->pre->hmset( 'baseDrawConfig:'.$this->type.':'.$v['Item_Type'].':'.$v['Item_Color'].':'.$v['Item_Id'], $v );
+				#$this->pre->hmset( 'baseDrawConfig:'.$this->type.':'.$v['Item_Type'].':'.$v['Item_Color'].':'.$v['Item_Id'], $v );
+				$ret[ $this->type.':'.$v['Item_Type'].':'.$v['Item_Color'] ][ $v['Item_Id'] ] = $v;
+			}
+
+			foreach( $ret as $key=>$val ){
+				$this->pre->set( 'baseDrawConfig:'.$key, json_encode( $val ) );
 			}
 
 			$this->pre->hset( 'baseDrawConfig:'.$this->type.':check','checked', 1, get3time() );
@@ -79,22 +85,27 @@ class User_Draw extends User_Base{
 	private function _getGood(){
 		$uLevel = $this->getLevel();
 		$type = $this->_getType();
-		$keys = $this->pre->keys( 'baseDrawConfig:'.$this->type.':'.$type['type'].':'.$type['color'].':*' );
-		if( empty( $keys ) ){
+		#$keys = $this->pre->keys( 'baseDrawConfig:'.$this->type.':'.$type['type'].':'.$type['color'].':*' );
+
+#================================== 取物品 ==================================
+		$goods = json_decode( $this->pre->set( 'baseDrawConfig:'.$this->type.':'.$type['type'].':'.$type['color'] ), true );
+		if( empty( $goods ) ){
 			$this->log->e( '抽奖获取'.$this->type.'_'.$type['type'].'_'.$type['color'].'类型对应的物品出错，没有读取到配置信息' );
 			ret(' no_good_config'.__LINE__,-1);
 		}
 		$tolRate = 0;
 		$tempInfo = array();
-		foreach( $keys as $v ){
-			$gInfo = $this->pre->hgetall( $v );
-			$this->log->i( 'draw_good_info:'.json_encode($gInfo) );
-			$Group_Level = explode(',',$gInfo['Group_Level']);
+		foreach( $goods as $v ){
+			#$gInfo = $this->pre->hgetall( $v );
+			$this->log->i( 'draw_good_info:'.json_encode($v) );
+			$Group_Level = explode(',',$v['Group_Level']);
 			if( $uLevel>=$Group_Level[0] && $uLevel<=$Group_Level[1] ){
-				$tempInfo[] = $gInfo;
-				$tolRate += (int)$gInfo['Item_Random'];
+				$tempInfo[] = $v;
+				$tolRate += (int)$v['Item_Random'];
 			}
 		}
+#================================== END ==================================
+
 		foreach( $tempInfo as $k=>$v ){
 			$list[$k] = number_format($v['Item_Random']/$tolRate, 4);
 		}
