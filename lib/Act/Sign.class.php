@@ -101,7 +101,7 @@ class Act_Sign extends User_Base{
 		if( $daySign>0 && $vipSign<1 ){
 			$total -= 1;
 		}
-		$dayConfig = $this->pre->get( 'action:sign:month:'.$total );
+		$dayConfig = json_decode( $this->pre->get( 'action:sign:month:'.$total ), true );
 		$addNums = $dayConfig['Item_Num'];
 		$add = false;
 		if( empty($daySign) ){//普通签到物品领取
