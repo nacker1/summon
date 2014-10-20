@@ -55,6 +55,7 @@ class User_Draw extends User_Base{
 			}
 
 			foreach( $ret as $key=>$val ){
+				$this->log->i( 'value：'.json_encode($val) );
 				$this->pre->set( 'baseDrawConfig:'.$key, json_encode( $val ) );
 			}
 
@@ -89,6 +90,7 @@ class User_Draw extends User_Base{
 
 #================================== 取物品 ==================================
 		$goods = json_decode( $this->pre->get( 'baseDrawConfig:'.$this->type.':'.$type['type'].':'.$type['color'] ), true );
+		$this->log->i( json_encode( $goods ) );
 		if( empty( $goods ) ){
 			$this->log->e( '抽奖获取'.$this->type.'_'.$type['type'].'_'.$type['color'].'类型对应的物品出错，没有读取到配置信息' );
 			ret(' no_good_config'.__LINE__,-1);
