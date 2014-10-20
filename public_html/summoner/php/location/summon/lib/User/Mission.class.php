@@ -273,11 +273,8 @@
 			
 			#=====================  设置任务通知  ======================
 			$set['showMission'] = $missing['showMission'];
-			/*$notice[] = $set['missing'];
-			$notice[] = $set['progress'];*/
 			$this->setMissionNotice( $this->type,$this->class, $set );
 			#===========================================================
-			#$this->setThrowSQL( $this->userMissionTable, $set, array( 'uid'=>$this->uid, 'type'=>$this->class ) );
 			return $this->redis->hmset( 'roleinfo:'.$this->getUid().':mission:'.$this->class, $set);			
 		}elseif( 2==$this->type ){ //处理日常任务
 			$dayMis = $this->cond->get($this->class);
