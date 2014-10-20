@@ -203,6 +203,8 @@
  *@ 更新或添加服务器信息
  **/
 	public function update( $config ){
+		if( empty( $config['name'] )  || empty( $config['tcp'] ) || empty( $config['php'] ) || empty( $config['max'] ) ){ return false; }
+
 		$this->cdb;
 		$this->pre->hdel('server:list:*');
 		if( !empty($this->sid) ){
