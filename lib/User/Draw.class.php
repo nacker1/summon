@@ -39,7 +39,7 @@ class User_Draw extends User_Base{
 			#$this->log->i('rret:'.json_encode($rret));
 			foreach ($rret as $key => $value) {
 				# code...
-				$this->log->i( 'value:'.json_encode($value) );
+				#$this->log->i( 'value:'.json_encode($value) );
 				$this->pre->set( 'baseDrawTypeConfig:'.$this->type.':'.$key, json_encode($value) );
 			}
 			#=============  初始化物品配置表  =================================================
