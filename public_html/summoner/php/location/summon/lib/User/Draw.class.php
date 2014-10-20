@@ -51,7 +51,9 @@ class User_Draw extends User_Base{
 			unset($ret);
 			foreach( $ret as $v ){
 				#$this->pre->hmset( 'baseDrawConfig:'.$this->type.':'.$v['Item_Type'].':'.$v['Item_Color'].':'.$v['Item_Id'], $v );
-				$ret[ $this->type.':'.$v['Item_Type'].':'.$v['Item_Color'] ][ $v['Item_Id'] ] = $v;
+				$temp = $this->type.':'.$v['Item_Type'].':'.$v['Item_Color'];
+				$this->log->i( $temp );
+				$ret[ $temp ][ $v['Item_Id'] ] = $v;
 			}
 
 			foreach( $ret as $key=>$val ){
