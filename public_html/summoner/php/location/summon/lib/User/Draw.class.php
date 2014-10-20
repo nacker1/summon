@@ -97,7 +97,6 @@ class User_Draw extends User_Base{
 		$tolRate = 0;
 		$tempInfo = array();
 		foreach( $goods as $v ){
-			#$gInfo = $this->pre->hgetall( $v );
 			$this->log->i( 'draw_good_info:'.json_encode($v) );
 			$Group_Level = explode(',',$v['Group_Level']);
 			if( $uLevel>=$Group_Level[0] && $uLevel<=$Group_Level[1] ){
