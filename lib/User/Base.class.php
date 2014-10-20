@@ -262,7 +262,7 @@
  *@ 获取角色信息最后更新时间
  **/
 	public function getLastUpdTime(){
-		return self::$userinfo[$this->uid]['lastUpdTime'];
+		return (int)self::$userinfo[$this->uid]['lastUpdTime'];
 	}
 /**
  *@ 获取用户的充值总金额
