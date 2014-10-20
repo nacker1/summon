@@ -39,7 +39,6 @@ class User_Draw extends User_Base{
 			#$this->log->i('rret:'.json_encode($rret));
 			foreach ($rret as $key => $value) {
 				# code...
-				#$this->log->i( 'value:'.json_encode($value) );
 				$this->pre->set( 'baseDrawTypeConfig:'.$this->type.':'.$key, json_encode($value) );
 			}
 			#=============  初始化物品配置表  =================================================
@@ -53,12 +52,10 @@ class User_Draw extends User_Base{
 			foreach( $ret as $v ){
 				#$this->pre->hmset( 'baseDrawConfig:'.$this->type.':'.$v['Item_Type'].':'.$v['Item_Color'].':'.$v['Item_Id'], $v );
 				$temp = $this->type.':'.$v['Item_Type'].':'.$v['Item_Color'];
-				$this->log->i( $temp );
 				$ret[ $temp ][ $v['Item_Id'] ] = $v;
 			}
 
 			foreach( $ret as $key=>$val ){
-				$this->log->i( 'value：'.json_encode($val) );
 				$this->pre->set( 'baseDrawConfig:'.$key, json_encode( $val ) );
 			}
 
