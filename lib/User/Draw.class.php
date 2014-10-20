@@ -21,7 +21,7 @@ class User_Draw extends User_Base{
 	private function _init(){
 		//初始化抽卡配置表   
 		$this->pre;
-		if( C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
+		if( true || C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
 			$this->cdb;
 			$this->log->i('+++++++++++++++++ DB select ++++++++++++++++');
 			$this->pre->hdel('baseDrawTypeConfig:*');
@@ -34,14 +34,12 @@ class User_Draw extends User_Base{
 			}
 			foreach( $ret as $v ){
 				#$this->pre->hmset( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'], $v );
-				$rret[$this->type][$v['Group_Level']][$id] = $v;
+				$rret[$v['Group_Level']][$id] = $v;
 			}
 			foreach ($rret as $key => $value) {
 				# code...
-				foreach ($value as $k => $v) {
-					# code...
-					$this->pre->set( 'baseDrawTypeConfig:'.$key.':'.$k, json_encode($v) );
-				}
+				$this->log->i( 'value:'.json_encode($value) );
+				$this->pre->set( 'baseDrawTypeConfig:'.$this->type.':'.$key, json_encode($value) );
 			}
 			#=============  初始化物品配置表  =================================================
 			$ret = $this->cdb->find( $this->draw_table, 'Group_Level,Item_Id,Item_Type,Item_Color,Item_Random', array( 'Box_Id'=>$this->type ) );
