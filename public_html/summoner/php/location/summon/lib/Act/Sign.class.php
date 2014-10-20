@@ -27,14 +27,17 @@ class Act_Sign extends User_Base{
 		 *@ 拉取签到奖品配置信息
 		 **/
 		if( C('test') || !$this->pre->hget('action:sign:month_checked','check') ){
-			$this->cdb;
+			$this->adb;
 			$this->pre->hdel('action:sign:month:*');
-			$ret = $this->cdb->find( $this->table,'*',array( 'Sign_Month'=>$this->month ) );
+			$ret = $this->adb->find( $this->table,'*',array( 'Sign_Month'=>$this->month ) );
 			if( empty( $ret ) ){
-				$this->log->e( '本月（'.$this->month.'月）签到未配置,使用默认配置 0' );
-				$ret = $this->cdb->find( $this->table,'*',array( 'Sign_Month'=>0 ) );	//默认配置
+				$this->log->e( '本月（'.$this->month.'月）签到未配置' );
+				#ret( 'no_config_'.$this->month );
+				$ret = $this->adb->find( $this->table,'*',array( 'Sign_Month'=>0 ) );	//默认配置
 			}
-			$this->pre->set( 'action:sign:month:'.$this->month, json_encode( $ret ) );
+			foreach( $ret as $v ){
+				$this->pre->hmset( 'action:sign:month:'.$v['Sign_Day'],$v );
+			}
 			$this->pre->hset( 'action:sign:month_checked','check',1 );
 			$this->pre->hset( 'action:sign:month_checked','month',$this->month );
 			$this->pre->expire( 'action:sign:month_checked',$this->overTime  ); //签到过期时间为下月第一天的 3：00：00
@@ -53,8 +56,11 @@ class Act_Sign extends User_Base{
  **/
 	public function getSignConfig( $month ){
 		if( $month != $this->month ){
-			$info = $this->pre->get( 'action:sign:month:'.$this->month );
-			$ret['list'] = json_decode( $info, true );
+			$keys = $this->pre->keys( 'action:sign:month:*' );
+			$ret = array();
+			foreach( $keys as $v ){
+				$ret['list'][] = $this->pre->hgetall( $v );
+			}
 		}
 		$ret['tol'] = $this->getTotalTimes();
 		$ret['com']= $this->getCommonTimes();
@@ -94,14 +100,14 @@ class Act_Sign extends User_Base{
 		$vipSign =$this->getVipTimes();
 		$this->log->i( '用户#'.$this->uid.'#今日签到次数：com->'.$daySign.' & vip->'.$vipSign.' & vLevel:'.$this->getVlevel() );
 		if( $daySign>0 && $vipSign>0 ){
-			#return false;
+			return false;
 		}
 		
 		$vLevel = $this->getVlevel();
 		if( $daySign>0 && $vipSign<1 ){
 			$total -= 1;
 		}
-		$dayConfig = json_decode( $this->pre->get( 'action:sign:month:'.$total ), true );
+		$dayConfig = $this->pre->hgetall( 'action:sign:month:'.$total );
 		$addNums = $dayConfig['Item_Num'];
 		$add = false;
 		if( empty($daySign) ){//普通签到物品领取
