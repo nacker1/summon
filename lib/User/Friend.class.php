@@ -28,7 +28,7 @@ class User_Friend extends User_Base{
  **/
 	function sendInvite(){
 		if( !empty( $this->toUid ) ){
-			$toCond = new Cond( 'userFriendOpt',$this->toUid,3600,'Friend' );
+			$toCond = new Cond( 'userFriendOpt',$this->toUid,86400*15,'Friend' );
 		}else{
 			ret(' error_no_friendId_'.__LINE__ ,-1);
 		}
@@ -36,6 +36,8 @@ class User_Friend extends User_Base{
 			$this->errorInfo = ' 玩家已经是你的好友 ';
 			return false;
 		}
+		$toUser = new User_Base( $this->toUid );
+		$toUser->setUserHeart('invite');
 		$sendInfo['name'] = $this->getUserName();
 		$sendInfo['uid'] = $this->getUid();
 		$sendInfo['img'] = $this->getImage();

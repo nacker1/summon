@@ -310,9 +310,8 @@
 /**
  *@ 设置用户私信标记
  **/
-	public function setUserHeart( $tag, $val ){
-		$this->setUpdTime(1);
-		return self::$userinfo[$this->uid][ $tag ] = $val;
+	public function setUserHeart( $tag, $val=1 ){
+		return $this->redis->hset('roleinfo:'.$this->uid.':baseinfo', $tag, $val );#self::$userinfo[$this->uid][ $tag ] = $val;
 	}
 /**
  *@ 设置用户私信标记
