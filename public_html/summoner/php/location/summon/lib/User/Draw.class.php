@@ -43,12 +43,13 @@ class User_Draw extends User_Base{
 				$this->pre->set( 'baseDrawTypeConfig:'.$this->type.':'.$key, json_encode($value) );
 			}
 			#=============  初始化物品配置表  =================================================
+			unset($ret);
 			$ret = $this->cdb->find( $this->draw_table, 'Group_Level,Item_Id,Item_Type,Item_Color,Item_Random', array( 'Box_Id'=>$this->type ) );
 			if( empty( $ret ) || !is_array( $ret ) ){
 				$this->log->e( '类型（'.$this->type.'）对应的物品配置信息未找到。' );
 				ret( 'no_config' ,-1);
 			}
-			unset($ret);
+			
 			foreach( $ret as $v ){
 				#$this->pre->hmset( 'baseDrawConfig:'.$this->type.':'.$v['Item_Type'].':'.$v['Item_Color'].':'.$v['Item_Id'], $v );
 				$temp = $this->type.':'.$v['Item_Type'].':'.$v['Item_Color'];
