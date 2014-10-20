@@ -35,6 +35,7 @@
 		$ret[] = (int)$uInfo['message'];		#私聊消息
 		$ret[] = (int)$uInfo['jewel'];			#当前钻石数量
 		$ret[] = $this->isMonthCode();			#是否月卡用户
+		$ret[] = (int)$uInfo['invite'];			#用户好友邀请标记
 		return $ret;
 	}
 /**
