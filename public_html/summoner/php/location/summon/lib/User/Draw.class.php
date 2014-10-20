@@ -34,7 +34,7 @@ class User_Draw extends User_Base{
 			}
 			foreach( $ret as $v ){
 				#$this->pre->hmset( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'], $v );
-				$rret[$v['Group_Level']][$id] = $v;
+				$rret[$v['Group_Level']][ $v['id'] ] = $v;
 			}
 			$this->log->i('rret:'.json_encode($rret));
 			foreach ($rret as $key => $value) {
