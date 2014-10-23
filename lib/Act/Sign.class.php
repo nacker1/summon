@@ -10,8 +10,8 @@ class Act_Sign extends User_Base{
 	private $overTime;			//过期时间
 	private $userSigninfo;			//当前用户的签到信息
 
-	function __construct(){
-		parent::__construct();
+	function __construct( $uid ){
+		parent::__construct( $uid );
 		$this->pre;
 		$month = $this->pre->hget( 'action:sign:month_checked','month');
 		$this->month = !empty( $month ) ? $month : (int) date('m');
