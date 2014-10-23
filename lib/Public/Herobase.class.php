@@ -79,7 +79,7 @@ class Herobase extends Base{
  * $cid :  评论id
  **/
 	function laudHero( $cid ){
-		$this->sdb
+		$this->sdb;
 		$sql = 'update '.$this->commentTable.' set `agree`=agree+1 where `id`='.$cid;
 		/*$set['agree'] = '';
 		$this->throwSQL( $this->commentTable, $set, array('id'=>$cid), '', 'stats');*/
