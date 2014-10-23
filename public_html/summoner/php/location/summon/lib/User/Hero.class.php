@@ -3,10 +3,10 @@
  *@ 用户英雄类
  **/
 class User_Hero extends User_Base{
-	static $heroInfo=array();									//英雄信息  如果是所有信息则记录英雄列表，如果指定hid则记录当前hid对应的英雄信息
-			
-	protected $hid;												//英雄id
-	private $hinfo;												//英雄信息
+	static $heroInfo=array();					//英雄信息  如果是所有信息则记录英雄列表，如果指定hid则记录当前hid对应的英雄信息
+	
+	protected $hid;					//英雄id
+	private $hinfo;					//英雄信息
 
 	public function __construct( $uid='',$hid='' ){
 		$this->hid = (int)$hid;
