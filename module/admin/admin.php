@@ -46,6 +46,7 @@ switch ($type) {
 		$gBase = new Goodbase();
 		$gList = $gBase->getAllBaseGood();
 		foreach( $gList as $v ){
+			if( $v['Item_Id'] > 90000 )continue;
 			$good = new User_Goods($user->getUid(), $v['Item_Id']);
 			$good->addGoods(10);
 		}
