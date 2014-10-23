@@ -228,10 +228,10 @@
 		break;
 	case '8': #拉取英雄的评论信息
 		$page = isset( $input['p'] ) && is_numeric( $input['p'] ) ? $input['p'] : 1 ;
-		$type = $input['t'];
-		if( empty( $type ) || !in_array( $type, array(1,2) ) ){ret('中国手游CAO');}
+		$order = $input['o'];
+		if( empty( $order ) || !in_array( $order, array(1,2) ) ){ret('中国手游CAO');}
 		$hero = new Herobase( $hid );
-		ret( $hero->getComment( $type, $page ) );
+		ret( $hero->getComment( $order, $page ) );
 		break;
 	case '998':#一次性发放前期所有英雄
 		$hList = $input['heros'];

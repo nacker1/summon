@@ -89,12 +89,12 @@ class Herobase extends Base{
  * $type :  排序方式   1 按赞排序， 2 按时间排序
  * $page :  打开页码
  **/
-	function getComment( $type, $page ){
+	function getComment( $order, $page ){
 		$pagesize = 30;
 		$this->sdb;
-		if( $type == 1 ){
+		if( $order == 1 ){
 			$sql = ' select * from `'.$this->commentTable.'` where hid='.$this->hid.' order by `agree` desc limit '.$pagesize*($page-1).','.$pagesize;
-		}elseif( $type == 2 ){
+		}elseif( $order == 2 ){
 			$sql = ' select * from `'.$this->commentTable.'` where hid='.$this->hid.' order by `time` desc limit '.$pagesize*($page-1).','.$pagesize;
 		}
 		return $this->sdb->query( $sql );
