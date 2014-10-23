@@ -25,7 +25,6 @@ Config	.\lib\Public\Config.class.php	/^class Config {$/;"	c
 CoolDown	.\lib\Public\Equipbase.class.php	/^		$CoolDown = (int)$this->eInfo['Equip_CoolDown'] + (int)$this->eInfo['Equip_UpCoolDown'] * $level;			#技能闪却$/;"	v
 Curl	.\lib\Public\Curl.class.php	/^class Curl {$/;"	c
 Db_Mysql	.\lib\Db\Mysql.class.php	/^class Db_Mysql{$/;"	c
-Do	.\lib\Public\Do.class.php	/^class Do extends Base{$/;"	c
 Equipbase	.\lib\Public\Equipbase.class.php	/^ class Equipbase extends Pbase{$/;"	c
 Filter	.\lib\Public\Filter.class.php	/^class Filter extends Pbase {$/;"	c
 Goodbase	.\lib\Public\Goodbase.class.php	/^ class Goodbase extends Pbase{$/;"	c
@@ -61,6 +60,7 @@ Skillcost	.\lib\Public\Skillcost.class.php	/^ class Skillcost extends Pbase{$/;"
 SorCri	.\lib\Public\Equipbase.class.php	/^		$SorCri = (int)$this->eInfo['Equip_SorCri'] + (int)$this->eInfo['Equip_UpSorCri'] * $level;					#法术爆机$/;"	v
 SorPierce	.\lib\Public\Equipbase.class.php	/^		$SorPierce = (int)$this->eInfo['Equip_SorPierce'] + (int)$this->eInfo['Equip_UpSorPierce'] * $level;		#装备法术穿透$/;"	v
 SorSteal	.\lib\Public\Equipbase.class.php	/^		$SorSteal = (int)$this->eInfo['Equip_SorSteal'] + (int)$this->eInfo['Equip_UpSorSteal'] * $level;			#法术吸血$/;"	v
+Submit	.\lib\Public\Submit.class.php	/^class Submit extends Base{$/;"	c
 Sync	.\lib\Public\Sync.class.php	/^class Sync extends Base{$/;"	c
 Top	.\lib\Public\Top.class.php	/^class Top extends Base{$/;"	c
 User_Base	.\lib\User\Base.class.php	/^ class User_Base extends Base{$/;"	c
@@ -290,6 +290,7 @@ checkTimeLimit	.\lib\User\Limit.class.php	/^	private function checkTimeLimit( $k
 cid	.\lib\User\Progress.class.php	/^		$this->cid=$cid;$/;"	v
 cid	.\lib\User\Progress.class.php	/^	function __construct( $cid='' ){$/;"	v
 cid	.\lib\User\Progress.class.php	/^	private $cid;									\/\/关卡id$/;"	v
+cid	.\module\user\userHero.php	/^			$cid = $input['cid'];$/;"	v
 class	.\inc\inc.php	/^		$class = explode('_',$classname);$/;"	v
 class	.\lib\Public\Proxy.class.php	/^		$class = new ReflectionClass($className);$/;"	v
 class	.\lib\Public\Proxy.class.php	/^		$this->class =  $class->newInstance($args);$/;"	v
@@ -321,8 +322,8 @@ comid	.\module\user\goodsCompos.php	/^ 		$comid = $input['comid']; \/\/需要合
 cominfo	.\lib\Public\Goodcompos.class.php	/^			$this->cominfo = $this->pre->hgetall( 'goodBase:compos:'.$this->gid );$/;"	v
 cominfo	.\lib\Public\Goodcompos.class.php	/^	private $cominfo;	\/\/道具合成信息$/;"	v
 cominfo	.\module\user\goodsCompos.php	/^		 $cominfo = $goodcom->getComItemInfo();$/;"	v
-comment	.\lib\Public\Do.class.php	/^	private $comment='zy_statsHeroComment';						\/\/英雄信息评论表$/;"	v
-commentHero	.\lib\Public\Do.class.php	/^	function commentHero( $hid, $uinfo, $comment ){$/;"	f
+comment	.\lib\Public\Submit.class.php	/^	private $comment='zy_statsHeroComment';						\/\/英雄信息评论表$/;"	v
+commentHero	.\lib\Public\Submit.class.php	/^	function commentHero( $hid, $uinfo, $comment ){$/;"	f
 compos_table	.\lib\Public\Goodbase.class.php	/^	private $compos_table='zy_baseGoodCompound';	\/\/基础物品表$/;"	v
 con	.\lib\Db\Mysql.class.php	/^			$con = new Config($type);$/;"	v
 con	.\lib\Redis\Redis.class.php	/^		$con = new Config( $type );$/;"	v
@@ -424,7 +425,7 @@ delTimeLimit	.\lib\User\Limit.class.php	/^	public function delTimeLimit( $key=''
 delete	.\lib\Db\Mysql.class.php	/^	public function delete( $table,$where ){$/;"	f
 dirname	.\inc\function.php	/^		$dirname = dirname($path);$/;"	v
 dirname	.\lib\Public\Log.class.php	/^			$dirname = dirname($path);$/;"	v
-do	.\module\user\userHero.php	/^			$do = new Do();$/;"	v
+do	.\module\user\userHero.php	/^			$do = new Submit();$/;"	v
 do	.\module\user\userHero.php	/^		$do = $input['do'];$/;"	v
 domain	.\lib\Public\Cond.class.php	/^			$this->domain = $this->tag;$/;"	v
 domain	.\lib\Public\Cond.class.php	/^			$this->domain = $this->uid.':'.$this->tag;$/;"	v
@@ -829,7 +830,7 @@ hero	.\test.php	/^	$hero = new User_Hero( $user->getUid() );$/;"	v
 heroBase	.\lib\User\Hero.class.php	/^		$heroBase = new Herobase( $this->hid );$/;"	v
 heroBaseTable	.\lib\Public\Herobase.class.php	/^	protected $heroBaseTable = 'zy_baseHero'; 					\/\/英雄基类表$/;"	v
 heroFire	.\lib\User\Hero.class.php	/^		$heroFire = $heroBase->getFire( self::$heroInfo[$this->uid][$this->hid]['level'], self::$heroInfo[$this->uid][$this->hid]['color'],  self::$heroInfo[$this->uid][$this->hid]['config']);$/;"	v
-heroInfo	.\lib\User\Hero.class.php	/^	static $heroInfo=array();									\/\/英雄信息  如果是所有信息则记录英雄列表，如果指定hid则记录当前hid对应的英雄信息$/;"	v
+heroInfo	.\lib\User\Hero.class.php	/^	static $heroInfo=array();					\/\/英雄信息  如果是所有信息则记录英雄列表，如果指定hid则记录当前hid对应的英雄信息$/;"	v
 heroList	.\module\user\userHero.php	/^		$heroList = $hero->getUserHeroList();$/;"	v
 heroList	.\test.php	/^	$heroList = $hero->getUserHeroList();$/;"	v
 heroPutDownEquip	.\lib\User\Hero.class.php	/^	function heroPutDownEquip( $index ){$/;"	f
@@ -846,7 +847,7 @@ hid	.\lib\Public\Herobase.class.php	/^		$this->hid = (int)$hid;$/;"	v
 hid	.\lib\Public\Herobase.class.php	/^	protected $hid;												\/\/英雄id$/;"	v
 hid	.\lib\Public\Herobase.class.php	/^	public function __construct( $hid='' ){$/;"	v
 hid	.\lib\User\Hero.class.php	/^		$this->hid = (int)$hid;$/;"	v
-hid	.\lib\User\Hero.class.php	/^	protected $hid;												\/\/英雄id$/;"	v
+hid	.\lib\User\Hero.class.php	/^	protected $hid;					\/\/英雄id$/;"	v
 hid	.\lib\User\User.class.php	/^			foreach( $tempUpdHero as $hid=>$v ){$/;"	v
 hid	.\module\admin\admin.php	/^		$hid = $input['hid'];$/;"	v
 hid	.\module\user\goodsCompos.php	/^ 		$hid = $input['hid'];						\/\/英雄id$/;"	v
@@ -856,7 +857,7 @@ hincr	.\lib\Redis\Redis.class.php	/^	public function hincr($domain, $key, $val){
 hinfo	.\lib\User\Hero.class.php	/^					$this->hinfo = self::$heroInfo[$this->uid][$this->hid];$/;"	v
 hinfo	.\lib\User\Hero.class.php	/^				$this->hinfo = self::$heroInfo[$this->uid][$this->hid];$/;"	v
 hinfo	.\lib\User\Hero.class.php	/^			$this->hinfo = $hero;$/;"	v
-hinfo	.\lib\User\Hero.class.php	/^	private $hinfo;												\/\/英雄信息$/;"	v
+hinfo	.\lib\User\Hero.class.php	/^	private $hinfo;					\/\/英雄信息$/;"	v
 hit_rate	.\apc.php	/^	$hit_rate = sprintf("%.2f",($cache['num_hits'])\/($time-$cache['start_time']));$/;"	v
 hit_rate_user	.\apc.php	/^	$hit_rate_user = sprintf("%.2f",($cache_user['num_hits'])\/($time-$cache_user['start_time']));$/;"	v
 hmget	.\lib\Redis\Redis.class.php	/^	public function hmget($domain,$keys){$/;"	f
@@ -1063,7 +1064,7 @@ lastTime	.\lib\User\Base.class.php	/^			$lastTime = $this->getUserReductTime() +
 lastUpdGoods	.\lib\User\Goods.class.php	/^	private static $lastUpdGoods=array('new'=>array(),'old'=>array(),'del'=>array());	\/\/用户变化物品清单$/;"	v
 lastUpdHero	.\lib\User\Base.class.php	/^	protected static $lastUpdHero 	= 	array();									\/\/英雄最后更新信息$/;"	v
 lasttime	.\module\user\chat.php	/^ 		$lasttime = isset( $input['lt'] ) ? $input['lt'] : 0;$/;"	v
-laudHero	.\lib\Public\Do.class.php	/^	function laudHero( $uinfo, $comment ){$/;"	f
+laudHero	.\lib\Public\Submit.class.php	/^	function laudHero( $cid ){$/;"	f
 len	.\inc\function.php	/^	    $len=strlen($str);$/;"	v
 length	.\inc\function.php	/^	    $length = 0;$/;"	v
 level	.\lib\Public\Equipbase.class.php	/^	function getFire( $level=0 ){$/;"	v

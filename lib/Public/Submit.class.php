@@ -4,6 +4,7 @@
  **/
 class Submit extends Base{
 	private $comment='zy_statsHeroComment';						//英雄信息评论表
+	
 /**
  *@ 评价英雄
  *@param:
