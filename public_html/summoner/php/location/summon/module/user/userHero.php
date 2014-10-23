@@ -219,7 +219,7 @@
 				ret( '一天只能点赞一次',-1 );
 			}
 			$cid = $input['cid'];
-			if( empty( $cid ) ){ret('YMD',-1)}
+			if( empty( $cid ) ){ret('YMD',-1);}
 			$do = new Submit();
 			$do->laudHero( $cid );
 			ret( 'suc' );
