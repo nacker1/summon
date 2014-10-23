@@ -83,7 +83,7 @@ class Herobase extends Base{
 		$sql = 'update '.$this->commentTable.' set `agree`=agree+1 where `id`='.$cid;
 		/*$set['agree'] = '';
 		$this->throwSQL( $this->commentTable, $set, array('id'=>$cid), '', 'stats');*/
-		return $this->sdb->exec( $sql );
+		return $this->sdb->query( $sql );
 	}
 /**
  *@ 获取英雄评论信息
