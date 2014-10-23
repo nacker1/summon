@@ -207,12 +207,12 @@
 			if( empty( $con ) || abslength( $con ) < 7 ){
 				ret( '请将评论内容再说详细点', -1 );
 			}
-			$do = new Submit();
+			$do = new Herobase( $hid );
 			$uinfo[] = $user->getServerId();
 			$uinfo[] = $user->getUid();
 			$uinfo[] = $user->getImage();
 			$uinfo[] = $user->getUserName();
-			$do->commentHero( $hid, implode('|',$uinfo), $con );
+			$do->commentHero( implode('|',$uinfo), $con );
 		}else{
 			$limit = new User_Limit( 'laudHeroDay' );
 			if( $limit->getTimeLimit( $hid ) ){
@@ -220,7 +220,7 @@
 			}
 			$cid = $input['cid'];
 			if( empty( $cid ) ){ret('YMD',-1);}
-			$do = new Submit();
+			$do = new Herobase( $hid );
 			$do->laudHero( $cid );
 		}
 		$limit->addLimitTimes( 1,$hid );

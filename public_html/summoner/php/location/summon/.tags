@@ -322,8 +322,8 @@ comid	.\module\user\goodsCompos.php	/^ 		$comid = $input['comid']; \/\/需要合
 cominfo	.\lib\Public\Goodcompos.class.php	/^			$this->cominfo = $this->pre->hgetall( 'goodBase:compos:'.$this->gid );$/;"	v
 cominfo	.\lib\Public\Goodcompos.class.php	/^	private $cominfo;	\/\/道具合成信息$/;"	v
 cominfo	.\module\user\goodsCompos.php	/^		 $cominfo = $goodcom->getComItemInfo();$/;"	v
-comment	.\lib\Public\Submit.class.php	/^	private $comment='zy_statsHeroComment';						\/\/英雄信息评论表$/;"	v
-commentHero	.\lib\Public\Submit.class.php	/^	function commentHero( $hid, $uinfo, $comment ){$/;"	f
+comment	.\lib\Public\Herobase.class.php	/^	private $comment='zy_statsHeroComment';						\/\/英雄信息评论表$/;"	v
+commentHero	.\lib\Public\Herobase.class.php	/^	function commentHero( $hid, $uinfo, $comment ){$/;"	f
 compos_table	.\lib\Public\Goodbase.class.php	/^	private $compos_table='zy_baseGoodCompound';	\/\/基础物品表$/;"	v
 con	.\lib\Db\Mysql.class.php	/^			$con = new Config($type);$/;"	v
 con	.\lib\Redis\Redis.class.php	/^		$con = new Config( $type );$/;"	v
@@ -425,7 +425,7 @@ delTimeLimit	.\lib\User\Limit.class.php	/^	public function delTimeLimit( $key=''
 delete	.\lib\Db\Mysql.class.php	/^	public function delete( $table,$where ){$/;"	f
 dirname	.\inc\function.php	/^		$dirname = dirname($path);$/;"	v
 dirname	.\lib\Public\Log.class.php	/^			$dirname = dirname($path);$/;"	v
-do	.\module\user\userHero.php	/^			$do = new Submit();$/;"	v
+do	.\module\user\userHero.php	/^			$do = new Herobase( $hid );$/;"	v
 do	.\module\user\userHero.php	/^		$do = $input['do'];$/;"	v
 domain	.\lib\Public\Cond.class.php	/^			$this->domain = $this->tag;$/;"	v
 domain	.\lib\Public\Cond.class.php	/^			$this->domain = $this->uid.':'.$this->tag;$/;"	v
@@ -1064,7 +1064,7 @@ lastTime	.\lib\User\Base.class.php	/^			$lastTime = $this->getUserReductTime() +
 lastUpdGoods	.\lib\User\Goods.class.php	/^	private static $lastUpdGoods=array('new'=>array(),'old'=>array(),'del'=>array());	\/\/用户变化物品清单$/;"	v
 lastUpdHero	.\lib\User\Base.class.php	/^	protected static $lastUpdHero 	= 	array();									\/\/英雄最后更新信息$/;"	v
 lasttime	.\module\user\chat.php	/^ 		$lasttime = isset( $input['lt'] ) ? $input['lt'] : 0;$/;"	v
-laudHero	.\lib\Public\Submit.class.php	/^	function laudHero( $cid ){$/;"	f
+laudHero	.\lib\Public\Herobase.class.php	/^	function laudHero( $cid ){$/;"	f
 len	.\inc\function.php	/^	    $len=strlen($str);$/;"	v
 length	.\inc\function.php	/^	    $length = 0;$/;"	v
 level	.\lib\Public\Equipbase.class.php	/^	function getFire( $level=0 ){$/;"	v
