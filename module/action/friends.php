@@ -146,6 +146,10 @@
  		$uMerc = new User_Merc();
  		$uMerc->addHadUid( $friendUid );
  		ret( $ret );
+ 	case '10': #查看好友英雄及装备
+ 		$fid = $input['fid'];
+ 		if( empty( $fid ) || !is_numeric( $fid ) ){ret('fid_error',-1);}
+ 		$hero = new User_Hero( $uid );
  	default:
  		# code...
  		break;
