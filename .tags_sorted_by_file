@@ -650,6 +650,8 @@ Herobase	lib\Public\Herobase.class.php	/^class Herobase extends Base{$/;"	c
 __construct	lib\Public\Herobase.class.php	/^	public function __construct( $hid='' ){$/;"	f
 _init	lib\Public\Herobase.class.php	/^	private function _init(){$/;"	f
 att	lib\Public\Herobase.class.php	/^		$att = self::$hInfo[$this->hid]['Hero_Att'] + self::$hInfo[$this->hid]['Hero_UpAtt'] * ( $level - 1 ) * $color; 								#英雄物理攻击$/;"	v
+comment	lib\Public\Herobase.class.php	/^	private $comment='zy_statsHeroComment';						\/\/英雄信息评论表$/;"	v
+commentHero	lib\Public\Herobase.class.php	/^	function commentHero( $hid, $uinfo, $comment ){$/;"	f
 def	lib\Public\Herobase.class.php	/^		$def = self::$hInfo[$this->hid]['Hero_Def'] + self::$hInfo[$this->hid]['Hero_UpDef'] * ( $level - 1 ) * $color;								#英雄物理护甲$/;"	v
 getFire	lib\Public\Herobase.class.php	/^	public function getFire( $level=1,$color=1,$skill='{"1":"1"}' ){$/;"	f
 gethp	lib\Public\Herobase.class.php	/^		$gethp = self::$hInfo[$this->hid]['Hero_GetHp'] + self::$hInfo[$this->hid]['Hero_UpGetHp'] * ( $level - 1 ) * $color;							#英雄的生命回复$/;"	v
@@ -660,6 +662,7 @@ hid	lib\Public\Herobase.class.php	/^		$this->hid = (int)$hid;$/;"	v
 hid	lib\Public\Herobase.class.php	/^	protected $hid;												\/\/英雄id$/;"	v
 hid	lib\Public\Herobase.class.php	/^	public function __construct( $hid='' ){$/;"	v
 hp	lib\Public\Herobase.class.php	/^		$hp = self::$hInfo[$this->hid]['Hero_Hp'] + self::$hInfo[$this->hid]['Hero_UpHp'] * ( $level - 1 ) * $color;									#英雄的生命值$/;"	v
+laudHero	lib\Public\Herobase.class.php	/^	function laudHero( $cid ){$/;"	f
 level	lib\Public\Herobase.class.php	/^	public function getFire( $level=1,$color=1,$skill='{"1":"1"}' ){$/;"	v
 mp	lib\Public\Herobase.class.php	/^		$mp = self::$hInfo[$this->hid]['Hero_Mp'] + self::$hInfo[$this->hid]['Hero_UpMp'] * ( $level - 1 ) * $color;									#英雄的魔法值$/;"	v
 res	lib\Public\Herobase.class.php	/^		$res = self::$hInfo[$this->hid]['Hero_Res'] + self::$hInfo[$this->hid]['Hero_UpRes'] * ( $level - 1 ) * $color;								#英雄法术抗性$/;"	v
@@ -870,9 +873,6 @@ sInfo	lib\Public\Skillcost.class.php	/^	private $sInfo;		\/\/技能信息$/;"	v
 skills	lib\Public\Skillcost.class.php	/^			$skills = $this->cdb->find( $this->table );$/;"	v
 table	lib\Public\Skillcost.class.php	/^	private $table = 'zy_baseHeroSkillCost'; \/\/技能升级表$/;"	v
 Submit	lib\Public\Submit.class.php	/^class Submit extends Base{$/;"	c
-comment	lib\Public\Submit.class.php	/^	private $comment='zy_statsHeroComment';						\/\/英雄信息评论表$/;"	v
-commentHero	lib\Public\Submit.class.php	/^	function commentHero( $hid, $uinfo, $comment ){$/;"	f
-laudHero	lib\Public\Submit.class.php	/^	function laudHero( $cid ){$/;"	f
 Sync	lib\Public\Sync.class.php	/^class Sync extends Base{$/;"	c
 __construct	lib\Public\Sync.class.php	/^	function __construct( $data ){$/;"	f
 com	lib\Public\Sync.class.php	/^		$com = 'php \/data\/web\/summon\/syncDb.php -t '.$this->table.' -d \\''.serialize($this->data).'\\' -w \\''.serialize($this->where).'\\' -o '.$this->opt.' -f '.$this->dbTag.' &';$/;"	v
@@ -1971,7 +1971,7 @@ cid	module\user\userHero.php	/^			$cid = $input['cid'];$/;"	v
 color	module\user\userHero.php	/^		$color = array( 1=>10,2=>20,3=>40,4=>80,5=>160 );$/;"	v
 con	module\user\userHero.php	/^			$con = $input['con'];$/;"	v
 cost	module\user\userHero.php	/^			$cost = $skill->getCostMoney(); \/\/技能升级需要扣除的金币数量$/;"	v
-do	module\user\userHero.php	/^			$do = new Submit();$/;"	v
+do	module\user\userHero.php	/^			$do = new Herobase( $hid );$/;"	v
 do	module\user\userHero.php	/^		$do = $input['do'];$/;"	v
 downGoods	module\user\userHero.php	/^					$downGoods = new User_Goods( $user->getUid(), $eGid );$/;"	v
 eGid	module\user\userHero.php	/^			$eGid = $hero->getHeroEquipGid( $equipInfo[0] );\/\/卸下的兼备id$/;"	v

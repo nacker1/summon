@@ -4,8 +4,10 @@
  **/
 class Herobase extends Base{
 	protected $heroBaseTable = 'zy_baseHero'; 					//英雄基类表
+	protected $commentTable='zy_statsHeroComment';						//英雄信息评论表
 	protected $hid;												//英雄id
 	static protected $hInfo;									//指定英雄信息
+	
 
 	public function __construct( $hid='' ){
 		if( empty( $hid ) )ret('no_hid');
@@ -55,6 +57,42 @@ class Herobase extends Base{
 			}
 
 		return floor( ( ($att+$def+$sor+$res)*$speed + ( $hp + $gethp * 2 + $mp + $getmp * 2 ) )/10 ) + $color*100*( 1+number_format($sTolLevel/10,3) );
+	}
+/**
+ *@ 评价英雄
+ *@param:
+ * 	$hid: 		英雄id
+ *	$uinfo:		发表评论的用户信息
+ *	$comment:	评论内容
+ **/
+	function commentHero( $uinfo, $comment ){
+		$set['hid'] = $this->hid;
+		$set['uinfo'] = $uinfo;
+		$set['comment'] = $comment;
+		$set['agree'] = 1;
+		$set['time'] = time();
+		$this->throwSQL( $this->commentTable, $set, '', '', 'stats');
+	}
+/**
+ *@ 英雄点赞
+ *@param:
+ * $cid :  评论id
+ **/
+	function laudHero( $cid ){
+		$this->sdb
+		$sql = 'update '.$this->commentTable.' set `agree`=agree+1 where `id`='.$cid;
+		/*$set['agree'] = '';
+		$this->throwSQL( $this->commentTable, $set, array('id'=>$cid), '', 'stats');*/
+		return $this->sdb->exec( $sql );
+	}
+/**
+ *@ 获取英雄评论信息
+ *@param:
+ * $cid :  评论id
+ **/
+	function getComment( $page ){
+		$set['agree'] = '';
+		$this->throwSQL( $this->comment, $set, array('id'=>$cid), '', 'stats');
 	}
 }
 ?>
