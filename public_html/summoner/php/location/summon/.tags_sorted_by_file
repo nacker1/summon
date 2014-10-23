@@ -558,10 +558,6 @@ url	lib\Public\Curl.class.php	/^		$this->url = $url;$/;"	v
 url	lib\Public\Curl.class.php	/^	private $url; \/\/所要请求的url地址$/;"	v
 userAgent	lib\Public\Curl.class.php	/^	function get( $userAgent = '', $httpHeaders = '', $username = '', $password = '') {$/;"	v
 userAgent	lib\Public\Curl.class.php	/^	function post($fields, $userAgent = '', $httpHeaders = '', $username = '', $password = '') {$/;"	v
-Do	lib\Public\Do.class.php	/^class Do extends Base{$/;"	c
-comment	lib\Public\Do.class.php	/^	private $comment='zy_statsHeroComment';						\/\/英雄信息评论表$/;"	v
-commentHero	lib\Public\Do.class.php	/^	function commentHero( $hid, $uinfo, $comment ){$/;"	f
-laudHero	lib\Public\Do.class.php	/^	function laudHero( $uinfo, $comment ){$/;"	f
 AttCri	lib\Public\Equipbase.class.php	/^		$AttCri = (int)$this->eInfo['Equip_AttCri'] + (int)$this->eInfo['Equip_UpAttCri'] * $level;					#物理爆机$/;"	v
 AttHit	lib\Public\Equipbase.class.php	/^		$AttHit = (int)$this->eInfo['Equip_AttHit'] + (int)$this->eInfo['Equip_UpAttHit'] * $level;					#物理命中$/;"	v
 AttPierce	lib\Public\Equipbase.class.php	/^		$AttPierce = (int)$this->eInfo['Equip_AttPierce'] + (int)$this->eInfo['Equip_UpAttPierce'] * $level;		#装备护甲穿透$/;"	v
@@ -873,6 +869,10 @@ sInfo	lib\Public\Skillcost.class.php	/^			$this->sInfo = $this->pre->hgetall( 'h
 sInfo	lib\Public\Skillcost.class.php	/^	private $sInfo;		\/\/技能信息$/;"	v
 skills	lib\Public\Skillcost.class.php	/^			$skills = $this->cdb->find( $this->table );$/;"	v
 table	lib\Public\Skillcost.class.php	/^	private $table = 'zy_baseHeroSkillCost'; \/\/技能升级表$/;"	v
+Submit	lib\Public\Submit.class.php	/^class Submit extends Base{$/;"	c
+comment	lib\Public\Submit.class.php	/^	private $comment='zy_statsHeroComment';						\/\/英雄信息评论表$/;"	v
+commentHero	lib\Public\Submit.class.php	/^	function commentHero( $hid, $uinfo, $comment ){$/;"	f
+laudHero	lib\Public\Submit.class.php	/^	function laudHero( $cid ){$/;"	f
 Sync	lib\Public\Sync.class.php	/^class Sync extends Base{$/;"	c
 __construct	lib\Public\Sync.class.php	/^	function __construct( $data ){$/;"	f
 com	lib\Public\Sync.class.php	/^		$com = 'php \/data\/web\/summon\/syncDb.php -t '.$this->table.' -d \\''.serialize($this->data).'\\' -w \\''.serialize($this->where).'\\' -o '.$this->opt.' -f '.$this->dbTag.' &';$/;"	v
@@ -1272,16 +1272,16 @@ hero	lib\User\Hero.class.php	/^					$hero = $this->redis->hgetall($v);$/;"	v
 hero	lib\User\Hero.class.php	/^			$hero = $this->initHero($color);$/;"	v
 heroBase	lib\User\Hero.class.php	/^		$heroBase = new Herobase( $this->hid );$/;"	v
 heroFire	lib\User\Hero.class.php	/^		$heroFire = $heroBase->getFire( self::$heroInfo[$this->uid][$this->hid]['level'], self::$heroInfo[$this->uid][$this->hid]['color'],  self::$heroInfo[$this->uid][$this->hid]['config']);$/;"	v
-heroInfo	lib\User\Hero.class.php	/^	static $heroInfo=array();									\/\/英雄信息  如果是所有信息则记录英雄列表，如果指定hid则记录当前hid对应的英雄信息$/;"	v
+heroInfo	lib\User\Hero.class.php	/^	static $heroInfo=array();					\/\/英雄信息  如果是所有信息则记录英雄列表，如果指定hid则记录当前hid对应的英雄信息$/;"	v
 heroPutDownEquip	lib\User\Hero.class.php	/^	function heroPutDownEquip( $index ){$/;"	f
 heroPutOnEquip	lib\User\Hero.class.php	/^	function heroPutOnEquip( $index,$eqId ){$/;"	f
 heros	lib\User\Hero.class.php	/^				$heros = $this->db->find($this->heroTable,'fire,hid,level,exp,color,star,equip1,equip2,equip3,equip4,equip5,equip6,config',array('uid'=>$this->uid));$/;"	v
 hid	lib\User\Hero.class.php	/^		$this->hid = (int)$hid;$/;"	v
-hid	lib\User\Hero.class.php	/^	protected $hid;												\/\/英雄id$/;"	v
+hid	lib\User\Hero.class.php	/^	protected $hid;					\/\/英雄id$/;"	v
 hinfo	lib\User\Hero.class.php	/^					$this->hinfo = self::$heroInfo[$this->uid][$this->hid];$/;"	v
 hinfo	lib\User\Hero.class.php	/^				$this->hinfo = self::$heroInfo[$this->uid][$this->hid];$/;"	v
 hinfo	lib\User\Hero.class.php	/^			$this->hinfo = $hero;$/;"	v
-hinfo	lib\User\Hero.class.php	/^	private $hinfo;												\/\/英雄信息$/;"	v
+hinfo	lib\User\Hero.class.php	/^	private $hinfo;					\/\/英雄信息$/;"	v
 i	lib\User\Hero.class.php	/^				for( $i=1;$i<=6;$i++ ){$/;"	v
 i	lib\User\Hero.class.php	/^		for( $i=1; $i<7; $i++ ){$/;"	v
 i	lib\User\Hero.class.php	/^		for( $i=1; $i<=$skillIndex; $i++ ){$/;"	v
@@ -1967,10 +1967,11 @@ user	module\user\useGood.php	/^ $user = new User_User();$/;"	v
 bEquip	module\user\userHero.php	/^			$bEquip = new Equipbase( substr( $equipInfo[1], 0, 5 ) );$/;"	v
 cLevel	module\user\userHero.php	/^			$cLevel = (int)$hInfo['color'] + 1;$/;"	v
 cLevel	module\user\userHero.php	/^		$cLevel = 1;$/;"	v
+cid	module\user\userHero.php	/^			$cid = $input['cid'];$/;"	v
 color	module\user\userHero.php	/^		$color = array( 1=>10,2=>20,3=>40,4=>80,5=>160 );$/;"	v
 con	module\user\userHero.php	/^			$con = $input['con'];$/;"	v
 cost	module\user\userHero.php	/^			$cost = $skill->getCostMoney(); \/\/技能升级需要扣除的金币数量$/;"	v
-do	module\user\userHero.php	/^			$do = new Do();$/;"	v
+do	module\user\userHero.php	/^			$do = new Submit();$/;"	v
 do	module\user\userHero.php	/^		$do = $input['do'];$/;"	v
 downGoods	module\user\userHero.php	/^					$downGoods = new User_Goods( $user->getUid(), $eGid );$/;"	v
 eGid	module\user\userHero.php	/^			$eGid = $hero->getHeroEquipGid( $equipInfo[0] );\/\/卸下的兼备id$/;"	v

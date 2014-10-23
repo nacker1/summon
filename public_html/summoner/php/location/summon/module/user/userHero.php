@@ -197,6 +197,7 @@
 			ret('技能等级不能超过英雄等级',-1);
 		}
 	case '7':#评论英雄以及点赞功能
+		if( empty( $hid ) ) ret( 'no_hid', -1 );
 		if( isset( $input['con'] ) ){
 			$con = $input['con'];
 			$limit = new User_Limit( 'commentHeroDay' );
