@@ -2,7 +2,7 @@
 /**
  *@ 公共数据操作类
  **/
-class Do extends Base{
+class Submit extends Base{
 	private $comment='zy_statsHeroComment';						//英雄信息评论表
 /**
  *@ 评价英雄
