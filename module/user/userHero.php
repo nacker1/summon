@@ -212,7 +212,6 @@
 			$uinfo[] = $user->getImage();
 			$uinfo[] = $user->getUserName();
 			$do->commentHero( $hid, implode('|',$uinfo), $con );
-			ret( 'suc' );
 		}else{
 			$limit = new User_Limit( 'laudHeroDay' );
 			if( $limit->getTimeLimit( $hid ) ){
@@ -222,8 +221,9 @@
 			if( empty( $cid ) ){ret('YMD',-1);}
 			$do = new Submit();
 			$do->laudHero( $cid );
-			ret( 'suc' );
 		}
+		$limit->addLimitTimes( 1,$hid );
+		ret( 'suc' );
 		break;
 	case '8': #拉取英雄的评论信息
 
