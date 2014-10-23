@@ -8,7 +8,7 @@
  $type = isset( $input['t'] ) ? $input['t'] : 1;
  $month = isset( $input['m'] ) ? $input['m'] : 1;
 
- $sign = new Act_Sign(  );
+ $sign = new Act_Sign( $user->getUid() );
 
  switch ($type) {
  	case '1'://拉取每日签到配置信息
