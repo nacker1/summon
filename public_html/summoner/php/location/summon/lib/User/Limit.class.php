@@ -143,7 +143,7 @@ class User_Limit extends User_Base{
 /**
  *@ 获取免费次数使用的时间间隔
  **/
-	private function getTimeLimit( $key='' ){
+	public function getTimeLimit( $key='' ){
 		return (int)$this->cond->get( $key.'_timeLimit' );
 	}
 /**

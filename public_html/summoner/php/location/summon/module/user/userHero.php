@@ -15,30 +15,7 @@
 		}else{
 			ret($heroList);
 		}
-	case '999'://给英雄添加经验
-		$hero = new User_Hero( $user->getUid(), $hid );
-		ret($hero->getTotalFire());
-		if( empty($hid) ){
-			ret('param error ('.__line__.') !',-1);
-		}
-		$do = $input['do'];
-		$to = $input['to'];
-		switch ($do) {
-			case '1': //添加经验
-				$hero = new User_Hero( $user->getUid(), $hid );
-				ret($hero->getHeroInfo());
-				break;
-			case '2':#颜色
-				$hero = new User_Hero( $user->getUid(), $hid );
-				$hero->colorUp($to);
-				ret($hero->getHeroInfo());
-			case '3':
-				$hero = new User_Hero( $user->getUid(), $hid );
-				ret($hero->delHeroInfo());
-			default:
-				# code...
-				break;
-		}
+	
 	case '3'://给英雄穿装备 equipInfo 格式=>( 英雄装备框id:装备id:用户道具id&装备id )
 		if( empty($hid) ){
 			ret('param error ('.__line__.') !',-1);
@@ -219,7 +196,39 @@
 		}else{
 			ret('技能等级不能超过英雄等级',-1);
 		}
-	case '7':#一次性发放前期所有英雄
+	case '7':#评论英雄以及点赞功能
+		if( isset( $input['con'] ) ){
+			$con = $input['con'];
+			$limit = new User_Limit( 'commentHeroDay' );
+			if( $limit->getTimeLimit( $hid ) ){
+				ret( '先喝杯茶休息休息再来评论吧',-1 );
+			}
+			if( empty( $con ) || abslength( $con ) < 7 ){
+				ret( '请将评论内容再说详细点', -1 );
+			}
+			$do = new Do();
+			$uinfo[] = $user->getServerId();
+			$uinfo[] = $user->getUid();
+			$uinfo[] = $user->getImage();
+			$uinfo[] = $user->getUserName();
+			$do->commentHero( $hid, implode('|',$uinfo), $con );
+			ret( 'suc' );
+		}else{
+			$limit = new User_Limit( 'laudHeroDay' );
+			if( $limit->getTimeLimit( $hid ) ){
+				ret( '一天只能点赞一次',-1 );
+			}
+			$cid = $input['cid'];
+			if( empty( $cid ) ){ret('YMD',-1)}
+			$do = new Do();
+			$do->laudHero( $cid );
+			ret( 'suc' );
+		}
+		break;
+	case '8': #拉取英雄的评论信息
+
+		break;
+	case '998':#一次性发放前期所有英雄
 		$hList = $input['heros'];
 		if( empty( $hList ) ){
 			$hList = array( 10001,10002,10004,10005,10006,10008,10009,10010,10011,10012,10013,10015,10018,10019,10021,10022,10023,10024,10025,10026,10027,10028,10029,10031,10032,10034,10036,10040 );
@@ -236,6 +245,30 @@
 			$ret['mis'] = $mis;
 		}
 		ret( $ret );
+	case '999'://给英雄添加经验
+		$hero = new User_Hero( $user->getUid(), $hid );
+		ret($hero->getTotalFire());
+		if( empty($hid) ){
+			ret('param error ('.__line__.') !',-1);
+		}
+		$do = $input['do'];
+		$to = $input['to'];
+		switch ($do) {
+			case '1': //添加经验
+				$hero = new User_Hero( $user->getUid(), $hid );
+				ret($hero->getHeroInfo());
+				break;
+			case '2':#颜色
+				$hero = new User_Hero( $user->getUid(), $hid );
+				$hero->colorUp($to);
+				ret($hero->getHeroInfo());
+			case '3':
+				$hero = new User_Hero( $user->getUid(), $hid );
+				ret($hero->delHeroInfo());
+			default:
+				# code...
+				break;
+		}
 	default:
 		ret('type error!',-1);
  }
