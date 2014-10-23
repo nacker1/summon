@@ -206,7 +206,7 @@
 			if( empty( $con ) || abslength( $con ) < 7 ){
 				ret( '请将评论内容再说详细点', -1 );
 			}
-			$do = new Do();
+			$do = new Submit();
 			$uinfo[] = $user->getServerId();
 			$uinfo[] = $user->getUid();
 			$uinfo[] = $user->getImage();
@@ -220,7 +220,7 @@
 			}
 			$cid = $input['cid'];
 			if( empty( $cid ) ){ret('YMD',-1)}
-			$do = new Do();
+			$do = new Submit();
 			$do->laudHero( $cid );
 			ret( 'suc' );
 		}
