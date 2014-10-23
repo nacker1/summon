@@ -81,18 +81,23 @@ class Herobase extends Base{
 	function laudHero( $cid ){
 		$this->sdb;
 		$sql = 'update '.$this->commentTable.' set `agree`=agree+1 where `id`='.$cid;
-		/*$set['agree'] = '';
-		$this->throwSQL( $this->commentTable, $set, array('id'=>$cid), '', 'stats');*/
 		return $this->sdb->query( $sql );
 	}
 /**
  *@ 获取英雄评论信息
  *@param:
- * $cid :  评论id
+ * $type :  排序方式   1 按赞排序， 2 按时间排序
+ * $page :  打开页码
  **/
-	function getComment( $page ){
-		$set['agree'] = '';
-		$this->throwSQL( $this->comment, $set, array('id'=>$cid), '', 'stats');
+	function getComment( $type, $page ){
+		$pagesize = 30;
+		$this->sdb;
+		if( $type == 1 ){
+			$sql = ' select * from `'.$this->commentTable.'` where hid='.$this->hid.' order by `agree` desc limit '.$pagesize*($page-1).','.$pagesize;
+		}elseif( $type == 2 ){
+			$sql = ' select * from `'.$this->commentTable.'` where hid='.$this->hid.' order by `time` desc limit '.$pagesize*($page-1).','.$pagesize;
+		}
+		return $this->sdb->query( $sql );
 	}
 }
 ?>
