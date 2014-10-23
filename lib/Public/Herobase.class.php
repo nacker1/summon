@@ -93,9 +93,9 @@ class Herobase extends Base{
 		$pagesize = 5;
 		$this->sdb;
 		if( $order == 1 ){
-			$sql = ' select * from `'.$this->commentTable.'` where hid='.$this->hid.' order by `agree` desc limit '.$pagesize*($page-1).','.$pagesize;
+			$sql = ' select `id`,`uinfo`,`comment` com,`agree` from `'.$this->commentTable.'` where hid='.$this->hid.' order by `agree` desc limit '.$pagesize*($page-1).','.$pagesize;
 		}elseif( $order == 2 ){
-			$sql = ' select * from `'.$this->commentTable.'` where hid='.$this->hid.' order by `time` desc limit '.$pagesize*($page-1).','.$pagesize;
+			$sql = ' select `id`,`uinfo`,`comment` com,`agree` from `'.$this->commentTable.'` where hid='.$this->hid.' order by `time` desc limit '.$pagesize*($page-1).','.$pagesize;
 		}
 		return $this->sdb->query( $sql );
 	}
