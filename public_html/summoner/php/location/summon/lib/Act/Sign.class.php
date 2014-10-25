@@ -118,7 +118,7 @@ class Act_Sign extends User_Base{
 					$add['money'] += $addNums;
 					#$this->addMoney( $addNums  );
 					break;
-				case '90001':
+				case '90002':
 					$add['cooldou'] += $addNums;
 					#$this->addCooldou( $addNums  );
 					break;
@@ -141,7 +141,7 @@ class Act_Sign extends User_Base{
 						# code...
 						$add['money'] += $addNums;
 						break;
-					case '90001':
+					case '90002':
 						$add['cooldou'] += $addNums;
 						break;
 					default:
