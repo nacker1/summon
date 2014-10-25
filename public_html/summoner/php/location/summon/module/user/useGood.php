@@ -33,6 +33,8 @@
 						ret('fail_'.__LINE__,-1);
 					}
 					$ret['buff'] = $gConfig;
+				}elseif( isset( $gConfig['Cooldou'] ) ){
+					$add['cooldou'] = $gConfig['Cooldou'] * $nums ;
 				}else{
 					ret('config fail_'.__LINE__);
 				}
