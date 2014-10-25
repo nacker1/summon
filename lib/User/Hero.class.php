@@ -387,6 +387,7 @@ class User_Hero extends User_Base{
 			$ret[ $v['hid'] ] = implode( '|', $temp );
 			unset($temp);
 		}
+		dump($this->hinfo);
 		return $ret;
 	}
 
