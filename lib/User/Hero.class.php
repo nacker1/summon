@@ -369,6 +369,26 @@ class User_Hero extends User_Base{
 /**
  *@ getStrongHeroList 获取指定用户的最强阵容（5个英雄）
  **/
+	function getStrongHeroList(){ 
+		$ret = array();
+		foreach( $this->hinfo as $v ){
+			$temp[] = $v['fire'];
+			$temp[] = $v['level'];
+			$temp[] = $v['exp'];
+			$temp[] = $v['color'];
+			$temp[] = $v['star'];
+			$temp[] = $v['equip1'];
+			$temp[] = $v['equip2'];
+			$temp[] = $v['equip3'];
+			$temp[] = $v['equip4'];
+			$temp[] = $v['equip5'];
+			$temp[] = $v['equip6'];
+			$temp[] = $v['config'];
+			$ret[ $v['hid'] ] = implode( '|', $temp );
+			unset($temp);
+		}
+		return $ret;
+	}
 
 	function __destruct(){
 		
