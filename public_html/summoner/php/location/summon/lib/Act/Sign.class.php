@@ -113,12 +113,12 @@ class Act_Sign extends User_Base{
 		if( empty($daySign) ){//普通签到物品领取
 			$this->log->i('* 每日签到普通用户物品发放');
 			switch ( $dayConfig['Item_Id'] ) {
-				case '1':
+				case '90001':
 					# code...
 					$add['money'] += $addNums;
 					#$this->addMoney( $addNums  );
 					break;
-				case '2':
+				case '90001':
 					$add['cooldou'] += $addNums;
 					#$this->addCooldou( $addNums  );
 					break;
@@ -137,11 +137,11 @@ class Act_Sign extends User_Base{
 			if( empty($vipSign)  && $vLevel >=  (int)$dayConfig['Double_NeedVip'] ){//vip用户达到要求再奖励一次
 				$this->log->i('* 每日签到（vip'.$dayConfig['Double_NeedVip'].'及以上） 双倍奖励发放');
 				switch ( $dayConfig['Item_Id'] ) {
-					case '1':
+					case '90001':
 						# code...
 						$add['money'] += $addNums;
 						break;
-					case '2':
+					case '90001':
 						$add['cooldou'] += $addNums;
 						break;
 					default:
