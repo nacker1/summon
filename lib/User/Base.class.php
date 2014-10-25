@@ -597,6 +597,7 @@
 			return self::$updinfo[$this->uid];
 		}
 	}
+
 #====== * 用户设置或同步用户zy_uniqRoleRecord表中的信息 ==========================================================
 /**
  *@ setUserRecord() 设置用户的记录表信息
@@ -625,6 +626,19 @@
 	public function addUserRecord( $key, $value ){
 		$this->log->i( '添加用户记录信息：'.$key.'+='.$value );
 		return self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
+	}
+/**
+ *@ setUserGuide 设置用户的新手引导进度
+ **/
+	function setUserGuide( $index, $gid ){
+		$guide = $this->getUserRecord('guide');
+		$guide = json_decode( $guide, true );
+		if( is_array($guide) && isset($guide[$index]) ){
+			$guide[$index] = $gid;
+		}else{
+			$guide[$index] = $gid;
+		}
+		return $this->setUserRecord( 'guide', json_encode( $guide ) );
 	}
 #============================================================================================
 	public function __destruct(){
