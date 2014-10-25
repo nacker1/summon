@@ -26,16 +26,29 @@
 				unset($gConfig['target']);
 				if( isset( $gConfig['Money'] ) ){
 					$add['money'] = $gConfig['Money'] * $nums ;
-				}elseif( isset( $gConfig['Action'] ) ){
+				}
+				if( isset( $gConfig['Action'] ) ){
 					$add['life'] = $gConfig['Action'] * $nums ;
-				}elseif( isset( $gConfig['time'] ) ){
+				}
+				if( isset( $gConfig['time'] ) ){
 					if( !$user->addRoleBuff( $gConfig ) ){
 						ret('fail_'.__LINE__,-1);
 					}
 					$ret['buff'] = $gConfig;
-				}elseif( isset( $gConfig['Cooldou'] ) ){
+				}
+				if( isset( $gConfig['Cooldou'] ) ){
 					$add['cooldou'] = $gConfig['Cooldou'] * $nums ;
-				}else{
+				}
+				if( isset( $gConfig['mArena'] ) ){
+					$add['mArena'] = $gConfig['mArena'] * $nums ;
+				}
+				if( isset( $gConfig['mFriend'] ) ){
+					$add['mFriend'] = $gConfig['mFriend'] * $nums ;
+				}
+				if( isset( $gConfig['mAction'] ) ){
+					$add['mAction'] = $gConfig['mAction'] * $nums ;
+				}
+				if( empty( $add ) ){
 					ret('config fail_'.__LINE__);
 				}
 				$add['good'] = $gid.',-'.$nums;
