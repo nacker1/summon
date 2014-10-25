@@ -150,6 +150,7 @@
  		$fid = $input['fid'];
  		if( empty( $fid ) || !is_numeric( $fid ) ){ret('fid_error',-1);}
  		$hero = new User_Hero( $uid );
+ 		$heroList = $hero->getStrongHeroList();
  	default:
  		# code...
  		break;
