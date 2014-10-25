@@ -162,7 +162,8 @@
 		$insert['time'] = date('Y-m-d H:i:s');
 		$insert['isNew'] = $this->isNew;
 		$this->setThrowSQL( $this->loginLogTable,$insert,'',1,'stats' );
-		$this->setLoginTime( $this->loginTime );
+		$this->setLoginTime( $this->loginTime );								#设置用户登录时间
+		$this->setUserHeart( '_heartTime', time() );							#设置用户心跳时间
 		$this->_other();
 	}
 
