@@ -615,7 +615,7 @@
  * 	$key: 	对应 zy_uniqRoleRecord 表中的属性值
  **/
 	public function getUserRecord( $key ){
-		return (int)self::$userinfo[$this->uid][$key];
+		return self::$userinfo[$this->uid][$key];
 	}
 /**
  *@ addUserRecord() 添加或减少用户的记录表信息
