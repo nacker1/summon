@@ -61,6 +61,7 @@ class User_Friend extends User_Base{
 			$this->errorInfo = ' 邀请不存在或已过期 ';
 			return false;
 		}
+		$this->setUserHeart('invite',0);
 		return $cond->del( $this->toUid ); 
 	}
 /**
