@@ -149,7 +149,7 @@
  	case '10': #查看好友英雄及装备
  		$fid = $input['fid'];
  		if( empty( $fid ) || !is_numeric( $fid ) ){ret('fid_error',-1);}
- 		$friend = new User_Friend( $user->getUid(), $fid );
+ 		$friend = new User_Friend();
  		if( !$friend->isFriend() ){ret('no_friend',-1);}
  		$hero = new User_Hero( $uid );
  		$heroList = $hero->getStrongHeroList();
