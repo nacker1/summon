@@ -632,6 +632,7 @@
  **/
 	function setUserGuide( $index, $gid ){
 		$guide = $this->getUserRecord('guide');
+		$this->log->i($guide);
 		$guide = json_decode( $guide, true );
 		if( is_array($guide) && isset($guide[$index]) ){
 			$guide[$index] = $gid;
