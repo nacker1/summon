@@ -151,7 +151,9 @@
  		if( empty( $fid ) || !is_numeric( $fid ) ){ret('fid_error',-1);}
  		$hero = new User_Hero( $uid );
  		$heroList = $hero->getStrongHeroList();
- 		ret( $heroList );
+ 		$ret['hList'] = $heroList;
+ 		$ret['top'] = $hero->getUserRecord('maxPvpTop');
+ 		ret( $ret );
  	default:
  		# code...
  		break;
