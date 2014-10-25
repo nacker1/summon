@@ -151,7 +151,7 @@
  		if( empty( $fid ) || !is_numeric( $fid ) ){ret('fid_error',-1);}
  		$friend = new User_Friend();
  		if( !$friend->isFriend( $fid ) ){ret('no_friend',-1);}
- 		$hero = new User_Hero( $uid );
+ 		$hero = new User_Hero( $fid );
  		$heroList = $hero->getStrongHeroList();
  		$ret['hList'] = $heroList;
  		$ret['top'] = $hero->getUserRecord('maxPvpTop');
