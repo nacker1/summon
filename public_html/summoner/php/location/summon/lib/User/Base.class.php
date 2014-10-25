@@ -639,7 +639,6 @@
 			$guide = array();
 			$guide[$index] = $gid;
 		}
-		dump($guide);
 		return $this->setUserRecord( 'guide', json_encode( $guide ) );
 	}
 #============================================================================================
