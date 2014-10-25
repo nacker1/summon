@@ -387,7 +387,6 @@ class User_Hero extends User_Base{
 			$ret[ $v['hid'] ] = implode( '|', $temp );
 			unset($temp);
 		}
-		usort( $ret,function($a,$b){return $a[0]-$b[0];} );
 		return $ret;
 	}
 
