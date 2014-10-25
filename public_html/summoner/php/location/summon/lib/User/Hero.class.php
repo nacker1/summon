@@ -34,9 +34,7 @@ class User_Hero extends User_Base{
 			$keys = $this->redis->keys('roleinfo:'.$this->uid.':hero:*');
 			if( is_array( $keys ) )
 				foreach( $keys as $v ){
-					$hero = $this->redis->hgetall($v);
-					$this->hinfo[] = $hero;
-					unset($hero);
+					$this->hinfo[] = $this->redis->hgetall($v);
 				}
 		}else{//用户指定英雄
 			if( $this->redis->exists( 'roleinfo:'.$this->uid.':hero:'.$this->hid ) ){
@@ -367,6 +365,10 @@ class User_Hero extends User_Base{
 		self::$heroInfo[$this->uid][$this->hid]['config'] = json_encode($skillConf);
 		return $this->setUpdTime();
 	}
+
+/**
+ *@ getStrongHeroList 获取指定用户的最强阵容（5个英雄）
+ **/
 
 	function __destruct(){
 		
