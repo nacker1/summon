@@ -30,12 +30,13 @@
 	 **/
 	public function getHeartBeatInfo(){
 		$uInfo = $this->getUserInfo();
-		$ret[] = time();						#服务器当前时间
-		$ret[] = (int)$uInfo['mail'];			#邮件标记
-		$ret[] = (int)$uInfo['message'];		#私聊消息
-		$ret[] = (int)$uInfo['jewel'];			#当前钻石数量
-		$ret[] = $this->isMonthCode();			#是否月卡用户
-		$ret[] = (int)$uInfo['invite'];			#用户好友邀请标记
+		$ret[] = time();									#服务器当前时间
+		$ret[] = (int)$uInfo['mail'];						#邮件标记
+		$ret[] = (int)$uInfo['message'];					#私聊消息
+		$ret[] = (int)$uInfo['jewel'];						#当前钻石数量
+		$ret[] = $this->isMonthCode();						#是否月卡用户
+		$ret[] = (int)$uInfo['invite'];						#用户好友邀请标记
+		$this->setUserHeart( '_heartTime', time() );		#设置用户心跳时间
 		return $ret;
 	}
 /**
