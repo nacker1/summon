@@ -25,8 +25,9 @@
  		if( empty( $to ) ){
  			$gag = new Cond( 'user_limit', $user->getUid() );
  			$log->e($gag->getTimes('gag'));
- 			if( $gag->getTimes('gag') > 0 ){
- 				ret('西秘笈',-1);
+ 			$gagTime = $gag->getTimes('gag');
+ 			if( $gagTime > 0 ){
+ 				ret('您已被禁言,还有'.(($gagTime%60)+1).'分钟后解除',-1);
  			}
 	 		$limit = new User_Limit( 'helloWorld' );
 	 		$money = $limit->getOneTimeCooldou();
