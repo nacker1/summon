@@ -23,6 +23,10 @@
  			ret( '内容不能超过65个汉字'.$strLen, -1 );
  		}
  		if( empty( $to ) ){
+ 			$gag = new Cond( 'user_limit', $user->getUid() );
+ 			if( $gog->getTimes('gag') ){
+ 				ret('西秘笈',-1);
+ 			}
 	 		$limit = new User_Limit( 'helloWorld' );
 	 		$money = $limit->getOneTimeCooldou();
 	 		if( $user->getMoney() >= $money ){
