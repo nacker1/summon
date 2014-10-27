@@ -47,8 +47,10 @@
 	 		ret('发送成功');
 	 	}
 	 case '3':
-	 	$gag = new Cond( 'user_limit', $user->getUid() );
+	 	$gag = new Cond( 'user_limit', $user->getUid(), 600 );
 	 	$gag->set( 1,'gag' );
+	 	$ret['v'] = $gag->get('gag');
+	 	$ret['t'] = $gag->getTimes('gag');
 	 	ret('禁言成功');
  }
 
