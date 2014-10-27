@@ -24,6 +24,7 @@
  		}
  		if( empty( $to ) ){
  			$gag = new Cond( 'user_limit', $user->getUid() );
+ 			$log->e($gag->getTimes('gag'))
  			if( $gag->getTimes('gag') > 0 ){
  				ret('西秘笈',-1);
  			}
