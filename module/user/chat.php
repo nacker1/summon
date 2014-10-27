@@ -45,6 +45,10 @@
 	 		$chat->sendChat( $con, $user->getUserName(), $user->getUid(), $user->getLevel(), $user->getImage(),$other );
 	 		ret('发送成功');
 	 	}
+	 case '3':
+	 	$gag = new Cond( 'user_limit', $user->getUid() );
+	 	$gag->set( 1,'gag' );
+	 	ret('禁言成功');
  }
 
  ret( 'YMD'.__LINE__, -1 );
