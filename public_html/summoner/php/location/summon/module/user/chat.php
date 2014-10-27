@@ -24,7 +24,7 @@
  		}
  		if( empty( $to ) ){
  			$gag = new Cond( 'user_limit', $user->getUid() );
- 			if( $gag->getTimes('gag') ){
+ 			if( $gag->getTimes('gag') > 0 ){
  				ret('西秘笈',-1);
  			}
 	 		$limit = new User_Limit( 'helloWorld' );
