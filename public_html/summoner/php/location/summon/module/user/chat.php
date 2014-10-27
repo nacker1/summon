@@ -27,7 +27,7 @@
  			$log->e($gag->getTimes('gag'));
  			$gagTime = $gag->getTimes('gag');
  			if( $gagTime > 0 ){
- 				ret('您已被禁言,还有'.ceil($gagTime/60).'分钟后解除',-1);
+ 				ret('您已被禁言,'.ceil($gagTime/60).'分钟后解除',-1);
  			}
 	 		$limit = new User_Limit( 'helloWorld' );
 	 		$money = $limit->getOneTimeCooldou();
