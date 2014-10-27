@@ -64,7 +64,7 @@ $mis = $user->getMissionNotice();
 if( !empty( $mis ) ){
 	$ret['mis'] = $mis;
 }
-
+dump($hero);
 if( isset( $hero ) && gettype( $hero ) == 'object' ){
 	$ret['hero'] = $hreo->getLastUpdField();
 }
