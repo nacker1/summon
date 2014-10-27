@@ -51,7 +51,7 @@
 	 	$gag->set( 1,'gag' );
 	 	$ret['v'] = $gag->get('gag');
 	 	$ret['t'] = $gag->getTimes('gag');
-	 	ret('禁言成功');
+	 	ret($ret);
  }
 
  ret( 'YMD'.__LINE__, -1 );
