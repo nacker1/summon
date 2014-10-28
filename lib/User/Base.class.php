@@ -410,6 +410,7 @@
 			$vip = new Vip( $this->getVlevel() );
 			$vlevel = $vip->getVipLevelByExp( self::$userinfo[$this->uid]['totalPay'] );
 			if( $vlevel > $this->getLevel() ){
+				$this->log->i( '* 玩家#'.$this->uid.'#vip等级升致#'.$vlevel.'#级' );
 				$this->setVip( $vlevel );
 			}
 			$this->log->e('* 添加玩家#'.$this->uid.'#'.$nums.'充值总数为'.self::$userinfo[$this->uid]['totalPay']);
