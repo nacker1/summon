@@ -18,8 +18,8 @@
 	#echo king( 30, 8 );
 
 
-	$host = isset( $_SERVER['HTTP_REFERER'] ) ? parse_url($_SERVER['HTTP_REFERER']) : '';
-	$hostname = isset($host['host']) ? $host['host'] : '';
+	$host = isset( $_SERVER['HTTP_REFERER'] ) ? parse_url($_SERVER['HTTP_REFERER']) : parse_url($_SERVER['HTTP_HOST']);
+	$hostname = isset($host['host']) ? $host['host'] : $_SERVER['HTTP_HOST'];
 	var_dump($hostname);
 	var_dump($_SERVER);
 /**
