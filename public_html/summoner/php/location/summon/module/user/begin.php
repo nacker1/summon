@@ -10,7 +10,7 @@
 	 $status = $server->getServersStatus();
 
 	 if( 0 < $status['close'] ){
-		$cInfo = empty( $status['cInfo'] ) ? '服务器正在维护，请稍等' : $status['cInfo'];
+		$cInfo = empty( $status['cInfo'] ) ? '服务器正在维护，请耐心等待！' : $status['cInfo'];
 		ret($cInfo,-2);
 	 }
 	 

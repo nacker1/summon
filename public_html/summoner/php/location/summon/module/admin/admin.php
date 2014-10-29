@@ -28,8 +28,9 @@ switch ($type) {
 		#添加用户体力
 		$user->addLife( $nums );
 		ret($user->getUserLastUpdInfo());
-	case '997':
+	case '997': #踢下线
 		$user->setLoginTime();
+		$user->setSkey();
 		ret( $user->getUserInfo() );
 	case '998':
 		#清空所有配置缓存

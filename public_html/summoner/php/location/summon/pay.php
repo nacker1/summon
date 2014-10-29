@@ -2,8 +2,6 @@
 /**
  *@ 充值统一入口
  **/
-	phpinfo();
-	exit;
 	error_reporting(0);
 	global $log,$tag,$version,$channel;
 	require dirname(__FILE__).'/inc/inc.php';
