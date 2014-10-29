@@ -103,6 +103,7 @@
 		}
 	}
 	public function getUserBeginInfo(){
+		$this->setSkey();
 		$userinfo = $this->getUserInfo();
 		$ret['new'] = $this->isNew;
 		$ret['now'] = time();
@@ -134,7 +135,6 @@
 		$ret['maxPvpTop'] = (int)$userinfo['maxPvpTop'];								#用户当前身上拥有的buff列表
 		$ret['lastLoginTime'] = (int)$userinfo['logintime'];							#用户上次登录时间
 		$ret['logintime'] = $this->loginTime;											#用户本次登录时间
-		$this->setSkey();
 		$this->_logInfo();
 		return $ret;
 	}
