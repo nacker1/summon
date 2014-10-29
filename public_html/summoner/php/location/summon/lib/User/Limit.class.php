@@ -4,11 +4,11 @@
  **/
 class User_Limit extends User_Base{
 	private $table='zy_baseDayLimitConfig';			//限制表
-	private $tag ;							//限制类型 如： giveLifeDay 每日赠送体力次数限制，
-	private $cond;							//限制类连接的redis源
-	private $tolLimit;						//当前标签的总参与次数
-	private $freeTimes;						//当前标签当日的免费使用次数
-	private $limitConfig;						//限制的配置信息
+	private $tag ;									//限制类型 如： giveLifeDay 每日赠送体力次数限制，
+	private $cond;									//限制类连接的redis源
+	private $tolLimit;								//当前标签的总参与次数
+	private $freeTimes;								//当前标签当日的免费使用次数
+	private $limitConfig;							//限制的配置信息
 
 	/**
 	 *@ param:
