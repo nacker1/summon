@@ -15,7 +15,13 @@
 		}
 		return $temp[0];
 	}
-	echo king( 30, 8 );
+	#echo king( 30, 8 );
+
+
+	$host = isset( $_SERVER['HTTP_REFERER'] ) ? parse_url($_SERVER['HTTP_REFERER']) : '';
+	$hostname = isset($host['host']) ? $host['host'] : '';
+	var_dump($hostname);
+	var_dump($_SERVER);
 /**
  *@ 测试脚本
  **/
