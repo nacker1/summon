@@ -650,9 +650,10 @@ Herobase	lib\Public\Herobase.class.php	/^class Herobase extends Base{$/;"	c
 __construct	lib\Public\Herobase.class.php	/^	public function __construct( $hid='' ){$/;"	f
 _init	lib\Public\Herobase.class.php	/^	private function _init(){$/;"	f
 att	lib\Public\Herobase.class.php	/^		$att = self::$hInfo[$this->hid]['Hero_Att'] + self::$hInfo[$this->hid]['Hero_UpAtt'] * ( $level - 1 ) * $color; 								#英雄物理攻击$/;"	v
-comment	lib\Public\Herobase.class.php	/^	private $comment='zy_statsHeroComment';						\/\/英雄信息评论表$/;"	v
-commentHero	lib\Public\Herobase.class.php	/^	function commentHero( $hid, $uinfo, $comment ){$/;"	f
+commentHero	lib\Public\Herobase.class.php	/^	function commentHero( $uinfo, $comment ){$/;"	f
+commentTable	lib\Public\Herobase.class.php	/^	protected $commentTable='zy_statsHeroComment';						\/\/英雄信息评论表$/;"	v
 def	lib\Public\Herobase.class.php	/^		$def = self::$hInfo[$this->hid]['Hero_Def'] + self::$hInfo[$this->hid]['Hero_UpDef'] * ( $level - 1 ) * $color;								#英雄物理护甲$/;"	v
+getComment	lib\Public\Herobase.class.php	/^	function getComment( $order, $page ){$/;"	f
 getFire	lib\Public\Herobase.class.php	/^	public function getFire( $level=1,$color=1,$skill='{"1":"1"}' ){$/;"	f
 gethp	lib\Public\Herobase.class.php	/^		$gethp = self::$hInfo[$this->hid]['Hero_GetHp'] + self::$hInfo[$this->hid]['Hero_UpGetHp'] * ( $level - 1 ) * $color;							#英雄的生命回复$/;"	v
 getmp	lib\Public\Herobase.class.php	/^		$getmp = self::$hInfo[$this->hid]['Hero_GetMp'] + self::$hInfo[$this->hid]['Hero_UpGetMp'] * ( $level - 1 ) * $color;							#英雄的魔法回复$/;"	v
@@ -665,12 +666,18 @@ hp	lib\Public\Herobase.class.php	/^		$hp = self::$hInfo[$this->hid]['Hero_Hp'] +
 laudHero	lib\Public\Herobase.class.php	/^	function laudHero( $cid ){$/;"	f
 level	lib\Public\Herobase.class.php	/^	public function getFire( $level=1,$color=1,$skill='{"1":"1"}' ){$/;"	v
 mp	lib\Public\Herobase.class.php	/^		$mp = self::$hInfo[$this->hid]['Hero_Mp'] + self::$hInfo[$this->hid]['Hero_UpMp'] * ( $level - 1 ) * $color;									#英雄的魔法值$/;"	v
+order	lib\Public\Herobase.class.php	/^		if( $order == 1 ){$/;"	v
+order	lib\Public\Herobase.class.php	/^		}elseif( $order == 2 ){$/;"	v
+pagesize	lib\Public\Herobase.class.php	/^		$pagesize = 5;$/;"	v
 res	lib\Public\Herobase.class.php	/^		$res = self::$hInfo[$this->hid]['Hero_Res'] + self::$hInfo[$this->hid]['Hero_UpRes'] * ( $level - 1 ) * $color;								#英雄法术抗性$/;"	v
 ret	lib\Public\Herobase.class.php	/^				$ret = $this->cdb->find( $this->heroBaseTable,'Hero_Id,Hero_Hp,Hero_UpHp,Hero_Mp,Hero_UpMp,Hero_Att,Hero_UpAtt,Hero_Sor,Hero_UpSor,Hero_Def,Hero_UpDef,Hero_Res,Hero_UpRes,Hero_GetHp,Hero_UpGetHp,Hero_GetMp,Hero_UpGetMp,Hero_AttSpd,Hero_UpAttSpd,Hero_Mov,Hero_Pry',array( 'Hero_Id'=>array('<'=>20000) ) );$/;"	v
 sTolLevel	lib\Public\Herobase.class.php	/^		$sTolLevel = 0;						#英雄技能等级总和$/;"	v
 skill	lib\Public\Herobase.class.php	/^		$skill = json_decode( $skill, true );$/;"	v
 sor	lib\Public\Herobase.class.php	/^		$sor = self::$hInfo[$this->hid]['Hero_Sor'] + self::$hInfo[$this->hid]['Hero_UpSor'] * ( $level - 1 ) * $color;								#英雄法术强度$/;"	v
 speed	lib\Public\Herobase.class.php	/^		$speed = self::$hInfo[$this->hid]['Hero_AttSpd'] + self::$hInfo[$this->hid]['Hero_UpAttSpd'] * ( $level - 1 ) * $color;						#英雄的攻击速度$/;"	v
+sql	lib\Public\Herobase.class.php	/^			$sql = ' select `id`,`uinfo`,`comment` com,`agree` from `'.$this->commentTable.'` where hid='.$this->hid.' order by `agree` desc limit '.$pagesize*($page-1).','.$pagesize;$/;"	v
+sql	lib\Public\Herobase.class.php	/^			$sql = ' select `id`,`uinfo`,`comment` com,`agree` from `'.$this->commentTable.'` where hid='.$this->hid.' order by `time` desc limit '.$pagesize*($page-1).','.$pagesize;$/;"	v
+sql	lib\Public\Herobase.class.php	/^		$sql = 'update '.$this->commentTable.' set `agree`=agree+1 where `id`='.$cid;$/;"	v
 Levelup	lib\Public\Levelup.class.php	/^ class Levelup extends Pbase{$/;"	c
 __construct	lib\Public\Levelup.class.php	/^	public function __construct( $level,$type='user' ){$/;"	f
 _init	lib\Public\Levelup.class.php	/^	private function _init(){ \/\/初始化角色升级信息$/;"	f
@@ -1029,6 +1036,9 @@ getUserRecord	lib\User\Base.class.php	/^	public function getUserRecord( $key ){$
 getUserReductTime	lib\User\Base.class.php	/^	public function getUserReductTime(){$/;"	f
 getVlevel	lib\User\Base.class.php	/^	public function getVlevel(){$/;"	f
 giveLife	lib\User\Base.class.php	/^		$giveLife = floor($tolTime\/$recover);$/;"	v
+guide	lib\User\Base.class.php	/^			$guide = array();$/;"	v
+guide	lib\User\Base.class.php	/^		$guide = $this->getUserRecord('guide');$/;"	v
+guide	lib\User\Base.class.php	/^		$guide = json_decode( $guide, true );$/;"	v
 heroTable	lib\User\Base.class.php	/^	protected $heroTable = 'zy_uniqRoleHero'; 										\/\/用户英雄表$/;"	v
 isMonthCode	lib\User\Base.class.php	/^	public function isMonthCode(){$/;"	f
 isupd	lib\User\Base.class.php	/^	protected static $isupd 		=	array(); 									\/\/判断是否需要更新用户信息$/;"	v
@@ -1060,8 +1070,10 @@ setMissionId	lib\User\Base.class.php	/^	public function setMissionId( $type, $cl
 setMissionNotice	lib\User\Base.class.php	/^	public function setMissionNotice( $type, $taskClass, $config ){$/;"	f
 setMonthCode	lib\User\Base.class.php	/^	public function setMonthCode(){$/;"	f
 setNewMail	lib\User\Base.class.php	/^	public function setNewMail($val=1){$/;"	f
+setSkey	lib\User\Base.class.php	/^	public function setSkey(){$/;"	f
 setThrowSQL	lib\User\Base.class.php	/^	public function setThrowSQL( $table, $upd, $where='', $opt='', $db='' ){$/;"	f
 setUpdTime	lib\User\Base.class.php	/^	private function setUpdTime($flag=1){$/;"	f
+setUserGuide	lib\User\Base.class.php	/^	function setUserGuide( $index, $gid ){$/;"	f
 setUserHeart	lib\User\Base.class.php	/^	public function setUserHeart( $tag, $val=1 ){$/;"	f
 setUserImage	lib\User\Base.class.php	/^	public function setUserImage( $img ){$/;"	f
 setUserName	lib\User\Base.class.php	/^	public function setUserName( $name ){$/;"	f
@@ -1261,6 +1273,7 @@ getHeroLevelAndExp	lib\User\Hero.class.php	/^	function getHeroLevelAndExp(){$/;"
 getLastUpdField	lib\User\Hero.class.php	/^	function getLastUpdField(){$/;"	f
 getSkillConfig	lib\User\Hero.class.php	/^	function getSkillConfig(){$/;"	f
 getSkillLevel	lib\User\Hero.class.php	/^	function getSkillLevel( $skillIndex ){$/;"	f
+getStrongHeroList	lib\User\Hero.class.php	/^	function getStrongHeroList(){ $/;"	f
 getTotalFire	lib\User\Hero.class.php	/^	function getTotalFire(){$/;"	f
 getUserHeroList	lib\User\Hero.class.php	/^	public function getUserHeroList(){$/;"	f
 getUserHeroNum	lib\User\Hero.class.php	/^	public function getUserHeroNum(){$/;"	f
@@ -1268,7 +1281,6 @@ gid	lib\User\Hero.class.php	/^				$gid = '11'.substr($this->hid,2);$/;"	v
 giveHero	lib\User\Hero.class.php	/^	public function giveHero( $color='' ){$/;"	f
 good	lib\User\Hero.class.php	/^				$good = new User_Goods( $this->uid, $gid );$/;"	v
 hLevel	lib\User\Hero.class.php	/^		$hLevel = $this->getHeroMaxLevel();$/;"	v
-hero	lib\User\Hero.class.php	/^					$hero = $this->redis->hgetall($v);$/;"	v
 hero	lib\User\Hero.class.php	/^			$hero = $this->initHero($color);$/;"	v
 heroBase	lib\User\Hero.class.php	/^		$heroBase = new Herobase( $this->hid );$/;"	v
 heroFire	lib\User\Hero.class.php	/^		$heroFire = $heroBase->getFire( self::$heroInfo[$this->uid][$this->hid]['level'], self::$heroInfo[$this->uid][$this->hid]['color'],  self::$heroInfo[$this->uid][$this->hid]['config']);$/;"	v
@@ -1321,7 +1333,7 @@ addLimitTimes	lib\User\Limit.class.php	/^	public function addLimitTimes( $nums=1
 buyTimes	lib\User\Limit.class.php	/^			$buyTimes = $used - $this->freeTimes;$/;"	v
 checkTimeLimit	lib\User\Limit.class.php	/^	private function checkTimeLimit( $key='' ){$/;"	f
 cond	lib\User\Limit.class.php	/^		$this->cond = new Cond( $this->tag, $this->uid, $time );$/;"	v
-cond	lib\User\Limit.class.php	/^	private $cond;							\/\/限制类连接的redis源$/;"	v
+cond	lib\User\Limit.class.php	/^	private $cond;									\/\/限制类连接的redis源$/;"	v
 delLimit	lib\User\Limit.class.php	/^	public function delLimit( $key='' ){$/;"	f
 delTimeLimit	lib\User\Limit.class.php	/^	public function delTimeLimit( $key='' ){$/;"	f
 expend	lib\User\Limit.class.php	/^				$expend = $this->getExpend();$/;"	v
@@ -1330,7 +1342,7 @@ fTime	lib\User\Limit.class.php	/^		$fTime = (int)( $this->freeTimes - $used );$/
 flag	lib\User\Limit.class.php	/^		$this->flag = $tag;$/;"	v
 freeTimes	lib\User\Limit.class.php	/^		$freeTimes = $this->getLastFreeTimes($key);$/;"	v
 freeTimes	lib\User\Limit.class.php	/^		$this->freeTimes = (int)$limitInfo['freeTime'];$/;"	v
-freeTimes	lib\User\Limit.class.php	/^	private $freeTimes;						\/\/当前标签当日的免费使用次数$/;"	v
+freeTimes	lib\User\Limit.class.php	/^	private $freeTimes;								\/\/当前标签当日的免费使用次数$/;"	v
 getExpend	lib\User\Limit.class.php	/^	public function getExpend(){$/;"	f
 getGiveNum	lib\User\Limit.class.php	/^	public function getGiveNum(){$/;"	f
 getLastFreeTimes	lib\User\Limit.class.php	/^	public function getLastFreeTimes( $key='' ){$/;"	f
@@ -1349,7 +1361,7 @@ key	lib\User\Limit.class.php	/^	public function getOneTimeCooldou( $key='' ){$/;
 key	lib\User\Limit.class.php	/^	public function getTimeLimit( $key='' ){$/;"	v
 key	lib\User\Limit.class.php	/^	public function getUsedTimes( $key='' ){$/;"	v
 limitConfig	lib\User\Limit.class.php	/^		$this->limitConfig = $limitInfo;$/;"	v
-limitConfig	lib\User\Limit.class.php	/^	private $limitConfig;						\/\/限制的配置信息$/;"	v
+limitConfig	lib\User\Limit.class.php	/^	private $limitConfig;							\/\/限制的配置信息$/;"	v
 limitInfo	lib\User\Limit.class.php	/^		$limitInfo = $this->pre->hgetall( 'userLimit:'.$this->flag );#$this->pre->hmget('userLimit:'.$this->flag,array('freeTime','times','vipLimit','vip'));$/;"	v
 nums	lib\User\Limit.class.php	/^	public function addLimitTimes( $nums=1,$key='' ){$/;"	v
 rate	lib\User\Limit.class.php	/^				$rate = array( 1=>1, 2=>1, 3=>2, 4=>2, 5=>4, 6=>4, 7=>8 ); \/\/第7次封顶$/;"	v
@@ -1358,13 +1370,13 @@ setTimeLimit	lib\User\Limit.class.php	/^	private function setTimeLimit( $key='' 
 table	lib\User\Limit.class.php	/^	private $table='zy_baseDayLimitConfig';			\/\/限制表$/;"	v
 tag	lib\User\Limit.class.php	/^			$this->tag = $domain.':'.$this->tag;$/;"	v
 tag	lib\User\Limit.class.php	/^		$this->tag = $tag;$/;"	v
-tag	lib\User\Limit.class.php	/^	private $tag ;							\/\/限制类型 如： giveLifeDay 每日赠送体力次数限制，$/;"	v
+tag	lib\User\Limit.class.php	/^	private $tag ;									\/\/限制类型 如： giveLifeDay 每日赠送体力次数限制，$/;"	v
 time	lib\User\Limit.class.php	/^					$time = 7;$/;"	v
 time	lib\User\Limit.class.php	/^				$time = $buyTimes + 1;$/;"	v
 time	lib\User\Limit.class.php	/^			$time= get3time();$/;"	v
 times	lib\User\Limit.class.php	/^		$times = (int)$this->limitConfig['timeLimit'];$/;"	v
 tolLimit	lib\User\Limit.class.php	/^		$this->tolLimit = (int)$limitInfo['times'];$/;"	v
-tolLimit	lib\User\Limit.class.php	/^	private $tolLimit;						\/\/当前标签的总参与次数$/;"	v
+tolLimit	lib\User\Limit.class.php	/^	private $tolLimit;								\/\/当前标签的总参与次数$/;"	v
 used	lib\User\Limit.class.php	/^			$used = $this->getUsedTimes( $key );$/;"	v
 used	lib\User\Limit.class.php	/^		$used = $this->getUsedTimes( $key );$/;"	v
 vip	lib\User\Limit.class.php	/^			$vip = new Vip( $this->getVlevel() );$/;"	v
@@ -1687,6 +1699,7 @@ con	module\action\friends.php	/^	 		$con = ' 亲，我给你赠送了 '.$life.' 
 fInfo	module\action\friends.php	/^ 		$fInfo = $friend->getInfo( $find );$/;"	v
 fList	module\action\friends.php	/^ 		$fList = $friend->getFriendList();$/;"	v
 fMerc	module\action\friends.php	/^ 			$fMerc = $merc->getMercHero();$/;"	v
+fid	module\action\friends.php	/^ 		$fid = $input['fid'];$/;"	v
 filter	module\action\friends.php	/^ 		$filter = new Filter( $find );$/;"	v
 find	module\action\friends.php	/^ 		$find = $filter->filterSql();						\/\/过滤SQL防注入$/;"	v
 find	module\action\friends.php	/^ 		$find = isset($input['find']) ? $input['find'] : null; 			\/\/$find 查找的用户名$/;"	v
@@ -1698,6 +1711,8 @@ friend	module\action\friends.php	/^ 		$friend = new User_Friend();$/;"	v
 friendUid	module\action\friends.php	/^ 		$friendUid = $input['fid'];$/;"	v
 goods	module\action\friends.php	/^	 		$goods = array('life'=>$life);$/;"	v
 hasMerc	module\action\friends.php	/^ 		$hasMerc = $uMerc->getHadList();$/;"	v
+hero	module\action\friends.php	/^ 		$hero = new User_Hero( $fid );$/;"	v
+heroList	module\action\friends.php	/^ 		$heroList = $hero->getStrongHeroList();$/;"	v
 k	module\action\friends.php	/^ 			if( $k == $user->getUid() )continue;$/;"	v
 k	module\action\friends.php	/^ 		foreach( $sysUser as $k=>$v ){$/;"	v
 life	module\action\friends.php	/^	 		$life = $limit->getGiveNum();$/;"	v
@@ -1838,7 +1853,7 @@ ext	module\pay\douwan.php	/^	$ext = $input['ext'];$/;"	v
 info	module\pay\douwan.php	/^	$info = explode('a',$ext);$/;"	v
 money	module\pay\douwan.php	/^	$money = $input['price'];$/;"	v
 pay	module\pay\douwan.php	/^	$pay = new Pay( $payinfo );$/;"	v
-cInfo	module\user\begin.php	/^		$cInfo = empty( $status['cInfo'] ) ? '服务器正在维护，请稍等' : $status['cInfo'];$/;"	v
+cInfo	module\user\begin.php	/^		$cInfo = empty( $status['cInfo'] ) ? '服务器正在维护，请耐心等待！' : $status['cInfo'];$/;"	v
 rid	module\user\begin.php	/^	 $rid = $input['rid'];$/;"	v
 server	module\user\begin.php	/^	 $server = new Server($sid); \/\/进入游戏时判断服务器是否已停服$/;"	v
 sid	module\user\begin.php	/^	 $sid = $input['sid'];$/;"	v
@@ -1866,6 +1881,9 @@ chat	module\user\chat.php	/^	 			$chat = new Chat( $user->getUid() );$/;"	v
 chat	module\user\chat.php	/^	 		$chat = new Chat( $to,2 );$/;"	v
 chat	module\user\chat.php	/^ 		$chat = new Chat( $user->getUid() );$/;"	v
 con	module\user\chat.php	/^ 		$con = $input['con'];$/;"	v
+gag	module\user\chat.php	/^	 	$gag = new Cond( 'user_limit', $user->getUid(), 600 , 'uniqPay');$/;"	v
+gag	module\user\chat.php	/^ 			$gag = new Cond( 'user_limit', $user->getUid() );$/;"	v
+gagTime	module\user\chat.php	/^ 			$gagTime = $gag->getTimes('gag');$/;"	v
 lasttime	module\user\chat.php	/^ 		$lasttime = isset( $input['lt'] ) ? $input['lt'] : 0;$/;"	v
 limit	module\user\chat.php	/^	 		$limit = new User_Limit( 'helloWorld' );$/;"	v
 money	module\user\chat.php	/^	 		$money = $limit->getOneTimeCooldou();$/;"	v
@@ -1944,9 +1962,12 @@ ref	module\user\topList.php	/^	$ref = isset( $input['ref'] ) ? $input['ref'] : 0
 top	module\user\topList.php	/^	$top = new Top( $type );$/;"	v
 type	module\user\topList.php	/^	$type = isset( $input['t'] ) ? $input['t'] : 0;$/;"	v
 user	module\user\topList.php	/^	$user = new User_User();$/;"	v
-filter	module\user\updateInfo.php	/^ 	$filter = new Filter( $name );$/;"	v
-image	module\user\updateInfo.php	/^ $image = isset($input['img']) ? $input['img'] : '' ;$/;"	v
-name	module\user\updateInfo.php	/^ $name = isset($input['name']) ? $input['name'] : '' ;$/;"	v
+filter	module\user\updateInfo.php	/^		 	$filter = new Filter( $name );$/;"	v
+gid	module\user\updateInfo.php	/^ 		$gid = $input['gid'];$/;"	v
+image	module\user\updateInfo.php	/^ 		$image = isset($input['img']) ? $input['img'] : '' ;$/;"	v
+index	module\user\updateInfo.php	/^ 		$index = $input['index'];$/;"	v
+name	module\user\updateInfo.php	/^		$name = isset($input['name']) ? $input['name'] : '' ;$/;"	v
+type	module\user\updateInfo.php	/^ $type = isset( $input['t'] ) ? $input['t'] : '1';$/;"	v
 user	module\user\updateInfo.php	/^ $user = new User_User();$/;"	v
 bGood	module\user\useGood.php	/^			$bGood = new Goodbase( $gid );$/;"	v
 bGood	module\user\useGood.php	/^		$bGood = new Goodbase( $gid );$/;"	v
@@ -1987,6 +2008,7 @@ hList	module\user\userHero.php	/^			$hList = array( 10001,10002,10004,10005,1000
 hList	module\user\userHero.php	/^		$hList = $input['heros'];$/;"	v
 hero	module\user\userHero.php	/^				$hero = new User_Hero( $user->getUid(), $hid );$/;"	v
 hero	module\user\userHero.php	/^			$hero = new User_Hero( $user->getUid(),$v );$/;"	v
+hero	module\user\userHero.php	/^		$hero = new Herobase( $hid );$/;"	v
 hero	module\user\userHero.php	/^		$hero = new User_Hero( $user->getUid() );$/;"	v
 hero	module\user\userHero.php	/^		$hero = new User_Hero( $user->getUid(), $hid );$/;"	v
 heroList	module\user\userHero.php	/^		$heroList = $hero->getUserHeroList();$/;"	v
@@ -1999,6 +2021,8 @@ limit	module\user\userHero.php	/^			$limit = new User_Limit( 'laudHeroDay' );$/;
 mis	module\user\userHero.php	/^					$mis = $user->getMissionNotice();$/;"	v
 mis	module\user\userHero.php	/^		$mis = $user->getMissionNotice();$/;"	v
 money	module\user\userHero.php	/^		$money = array(1=>5000,2=>10000,3=>20000,4=>40000,5=>80000);$/;"	v
+order	module\user\userHero.php	/^		$order = $input['o'];$/;"	v
+page	module\user\userHero.php	/^		$page = isset( $input['p'] ) && is_numeric( $input['p'] ) ? $input['p'] : 1 ;$/;"	v
 ret	module\user\userHero.php	/^		$ret = $user->sendGoodsFromConfig( $give );$/;"	v
 ret	module\user\userHero.php	/^		$ret = $user->sendGoodsFromConfig($give);$/;"	v
 sIndex	module\user\userHero.php	/^		$sIndex = $input['sid']; \/\/技能id$/;"	v
@@ -2031,6 +2055,8 @@ curl	test.php	/^\/*	$curl = new Curl('http:\/\/api.yunva.com:8199\/api');$/;"	v
 head	test.php	/^			$head = array_shift($temp);$/;"	v
 hero	test.php	/^	$hero = new User_Hero( $user->getUid() );$/;"	v
 heroList	test.php	/^	$heroList = $hero->getUserHeroList();$/;"	v
+host	test.php	/^	$host = isset( $_SERVER['HTTP_REFERER'] ) ? parse_url($_SERVER['HTTP_REFERER']) : parse_url($_SERVER['HTTP_HOST']);$/;"	v
+hostname	test.php	/^	$hostname = isset($host['host']) ? $host['host'] : $_SERVER['HTTP_HOST'];$/;"	v
 i	test.php	/^		$i=0;$/;"	v
 i	test.php	/^	for( $i=1;$i<1000;$i++ ){$/;"	v
 king	test.php	/^	function king( $total, $num ){$/;"	f
