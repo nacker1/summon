@@ -22,7 +22,7 @@
 			$this->name = $name;
 		}
 		if( empty($this->source) || empty($this->source_id) ){
-			ret('请求参数错误',1000);
+			ret('请求参数错误',-1);
 		}
 		$this->loginDb = Db_Mysql::init('login');
 		$this->_init();	
