@@ -202,7 +202,7 @@
 			$con = $input['con'];
 			$limit = new User_Limit( 'commentHeroDay' );
 			if( $limit->getTimeLimit( $hid ) ){
-				ret( '先喝杯茶休息休息再来评论吧',-1 );
+				ret( '同一条评论只能点赞一次',-1 );
 			}
 			if( empty( $con ) || abslength( $con ) < 7 ){
 				ret( '请将评论内容再说详细点', -1 );
@@ -213,6 +213,7 @@
 			$uinfo[] = $user->getImage();
 			$uinfo[] = $user->getUserName();
 			$do->commentHero( implode('|',$uinfo), $con );
+			$limit->addLimitTimes( 1,$hid );
 		}else{
 			$limit = new User_Limit( 'laudHeroDay' );
 			if( $limit->getTimeLimit( $hid ) ){
@@ -222,8 +223,8 @@
 			if( empty( $cid ) ){ret('YMD',-1);}
 			$do = new Herobase( $hid );
 			$do->laudHero( $cid );
+			$limit->addLimitTimes( 1,$cid );
 		}
-		$limit->addLimitTimes( 1,$hid );
 		ret( 'suc' );
 		break;
 	case '8': #拉取英雄的评论信息
