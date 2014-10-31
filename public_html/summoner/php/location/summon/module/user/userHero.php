@@ -215,11 +215,11 @@
 			$do->commentHero( implode('|',$uinfo), $con );
 			$limit->addLimitTimes( 1,$hid );
 		}else{
+			$cid = $input['cid'];
 			$limit = new User_Limit( 'laudHeroDay' );
 			if( $limit->getTimeLimit( $cid ) ){
 				ret( '一天只能点赞一次',-1 );
 			}
-			$cid = $input['cid'];
 			if( empty( $cid ) ){ret('YMD',-1);}
 			$do = new Herobase( $hid );
 			$do->laudHero( $cid );
