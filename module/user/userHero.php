@@ -216,7 +216,7 @@
 			$limit->addLimitTimes( 1,$hid );
 		}else{
 			$limit = new User_Limit( 'laudHeroDay' );
-			if( $limit->getTimeLimit( $hid ) ){
+			if( $limit->getTimeLimit( $cid ) ){
 				ret( '一天只能点赞一次',-1 );
 			}
 			$cid = $input['cid'];
