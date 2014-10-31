@@ -202,7 +202,7 @@
 			$con = $input['con'];
 			$limit = new User_Limit( 'commentHeroDay' );
 			if( $limit->getTimeLimit( $hid ) ){
-				ret( '同一条评论只能点赞一次',-1 );
+				ret( '同一个英雄只能评论一次',-1 );
 			}
 			if( empty( $con ) || abslength( $con ) < 7 ){
 				ret( '请将评论内容再说详细点', -1 );
