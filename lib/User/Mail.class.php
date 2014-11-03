@@ -96,6 +96,14 @@
 		return $pubMail;
 	}
 
+	function isSend( $key ){ #用户公共邮件  查询用户是否已经领取过奖励
+		return $this->mailRedis->get( $key );
+	}
+
+	function setSend( $key ){ #用户公共邮件  设置用户是否已经领取过奖励
+		return $this->mailRedis->set( 1, $key );
+	}
+
 	function delMail( $key ){
 		return $this->mailRedis->del( $key );
 	}
