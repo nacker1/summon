@@ -55,7 +55,7 @@
 		$send['con'] = $con;											#邮件内容
 		$send['sendTime'] = time();										#发送时间	
 		$send['sendUser'] = $sendUser;									#发送用户名
-		$send['mType'] = !empty( $to ) && (int)$to>0 ? 1 : 2; 			#邮件类型  1为公共， 2为私人
+		$send['mType'] = !empty( $to ) && (int)$to>0 ? 1 : 2; 			#邮件类型  1为私人邮件， 2为公共邮件
 		if( $to<1 ){ //to 接收邮件的用户uid  如果to<1则为所有用户
 			$mailRedis = new Cond('publicMail','',$time);
 		}else{
@@ -67,13 +67,8 @@
 		return $mailRedis->set($send,$uniqKey);
 	}
 /**
- *@ 获取邮件类型， 1为公共邮件，2为私人邮件
+ *@ 获取私人邮件的奖品信息
  **/
-	function getMailType( $key ){
-		$mail = $this->getMailByKey($key);
-		return $mail['mType'];
-	}
-
 	function getMailGoodsByKey( $key ){
 		$mail = $this->getMailByKey($key);
 		if( empty( $mail ) || empty( $mail['goods'] ) )return false;
@@ -84,6 +79,21 @@
 		$mail = $this->mailRedis->get( $key );
 		$this->log->e( 'mailConfig:'.json_encode($mail) );
 		return $mail;
+	}
+
+/**
+ *@ 获取公共邮件的奖品信息
+ **/
+	function getPubMailGoodsByKey($key){
+		$pMail = $this->getPubMailByKey( $key );
+		return $pMail['goods'];
+	}
+
+	function getPubMailByKey( $key ){
+		$publicMail = new Cond( 'publicMail' ); //公共邮件
+		$pubMail = $publicMail->get( $key );
+		$this->log->e( 'pubMailConfig:'.json_encode($pubMail) );
+		return $pubMail;
 	}
 
 	function delMail( $key ){
