@@ -28,10 +28,11 @@
 			$goods = $mail->getMailGoodsByKey( $key );
 			$mail->delMail( $key );
 		}elseif( $mailType == 2 ){#领取公共邮件
-			if($mail->isSend()){#系统检测用户是否已领取
+			if($mail->isSend( $key )){#系统检测用户是否已领取
 				ret( ' 不能重复领取 ', -1 );
 			}
 			$goods = $mail->getPubMailGoodsByKey( $key );
+			$mail->setSend( $key );
 		}
 		if( empty( $goods ) ){
 			#$mail->delMail( $key );
