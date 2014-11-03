@@ -4,19 +4,29 @@
  **/
  class User_Mail extends User_Base{
 	private $mailRedis;		//邮件连接的redis服务器
-	function __construct( $uid='' ){
+	private $pubRedis;		//公共邮件连接redis服务器
+	function __construct( $uid='', $mType=0 ){
 		parent::__construct( $uid );
 		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
-		$this->mailRedis = new Cond( 'userMail',$uid );
+		switch( $mType ){
+			case '1':
+				$this->mailRedis = new Cond( 'userMail',$uid );break;
+			case '2':
+				$this->mailCheck = new Cond( 'publicMail_check', $this->uid );
+				$this->pubRedis = new Cond( 'publicMail' );break;
+			default:
+				$this->pubRedis = new Cond( 'publicMail' );
+				$this->mailRedis = new Cond( 'userMail',$uid );
+		}
 	}
+		
 /**
  *@ getEmailList 获取用户邮件列表
  **/
 	function getEmailList(){
 		$this->setNewMail(0);
 		$priMail = $this->mailRedis->getAll();
-		$publicMail = new Cond( 'publicMail' ); //公共邮件
-		$pubMail = $publicMail->getAll();
+		$pubMail = $this->pubRedis->getAll();
 		$mList = array();
 		if( !empty( $priMail ) )
 			$mList = array_merge( $mList, $priMail );
@@ -90,18 +100,17 @@
 	}
 
 	function getPubMailByKey( $key ){
-		$publicMail = new Cond( 'publicMail' ); //公共邮件
-		$pubMail = $publicMail->get( $key );
+		$pubMail = $this->pubRedis->get( $key );
 		$this->log->e( 'pubMailConfig:'.json_encode($pubMail) );
 		return $pubMail;
 	}
 
 	function isSend( $key ){ #用户公共邮件  查询用户是否已经领取过奖励
-		return $this->mailRedis->get( $key );
+		return $this->mailCheck->get( $key );
 	}
 
 	function setSend( $key ){ #用户公共邮件  设置用户是否已经领取过奖励
-		return $this->mailRedis->set( 1, $key );
+		return $this->mailCheck->set( 1, $key );
 	}
 
 	function delMail( $key ){
