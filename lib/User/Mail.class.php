@@ -29,7 +29,7 @@
  *@ param:
  *	$con:		信件内容
  *	$type:		信件类型  1为公告 2为领取类
- *	$to:		收件人uid 公告 to=0
+ *	$to:		收件人uid 如果所有人都可用则 to=0
  *	$tit:		信件标题
  *	$time:		信件过期时间 过期时间戳
  *	$goods:	如果type=2时 goods必须格式{"life":2,"money":"100","good":"10030,1#63003,10"}
@@ -49,12 +49,13 @@
 				return false;
 			}
 		}
-		$send['key'] = $uniqKey;
-		$send['type'] = (int)$type;
-		$send['tit'] = $tit;
-		$send['con'] = $con;
-		$send['sendTime'] = time();
-		$send['sendUser'] = $sendUser;
+		$send['key'] = $uniqKey;										#邮件唯一标识
+		$send['type'] = (int)$type;										#邮件类型（1文字类公告， 2为领取类）
+		$send['tit'] = $tit;											#邮件标题
+		$send['con'] = $con;											#邮件内容
+		$send['sendTime'] = time();										#发送时间	
+		$send['sendUser'] = $sendUser;									#发送用户名
+		$send['mType'] = !empty( $to ) && (int)$to>0 ? 1 : 2; 			#邮件类型  1为公共， 2为私人
 		if( $to<1 ){ //to 接收邮件的用户uid  如果to<1则为所有用户
 			$mailRedis = new Cond('publicMail','',$time);
 		}else{
@@ -65,12 +66,24 @@
 		$this->log->e('mail_info:'.json_encode($send));
 		return $mailRedis->set($send,$uniqKey);
 	}
+/**
+ *@ 获取邮件类型， 1为公共邮件，2为私人邮件
+ **/
+	function getMailType( $key ){
+		$mail = $this->getMailByKey($key);
+		return $mail['mType'];
+	}
 
 	function getMailGoodsByKey( $key ){
-		$mail = $this->mailRedis->get( $key );
+		$mail = $this->getMailByKey($key);
 		if( empty( $mail ) || empty( $mail['goods'] ) )return false;
-		$this->log->e( 'mailConfig:'.json_encode($mail) );
 		return $mail['goods'];
+	}
+
+	function getMailByKey( $key ){
+		$mail = $this->mailRedis->get( $key );
+		$this->log->e( 'mailConfig:'.json_encode($mail) );
+		return $mail;
 	}
 
 	function delMail( $key ){

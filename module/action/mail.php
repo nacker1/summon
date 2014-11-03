@@ -23,6 +23,7 @@
 		if( empty( $key ) ){
 			ret('Key_Error!Code:'.__LINE__,-1);
 		}
+		$mailType = isset( $input['key']) ? $input['key'] : 2;
 		$goods = $mail->getMailGoodsByKey( $key );
 		if( empty( $goods ) ){
 			#$mail->delMail( $key );
