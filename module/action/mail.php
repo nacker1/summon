@@ -23,8 +23,16 @@
 		if( empty( $key ) ){
 			ret('Key_Error!Code:'.__LINE__,-1);
 		}
-		$mailType = isset( $input['key']) ? $input['key'] : 2;
-		$goods = $mail->getMailGoodsByKey( $key );
+		$mailType = isset( $input['mt']) ? $input['mt'] : 1;
+		if( $mailType == 1 ){#领取私人邮件
+			$goods = $mail->getMailGoodsByKey( $key );
+			$mail->delMail( $key );
+		}elseif( $mailType == 2 ){#领取公共邮件
+			if($mail->isSend()){#系统检测用户是否已领取
+				ret( ' 不能重复领取 ', -1 );
+			}
+			$goods = $mail->getPubMailGoodsByKey( $key );
+		}
 		if( empty( $goods ) ){
 			#$mail->delMail( $key );
 			$log->e(  '* 用户#'.$user->getUid().'#邮箱物品领取失败，物品配置为空，所传key值：'.$key );
@@ -32,7 +40,6 @@
 		}
 		$log->i( '* 用户#'.$user->getUid().'#邮箱物品领取配置信息'.json_encode($goods) );
 		$ret = $user->sendGoodsFromConfig( $goods );
-		$mail->delMail( $key );
 		#=========== 任务信息 ==================
 		$mis = $user->getMissionNotice();
 		if( !empty( $mis ) ){
