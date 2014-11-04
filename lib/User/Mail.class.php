@@ -30,8 +30,14 @@
 		$mList = array();
 		if( !empty( $priMail ) )
 			$mList = array_merge( $mList, $priMail );
-		if( !empty( $pubMail ) )
-			$mList = array_merge( $mList, $pubMail );
+		if( !empty( $pubMail ) ){
+			foreach( $pubMail as $v ){
+				if( !$this->isSend($v['key']) ){
+					$ret[] = $v;
+				}
+			}
+			$mList = array_merge( $mList, $ret );
+		}
 		return $mList;
 	}
 /**
