@@ -28,8 +28,8 @@ class Top extends Base{
 					$sql = 'select userid uid,nickname,image,jewel num,level from zy_uniqRole order by jewel desc limit 10';
 					break;
 			}
-			$ret = $this->db->query( $sql );
-			foreach( $ret as $v ){
+			$sqlRet = $this->db->query( $sql );
+			foreach( $sqlRet as $v ){
 				$temp[] = $v['uid'];
 				$temp[] = $v['image'];
 				$temp[] = $v['level'];
