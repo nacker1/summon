@@ -28,8 +28,12 @@
 		$input['hrank'] = $user->getUserRecord( 'maxPvpTop' );
 		if( $input['hrank'] < 1 || $pvpTop < $input['hrank'] ){
 			$user->setUserRecord('maxPvpTop', $pvpTop );
-			if( $input['diamond'] > 0 ){
-				$add['cooldou'] = $input['diamond'];		#添加钻石   当前排名高于历史最高排名奖励钻石
+			if( $pvpTop < 5001 ){ #发钻石
+				if( ($input['hrank'] > 5000 || $input['hrank'] < 1 ){
+					$add['cooldou'] = $input['diamond'] = ceil((5001-$pvpTop)*0.5*(1+(1-$pvpTop/5000)));
+				}elseif( $pvpTop < $input['hrank'] ){
+					$add['cooldou'] = $input['diamond'] = ceil(($input['hrank']-$pvpTop)*0.5*(1+(1-$pvpTop/5000)));
+				}
 			}
 		}
 		$custLimit->addLimitTimes( 1 );
