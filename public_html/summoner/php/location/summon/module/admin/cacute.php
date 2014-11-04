@@ -29,7 +29,7 @@
 		if( $input['hrank'] < 1 || $pvpTop < $input['hrank'] ){
 			$user->setUserRecord('maxPvpTop', $pvpTop );
 			if( $pvpTop < 5001 ){ #发钻石
-				if( ($input['hrank'] > 5000 || $input['hrank'] < 1 ){
+				if( $input['hrank'] > 5000 || $input['hrank'] < 1 ){
 					$add['cooldou'] = $input['diamond'] = ceil((5001-$pvpTop)*0.5*(1+(1-$pvpTop/5000)));
 				}elseif( $pvpTop < $input['hrank'] ){
 					$add['cooldou'] = $input['diamond'] = ceil(($input['hrank']-$pvpTop)*0.5*(1+(1-$pvpTop/5000)));
