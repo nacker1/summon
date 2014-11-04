@@ -19,13 +19,13 @@ class Top extends Base{
 			$this->redis;
 			switch( $this->type ){
 				case '1':
-					$sql = 'select id uid,nickname,image,money num,level from zy_uniqRole order by money desc limit 10';
+					$sql = 'select userid uid,nickname,image,money num,level from zy_uniqRole order by money desc limit 10';
 					break;
 				case '2':
-					$sql = 'select id uid,nickname,image,jewel num,level from zy_uniqRole order by level desc limit 10';
+					$sql = 'select userid uid,nickname,image,jewel num,level from zy_uniqRole order by level desc limit 10';
 					break;
 				case '3':
-					$sql = 'select id uid,nickname,image,jewel num,level from zy_uniqRole order by jewel desc limit 10';
+					$sql = 'select userid uid,nickname,image,jewel num,level from zy_uniqRole order by jewel desc limit 10';
 					break;
 			}
 			echo $sql;
