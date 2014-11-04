@@ -3,6 +3,7 @@
 	define('BOOT',dirname(__DIR__));
 	date_default_timezone_set('Asia/Shanghai');
 	require BOOT.'/inc/function.php';
+	require BOOT.'/inc/config.php';
 
 	function myAutoload($classname){
 		$class = explode('_',$classname);
