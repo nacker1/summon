@@ -1,8 +1,7 @@
 <?php
 	error_reporting(E_ERROR);
 	global $log,$tag,$version,$channel,$serverId;
-	require dirname(__FILE__).'/inc/inc.php';
-	var_dump($_SERVER);
+	require dirname(__FILE__).'/inc/inc.class.php';
 	C('test',false);
 	C('start', gettimeofday( true ));
 	$mid = getReq('cmd',7003);
