@@ -110,6 +110,7 @@
 	}
 
 	function setSend( $key ){ #用户公共邮件  设置用户是否已经领取过奖励
+		$time = $this->pubRedis->getTimes( $key );
 		return $this->mailCheck->set( 1, $key, $time );
 	}
 
