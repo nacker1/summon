@@ -36,6 +36,7 @@ class Top extends Base{
 				$temp[] = $v['num'];
 				$temp[] = $v['nickname'];
 				$ret[] = $temp;
+				unset($temp);
 			}
 			$this->setTopList( $ret );
 		}
