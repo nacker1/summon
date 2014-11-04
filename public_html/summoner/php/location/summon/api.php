@@ -1,4 +1,5 @@
 <?php
+	var_dump($_SERVER);
 	error_reporting(E_ERROR);
 	global $log,$tag,$version,$channel,$serverId;
 	require dirname(__FILE__).'/inc/inc.php';
