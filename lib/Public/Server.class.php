@@ -79,7 +79,7 @@
 			$temp[] = $v['tcp'];
 			$temp[] = $v['php'];
 			$temp[] = $v['top'];
-			$ret[ '"'.$v['id'].'"' ] = $temp;
+			$ret[ "'".$v['id']."'" ] = $temp;
 			unset($temp);
 		}
 		return $ret;
