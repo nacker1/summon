@@ -106,8 +106,8 @@
 	}
 
 	function isSend( $key ){ #用户公共邮件  查询用户是否已经领取过奖励
-		#$time = $this->mailCheck->getTimes( $key );
-		#dump($time);exit;
+		$time = $this->mailCheck->getTimes( $key );
+		dump($time);exit;
 		return $this->mailCheck->get( $key );
 	}
 
