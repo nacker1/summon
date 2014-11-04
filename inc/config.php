@@ -2,5 +2,5 @@
 /**
  *@ 服务器配置文件
  **/
-#default( '' );
+default( 'RECOVER_TIME', 600 );			#恢复时间
 ?>
