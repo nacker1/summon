@@ -108,7 +108,8 @@
 					$hero = new User_Hero( $uid, $v );
 					$hero->addHeroExp( $input['heroexp'] );
 				}
-				$updHero = $hero->getLastUpdField();
+				if( !empty( $hero ) )
+					$updHero = $hero->getLastUpdField();
 				if( !empty( $updHero ) )
 					$input['getList']['hero'] = $updHero;
 			}
