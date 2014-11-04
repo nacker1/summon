@@ -103,7 +103,7 @@
 			unset($nums,$exp1,$exp2,$expBase,$config,$tolHeroExp,$ext);
 		}else{//给英雄添加经验
 			$heros = $input['heros'];
-			if( is_array( $heros ) ){
+			if( is_array( $heros ) && count( $heros > 0 ) ){
 				foreach( $heros as $v ){
 					$hero = new User_Hero( $uid, $v );
 					$hero->addHeroExp( $input['heroexp'] );
