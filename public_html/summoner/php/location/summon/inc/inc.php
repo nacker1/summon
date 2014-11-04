@@ -1,5 +1,4 @@
 <?php
-	//接口初始化信息
 	define('BOOT',dirname(__DIR__));
 	date_default_timezone_set('Asia/Shanghai');
 	require BOOT.'/inc/function.php';
@@ -17,3 +16,4 @@
 	}
 
 	spl_autoload_register( 'myAutoload');
+?>
