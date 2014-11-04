@@ -15,6 +15,7 @@
 				$this->mailCheck = new Cond( 'publicMail_check', $this->uid );
 				$this->pubRedis = new Cond( 'publicMail' );break;
 			default:
+				$this->mailCheck = new Cond( 'publicMail_check', $this->uid );
 				$this->pubRedis = new Cond( 'publicMail' );
 				$this->mailRedis = new Cond( 'userMail',$uid );
 		}
