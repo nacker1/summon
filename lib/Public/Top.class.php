@@ -17,7 +17,6 @@ class Top extends Base{
 		$ret = $this->topPre->get();
 		if( empty( $ret ) ){
 			$this->redis;
-			dump($this->redis);
 			switch( $this->type ){
 				case '1':
 					$sql = 'select id uid,nickname,image,money num,level from zy_uniqRole order by money desc limit 10';
@@ -29,6 +28,7 @@ class Top extends Base{
 					$sql = 'select id uid,nickname,image,jewel num,level from zy_uniqRole order by jewel desc limit 10';
 					break;
 			}
+			echo $sql;
 			$ret = $this->redis->query( $sql );
 			foreach( $ret as $v ){
 				$temp[] = $v['uid'];
