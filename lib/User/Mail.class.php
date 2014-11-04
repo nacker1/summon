@@ -67,14 +67,14 @@
 		$send['sendUser'] = $sendUser;									#发送用户名
 		$send['mType'] = !empty( $to ) && (int)$to>0 ? 1 : 2; 			#邮件类型  1为私人邮件， 2为公共邮件
 		if( $to<1 ){ //to 接收邮件的用户uid  如果to<1则为所有用户
-			$mailRedis = new Cond('publicMail','',$time);
+			$mailRedis = $this->pubRedis;#new Cond('publicMail','',$time);
 		}else{
-			$mailRedis = new Cond('userMail',$to,$time);
+			$mailRedis = $this->mailRedis;#new Cond('userMail',$to,$time);
 			$toUser = new User_User( $to,-1 );
 			$toUser->setNewMail(1); //标记有新邮件  心跳中提示
 		}
 		$this->log->e('mail_info:'.json_encode($send));
-		return $mailRedis->set($send,$uniqKey);
+		return $mailRedis->set($send,$uniqKey,$time);
 	}
 /**
  *@ 获取私人邮件的奖品信息
@@ -110,7 +110,9 @@
 	}
 
 	function setSend( $key ){ #用户公共邮件  设置用户是否已经领取过奖励
-		return $this->mailCheck->set( 1, $key );
+		$time = $this->pubRedis->ttl( $key );
+		dump($time);exit;
+		return $this->mailCheck->set( 1, $key, $time );
 	}
 
 	function delMail( $key ){
