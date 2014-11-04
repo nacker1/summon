@@ -116,7 +116,13 @@
  			$hero->heroPutOnEquip( $index, $comid+1 );
  			$result['hero'] = $hero->getLastUpdField();
  		}
- 		
+ 	#======================  设置强化任务   ==========================
+ 		$proxy = new Proxy( array('type'=>1,'uid'=>$user->getUid()), 'User_Mission', 'getUserMissingByClass' );
+		$miss = $proxy->exec( 36 );
+		if( $miss['progress']<($comid+1)%100 ){//当前通关关卡比之前通关关卡id大，设置系统任务与用户通关进度
+			$user->setMissionId( 1, 36 );
+		}
+ 	#======================  设置强化任务   ==========================
  		$give['good'] = implode( '#', $goods );
 
  		$ret = $user->sendGoodsFromConfig( $give );
