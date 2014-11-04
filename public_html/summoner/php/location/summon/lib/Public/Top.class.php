@@ -16,6 +16,7 @@ class Top extends Base{
 	function getTopList(){
 		$ret = $this->topPre->get();
 		if( true || empty( $ret ) ){
+			unset($ret);
 			$this->db;
 			switch( $this->type ){
 				case '1':
