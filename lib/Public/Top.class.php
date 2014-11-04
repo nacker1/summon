@@ -16,6 +16,7 @@ class Top extends Base{
 	function getTopList(){
 		$ret = $this->topPre->get();
 		if( empty( $ret ) ){
+			$this->redis;
 			switch( $this->type ){
 				case '1':
 					$sql = 'select id uid,nickname,image,money num,level from zy_uniqRole order by money desc limit 10';
