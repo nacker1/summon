@@ -16,7 +16,7 @@ class Top extends Base{
 	function getTopList(){
 		$ret = $this->topPre->get();
 		if( empty( $ret ) ){
-			$this->redis;
+			$this->db;
 			switch( $this->type ){
 				case '1':
 					$sql = 'select userid uid,nickname,image,money num,level from zy_uniqRole order by money desc limit 10';
@@ -28,8 +28,7 @@ class Top extends Base{
 					$sql = 'select userid uid,nickname,image,jewel num,level from zy_uniqRole order by jewel desc limit 10';
 					break;
 			}
-			echo $sql;
-			$ret = $this->redis->query( $sql );
+			$ret = $this->db->query( $sql );
 			foreach( $ret as $v ){
 				$temp[] = $v['uid'];
 				$temp[] = $v['image'];
