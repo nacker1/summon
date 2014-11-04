@@ -7,7 +7,7 @@ class Top extends Base{
 	private $redisTag='topList';		//排行榜在redis中的标签
 	private $topPre;					//排行榜redis连接源
 
-	function __construct( $type ){
+	function __construct( $type, $uid ){
 		parent::__construct( $uid );
 		$this->type = $type;
 		$this->topPre = new Cond( $this->redisTag.':'.$this->type );
