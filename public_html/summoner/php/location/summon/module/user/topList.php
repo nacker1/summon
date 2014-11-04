@@ -10,7 +10,7 @@
 
 	if( empty($type) ){ret(' YMD ',-1);}
 
-	$top = new Top( $type );
+	$top = new Top( $type, $user->getUid() );
 	
 	if( !empty($ref) ){
 		$top->setTopList();
