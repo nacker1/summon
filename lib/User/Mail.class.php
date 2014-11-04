@@ -37,7 +37,8 @@
 					$ret[] = $v;
 				}
 			}
-			$mList = array_merge( $mList, $ret );
+			if( !empty( $ret ) )
+				$mList = array_merge( $mList, $ret );
 		}
 		return $mList;
 	}
