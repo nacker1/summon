@@ -103,6 +103,7 @@ class User_Limit extends User_Base{
  **/
 	public function getLastTimes( $key='' ){
 		$used = $this->getUsedTimes( $key );
+		$this->log->i('tolLimit:'.$this->tolLimit.', used:'.$used);
 		return (int)( $this->tolLimit - $used );
 	}
 /**
