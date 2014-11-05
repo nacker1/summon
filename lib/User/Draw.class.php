@@ -78,6 +78,7 @@ class User_Draw extends User_Base{
 		for( $i=0;$i<$nums;$i++ ){
 			array_push( $ret, $this->_getGood() );
 		}
+		$this->log->i( 'goods:'.json_encode($ret) );
 		return implode('#',$ret);
 	}
 /**
