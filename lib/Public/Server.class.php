@@ -21,7 +21,7 @@
 	private function _init(){
 		$ret;
 		if( empty( $this->sid ) ){ //初始化所有服务器列表
-			if( C( 'test' ) || !$this->pre->exists( 'server:list:1' ) ){
+			if( C( 'test' ) || !$this->pre->exists( 'server:list_check' ) ){
 				$this->pre->hdel( 'server:list:*' );
 				$this->cdb;
 				$slist = $this->cdb->find($this->table);
@@ -39,6 +39,7 @@
 						$this->pre->hmset('server:status:'.$v['id'],$stats);
 					}
 				}
+				$this->pre->set( 'server:list_check', 1, 86400 );
 			}else{
 				$skeys = $this->pre->keys('server:list:*');
 				foreach( $skeys as $v ){
@@ -204,7 +205,7 @@
  **/
 	public function update( $config ){
 		if( empty( $config['name'] )  || empty( $config['tcp'] ) || empty( $config['php'] ) || empty( $config['max'] ) ){ return false; }
-
+		$config['updtime'] = time();
 		$this->cdb;
 		$this->pre->hdel('server:list:*');
 		if( !empty($this->sid) ){
