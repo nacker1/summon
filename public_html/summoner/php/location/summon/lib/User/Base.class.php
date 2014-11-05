@@ -227,6 +227,22 @@
 		return (int)self::$userinfo[$this->uid]['vlevel'];
 	}
 /**
+ *@ getLastAddNoSuperGoods 
+ **/
+	public function getLastUpdGoods(){
+		if( empty( self::$lastUpdGoods['old'] ) ) {
+			unset(self::$lastUpdGoods['old']);
+		}
+		if( empty( self::$lastUpdGoods['new'] ) ) {
+			unset(self::$lastUpdGoods['new']);
+		}
+		if( empty( self::$lastUpdGoods['del'] ) ) {
+			unset(self::$lastUpdGoods['del']);
+		}
+		return self::$lastUpdGoods;
+	}
+	
+/**
  *@ 角色是否是月卡用户
  **/
 	public function isMonthCode(){

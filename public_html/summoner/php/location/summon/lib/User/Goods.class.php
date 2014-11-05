@@ -224,21 +224,7 @@
 	public function isSuper(){
 		return $this->bgood->getGoodSuper();
 	}
-/**
- *@ getLastAddNoSuperGoods 
- **/
-	public function getLastUpdGoods(){
-		if( empty( self::$lastUpdGoods['old'] ) ) {
-			unset(self::$lastUpdGoods['old']);
-		}
-		if( empty( self::$lastUpdGoods['new'] ) ) {
-			unset(self::$lastUpdGoods['new']);
-		}
-		if( empty( self::$lastUpdGoods['del'] ) ) {
-			unset(self::$lastUpdGoods['del']);
-		}
-		return self::$lastUpdGoods;
-	}
+
 /**
  *@ 获取用户指定物品数量
  **/
