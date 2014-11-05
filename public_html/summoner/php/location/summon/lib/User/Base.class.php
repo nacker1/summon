@@ -10,6 +10,7 @@
 	protected static $isupd 		=	array(); 									//判断是否需要更新用户信息
 	protected static $missionNotice =	array();									//任务通知信息
 	protected static $lastUpdHero 	= 	array();									//英雄最后更新信息
+	protected static $lastUpdGoods	=	array('new'=>array(),'old'=>array(),'del'=>array());	//用户变化物品清单
 			
 	protected $baseTable='zy_uniqRole';												//用户角色表
 	protected $baseRecordTable = 'zy_uniqRoleRecord';								//用户record信息表

@@ -8,7 +8,6 @@
 	private $ugid;										//用户拥有物品id  对应roolgoods表中的id
 	private $type;										//物品类型
 	private $goodinfo;									//物品清单   所有物品时存储所有物品是个数据   指定类型时存储指定类型的所有物品  指定物品存储指定物品信息
-	private static $lastUpdGoods=array('new'=>array(),'old'=>array(),'del'=>array());	//用户变化物品清单
 	private $bgood;									//物品基本配置类
 
 	public function __construct( $uid,$gid='',$ugid='' ){
