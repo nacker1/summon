@@ -180,7 +180,7 @@
  *@ 获取服务器列表
  **/
 	public function setTop(){ //暂时删除redis数据
-		$this->pre->del( 'server:list_check' )
+		$this->pre->del( 'server:list_check' );
 		$this->pre->hdel('server:list:*');
 	}
 /**
