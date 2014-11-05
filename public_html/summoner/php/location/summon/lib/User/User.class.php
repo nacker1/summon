@@ -185,7 +185,6 @@
 									$hero->giveHero( $gInfo[2] );
 								}								
 							}
-							#if( isset($good) && gettype( $good ) == 'object' ){
 							$updGoods = $this->getLastUpdGoods();
 							if( !empty( $updGoods ) ){
 								$ret['list'] = $updGoods;
