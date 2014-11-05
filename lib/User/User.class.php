@@ -187,6 +187,7 @@
 							}
 							if( isset($good) && gettype( $good ) == 'object' ){
 								$ret['list'] = $good->getLastUpdGoods();
+								$this->log->i( 'good:'.json_encode($ret) );
 							}
 							
 							if( isset($hero) && gettype( $hero ) == 'object'  ){
