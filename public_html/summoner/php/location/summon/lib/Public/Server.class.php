@@ -180,6 +180,7 @@
  *@ 获取服务器列表
  **/
 	public function setTop(){ //暂时删除redis数据
+		$this->pre->del( 'server:list_check' )
 		$this->pre->hdel('server:list:*');
 	}
 /**
@@ -207,7 +208,8 @@
 		if( empty( $config['name'] )  || empty( $config['tcp'] ) || empty( $config['php'] ) || empty( $config['max'] ) ){ return false; }
 		$config['updtime'] = time();
 		$this->cdb;
-		$this->pre->hdel('server:list:*');
+		$this->setTop();
+		#$this->pre->hdel('server:list:*');
 		if( !empty($this->sid) ){
 			$ret = $this->cdb->update( $this->table, $config, array( 'id'=>$this->sid ) );
 		}else{
