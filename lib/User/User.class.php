@@ -185,8 +185,10 @@
 									$hero->giveHero( $gInfo[2] );
 								}								
 							}
-							if( isset($good) && gettype( $good ) == 'object' ){
-								$ret['list'] = $good->getLastUpdGoods();
+							#if( isset($good) && gettype( $good ) == 'object' ){
+							$updGoods = $this->getLastUpdGoods();
+							if( !empty( $updGoods ) ){
+								$ret['list'] = $updGoods;
 								$this->log->i( 'good:'.json_encode($ret) );
 							}
 							
