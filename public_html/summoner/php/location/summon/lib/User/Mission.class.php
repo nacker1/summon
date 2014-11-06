@@ -254,12 +254,12 @@
 /**
  *@ setUserMissing 设置用户指定类型任务已完成任务的进度
  **/
-	function setUserMissing( $progress=1 ){
+	function setUserMissing( $progress ){
 		$this->log->i('missionClass:'.$this->class.',this->type:'.$this->type.', progress:'.$progress);
 		if( 1==$this->type ){ //处理系统任务
 			$missing = $this->getUserMissingByClass( $this->class );
 			if( empty( $missing ) ) {return;}
-			$set['progress'] = (int)$missing['progress'] + 1;
+			$set['progress'] = (int)$missing['progress'] + $progress;
 			$set['missing'] = (int)$missing['missing'];
 			$key = empty( $missing['missing'] ) ? $missing['showMission'] : $missing['missing'] ;
 			$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal','Task_Level' ) );
@@ -279,7 +279,7 @@
 		}elseif( 2==$this->type ){ //处理日常任务
 			$dayMis = $this->cond->get($this->class);
 			if( !empty( $dayMis ) ){
-				$dayMis['progress'] += 1 ;
+				$dayMis['progress'] += $progress ;
 				$this->cond->set( $dayMis,$this->class );
 				#=====================  设置任务通知  ======================
 				/*$notice[] = $dayMis['tid'];
