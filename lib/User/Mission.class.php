@@ -254,8 +254,8 @@
 /**
  *@ setUserMissing 设置用户指定类型任务已完成任务的进度
  **/
-	function setUserMissing(){
-		$this->log->i('missionClass:'.$this->class.',this->type:'.$this->type);
+	function setUserMissing( $progress=1 ){
+		$this->log->i('missionClass:'.$this->class.',this->type:'.$this->type.', progress:'.$progress);
 		if( 1==$this->type ){ //处理系统任务
 			$missing = $this->getUserMissingByClass( $this->class );
 			if( empty( $missing ) ) {return;}
