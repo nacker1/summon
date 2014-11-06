@@ -78,6 +78,7 @@ class User_Draw extends User_Base{
 		for( $i=0;$i<$nums;$i++ ){
 			array_push( $ret, $this->_getGood() );
 		}
+		$this->setMissionId( 2,65,$nums );
 		$this->log->i( 'goods:'.json_encode($ret) );
 		return implode('#',$ret);
 	}
@@ -120,7 +121,7 @@ class User_Draw extends User_Base{
 		if( $tempInfo[$index]['Item_Id'] < 11000 ){	#如果是英雄给定英雄的品质
 			$good[] = $tempInfo[$index]['Item_Color'];
 		}
-		$this->setMissionId( 2,65 );
+		
 		return implode( ',', $good );
 	}
 /**
