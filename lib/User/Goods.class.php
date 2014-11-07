@@ -122,22 +122,6 @@
 				self::$lastUpdGoods['new'][] = $insert;
 				$this->redis->hmset('roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid,$insert);
 				return true;
-				/*$insert['id'] = $this->db->insert($this->table,$insert);
-
-				if( $insert['id'] ){
-					self::$lastUpdGoods['new'][] = $insert;
-					$this->goodinfo = $insert;
-					if( $this->redis->hmset('roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid,$insert) ){
-						$this->log->i('* 给用户('.$this->uid.')发放#'.$nums.'#个物品（'.$this->type.' -> '.$this->gid.'）成功');
-						return true;
-					}else{
-						$this->log->e('* 发放#'.$nums.'#个物品（'.$this->type.' -> '.$this->gid.'）失败。写redis失败');
-						return false;
-					}
-				}else{//发放失败
-					$this->log->e('* 发放#'.$nums.'#个物品（'.$this->type.' -> '.$this->gid.'）失败，插入id='.$insert['id'].'。数据入库失败'.$this->db->error());
-					return false;
-				}*/
 			}
 		}else{	
 			if( empty($this->ugid) && !$this->redis->exists('roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid.':'.$this->ugid) ){
