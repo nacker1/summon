@@ -287,12 +287,7 @@
 	public function getTotalPay(){
 		return (int)self::$userinfo[$this->uid]['totalPay'];
 	}
-/**
- *@ 设置用户登录检验码 
- **/
-	public function setSkey(){
-		return self::$userinfo[$this->uid]['skey'] = md5( gettimeofday(true).rand(1000,9999) ); //登录校验码
-	}
+
 /**
  *@ 设置用户月卡
  **/
@@ -331,6 +326,12 @@
 		return true;
 	}
 /**
+ *@ 设置用户登录检验码 
+ **/
+	public function setSkey(){
+		return $this->setUserHeart( 'skey', md5( gettimeofday(true).rand(1000,9999) );//登录校验码
+	}
+/**
  *@ 设置用户私信标记
  **/
 	public function setUserHeart( $tag, $val=1 ){
@@ -340,13 +341,15 @@
  *@ 设置用户私信标记
  **/
 	public function setMessageFlag( $val ){
-		return $this->redis->hset('roleinfo:'.$this->uid.':baseinfo','message',$val);#return self::$userinfo[$this->uid]['message'] = $val;
+		return $this->setUserHeart( 'message', $val);
+		#return $this->redis->hset('roleinfo:'.$this->uid.':baseinfo','message',$val);#return self::$userinfo[$this->uid]['message'] = $val;
 	}
 /**
  *@ 设置用户邮件标记
  **/
 	public function setNewMail($val=1){
-		return $this->redis->hset('roleinfo:'.$this->uid.':baseinfo','mail',$val);#self::$userinfo[$this->uid]['mail'] = $val;
+		return $this->setUserHeart( 'mail', $val);
+		#return $this->redis->hset('roleinfo:'.$this->uid.':baseinfo','mail',$val);#self::$userinfo[$this->uid]['mail'] = $val;
 	}
 /**
  *@ 添加用户金币
