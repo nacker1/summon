@@ -329,7 +329,7 @@
  *@ 设置用户登录检验码 
  **/
 	public function setSkey(){
-		return $this->setUserHeart( 'skey', md5( gettimeofday(true).rand(1000,9999) );//登录校验码
+		return $this->setUserHeart( 'skey', md5( gettimeofday(true).rand(1000,9999) ) );//登录校验码
 	}
 /**
  *@ 设置用户私信标记
