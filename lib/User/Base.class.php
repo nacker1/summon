@@ -53,8 +53,6 @@
 				$uinfo = $this->redis->hgetall('roleinfo:'.$this->uid.':baseinfo');
 			}
 			self::$userinfo[$this->uid] = $uinfo;
-		}else{
-			$this->redis->expire('roleinfo:'.$this->uid.':baseinfo',WEEK_TIMES);
 		}
 		if( !isset( self::$updinfo[$this->uid] ) ){
 			self::$updinfo[$this->uid] = array();
