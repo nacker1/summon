@@ -48,7 +48,7 @@
 				#$uinfo['lastUpdTime'] = time(); //用户信息最后更新时间
 				$uinfo['mail'] = 0; //邮件标记
 				$this->redis->del('roleinfo:'.$this->uid.':baseinfo');
-				$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',$uinfo,WEEK_TIMES);
+				$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',$uinfo);
 			}else{
 				$uinfo = $this->redis->hgetall('roleinfo:'.$this->uid.':baseinfo');
 			}
