@@ -110,14 +110,14 @@
  						$tasks = explode(',',$v);
  						foreach( $tasks as $val ){
  							$key = $k.':'.$val;
-		 					$set['tid'] = (int)$val;		#'tid'		任务id
-		 					$set['progress'] = 0;				#'progress' 进度
+		 					$set['tid'] = (int)$val;						#'tid'		任务id
+		 					$set['progress'] = 0;							#'progress' 进度
 		 					$this->cond->set( $set,$key );
 		 					unset($set);
  						}
  					}else{
-	 					$set['tid'] = (int)$v; 	#'tid'		任务id
-	 					$set['progress'] = 0; 		#'progress' 进度
+	 					$set['tid'] = (int)$v; 								#'tid'		任务id
+	 					$set['progress'] = 0; 								#'progress' 进度
 	 					if( $k == 60 ){
 	 						$set['progress'] = $this->isMonthCode();
 	 					}
