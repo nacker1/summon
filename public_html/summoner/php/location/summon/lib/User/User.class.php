@@ -221,8 +221,11 @@
 		}
 		#同步用户record信息
 		if( is_array( self::$recordInfo[$this->uid] ) && !empty( self::$recordInfo[$this->uid] ) ){
-			$this->log->i( 'record:'.json_encode(self::$recordInfo[$this->uid]) );
-			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$recordInfo[$this->uid]) || $this->log->i( 'sync_fail:'.json_encode(self::$recordInfo[$this->uid]) );
+			$this->log->i( 'record:'.json_encode(self::$recordInfo[$this->uid]) );json_encode(self::$recordInfo[$this->uid])
+			$this->log->i( 'roleinfo:'.$this->uid.':baseinfo -> recode :'.json_encode(self::$recordInfo[$this->uid]) );
+			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$recordInfo[$this->uid]);
+			$guide = $this->redis->hget('roleinfo:'.$this->uid.':baseinfo','guide');
+			$this->log->i( 'new_guide:'.$guide );
 			$this->throwSQL( $this->baseRecordTable, self::$recordInfo[$this->uid], array('uid'=>$this->uid) );
 			self::$recordInfo[$this->uid]=array();
 		}
