@@ -3,5 +3,5 @@
  *@ 服务器配置文件
  **/
 define('RECOVER_TIME', 600 );			#恢复时间
-define('WEEK_TIMES', 604800 );
+define('WEEK_TIMES', 604800 );			#用户数据保存时间
 ?>
