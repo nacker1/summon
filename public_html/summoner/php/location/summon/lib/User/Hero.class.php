@@ -151,7 +151,7 @@ class User_Hero extends User_Base{
 		self::$heroInfo[$this->uid][$this->hid] = $hero;
 		self::$lastUpdHero[$this->uid][$this->hid] = $hero;
 		unset($hero['add']);
-		$this->setUpdTime();
+		$this->setHeroUpdTime();
 		return $hero;
 	}
 /**
@@ -206,7 +206,7 @@ class User_Hero extends User_Base{
 		self::$lastUpdHero[$this->uid][$this->hid]['level'] = self::$heroInfo[$this->uid][$this->hid]['level'];
 		self::$lastUpdHero[$this->uid][$this->hid]['exp'] = self::$heroInfo[$this->uid][$this->hid]['exp'];
 		$this->log->i( '给用户#'.$this->uid.'#英雄#'.$this->hid.'#添加#'.$nums.'#经验。hLevel:'.self::$heroInfo[$this->uid][$this->hid]['level'].', exp:'.self::$heroInfo[$this->uid][$this->hid]['exp'] );
-		$this->setUpdTime();
+		$this->setHeroUpdTime();
 		return true;
 	}
 /**
@@ -221,7 +221,7 @@ class User_Hero extends User_Base{
 		$eqConf = json_encode($qConfig);
 		self::$lastUpdHero[$this->uid][$this->hid]['equip'.$index] = $eqConf;
 		$ret = self::$heroInfo[$this->uid][$this->hid]['equip'.$index] = $eqConf;
-		$this->setUpdTime();
+		$this->setHeroUpdTime();
 		return $ret;
 	}
 /**
@@ -231,7 +231,7 @@ class User_Hero extends User_Base{
 		$ret = self::$heroInfo[$this->uid][$this->hid]['equip'.$index];
 		self::$lastUpdHero[$this->uid][$this->hid]['equip'.$index] = '0';
 		self::$heroInfo[$this->uid][$this->hid]['equip'.$index] = '0';
-		$this->setUpdTime();
+		$this->setHeroUpdTime();
 		return true;
 	}
 /**
@@ -277,7 +277,7 @@ class User_Hero extends User_Base{
 /**
  *@ 设置是否更新
  **/
-	function setUpdTime(){
+	function setHeroUpdTime(){
 		self::$heroInfo[$this->uid][$this->hid]['fire'] = self::$lastUpdHero[$this->uid][$this->hid]['fire'] = $this->getTotalFire();
 		return true;
 	}
@@ -288,7 +288,7 @@ class User_Hero extends User_Base{
 		$this->unLockSkill( $level ); //品质升级技能解锁
 		self::$lastUpdHero[$this->uid][$this->hid]['color'] = $level;
 		$ret = self::$heroInfo[$this->uid][$this->hid]['color'] = $level;
-		$this->setUpdTime();
+		$this->setHeroUpdTime();
 		return $ret;
 	}
 /**
@@ -342,7 +342,7 @@ class User_Hero extends User_Base{
 		$this->setMissionId( 2, 27 );
 		self::$lastUpdHero[$this->uid][$this->hid]['config'] = json_encode($skillConf);
 		self::$heroInfo[$this->uid][$this->hid]['config'] = json_encode($skillConf);
-		return $this->setUpdTime();
+		return $this->setHeroUpdTime();
 	}
 /**
  *@ 英雄技能解锁 $skillIndex:技能下标  
@@ -363,7 +363,7 @@ class User_Hero extends User_Base{
 		$this->log->i('* 用户#'.$this->uid.'#英雄#'.$this->hid.'#技能（'.$this->hid.$skillIndex.'）解锁！');
 		self::$lastUpdHero[$this->uid][$this->hid]['config'] = json_encode($skillConf);
 		self::$heroInfo[$this->uid][$this->hid]['config'] = json_encode($skillConf);
-		return $this->setUpdTime();
+		return $this->setHeroUpdTime();
 	}
 
 /**
