@@ -25,6 +25,7 @@
 		$showTag = $tag.'=cache模式=';
 	}
 	$log->i( '接口调用开始['.($ver?$ver:0).'] - '.$showTag.' IP:'.long2ip(getIp()) );
+	$log->i(json_encode($_REQUIST));
 	$log->i(json_encode($input));
 	$filepath = $mod->path();
 	unset($mod);
