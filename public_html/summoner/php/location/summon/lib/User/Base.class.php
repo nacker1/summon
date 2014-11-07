@@ -331,7 +331,7 @@
 	public function setSkey(){
 		$skey = md5( gettimeofday(true).rand(1000,9999) );
 		self::$userinfo[$this->uid]['skey'] = $skey;
-		return $this->setUserHeart( 'skey', $skey; );//登录校验码
+		return $this->setUserHeart( 'skey', $skey );//登录校验码
 	}
 /**
  *@ 设置用户私信标记
