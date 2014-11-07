@@ -48,11 +48,13 @@
 				#$uinfo['lastUpdTime'] = time(); //用户信息最后更新时间
 				$uinfo['mail'] = 0; //邮件标记
 				$this->redis->del('roleinfo:'.$this->uid.':baseinfo');
-				$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',$uinfo);
+				$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',$uinfo,WEEK_TIMES);
 			}else{
 				$uinfo = $this->redis->hgetall('roleinfo:'.$this->uid.':baseinfo');
 			}
 			self::$userinfo[$this->uid] = $uinfo;
+		}else{
+			$this->redis->expire('roleinfo:'.$this->uid.':baseinfo',WEEK_TIMES);
 		}
 		if( !isset( self::$updinfo[$this->uid] ) ){
 			self::$updinfo[$this->uid] = array();
