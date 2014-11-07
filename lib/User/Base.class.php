@@ -329,7 +329,9 @@
  *@ 设置用户登录检验码 
  **/
 	public function setSkey(){
-		return $this->setUserHeart( 'skey', md5( gettimeofday(true).rand(1000,9999) ) );//登录校验码
+		$skey = md5( gettimeofday(true).rand(1000,9999) );
+		self::$userinfo[$this->uid]['skey'] = $skey;
+		return $this->setUserHeart( 'skey', $skey; );//登录校验码
 	}
 /**
  *@ 设置用户私信标记
