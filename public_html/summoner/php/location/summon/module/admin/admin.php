@@ -53,6 +53,24 @@ switch ($type) {
 		}
 		ret('suc');
 		break;
+	case '1000':
+		#添加所有英雄
+		$hList = $input['heros'];
+		if( empty( $hList ) ){
+			$hList = array( 10001,10002,10004,10005,10006,10008,10009,10010,10011,10012,10013,10015,10018,10019,10021,10022,10023,10024,10025,10026,10027,10028,10029,10031,10032,10034,10036,10040 );
+		}
+		foreach ( $hList as $v ) {
+			$hero = new User_Hero( $user->getUid(),$v );
+			$hero->giveHero();
+			#unset($hero);
+		}
+		$ret['hero'] = $hero->getLastUpdField();
+		#=========== 任务信息 ==================
+		$mis = $user->getMissionNotice();
+		if( !empty( $mis ) ){
+			$ret['mis'] = $mis;
+		}
+		ret( $ret );
 	default:
 		# code...
 		phpinfo();
