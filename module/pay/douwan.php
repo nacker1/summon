@@ -17,7 +17,7 @@
 	$pay = new Pay( $payinfo );
 	$pay->pay();
 	if( !$pay->getStatus() ){
-		ret( $pay->getError() );
+		ret( $pay->getError(), -1 );
 	}
 
 	ret( 'suc' );
