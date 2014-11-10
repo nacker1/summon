@@ -2,7 +2,7 @@
 /**
  *@ 战场结算
  **/
-	$str = '{"bossid":0,"buff":[72001],"cmd":9001,"currnk":0,"diamond":0,"goods":[{}],"heroexp":100,"heros":[],"hrank":0,"isboss":0,"money":1000,"pass":1,"playerexp":10,"roundid":3,"stageid":960002,"stagetype":2,"tasktype":70,"uid":14}';
+	$str = '{"bossid":0,"buff":[72001],"cmd":9001,"currnk":0,"diamond":0,"goods":[{}],"heroexp":100,"heros":[],"hrank":0,"isboss":0,"money":1000,"pass":1,"playerexp":10,"roundid":3,"roundid":960002,"stagetype":2,"tasktype":70,"uid":14}';
 	
 	if( count( $input )<5 ){
 		$log->e( '* 战斗请求数据格式不对.'.json_encode($input) );
@@ -63,10 +63,10 @@
 # ----------------------------------------------------------每天精英关卡与炼狱关卡通关次数限制-------------------------------------------------------------------------------------
 		if( in_array( $input['tasktype'], array( 12,13 ) ) ){					
 			$custLimit = new User_Limit( 'customsTimesDay' ); 
-			if( $custLimit->getLastTimes( $input['stageid'] ) < 1 ){
+			if( $custLimit->getLastTimes( $input['roundid'] ) < 1 ){
 				ret('今日次数已用完',-1);
 			}
-			$custLimit->addLimitTimes( 1,$input['stageid'] );
+			$custLimit->addLimitTimes( 1,$input['roundid'] );
 			unset( $custLimit );
 		}
 # ----------------------------------------------------------每天精英关卡与炼狱关卡通关次数限制-------------------------------------------------------------------------------------
@@ -119,8 +119,8 @@
 			}
 
 			//-==============处理用户通关进度 PVE 包括普通本 精英本 练狱本==============
-			if( in_array($input['stagetype'],array(1) ) && $input['stageid'] > 0 && $input['passlevel'] > 0 ){
-				$progress = new User_Progress( $input['stageid'] );
+			if( in_array($input['stagetype'],array(1) ) && $input['roundid'] > 0 && $input['passlevel'] > 0 ){
+				$progress = new User_Progress( $input['roundid'] );
 				$progress->setUserProgress( $input['passlevel'] );
 			}
 		}
@@ -162,13 +162,13 @@
 			case '68':	//英雄炼狱
 				$add['life'] = -6;
 				$user->setMissionId(2,68);
-				if( $input['stageid'] == 960003 ){ #钢铁巢穴
+				if( $input['roundid'] == 960003 ){ #钢铁巢穴
 					$actLimit = new User_Limit( 'steelNestDay' );
 					$actLimit->addLimitTimes();
-				}elseif( $input['stageid'] == 960004 ){#飞龙宝藏
+				}elseif( $input['roundid'] == 960004 ){#飞龙宝藏
 					$actLimit = new User_Limit( 'hiryuTreasuresDay' );
 					$actLimit->addLimitTimes();
-				}elseif( $input['stageid'] == 960005 ){#猎杀巨龙
+				}elseif( $input['roundid'] == 960005 ){#猎杀巨龙
 					$actLimit = new User_Limit( 'killDragonDay' );
 					$actLimit->addLimitTimes();
 				}
@@ -197,7 +197,7 @@
 		if( isset($input['tasktype']) && $input['tasktype'] < 14 && $input['tasktype'] > 10 ){ // pve逻辑处理
 			$proxy = new Proxy( array('type'=>1,'uid'=>$user->getUid()), 'User_Mission', 'getUserMissingByClass' );
 			$miss = $proxy->exec( $input['tasktype'] );
-			if( $miss['progress']<$input['stageid'] ){//当前通关关卡比之前通关关卡id大，设置系统任务与用户通关进度
+			if( $miss['progress']<$input['roundid'] ){//当前通关关卡比之前通关关卡id大，设置系统任务与用户通关进度
 				$user->setMissionId( 1, $input['tasktype'] );
 			}
 
