@@ -107,7 +107,7 @@
 			if( $this->redis->exists( 'roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid ) ){
 				$this->goodinfo['nums'] += $nums;
 				self::$lastUpdGoods['old'][$this->gid]=(int)$this->goodinfo['nums'];
-				$this->log->d('* 给用户('.$this->uid.')发放#'.$nums.'#个物品（'.$this->type.' -> '.$this->gid.'）成功');
+				$this->log->i('* 给用户('.$this->uid.')发放#'.$nums.'#个物品（'.$this->type.' -> '.$this->gid.'）成功');
 				$this->setThrowSQL( $this->table,array( 'nums'=>$this->goodinfo['nums'] ),array(  'uid'=>$this->uid,'gid'=>$this->gid ) );
 				return $this->redis->hincr( 'roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid, 'nums', $nums);
 			}else{
@@ -116,7 +116,7 @@
 				$insert['gtype'] = $this->type;
 				$insert['uid'] = $this->uid;
 				$this->setThrowSQL( $this->table, $insert );
-				$this->log->d('* 给用户('.$this->uid.')发放#'.$nums.'#个物品（'.$this->type.' -> '.$this->gid.'）成功');
+				$this->log->i('* 给用户('.$this->uid.')发放#'.$nums.'#个物品（'.$this->type.' -> '.$this->gid.'）成功');
 				$this->goodinfo = $insert;
 				unset($insert['uid']);
 				self::$lastUpdGoods['new'][] = $insert;
@@ -143,7 +143,7 @@
 						$this->ugid = $insert['id'];
 						self::$lastUpdGoods['new'][] = $insert;
 						if( $this->redis->hmset('roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid.':'.$this->ugid,$insert) ){
-							$this->log->d('* 给用户('.$this->uid.')发放#1#个物品（'.$this->type.' -> '.$this->gid.'）成功');
+							$this->log->i('* 给用户('.$this->uid.')发放#1#个物品（'.$this->type.' -> '.$this->gid.'）成功');
 						}else{
 							$this->log->e('* 发放#1#个物品（'.$this->type.' -> '.$this->gid.'）失败。写redis失败');
 						}
@@ -175,7 +175,7 @@
 			if( $this->redis->hincr( 'roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid, 'nums' ,-$nums ) !==false ){
 				$this->goodinfo['nums'] -= $nums;
 				self::$lastUpdGoods['old'][$this->gid]=$this->goodinfo['nums'];
-				$this->log->d('* 扣除用户('.$this->uid.') #'.$nums.'#个物品（'.$this->type.' -> '.$this->gid.'）成功');
+				$this->log->i('* 扣除用户('.$this->uid.') #'.$nums.'#个物品（'.$this->type.' -> '.$this->gid.'）成功');
 				$this->setThrowSQL( $this->table,array( 'nums'=>($ugood-$nums) ),array(  'uid'=>$this->uid,'gid'=>$this->gid ) );
 				return true;
 			}else{//错误日志  回收。
@@ -197,7 +197,7 @@
 				}
 				$this->setThrowSQL( $this->table,array( 'nums'=>($ugood-$nums) ),array(  'uid'=>$this->uid,'gid'=>$this->gid ) );
 			}
-			$this->log->d('* 扣除用户('.$this->uid.') #'.$nums.'#个物品（'.$this->type.' -> '.$this->gid.'）成功');
+			$this->log->i('* 扣除用户('.$this->uid.') #'.$nums.'#个物品（'.$this->type.' -> '.$this->gid.'）成功');
 			return true;
 		}
 	}
