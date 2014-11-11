@@ -244,17 +244,7 @@
 		}
 		return self::$lastUpdGoods;
 	}
-	
-/**
- *@ 角色是否是月卡用户
- **/
-	public function isMonthCode(){
-		$ret = 0;
-		if( self::$userinfo[$this->uid]['monthCode'] > 0 && self::$userinfo[$this->uid]['mCodeOverTime'] > time() ){
-			$ret = 1;
-		}
-		return $ret;
-	}
+
 /**
  *@ 获取角色登录校验码
  **/
@@ -290,7 +280,35 @@
 	public function getTotalPay(){
 		return (int)self::$userinfo[$this->uid]['totalPay'];
 	}
-
+/**
+ *@ 角色是否是周卡用户
+ **/
+	public function isWeekCode(){
+		$ret = 0;
+		if( self::$userinfo[$this->uid]['weekCode'] > 0 && self::$userinfo[$this->uid]['weekCodeOverTime'] > time() ){
+			$ret = 1;
+		}
+		return $ret;
+	}
+/**
+ *@ 设置用户月卡
+ **/
+	public function setWeekCode(){
+		$this->log->i( '* 用户#'.$this->uid.'#充值周卡' );
+		self::$recordInfo[$this->uid]['ext1'] = self::$userinfo[$this->uid]['weekCode'] = 1;
+		self::$recordInfo[$this->uid]['ext2'] = self::$userinfo[$this->uid]['weekCodeOverTime'] = time() + 86400*7;
+		return true;
+	}
+/**
+ *@ 角色是否是月卡用户
+ **/
+	public function isMonthCode(){
+		$ret = 0;
+		if( self::$userinfo[$this->uid]['monthCode'] > 0 && self::$userinfo[$this->uid]['mCodeOverTime'] > time() ){
+			$ret = 1;
+		}
+		return $ret;
+	}
 /**
  *@ 设置用户月卡
  **/
@@ -300,6 +318,22 @@
 		self::$updinfo[$this->uid]['monthCode'] = self::$userinfo[$this->uid]['monthCode'] = 1;
 		self::$updinfo[$this->uid]['mCodeOverTime'] = self::$userinfo[$this->uid]['mCodeOverTime'] = time() + 86400*30;
 		return true;
+	}
+/**
+ *@ 获取用户卡类标记
+ **/
+	public function getCodeFlag(){
+		$isMonth = $this->isMonthCode();
+		$isWeek = $this->isWeekCode();
+		if( $isMonth && $isWeek ){
+			return 3;
+		}
+		if( $isWeek ){
+			return 2;
+		}
+		if( $isMonth ){
+			return 1;
+		}
 	}
 /**
  *@ 设置用户头像
