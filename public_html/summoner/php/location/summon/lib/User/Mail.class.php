@@ -29,7 +29,7 @@
 		$priMail = $this->mailRedis->getAll();
 		$pubMail = $this->pubRedis->getAll();
 		$mList = array();
-		$this->log->i( 'priMail:'.$priMail );
+		$this->log->i( 'priMail:'.json_encode( $priMail ) );
 		if( !empty( $priMail ) )
 			$mList = array_merge( $mList, $priMail );
 		if( !empty( $pubMail ) ){
