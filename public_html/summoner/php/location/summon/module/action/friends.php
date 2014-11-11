@@ -104,6 +104,21 @@
 	 	}else{
 	 		ret( '今日次数已用完',-1 );
 	 	}
+	 case '61'://领取体力  getLife
+ 		$tag = '领取体力';
+ 		$to = $input['to'];
+ 		if( empty( $to ) ){
+ 			ret('YMD',-1);
+ 		}
+ 		if( $to == $user->getUid() ){
+ 			ret('YMD',-1);
+ 		}
+
+ 		$friend = new User_Friend( $user->getUid(), $to );
+
+ 		$give['life'] = $friend->getLife();
+ 		ret( $user->sendGoodsFromConfig($give) );
+	 	
  	case '7'://删除指定好友
  		$tag = '删除指定好友';
  		$to = isset( $input['to'] ) ? $input['to'] : 0 ;
