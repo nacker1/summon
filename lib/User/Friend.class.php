@@ -106,7 +106,7 @@ class User_Friend extends User_Base{
  **/
 	public function getFriendList(){
 		$fList = $this->cond->get( 'listInfo' );
-		if( empty( $fList ) ){
+		if( true || empty( $fList ) ){
 			$friends = $this->cond->getAll( 'lists' );
 			if( empty($friends) && !$this->cond->get( 'checked' ) ){ //从数据库同步
 				$this->db;
