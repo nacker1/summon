@@ -71,6 +71,7 @@
 		$send['type'] = (int)$type;										#邮件类型（1文字类公告， 2为领取类）
 		$send['tit'] = $tit;											#邮件标题
 		$send['con'] = $con;											#邮件内容
+		$send['fUid'] = $this->uid;										#发送邮件者的uid
 		$send['sendTime'] = time();										#发送时间	
 		$send['sendUser'] = $sendUser;									#发送用户名
 		$send['mType'] = !empty( $to ) && (int)$to>0 ? 1 : 2; 			#邮件类型  1为私人邮件， 2为公共邮件
