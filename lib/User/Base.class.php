@@ -54,6 +54,9 @@
 			}
 			self::$userinfo[$this->uid] = $uinfo;
 		}
+		if( self::$userinfo[$this->uid]['_heartTime']-time() > 600 ){ #登录超时
+			ret('time_out',301);
+		}
 		if( !isset( self::$updinfo[$this->uid] ) ){
 			self::$updinfo[$this->uid] = array();
 		}
