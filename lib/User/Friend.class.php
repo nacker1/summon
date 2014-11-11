@@ -131,6 +131,7 @@ class User_Friend extends User_Base{
 					$getLife = $this->cond->get( 'getLife:'.$friend['uid'] );
 					$friend[] = empty( $getLife ) ? 0 : 1;						#好友是否赠送体力
 					$fList[] = $friend;
+					unset( $friend );
 				}
 				$this->cond->set( $fList, 'listInfo', 3600 );
 			}
