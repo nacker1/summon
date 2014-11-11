@@ -31,7 +31,7 @@ switch ($type) {
 	case '4':
 		#添加用户周卡
 		$user->setWeekCode();
-		ret($user->getUserLastUpdInfo());
+		ret( $user->getUserLastUpdInfo() );
 	case '997': #踢下线
 		$user->setLoginTime();
 		$user->setSkey();

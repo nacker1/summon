@@ -295,8 +295,8 @@
  **/
 	public function setWeekCode(){
 		$this->log->i( '* 用户#'.$this->uid.'#充值周卡' );
-		self::$recordInfo[$this->uid]['ext1'] = self::$userinfo[$this->uid]['weekCode'] = 1;
-		self::$recordInfo[$this->uid]['ext2'] = self::$userinfo[$this->uid]['weekCodeOverTime'] = time() + 86400*7;
+		self::$recordInfo[$this->uid]['ext1'] = self::$updinfo[$this->uid]['weekCode'] = self::$userinfo[$this->uid]['weekCode'] = 1;
+		self::$recordInfo[$this->uid]['ext2'] = self::$updinfo[$this->uid]['weekCodeOverTime'] = self::$userinfo[$this->uid]['weekCodeOverTime'] = time() + 86400*7;
 		return true;
 	}
 /**
