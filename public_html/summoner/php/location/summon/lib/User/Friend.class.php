@@ -124,12 +124,12 @@ class User_Friend extends User_Base{
 			if( is_array( $friends ) ){
 				foreach( $friends as $v ){
 					$user = new User_User( $v['uid'],-1 );
-					$friend['uid'] = $user->getUid();
-					$friend['name'] = $user->getUserName();
-					$friend['img'] = $user->getImage();
-					$friend['level'] = $user->getLevel();
+					$friend[] = $user->getUid();								#好友uid
+					$friend[] = $user->getUserName();							#好友名称
+					$friend[] = $user->getImage();								#好友头像
+					$friend[] = $user->getLevel();								#好友等级
 					$getLife = $this->cond->get( 'getLife:'.$friend['uid'] );
-					$friend['give'] = empty( $getLife ) ? 0 : 1;
+					$friend[] = empty( $getLife ) ? 0 : 1;						#好友是否赠送体力
 					$fList[] = $friend;
 				}
 				$this->cond->set( $fList, 'listInfo', 3600 );
@@ -197,7 +197,7 @@ class User_Friend extends User_Base{
  **/
 	public function getLife(){
 		$fList = $this->cond->get( 'getLife:'.$this->toUid );
-		if( empty( $fList ) )return 0;
+		if( empty( $fList ) )return false;
 		$this->cond->del( 'getLife:'.$this->toUid );
 		$this->toCond->del( 'listInfo' );
 		return 2;
