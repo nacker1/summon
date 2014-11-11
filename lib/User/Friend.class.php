@@ -128,7 +128,8 @@ class User_Friend extends User_Base{
 					$friend['name'] = $user->getUserName();
 					$friend['img'] = $user->getImage();
 					$friend['level'] = $user->getLevel();
-					$friend['give'] = $this->cond->get( 'getLife:'.$friend['uid'] );
+					$getLife = $this->cond->get( 'getLife:'.$friend['uid'] );
+					$friend['give'] = empty( $getLife ) ? 0 : 1;
 					$fList[] = $friend;
 				}
 				$this->cond->set( $fList, 'listInfo', 3600 );
