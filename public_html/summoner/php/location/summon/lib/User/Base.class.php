@@ -658,11 +658,11 @@
  **/
 	public function getUserLastUpdInfo(){
 		$this->log->i('updinfo:'.json_encode(self::$updinfo[$this->uid]));
-		if( isset(self::$recordInfo[$this->uid]) && is_array( self::$recordInfo[$this->uid] ) ){
+		/*if( isset(self::$recordInfo[$this->uid]) && is_array( self::$recordInfo[$this->uid] ) ){
 			return array_merge(self::$updinfo[$this->uid],self::$recordInfo[$this->uid]);
-		}else{
-			return self::$updinfo[$this->uid];
-		}
+		}else{*/
+		return self::$updinfo[$this->uid];
+		//}
 	}
 
 #====== * 用户设置或同步用户zy_uniqRoleRecord表中的信息 ==========================================================
@@ -674,7 +674,7 @@
  **/
 	public function setUserRecord( $key, $value ){
 		$this->log->i( '设置用户记录信息：'.$key.'=>'.$value );
-		return self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = $value;
+		return self::$updinfo[$this->uid][$key] = self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = $value;
 	}
 /**
  *@ getUserRecord() 设置用户的记录表信息
@@ -692,7 +692,7 @@
  **/
 	public function addUserRecord( $key, $value ){
 		$this->log->i( '添加用户记录信息：'.$key.'+='.$value );
-		return self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
+		return self::$updinfo[$this->uid][$key] = self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
 	}
 /**
  *@ setUserGuide 设置用户的新手引导进度
