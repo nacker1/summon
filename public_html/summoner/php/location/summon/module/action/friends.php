@@ -89,7 +89,7 @@
  			if( $limit->getUsedTimes($to) ){
  				ret('同一好友每天只能赠送一次',-1);
  			}
-	 		$mail = new User_Mail();
+	 		$mail = new User_Mail( $to );
 	 		$life = $limit->getGiveNum();
 	 		$con = ' 亲，我给你赠送了 '.$life.' 点体力，记得回赠我哦。 ';
 	 		$goods = array('life'=>$life);
