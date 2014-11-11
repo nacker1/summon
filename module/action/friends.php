@@ -89,11 +89,14 @@
  			if( $limit->getUsedTimes($to) ){
  				ret('同一好友每天只能赠送一次',-1);
  			}
-	 		$mail = new User_Mail( $to );
+	 		/*$mail = new User_Mail( $to );
 	 		$life = $limit->getGiveNum();
 	 		$con = ' 亲，我给你赠送了 '.$life.' 点体力，记得回赠我哦。 ';
 	 		$goods = array('life'=>$life);
-	 		$mail->sendMail($con, 2, $to, '收获体力', json_encode($goods), $user->getUserName(),get3unix());
+	 		$mail->sendMail($con, 2, $to, '收获体力', json_encode($goods), $user->getUserName(),get3unix());*/
+	 		$friend = new User_Friend( $user->getUid(), $to );
+	 		$friend->sendLife();
+
 	 		$limit->addLimitTimes();
 	 		$limit->addLimitTimes(1,$to);
 	 		$give['mFriend'] = 5;

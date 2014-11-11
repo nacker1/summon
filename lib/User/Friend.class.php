@@ -119,7 +119,7 @@ class User_Friend extends User_Base{
 					}
 				}
 
-				$this->cond->set( 1, 'checked', 86400 * 15 );
+				$this->cond->set( 1, 'checked', WEEK_TIMES );
 			}
 			if( is_array( $friends ) ){
 				foreach( $friends as $v ){
@@ -128,6 +128,7 @@ class User_Friend extends User_Base{
 					$friend['name'] = $user->getUserName();
 					$friend['img'] = $user->getImage();
 					$friend['level'] = $user->getLevel();
+					$friend['give'] = $this->cond->get( 'getLife:'.$friend['uid'] );
 					$fList[] = $friend;
 				}
 				$this->cond->set( $fList, 'listInfo', 3600 );
@@ -181,6 +182,24 @@ class User_Friend extends User_Base{
  **/
 	public function getErrorInfo(){
 		return $this->errorInfo;
+	}
+/**
+ *@ sendLife 赠送体力
+ **/
+	public function sendLife(){
+		$fList = $this->toCond->set( 1, 'getLife:'.$this->uid , get3time() );
+		$this->toCond->del( 'listInfo' );
+		return true;
+	}
+/**
+ *@ getLife 领取体力
+ **/
+	public function getLife(){
+		$fList = $this->cond->get( 'getLife:'.$this->toUid );
+		if( empty( $fList ) )return 0;
+		$this->cond->del( 'getLife:'.$this->toUid );
+		$this->toCond->del( 'listInfo' );
+		return 2;
 	}
 }
 ?>
