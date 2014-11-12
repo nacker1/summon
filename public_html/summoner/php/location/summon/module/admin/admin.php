@@ -88,7 +88,7 @@ switch ($type) {
 		}
 		ret( $ret );
 	case '1001': #发送邮件
-		
+		 
 		break;
 	default:
 		# code...
