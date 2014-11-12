@@ -35,7 +35,7 @@
 				ret( ' 不能重复领取 ', -1 );
 			}
 			$goods = $mail->getPubMailGoodsByKey( $key );
-			$mail->setSend( $key );
+			if( !MAIL_REGET ) $mail->setSend( $key );
 		}
 		if( empty( $goods ) ){
 			#$mail->delMail( $key );
