@@ -39,7 +39,7 @@
 			$tag2num = ord( $this->tag );
 			$this->domain = $this->tag;
 		}
-		$redisTag = $this->node.'_'.( $tag2num%10 );
+		$redisTag = $this->node.'_'.( $tag2num%COND_TAG );
 		$this->cre = Redis_Redis::initRedis( $redisTag );
 	}
 	/**
