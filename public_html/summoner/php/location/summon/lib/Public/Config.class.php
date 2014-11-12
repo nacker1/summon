@@ -6,10 +6,6 @@ class Config {
 	public static $env = 'test'; 
 
 	/**
-	 *@ redisÓÃ»§ÇóÓàµÄ»ùÊý
-	 **/
-	public static $redis_count = 10;
-	/**
 	 *@ 数据库配置
 	 **/
 	public static $db_config = array( 
@@ -143,6 +139,16 @@ class Config {
 			'Login_7' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),
 			'Login_8' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),
 			'Login_9' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),
+			'uniqPay_0' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_1' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_2' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_3' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_4' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_5' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_6' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_7' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_8' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
+			'uniqPay_9' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
 			'default' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357')
 		),
 		'online'=>array( //ÐÅÏ¢´ýÉÏÏßÈ·ÈÏºóÔÙ½øÐÐÅäÖÃ
@@ -188,7 +194,7 @@ class Config {
 	function getRedisList(){
 		if( !empty( $this->type ) ){
 			if( is_numeric($this->type) ){
-				$this->type = 'redis'.( $this->type%self::$redis_count );
+				$this->type = 'redis'.( $this->type%USER_TAG );
 			}
 			if( !isset( self::$redis_config[self::$env][$this->type] ) ){
 				$ser = new Server($this->sid);

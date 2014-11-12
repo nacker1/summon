@@ -4,7 +4,8 @@
  **/
 $type = $input['t'];
 $nums = $input['n'];
-$user=new User_User();
+$uid = $input['uid'];
+$user=new User_User( $uid );
 
 switch ($type) {
 	case '1':
@@ -86,6 +87,9 @@ switch ($type) {
 			$ret['mis'] = $mis;
 		}
 		ret( $ret );
+	case '1001': #发送邮件
+		
+		break;
 	default:
 		# code...
 		phpinfo();
