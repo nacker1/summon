@@ -45,7 +45,7 @@
 		parent::__construct( $uid );
 		//初始化用户竞技场排名等信息
 		if( C('test') || !$this->redis->hget( 'roleinfo:'.$this->uid.':baseinfo', 'user_record' ) ){
-			$ret = $this->db->findOne( $this->recordTable, 'maxPvpTop,maxStageid,mArena,mFriend,mAction,guide,ext1 weekCode,ext2 weekCodeOverTime,ext3,ext4', array( 'uid'=>$this->uid ) );
+			$ret = $this->db->findOne( $this->recordTable, 'maxPvpTop,maxStageid,mArena,mFriend,mAction,guide,ext1,ext2,ext3,ext4', array( 'uid'=>$this->uid ) );
 			if( empty( $ret ) ){
 				$ret['maxPvpTop'] = 0;
 				$ret['maxStageid'] = 0;
