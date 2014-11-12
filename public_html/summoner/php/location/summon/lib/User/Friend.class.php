@@ -128,7 +128,7 @@ class User_Friend extends User_Base{
 					$friend[] = $user->getUserName();							#好友名称
 					$friend[] = $user->getImage();								#好友头像
 					$friend[] = $user->getLevel();								#好友等级
-					$getLife = $this->cond->get( 'getLife:'.$friend['uid'] );
+					$getLife = $this->cond->get( 'getLife:'.$user->getUid() );
 					$friend[] = empty( $getLife ) ? 0 : 1;						#好友是否赠送体力
 					$fList[] = $friend;
 					unset( $friend );
