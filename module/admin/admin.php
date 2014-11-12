@@ -30,7 +30,18 @@ switch ($type) {
 		ret($user->getUserLastUpdInfo());
 	case '4':
 		#添加用户周卡
-		$user->setWeekCode();
+		$n = isset($input['n']) ? $input['n'] : 3;
+		switch( $n ){
+			case '1':
+				$user->setMonthCode();
+				break;
+			case '2':
+				$user->setWeekCode();
+				break;
+			default:
+				$user->setMonthCode();
+				$user->setWeekCode();
+		}
 		ret( $user->getUserLastUpdInfo() );
 	case '997': #踢下线
 		$user->setLoginTime();
