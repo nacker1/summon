@@ -3,24 +3,24 @@
  *@ 用户基类
  **/
  class User_Base extends Base{
- 	protected static $recordInfo	=	array();									//用户对应的record信息 对就zy_uniqRoleRecord表 
- 	protected static $throwSQL 		=	array();									//需要异步同步的数据
-	protected static $userinfo 		=	array(); 									//角色所有信息
-	protected static $updinfo 		=	array(); 									//角色所有信息
-	protected static $isupd 		=	array(); 									//判断是否需要更新用户信息
-	protected static $missionNotice =	array();									//任务通知信息
-	protected static $lastUpdHero 	= 	array();									//英雄最后更新信息
+ 	protected static $recordInfo	=	array();												//用户对应的record信息 对就zy_uniqRoleRecord表 
+ 	protected static $throwSQL 		=	array();												//需要异步同步的数据
+	protected static $userinfo 		=	array(); 												//角色所有信息
+	protected static $updinfo 		=	array(); 												//角色所有信息
+	protected static $isupd 		=	array(); 												//判断是否需要更新用户信息
+	protected static $missionNotice =	array();												//任务通知信息
+	protected static $lastUpdHero 	= 	array();												//英雄最后更新信息
 	protected static $lastUpdGoods	=	array('new'=>array(),'old'=>array(),'del'=>array());	//用户变化物品清单
 			
-	protected $baseTable='zy_uniqRole';												//用户角色表
-	protected $baseRecordTable = 'zy_uniqRoleRecord';								//用户record信息表
-	protected $heroTable = 'zy_uniqRoleHero'; 										//用户英雄表
-	protected $userMissionTable='zy_uniqUserMission';								//用户任务进度表
-						
-	private $upInfo; 																//角色升级对应参数表
-	private $uinfo;	 																//角色信息
-											
-	private $userLog;																//用户金钱变化日志
+	protected $baseTable='zy_uniqRole';															//用户角色表
+	protected $baseRecordTable = 'zy_uniqRoleRecord';											//用户record信息表
+	protected $heroTable = 'zy_uniqRoleHero'; 													//用户英雄表
+	protected $userMissionTable='zy_uniqUserMission';											//用户任务进度表
+									
+	private $upInfo; 																			//角色升级对应参数表
+	private $uinfo;	 																			//角色信息
+														
+	private $userLog;																			//用户金钱变化日志
 
 	public function __construct( $uid='' ){
 		if( empty( $uid ) ){
@@ -285,7 +285,7 @@
  **/
 	public function isWeekCode(){
 		$ret = 0;
-		if( self::$userinfo[$this->uid]['weekCode'] > 0 && self::$userinfo[$this->uid]['weekCodeOverTime'] > time() ){
+		if( self::$userinfo[$this->uid]['ext1'] > 0 && self::$userinfo[$this->uid]['ext2'] > time() ){
 			$ret = 1;
 		}
 		return $ret;
@@ -295,8 +295,8 @@
  **/
 	public function setWeekCode(){
 		$this->log->i( '* 用户#'.$this->uid.'#充值周卡' );
-		self::$recordInfo[$this->uid]['ext1'] = self::$updinfo[$this->uid]['weekCode'] = self::$userinfo[$this->uid]['weekCode'] = 1;
-		self::$recordInfo[$this->uid]['ext2'] = self::$updinfo[$this->uid]['weekCodeOverTime'] = self::$userinfo[$this->uid]['weekCodeOverTime'] = time() + 86400*7;
+		self::$recordInfo[$this->uid]['ext1'] = self::$updinfo[$this->uid]['weekCode'] = self::$userinfo[$this->uid]['ext1'] = 1;
+		self::$recordInfo[$this->uid]['ext2'] = self::$updinfo[$this->uid]['weekCodeOverTime'] = self::$userinfo[$this->uid]['ext2'] = time() + 86400*7;
 		return true;
 	}
 /**
