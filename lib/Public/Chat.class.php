@@ -10,7 +10,7 @@
  	function __construct( $uid='', $type=1 ){
  		# $uid: 如果是发送信息则为接收者的uid, 如果是拉信息则为当前用户的uid
  		parent::__construct( $uid );
- 		$this->cond = new Cond( 'chat', 0, 1800 );
+ 		$this->cond = new Cond( 'chat', 0, 43200 );
  		$this->type = $type;
 		$this->uCond = new Cond( 'chat', $this->uid, 86400 );	#私信保存一天
  	}
