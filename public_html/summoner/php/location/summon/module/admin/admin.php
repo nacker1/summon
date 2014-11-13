@@ -88,7 +88,10 @@ switch ($type) {
 		}
 		ret( $ret );
 	case '1001': #发送邮件
-		 
+
+		break;
+	case '1002': #获取用户基本信息
+		ret( $user->getUserInfo() );
 		break;
 	default:
 		# code...
