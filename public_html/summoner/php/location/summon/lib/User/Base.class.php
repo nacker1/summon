@@ -76,7 +76,12 @@
  *@ 获取角色信息
  **/
 	public function getUserInfo(){
-		return self::$userinfo[$this->uid];
+		$userinfo = self::$userinfo[$this->uid];
+		$userinf['weekCode'] = $userinfo['ext1'];
+		$userinf['weekCodeOverTime'] = $userinfo['ext2'];
+		unset( $userinfo['ext1'] );
+		unset( $userinfo['ext2'] );
+		return $userinfo;
 	}
 /**
  *@ 获取角色id
