@@ -54,10 +54,10 @@
 	 *@ 初始化接口初始化用户技能剩余点以及倒记时时间
 	 **/
 	public function getUserSkillInfo(){
-		if( $this->getVlevel() >= 7 ){
-			$max = 20;
+		if( $this->getVlevel() >= UNLOCK_SKILL_MAX_VALUE_VIP_LEVEL ){
+			$max = SKILL_MAX_VALUE_2;
 		}else{
-			$max = 10;	//最大技能点数
+			$max = SKILL_MAX_VALUE_1;				//最大技能点数
 		}
 		$recover = RECOVER_TIME;	//恢复一点需要时间
 		$now = time();
@@ -81,10 +81,10 @@
 	 *@ 获取用户当前技能点
 	 **/
 	public function getUserSkillPoint(){
-		if( $this->getVlevel() >= 7 ){
-			$max = 20;
+		if( $this->getVlevel() >= UNLOCK_SKILL_MAX_VALUE_VIP_LEVEL ){
+			$max = SKILL_MAX_VALUE_2;
 		}else{
-			$max = 10;	//最大技能点数
+			$max = SKILL_MAX_VALUE_1;	//最大技能点数
 		}
 		$recover = RECOVER_TIME;	//恢复一点需要时间
 		$now = time();
