@@ -16,7 +16,7 @@
 		$this->connect = new Redis();
 		if( !$this->connect->pconnect($host,$port) ){
 			gettype($log)=='object' && $log->e('Redis connect fail£¨host:'.$host.',port:'.$port.',pass:'.$pass.'£©');
-			ret('redis_class_'.__LINE__);
+			ret('redis_class_'.__LINE__.$host.':'.$port);
 		}
 		!empty($pass) && $this->connect->auth($pass);
 	}
