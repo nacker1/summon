@@ -20,7 +20,7 @@ class User_Progress extends User_Base{
 		$this->redis;
 		if( C('test')  || !$this->redis->hget( 'role:'.$this->uid.':progress_check', 'checked' ) ){
 			$this->db;
-			$ret = $this->db->find( $this->progress_table, 'cId,star,type', array( 'uid'=>$this->uid ) );
+			$ret = $this->db->find( $this->progress_table, 'cId,star,type', array( 'uid'=>$this->uid ), 'order by star desc' );
 			if( is_array($ret) )
 				foreach( $ret as $v ){
 					$this->redis->hmset( 'role:'.$this->uid.':progress:'.$v['type'].':'.$v['cId'], $v );
