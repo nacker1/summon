@@ -1,4 +1,6 @@
 <?php
+	phpinfo();exit;
+
 	function king( $total, $num ){
 		$temp = range(1,$total);
 		$count = count($temp);
