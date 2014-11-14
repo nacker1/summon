@@ -77,7 +77,7 @@ class Config {
 				'charset' => 'utf8'
 			),
 			'config'=>array( //公共配置信息库 + 所有服活动配置库         通用  配置必须写在代码中  
-				'host' => '192.168.10.158',
+				'host' => '192.168.10.157',
 				'port' => 3306,
 				'username' => 'summon',
 				'password' => 'coolplay159357',
@@ -85,7 +85,7 @@ class Config {
 				'charset' => 'utf8'
 			),
 			'admin'=>array( //管理后台公用库  接口信息         	   		与config同一库   配置必须写在代码中  
-				'host' => '192.168.10.158',
+				'host' => '192.168.10.157',
 				'port' => 3306,
 				'username' => 'summon',
 				'password' => 'coolplay159357',
