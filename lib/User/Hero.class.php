@@ -122,6 +122,14 @@ class User_Hero extends User_Base{
 			}
 		}else{ //添加英雄数量
 			$this->setMissionId(1,21);
+			switch( $color ){
+				case '2':
+					$this->setMissionId(1,22);break;
+				case '3':
+					$this->setMissionId(1,23);break;
+				case '4':
+					$this->setMissionId(1,24);break;
+			}
 			$hero = $this->initHero($color);
 			$this->hinfo = $hero;
 			return $this->redis->hmset( 'roleinfo:'.$this->uid.':hero:'.$this->hid, $hero );
