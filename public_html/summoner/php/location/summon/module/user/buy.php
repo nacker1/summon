@@ -15,7 +15,9 @@
  		3=>array('name'=>'购买竞技场次数'	,'tag'=>'buyArenaTimesDay'		,'to'=>'doArenaTimesDay'),
  		4=>array('name'=>'消除竞技场冷却时间'	,'tag'=>'delAreanTimeDay'		,'to'=>'doArenaTimesDay'),
  		5=>array('name'=>'购买技能点次数'	,'tag'=>'buyPointDay' ),
-	     );
+ 		6=>array('name'=>'购买精英关卡次数'	,'tag'=>'resetEliteTimesDay', 'to'=>'customsTimesDay' ),
+ 		7=>array('name'=>'购买炼狱关卡次数'	,'tag'=>'resetGaolTimesDay', 'to'=>'customsTimesDay' ),
+	);
  if( !isset( $config[$type] ) ){
  	ret('YMD', -1);
  }
@@ -96,6 +98,30 @@
  			$user->addUserSkillPoint( $limit->getGiveNum() );
  			$ret = $user->sendGoodsFromConfig($add);
  			$ret['skill'] = $user->getUserSkillInfo();
+ 		}else{
+ 			ret( 'no_jewel', -1 );
+ 		}
+ 		break;
+ 	case '6': //购买精英关卡
+ 		$cooldou = $limit->getOneTimeCooldou();
+ 		$roundid = $input['roundid'];  #关卡id
+ 		if( $user->getCooldou() >= $cooldou ){
+ 			$add['jewel'] = -$cooldou;
+ 			$toLimit = new User_Limit( $config[$type]['to'] );
+ 			$toLimit->delTimeLimit( $roundid );
+ 			$ret = $user->sendGoodsFromConfig($add);
+ 		}else{
+ 			ret( 'no_jewel', -1 );
+ 		}
+ 		break;
+ 	case '7': //购买炼狱关卡
+ 		$cooldou = $limit->getOneTimeCooldou();
+ 		$roundid = $input['roundid'];  #关卡id
+ 		if( $user->getCooldou() >= $cooldou ){
+ 			$add['jewel'] = -$cooldou;
+ 			$toLimit = new User_Limit( $config[$type]['to'] );
+ 			$toLimit->delTimeLimit( $roundid );
+ 			$ret = $user->sendGoodsFromConfig($add);
  		}else{
  			ret( 'no_jewel', -1 );
  		}

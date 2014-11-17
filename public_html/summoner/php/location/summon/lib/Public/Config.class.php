@@ -95,7 +95,7 @@ class Config {
 		)
 	);
 	/**
-	 *@ redis ÅäÖÃÐÅÏ¢
+	 *@ redis ÅäÖÃÐÅÏ¢   grant all privileges on *.* to 'summon'@'%' identified by 'coolplay159357' with grant option;
 	 **/
 	public static $redis_config = array(
 		'test'=>array(
