@@ -16,7 +16,7 @@
 	$ret['uinfo'] = $user->getLoginInfo();
 	$server = new Server();
 	$serverLast = $server->getLastUpdTime();
-	$log->i('serverLastTime:'.$serverLast.', clientLastTime:'.$serverLastTime);
+	$log->i('serverLastTime:'.$serverLast.', clientLastTime:'.$serverLastUpdTime);
 	if( $serverLastUpdTime < $serverLast ){
 		$ret['sinfo']['sList'] = $server->getServerList();
 		$ret['sinfo']['slt'] = $serverLast;
