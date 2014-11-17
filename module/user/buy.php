@@ -103,8 +103,9 @@
  		}
  		break;
  	case '6': //购买精英关卡
- 		$cooldou = $limit->getOneTimeCooldou();
  		$roundid = $input['roundid'];  #关卡id
+ 		if( empty( $roundid ) ){ ret(' YMD'.__LINE__,-1); }
+ 		$cooldou = $limit->getOneTimeCooldou();
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
  			$toLimit = new User_Limit( $config[$type]['to'] );
@@ -115,8 +116,9 @@
  		}
  		break;
  	case '7': //购买炼狱关卡
- 		$cooldou = $limit->getOneTimeCooldou();
  		$roundid = $input['roundid'];  #关卡id
+ 		if( empty( $roundid ) ){ ret(' YMD'.__LINE__,-1); }
+ 		$cooldou = $limit->getOneTimeCooldou();
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
  			$toLimit = new User_Limit( $config[$type]['to'] );
