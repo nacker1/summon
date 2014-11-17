@@ -102,32 +102,37 @@
  		}else{//日常任务
  			$overTime = get3time();
  			$this->cond = new Cond( $this->dayMissionTag,$this->uid,$overTime );
- 			$uMission = $this->cond->getAll();
- 			if( empty( $uMission ) ){ //初始化用户当日日常任务记录
- 				$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
- 				foreach( $taskClass as $k=>$v ){
- 					if( 61 == $k ){
- 						$tasks = explode(',',$v);
- 						foreach( $tasks as $val ){
- 							$key = $k.':'.$val;
-		 					$set['tid'] = (int)$val;						#'tid'		任务id
-		 					$set['progress'] = 0;							#'progress' 进度
-		 					$this->cond->set( $set,$key );
-		 					unset($set);
- 						}
- 					}else{
-	 					$set['tid'] = (int)$v; 								#'tid'		任务id
-	 					$set['progress'] = 0; 								#'progress' 进度
-	 					if( $k == 60 ){
-	 						$set['progress'] = $this->isMonthCode();
-	 					}
-	 					$this->cond->set( $set,$k );
-	 					unset($set);
-	 				}
- 				}
- 			} 			
  		}
  	}
+
+ 	private function _initMissionData(){
+		$uMission = $this->cond->getAll();
+		if( empty( $uMission ) ){ //初始化用户当日日常任务记录
+			$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
+			foreach( $taskClass as $k=>$v ){
+				if( 61 == $k ){
+					$tasks = explode(',',$v);
+					foreach( $tasks as $val ){
+						$key = $k.':'.$val;
+ 					$set['tid'] = (int)$val;						#'tid'		任务id
+ 					$set['progress'] = 0;							#'progress' 进度
+ 					$this->cond->set( $set,$key );
+ 					unset($set);
+					}
+				}else{
+					$set['tid'] = (int)$v; 								#'tid'		任务id
+					$set['progress'] = 0; 								#'progress' 进度
+					if( $k == 60 ){
+						$set['progress'] = $this->isMonthCode();
+					}
+					$this->cond->set( $set,$k );
+					unset($set);
+				}
+			}
+		} 
+ 		return $uMission;
+ 	}
+
  /**
   *@ getUserMission
   **/
@@ -144,7 +149,7 @@
  			}
  		}
  		if( 2 == $this->type ){
- 			$dayMis = $this->cond->getAll();
+ 			$dayMis = $this->_initMissionData();
  			foreach( $dayMis as $v ){
  				$set[0] = $v['tid'];
  				$set[1] = $v['progress'];
