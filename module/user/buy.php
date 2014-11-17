@@ -16,7 +16,7 @@
  		4=>array('name'=>'消除竞技场冷却时间'	,'tag'=>'delAreanTimeDay'		,'to'=>'doArenaTimesDay'),
  		5=>array('name'=>'购买技能点次数'	,'tag'=>'buyPointDay' ),
  		6=>array('name'=>'购买精英关卡次数'	,'tag'=>'resetEliteTimesDay', 'to'=>'customsTimesDay' ),
- 		7=>array('name'=>'购买炼狱关卡次数'	,'tag'=>'resetGaolTimesDay', 'to'=>'customsTimesDay' ),
+ 		7=>array('name'=>'购买炼狱关卡次数'	,'tag'=>'resetGaolTimesDay', 'to'=>'customsTimesDay' ), #暂时可以和精英关卡通用
 	);
  if( !isset( $config[$type] ) ){
  	ret('YMD', -1);
@@ -115,6 +115,7 @@
  			ret( 'no_jewel', -1 );
  		}
  		break;
+ 	/*
  	case '7': //购买炼狱关卡
  		$roundid = $input['roundid'];  #关卡id
  		if( empty( $roundid ) ){ ret(' YMD'.__LINE__,-1); }
@@ -127,7 +128,7 @@
  		}else{
  			ret( 'no_jewel', -1 );
  		}
- 		break;
+ 		break;*/
  	default:
  		# code...
  		break;
