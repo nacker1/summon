@@ -63,7 +63,7 @@
 # ----------------------------------------------------------每天精英关卡与炼狱关卡通关次数限制-------------------------------------------------------------------------------------
 		if( in_array( $input['tasktype'], array( 12,13 ) ) ){					
 			$custLimit = new User_Limit( 'customsTimesDay' ); 
-			if( $custLimit->getLastTimes( $input['roundid'] ) >= $sweepNum ){
+			if( $custLimit->getLastTimes( $input['roundid'] ) < $sweepNum ){
 				ret('今日次数已用完',-1);
 			}
 			$custLimit->addLimitTimes( $sweepNum,$input['roundid'] );
