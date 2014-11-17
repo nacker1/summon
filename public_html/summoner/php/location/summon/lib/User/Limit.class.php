@@ -149,7 +149,7 @@ class User_Limit extends User_Base{
 		return (int)$this->cond->get( $key.'_timeLimit' );
 	}
 /**
- *@ delTimeLimit 清空限制记录
+ *@ delTimeLimit 清空冷却时间限制记录
  **/
 	public function delTimeLimit( $key='' ){
 		return $this->cond->del( $key.'_timeLimit' );
