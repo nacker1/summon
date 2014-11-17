@@ -204,7 +204,7 @@ class Db_Mysql{
      * @return string
      */
     public function error() {
-        return mysql_errno($this->connect).':'.mysql_error($this->connect);
+        return mysql_errno($this->connect).':'.mysql_error($this->connect).' == Config:'.json_encode($this->getConfig());
     }
 	/**
      * ÊÍ·Å²éÑ¯½á¹û
