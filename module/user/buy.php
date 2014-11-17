@@ -133,7 +133,7 @@
  		# code...
  		break;
  }
- $limit->addLimitTimes(1);
+ $limit->addLimitTimes(1,$roundid);
  ret( $ret );
 
 ?>
