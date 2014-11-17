@@ -257,7 +257,7 @@
 			$throwSQL = self::$throwSQL;
 			self::$throwSQL = array();
 			foreach( $throwSQL as $val ){
-				$this->throwSQL( $val['table'], $val['data'], $val['where'], $val['opt'] );
+				$this->throwSQL( $val['table'], $val['data'], $val['where'], $val['opt'], $val['db'] );
 			}
 		}
 	}
