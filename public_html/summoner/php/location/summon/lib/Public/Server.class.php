@@ -34,7 +34,7 @@
 					if( empty($this->newServer) || $this->newServer < $v['id'] ){
 						$this->newServer = $v['id'];
 					}
-					if( !$this->pre->exists('server:status:'.$v['id']) ){
+					if( C( 'test' ) || !$this->pre->exists('server:status:'.$v['id']) ){
 						$stats = array('stats'=>2,'cInfo'=>'');
 						$this->pre->hmset('server:status:'.$v['id'],$stats);
 					}
@@ -59,7 +59,7 @@
 				$this->cdb;
 				$slist = $this->cdb->findOne($this->table,'*',array('id'=>$this->sid));
 				$this->pre->hmset( 'server:list:'.$slist['id'],$slist,86400 );
-				if( !$this->pre->exists('server:status:'.$slist['id']) ){
+				if( C( 'test' ) || !$this->pre->exists('server:status:'.$slist['id']) ){
 					$stats = array('stats'=>2,'cInfo'=>'');
 					$this->pre->hmset('server:status:'.$slist['id'],$stats);
 				}
