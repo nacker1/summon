@@ -35,7 +35,7 @@
 						$this->newServer = $v['id'];
 					}
 					if( !$this->pre->exists('server:status:'.$v['id']) ){
-						$stats = array('stats'=>1,'cInfo'=>'');
+						$stats = array('stats'=>2,'cInfo'=>'');
 						$this->pre->hmset('server:status:'.$v['id'],$stats);
 					}
 				}
@@ -60,7 +60,7 @@
 				$slist = $this->cdb->findOne($this->table,'*',array('id'=>$this->sid));
 				$this->pre->hmset( 'server:list:'.$slist['id'],$slist,86400 );
 				if( !$this->pre->exists('server:status:'.$slist['id']) ){
-					$stats = array('stats'=>1,'cInfo'=>'');
+					$stats = array('stats'=>2,'cInfo'=>'');
 					$this->pre->hmset('server:status:'.$slist['id'],$stats);
 				}
 			}else{
