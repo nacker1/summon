@@ -109,7 +109,7 @@
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
  			$toLimit = new User_Limit( $config[$type]['to'] );
- 			$toLimit->delTimeLimit( $roundid );
+ 			$toLimit->delLimit( $roundid );
  			$ret = $user->sendGoodsFromConfig($add);
  		}else{
  			ret( 'no_jewel', -1 );
@@ -122,7 +122,7 @@
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
  			$toLimit = new User_Limit( $config[$type]['to'] );
- 			$toLimit->delTimeLimit( $roundid );
+ 			$toLimit->delLimit( $roundid );
  			$ret = $user->sendGoodsFromConfig($add);
  		}else{
  			ret( 'no_jewel', -1 );
