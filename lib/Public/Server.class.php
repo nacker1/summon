@@ -141,7 +141,7 @@
 			foreach( $this->slist as $v ){
 				$stats = $this->pre->hgetall('server:status:'.$v['id']);
 				if( empty($stats) ){
-					$temp[] = 1;
+					$temp[] = 2;
 					$temp[] = '';
 				}else{
 					$temp[] = (int)$stats['stats'];
