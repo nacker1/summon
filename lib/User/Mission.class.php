@@ -23,7 +23,7 @@
 
  	function _init(){
  		$this->pre;
- 		if( true || C('test') || !$this->pre->exists( 'baseMissionConfig:'.$this->type.':check' ) ){
+ 		if( C('test') || !$this->pre->exists( 'baseMissionConfig:'.$this->type.':check' ) ){
  			if( !isset( self::$dbCehck[$this->uid] ) || empty( self::$dbCehck[$this->uid] ) ){
 	 			$this->pre->hdel( 'baseMissionConfig:'.$this->type.':*' );
 	 			$this->cdb;
