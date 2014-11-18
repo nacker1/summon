@@ -18,7 +18,7 @@ class Herobase extends Base{
 
 	private function _init(){
 		$this->pre;
-		if( empty( self::$hInfo ) ){
+		if( !isset( self::$hInfo[$this->hid] ) ){
 			if( C('test') || !$this->pre->exists('heroBase:check') ){
 				$this->cdb;
 				$ret = $this->cdb->find( $this->heroBaseTable,'Hero_Id,Hero_Hp,Hero_UpHp,Hero_Mp,Hero_UpMp,Hero_Att,Hero_UpAtt,Hero_Sor,Hero_UpSor,Hero_Def,Hero_UpDef,Hero_Res,Hero_UpRes,Hero_GetHp,Hero_UpGetHp,Hero_GetMp,Hero_UpGetMp,Hero_AttSpd,Hero_UpAttSpd,Hero_Mov,Hero_Pry',array( 'Hero_Id'=>array('<'=>20000) ) );
