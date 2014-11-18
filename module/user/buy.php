@@ -115,7 +115,6 @@
  			ret( 'no_jewel', -1 );
  		}
  		break;
- 	/*
  	case '7': //购买炼狱关卡
  		$roundid = $input['roundid'];  #关卡id
  		if( empty( $roundid ) ){ ret(' YMD'.__LINE__,-1); }
@@ -128,7 +127,7 @@
  		}else{
  			ret( 'no_jewel', -1 );
  		}
- 		break;*/
+ 		break;
  	default:
  		# code...
  		break;
