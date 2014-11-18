@@ -40,10 +40,10 @@ class Herobase extends Base{
 	public function getFire( $level=1,$color=1,$skill='{"1":"1"}' ){
 		#dump(self::$hInfo);
 		$att = self::$hInfo[$this->hid]['Hero_Att'] + self::$hInfo[$this->hid]['Hero_UpAtt'] * ( $level - 1 ) * $color; 								#英雄物理攻击
-		$def = self::$hInfo[$this->hid]['Hero_Def'] + self::$hInfo[$this->hid]['Hero_UpDef'] * ( $level - 1 ) * $color;								#英雄物理护甲
-		$sor = self::$hInfo[$this->hid]['Hero_Sor'] + self::$hInfo[$this->hid]['Hero_UpSor'] * ( $level - 1 ) * $color;								#英雄法术强度
-		$res = self::$hInfo[$this->hid]['Hero_Res'] + self::$hInfo[$this->hid]['Hero_UpRes'] * ( $level - 1 ) * $color;								#英雄法术抗性
-		$speed = self::$hInfo[$this->hid]['Hero_AttSpd'] + self::$hInfo[$this->hid]['Hero_UpAttSpd'] * ( $level - 1 ) * $color;						#英雄的攻击速度
+		$def = self::$hInfo[$this->hid]['Hero_Def'] + self::$hInfo[$this->hid]['Hero_UpDef'] * ( $level - 1 ) * $color;									#英雄物理护甲
+		$sor = self::$hInfo[$this->hid]['Hero_Sor'] + self::$hInfo[$this->hid]['Hero_UpSor'] * ( $level - 1 ) * $color;									#英雄法术强度
+		$res = self::$hInfo[$this->hid]['Hero_Res'] + self::$hInfo[$this->hid]['Hero_UpRes'] * ( $level - 1 ) * $color;									#英雄法术抗性
+		$speed = self::$hInfo[$this->hid]['Hero_AttSpd'] + self::$hInfo[$this->hid]['Hero_UpAttSpd'] * ( $level - 1 ) * $color;							#英雄的攻击速度
 		$hp = self::$hInfo[$this->hid]['Hero_Hp'] + self::$hInfo[$this->hid]['Hero_UpHp'] * ( $level - 1 ) * $color;									#英雄的生命值
 		$mp = self::$hInfo[$this->hid]['Hero_Mp'] + self::$hInfo[$this->hid]['Hero_UpMp'] * ( $level - 1 ) * $color;									#英雄的魔法值
 		$gethp = self::$hInfo[$this->hid]['Hero_GetHp'] + self::$hInfo[$this->hid]['Hero_UpGetHp'] * ( $level - 1 ) * $color;							#英雄的生命回复
@@ -56,7 +56,7 @@ class Herobase extends Base{
 				$sTolLevel += $v;
 			}
 
-		return floor( ( ($att+$def+$sor+$res)*$speed + ( $hp + $gethp * 2 + $mp + $getmp * 2 ) )/10 ) + $color*100*( 1+number_format($sTolLevel/10,3) );
+		return ceil( ( ($att+$def+$sor+$res)*$speed + ( $hp + $gethp * 2 + $mp + $getmp * 2 ) )/10 ) + $color*100*( 1+number_format($sTolLevel/10,3) );
 	}
 /**
  *@ 评价英雄
