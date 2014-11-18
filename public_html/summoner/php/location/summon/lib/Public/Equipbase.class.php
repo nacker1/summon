@@ -51,7 +51,6 @@
  *	|装备护甲穿透| + |装备法术穿透| + |装备物理吸血| + |装备法术吸血| + |装备技能冷却|）* 100
  **/
 	function getFire( $level=0 ){
-		$level += 1;
 		$att 	= $this->eInfo['Equip_Att'] 	+ $this->eInfo['Equip_UpAtt'] * $level;									#物理攻击
 		$sor 	= $this->eInfo['Equip_Sor'] 	+ $this->eInfo['Equip_UpSor'] * $level;									#法术强度
 		$def 	= $this->eInfo['Equip_Def'] 	+ $this->eInfo['Equip_UpDef'] * $level;									#物理护甲
