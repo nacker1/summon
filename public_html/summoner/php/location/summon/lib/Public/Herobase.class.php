@@ -38,7 +38,6 @@ class Herobase extends Base{
  *	英雄战斗力 = [（英雄物理攻击 + 英雄法术强度 + 英雄物理护甲 + 英雄魔法抗性）* 英雄攻击速度 +（英雄生命值 + 英雄生命回复 * 2 + 英雄法力值 + 英雄法力回复 * 2）] / 10 + 英雄拥有技能个数 * 100 *（1 + 英雄拥有技能的等级之和 / 10）
  **/
 	public function getFire( $level=1,$color=1,$skill='{"1":"1"}' ){
-		#dump(self::$hInfo);
 		$att = self::$hInfo[$this->hid]['Hero_Att'] + self::$hInfo[$this->hid]['Hero_UpAtt'] * ( $level - 1 ) * $color; 								#英雄物理攻击
 		$def = self::$hInfo[$this->hid]['Hero_Def'] + self::$hInfo[$this->hid]['Hero_UpDef'] * ( $level - 1 ) * $color;									#英雄物理护甲
 		$sor = self::$hInfo[$this->hid]['Hero_Sor'] + self::$hInfo[$this->hid]['Hero_UpSor'] * ( $level - 1 ) * $color;									#英雄法术强度
@@ -56,7 +55,9 @@ class Herobase extends Base{
 				$sTolLevel += $v;
 			}
 
-		return ceil( ( ($att+$def+$sor+$res)*$speed + ( $hp + $gethp * 2 + $mp + $getmp * 2 ) )/10 ) + $color*100*( 1+number_format($sTolLevel/10,3) );
+		$ret = ceil( ( ($att+$def+$sor+$res)*$speed + ( $hp + $gethp * 2 + $mp + $getmp * 2 ) )/10 ) + $color*100*( 1+$sTolLevel/10 );
+		$this->log->i( self::$hInfo[$this->hid]['Hero_Id'].'=>'.$ret );
+		return $ret;
 	}
 /**
  *@ 评价英雄
