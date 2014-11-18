@@ -114,10 +114,9 @@
 					$tasks = explode(',',$v);
 					foreach( $tasks as $val ){
 						$key = $k.':'.$val;
- 					$set['tid'] = (int)$val;						#'tid'		任务id
- 					$set['progress'] = 0;							#'progress' 进度
- 					$this->cond->set( $set,$key );
- 					unset($set);
+	 					$set['tid'] = (int)$val;						#'tid'		任务id
+	 					$set['progress'] = 0;							#'progress' 进度
+	 					$this->cond->set( $set,$key );
 					}
 				}else{
 					$set['tid'] = (int)$v; 								#'tid'		任务id
@@ -126,8 +125,9 @@
 						$set['progress'] = $this->isMonthCode();
 					}
 					$this->cond->set( $set,$k );
-					unset($set);
 				}
+				$uMission[] = $set;
+ 				unset($set);
 			}
 		} 
  		return $uMission;
