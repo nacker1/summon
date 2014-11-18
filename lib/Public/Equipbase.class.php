@@ -76,7 +76,7 @@
 		$CoolDown = (int)$this->eInfo['Equip_CoolDown'] + (int)$this->eInfo['Equip_UpCoolDown'] 	* $level;			#技能闪却
 
 		$ret = ( $att + $sor + $def + $res ) + ceil( ( $ehp + $gethp*2 + $emp + $getmp*2 + $speed ) / 10 ) + 100*( abs($AttSpd) + abs($AttCri) + abs($SorCri) + abs($AttHit) + abs($SkiHit) + abs($pry) + abs($AttPierce) + abs($SorPierce) + abs($AttSteal) + abs($SorSteal) + abs($CoolDown) );
-		$this->log->i( 'equip_FIRE:'.$ret );
+		#$this->log->i( 'equip_FIRE:'.$ret );
 		return $ret;
 	}
  }
