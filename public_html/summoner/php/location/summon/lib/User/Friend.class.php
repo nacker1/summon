@@ -201,7 +201,7 @@ class User_Friend extends User_Base{
 		if( empty( $fList ) )return false;
 		$this->cond->del( 'getLife:'.$this->toUid );
 		$this->toCond->del( 'listInfo' );
-		return 2;
+		return GIVE_LIFE;
 	}
 }
 ?>
