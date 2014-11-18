@@ -117,6 +117,8 @@
 	 					$set['tid'] = (int)$val;						#'tid'		任务id
 	 					$set['progress'] = 0;							#'progress' 进度
 	 					$this->cond->set( $set,$key );
+	 					$uMission[] = $set;
+ 						unset($set);
 					}
 				}else{
 					$set['tid'] = (int)$v; 								#'tid'		任务id
@@ -125,9 +127,9 @@
 						$set['progress'] = $this->isMonthCode();
 					}
 					$this->cond->set( $set,$k );
+					$uMission[] = $set;
+ 					unset($set);
 				}
-				$uMission[] = $set;
- 				unset($set);
 			}
 		} 
  		return $uMission;
