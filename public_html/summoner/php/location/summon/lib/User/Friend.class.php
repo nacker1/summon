@@ -175,7 +175,7 @@ class User_Friend extends User_Base{
 	public function isFriend( $uid ){
 		$friends = $this->getFriendList();
 		foreach( $friends as $v ){
-			if( $uid == $v['uid'] )return true;
+			if( $uid == $v[0] )return true;
 		}
 		return false;
 	}
