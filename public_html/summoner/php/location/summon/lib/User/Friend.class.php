@@ -196,7 +196,7 @@ class User_Friend extends User_Base{
 /**
  *@ getLife 领取体力
  **/
-	public function getLife(){
+	public function receiveLife(){
 		$fList = $this->cond->get( 'getLife:'.$this->toUid );
 		if( empty( $fList ) )return false;
 		$this->cond->del( 'getLife:'.$this->toUid );

@@ -115,7 +115,7 @@
  		}
 
  		$friend = new User_Friend( $user->getUid(), $to );
- 		$life = $friend->getLife();
+ 		$life = $friend->receiveLife();
  		if( !empty( $life ) ){
 	 		$give['life'] = $life;
 	 		ret( $user->sendGoodsFromConfig($give) );
