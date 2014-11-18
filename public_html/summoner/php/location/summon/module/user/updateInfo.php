@@ -44,6 +44,12 @@
  		$gid = $input['gid'];
  		ret( $user->setUserGuide( $index, $gid ) );
  		break;
+ 	case '3': #用户禁言功能
+	 	$gag = new Cond( 'user_limit', $user->getUid(), 600 );
+	 	$gag->set( 1,'gag' );
+	 	$ret['v'] = $gag->get('gag');
+	 	$ret['t'] = $gag->getTimes('gag');
+	 	ret($ret);
  	default:
  		# code...
  		break;

@@ -47,8 +47,8 @@
 	 		$chat->sendChat( $con, $user->getUserName(), $user->getUid(), $user->getLevel(), $user->getImage(),$other );
 	 		ret('发送成功');
 	 	}
-	 case '3':
-	 	$gag = new Cond( 'user_limit', $user->getUid(), 600 , 'uniqPay');
+	 case '3': #
+	 	$gag = new Cond( 'user_limit', $user->getUid(), 600 );
 	 	$gag->set( 1,'gag' );
 	 	$ret['v'] = $gag->get('gag');
 	 	$ret['t'] = $gag->getTimes('gag');
