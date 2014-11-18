@@ -175,7 +175,7 @@
  		$hero = new User_Hero( $fid );
  		$heroList = $hero->getStrongHeroList();
  		$ret['hList'] = $heroList;
- 		$ret['top'] = $hero->getUserRecord('maxPvpTop');
+ 		$ret['top'] = (int)$hero->getUserRecord('maxPvpTop');
  		ret( $ret );
  	default:
  		# code...
