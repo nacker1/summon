@@ -51,16 +51,17 @@
  *	|装备护甲穿透| + |装备法术穿透| + |装备物理吸血| + |装备法术吸血| + |装备技能冷却|）* 100
  **/
 	function getFire( $level=0 ){
-		$att = $this->eInfo['Equip_Att'] + $this->eInfo['Equip_UpAtt'] * $level;
-		$sor = $this->eInfo['Equip_Sor'] + $this->eInfo['Equip_UpSor'] * $level;
-		$def = $this->eInfo['Equip_Def'] + $this->eInfo['Equip_UpDef'] * $level;
-		$res = $this->eInfo['Equip_Res'] + $this->eInfo['Equip_UpRes'] * $level;
+		$level += 1;
+		$att = $this->eInfo['Equip_Att'] + $this->eInfo['Equip_UpAtt'] * $level;									#物理攻击
+		$sor = $this->eInfo['Equip_Sor'] + $this->eInfo['Equip_UpSor'] * $level;									#法术强度
+		$def = $this->eInfo['Equip_Def'] + $this->eInfo['Equip_UpDef'] * $level;									#物理护甲
+		$res = $this->eInfo['Equip_Res'] + $this->eInfo['Equip_UpRes'] * $level;									#魔法抗性
 
-		$ehp = $this->eInfo['Equip_Hp'] + $this->eInfo['Equip_UpHp'] * $level;		
-		$gethp = $this->eInfo['Equip_GetHp'] + $this->eInfo['Equip_UpGetHp'] * $level;	
-		$emp = $this->eInfo['Equip_Mp'] + $this->eInfo['Equip_UpMp'] * $level;
-		$getmp = $this->eInfo['Equip_GetMp'] + $this->eInfo['Equip_UpGetMp'] * $level;
-		$speed = $this->eInfo['Equip_Mov'] + $this->eInfo['Equip_UpMov'] * $level;
+		$ehp = $this->eInfo['Equip_Hp'] + $this->eInfo['Equip_UpHp'] * $level;										#生命值
+		$gethp = $this->eInfo['Equip_GetHp'] + $this->eInfo['Equip_UpGetHp'] * $level;								#生命回复		
+		$emp = $this->eInfo['Equip_Mp'] + $this->eInfo['Equip_UpMp'] * $level;										#法力值
+		$getmp = $this->eInfo['Equip_GetMp'] + $this->eInfo['Equip_UpGetMp'] * $level;								#法力回复
+		$speed = $this->eInfo['Equip_Mov'] + $this->eInfo['Equip_UpMov'] * $level;									#移动速度
 
 		$AttSpd = (int)$this->eInfo['Equip_AttSpd'] + (int)$this->eInfo['Equip_UpAttSpd'] * $level;					#攻击速度
 		$AttCri = (int)$this->eInfo['Equip_AttCri'] + (int)$this->eInfo['Equip_UpAttCri'] * $level;					#物理爆机
