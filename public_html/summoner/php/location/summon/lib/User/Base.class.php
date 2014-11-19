@@ -161,7 +161,7 @@
 		$ulife = $this->getLife();
 		if( $nums>0 && $ulife>=$nums ){
 			$this->setUpdTime(3);
-			$this->log->i('* 用户#'.$this->uid.'#扣除#'.$nums.'#体力'.self::$userinfo[$this->uid]['life'].'->'.( self::$userinfo[$this->uid]['life']-$nums ) );
+			$this->log->d('* 用户#'.$this->uid.'#扣除#'.$nums.'#体力'.self::$userinfo[$this->uid]['life'].'->'.( self::$userinfo[$this->uid]['life']-$nums ) );
 			self::$updinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life']-$nums;
 			return self::$userinfo[$this->uid]['life'];
 		}else{
@@ -176,7 +176,7 @@
 		$this->_resetLife();
 		if( $nums > 0 ){
 			$this->setUpdTime(3);
-			$this->log->i('* 用户#'.$this->uid.'#添加#'.$nums.'#体力'.self::$userinfo[$this->uid]['life'].'->'.( self::$userinfo[$this->uid]['life']+$nums ) );
+			$this->log->d('* 用户#'.$this->uid.'#添加#'.$nums.'#体力'.self::$userinfo[$this->uid]['life'].'->'.( self::$userinfo[$this->uid]['life']+$nums ) );
 			self::$updinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life'] +$nums;
 			return self::$userinfo[$this->uid]['life'];
 		}else{
@@ -299,7 +299,7 @@
  *@ 设置用户月卡
  **/
 	public function setWeekCode(){
-		$this->log->i( '* 用户#'.$this->uid.'#充值周卡' );
+		$this->log->d( '* 用户#'.$this->uid.'#充值周卡' );
 		self::$recordInfo[$this->uid]['ext1'] = self::$updinfo[$this->uid]['weekCode'] = self::$userinfo[$this->uid]['ext1'] = 1;
 		self::$recordInfo[$this->uid]['ext2'] = self::$updinfo[$this->uid]['weekCodeOverTime'] = self::$userinfo[$this->uid]['ext2'] = time() + 86400*7;
 		return true;
@@ -319,7 +319,7 @@
  **/
 	public function setMonthCode(){
 		$this->setUpdTime(3);
-		$this->log->i( '* 用户#'.$this->uid.'#充值月卡' );
+		$this->log->d( '* 用户#'.$this->uid.'#充值月卡' );
 		self::$updinfo[$this->uid]['monthCode'] = self::$userinfo[$this->uid]['monthCode'] = 1;
 		self::$updinfo[$this->uid]['mCodeOverTime'] = self::$userinfo[$this->uid]['mCodeOverTime'] = time() + 86400*30;
 		return true;
@@ -345,7 +345,7 @@
  **/
 	public function setUserImage( $img ){
 		$this->setUpdTime(3);
-		$this->log->i('* 用户#'.$this->uid.'#修改头像'.self::$userinfo[$this->uid]['image'].'->'.$img);
+		$this->log->d('* 用户#'.$this->uid.'#修改头像'.self::$userinfo[$this->uid]['image'].'->'.$img);
 		self::$updinfo[$this->uid]['image'] = $img;
 		return self::$userinfo[$this->uid]['image'] = $img;
 	}
@@ -362,7 +362,7 @@
  **/
 	public function setUserName( $name ){
 		$this->setUpdTime(3);
-		$this->log->i('* 用户#'.$this->uid.'#修改名称'.self::$userinfo[$this->uid]['nickname'].'->'.$name);
+		$this->log->d('* 用户#'.$this->uid.'#修改名称'.self::$userinfo[$this->uid]['nickname'].'->'.$name);
 		self::$userinfo[$this->uid]['nickname'] = $name;
 		self::$updinfo[$this->uid]['nickname'] = $name;
 		return true;
@@ -372,6 +372,7 @@
  **/
 	public function setSkey(){
 		$skey = md5( gettimeofday(true).rand(1000,9999) );
+		$this->log->d('* 用户#'.$this->uid.'#修改名称重新设置登录校验码'.self::$userinfo[$this->uid]['skey'].'->'.$skey);
 		self::$userinfo[$this->uid]['skey'] = $skey;
 		return $this->setUserHeart( 'skey', $skey );//登录校验码
 	}
@@ -379,6 +380,7 @@
  *@ 设置用户私信标记
  **/
 	public function setUserHeart( $tag, $val=1 ){
+		$this->log->d('* 用户#'.$this->uid.'#修改心跳信息 '.$tag.'->'.$val);
 		return $this->redis->hset('roleinfo:'.$this->uid.':baseinfo', $tag, $val );#self::$userinfo[$this->uid][ $tag ] = $val;
 	}
 /**
@@ -405,7 +407,7 @@
 			$this->userLog['nums'] = $nums;
 
 			$this->setUpdTime(2);
-			$this->log->i('* 用户#'.$this->uid.'#添加#'.$nums.'#金币'.self::$userinfo[$this->uid]['money'].'->'.( self::$userinfo[$this->uid]['money']+$nums ) );
+			$this->log->d('* 用户#'.$this->uid.'#添加#'.$nums.'#金币'.self::$userinfo[$this->uid]['money'].'->'.( self::$userinfo[$this->uid]['money']+$nums ) );
 			self::$updinfo[$this->uid]['money'] = self::$userinfo[$this->uid]['money'] + $nums;
 			return self::$userinfo[$this->uid]['money'] += $nums;
 		}else{
@@ -424,7 +426,7 @@
 			$this->userLog['nums'] = $nums;
 
 			$this->setUpdTime(2);
-			$this->log->i('* 用户#'.$this->uid.'#扣除#'.$nums.'#金币'.self::$userinfo[$this->uid]['money'].'->'.( self::$userinfo[$this->uid]['money']-$nums ) );
+			$this->log->d('* 用户#'.$this->uid.'#扣除#'.$nums.'#金币'.self::$userinfo[$this->uid]['money'].'->'.( self::$userinfo[$this->uid]['money']-$nums ) );
 			self::$updinfo[$this->uid]['money'] = self::$userinfo[$this->uid]['money'] - $nums;
 			return self::$userinfo[$this->uid]['money'] -= $nums;
 		}else{
@@ -442,7 +444,7 @@
 			$this->userLog['nums'] = $nums;
 
 			$this->setUpdTime(2);
-			$this->log->i('* 用户#'.$this->uid.'#添加#'.$nums.'#钻石'.self::$userinfo[$this->uid]['jewel'].'->'.( self::$userinfo[$this->uid]['jewel']+$nums ) );
+			$this->log->d('* 用户#'.$this->uid.'#添加#'.$nums.'#钻石'.self::$userinfo[$this->uid]['jewel'].'->'.( self::$userinfo[$this->uid]['jewel']+$nums ) );
 			self::$updinfo[$this->uid]['jewel'] = self::$userinfo[$this->uid]['jewel'] + $nums;
 			return self::$userinfo[$this->uid]['jewel'] += $nums;
 		}else{
@@ -461,7 +463,7 @@
 			$this->userLog['nums'] = $nums;
 
 			$this->setUpdTime(2);
-			$this->log->i('* 用户#'.$this->uid.'#扣除#'.$nums.'#钻石'.self::$userinfo[$this->uid]['jewel'].'->'.( self::$userinfo[$this->uid]['jewel']-$nums ) );
+			$this->log->d('* 用户#'.$this->uid.'#扣除#'.$nums.'#钻石'.self::$userinfo[$this->uid]['jewel'].'->'.( self::$userinfo[$this->uid]['jewel']-$nums ) );
 			self::$updinfo[$this->uid]['jewel'] = self::$userinfo[$this->uid]['jewel'] - $nums;
 			return self::$userinfo[$this->uid]['jewel'] -= $nums;
 		}else{
@@ -479,12 +481,12 @@
 			self::$updinfo[$this->uid]['totalPay'] = self::$userinfo[$this->uid]['totalPay'];
 			$vip = new Vip( $this->getVlevel() );
 			$vlevel = $vip->getVipLevelByExp( self::$userinfo[$this->uid]['totalPay'] );
-			$this->log->i('可升的vip等级====>'.$vlevel.'  玩家当前的vip等级：'.$this->getVlevel());
+			$this->log->d('可升的vip等级====>'.$vlevel.'  玩家当前的vip等级：'.$this->getVlevel());
 			if( $vlevel > $this->getVlevel() ){
-				$this->log->i( '* 玩家#'.$this->uid.'#vip等级升致#'.$vlevel.'#级' );
+				$this->log->d( '* 玩家#'.$this->uid.'#vip等级升致#'.$vlevel.'#级' );
 				$this->setVip( $vlevel );
 			}
-			$this->log->e('* 添加玩家#'.$this->uid.'#'.$nums.'充值总数为'.self::$userinfo[$this->uid]['totalPay']);
+			$this->log->d('* 添加玩家#'.$this->uid.'#'.$nums.'充值总数为'.self::$userinfo[$this->uid]['totalPay']);
 			return true;
 		}else{
 			return false;
@@ -496,7 +498,7 @@
 	public function addRoleBuff( $buffid ){
 		$buff = new Buff( $buffid );
 		$this->redis->set( 'roleinfo:'.$this->uid.':buff:'.$buff->getType(), $buffid, $buff->getTime() );
-		$this->log->i( '* 玩家#'.$this->uid.'#添加buff('.$buffid.')，有效时长'.$buff->getTime() );
+		$this->log->d( '* 玩家#'.$this->uid.'#添加buff('.$buffid.')，有效时长'.$buff->getTime() );
 		return array( 'overTime'=>$buff->getTime(), 'bid'=>$buffid );
 	}
 /**
@@ -549,7 +551,7 @@
 			$upinfo = $this->upInfo->getUpinfo();
 			$nextinfo = $this->upInfo->getNextUpinfo();
 			$this->setMissionId(1,51);
-			$this->log->i('* 用户#'.$this->uid.'#升级到 '.self::$userinfo[$this->uid]['level'].' 级，经验：'.self::$userinfo[$this->uid]['exp'].', 体力：'.self::$userinfo[$this->uid]['life'].', maxLife：'.self::$userinfo[$this->uid]['maxLife'].', getLife:'.$nextinfo['getLife']);
+			$this->log->d('* 用户#'.$this->uid.'#升级到 '.self::$userinfo[$this->uid]['level'].' 级，经验：'.self::$userinfo[$this->uid]['exp'].', 体力：'.self::$userinfo[$this->uid]['life'].', maxLife：'.self::$userinfo[$this->uid]['maxLife'].', getLife:'.$nextinfo['getLife']);
 			if( self::$userinfo[$this->uid]['level'] >= $this->upInfo->getMaxLevel() && $tolexp >= $upinfo['exp'] ){
 				self::$updinfo[$this->uid]['exp'] = self::$userinfo[$this->uid]['exp'] = $upinfo['exp'];
 				$this->log->e( '* 召唤师#'.$this->uid.'#等级达到最大，经验已满->'.self::$userinfo[$this->uid]['exp'] );
@@ -676,7 +678,7 @@
  *	$value:	$key 对应的值
  **/
 	public function setUserRecord( $key, $value ){
-		$this->log->i( '设置用户记录信息：'.$key.'=>'.$value );
+		$this->log->d( '设置用户记录信息：'.$key.'=>'.$value );
 		return self::$updinfo[$this->uid][$key] = self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = $value;
 	}
 /**
@@ -694,7 +696,7 @@
  *	$value:	$key 对应需要添加的值
  **/
 	public function addUserRecord( $key, $value ){
-		$this->log->i( '添加用户记录信息：'.$key.'+='.$value );
+		$this->log->d( '添加用户记录信息：'.$key.'+='.$value );
 		return self::$updinfo[$this->uid][$key] = self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
 	}
 /**

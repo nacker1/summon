@@ -12,7 +12,7 @@ class User_Draw extends User_Base{
 
 	function __construct( $type ){
 		parent::__construct();
-		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
+		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		$this->type = $type;
 		$this->_init();
 		$this->_getDrawType();			#获取可抽奖品的类型集
@@ -23,7 +23,7 @@ class User_Draw extends User_Base{
 		$this->pre;
 		if( C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
 			$this->cdb;
-			$this->log->i('+++++++++++++++++ DB select ++++++++++++++++');
+			$this->log->d('+++++++++++++++++ DB select ++++++++++++++++');
 			$this->pre->hdel('baseDrawTypeConfig:*');
 			$this->pre->hdel('baseDrawConfig:*');
 			#=============  初始化类型配置表  =================================================
@@ -179,7 +179,7 @@ class User_Draw extends User_Base{
 				$flag = '80,80';
 				break;
 		}
-		$this->log->i('Group_Level:'.$flag);
+		$this->log->d('Group_Level:'.$flag);
 		#$keys = $this->pre->keys( 'baseDrawTypeConfig:'.$this->type.':'.$flag.':*' );
 		$ret = $this->pre->get( 'baseDrawTypeConfig:'.$this->type.':'.$flag );
 		$ret = json_decode($ret,true);
