@@ -19,7 +19,7 @@
 		private $tag;
         private $log_file;
 		
-		private $level = LEVEL_INFO;
+		private $level = LEVEL_DEBUG;
         
         /**
          * Constructor
