@@ -22,5 +22,5 @@
 
 	#============= log打印 =================                ===================
 
-	define('LOG_LEVEL', 2);											 #打印日志的等级  0 = LEVEL_FATAL，1 = LEVEL_ERROR, 2 = LEVEL_WARN，3 = LEVEL_INFO，4 = LEVEL_DEBUG  4以上的数字为所有日志
+	define('LOG_LEVEL', 3);											 #打印日志的等级  0 = LEVEL_FATAL，1 = LEVEL_ERROR, 2 = LEVEL_WARN，3 = LEVEL_INFO，4 = LEVEL_DEBUG  4以上的数字为所有日志
 ?>
