@@ -41,7 +41,7 @@
 
 	function __construct( $uid,$type=1,$isRef=0 ){
 		parent::__construct($uid);
-		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
+		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		$this->type = (int)$type;
 		$this->isRef = $isRef;
 		
@@ -75,7 +75,7 @@
 	private function _init(){
 		$this->pre;
 		if( C('test') || !$this->pre->exists('shopConfig:'.$this->type) ){
-			$this->log->i('+++++++++++++++++ DB select ++++++++++++++++');
+			$this->log->d('+++++++++++++++++ DB select ++++++++++++++++');
 			$this->pre->hdel('shopConfig:*');
 			$where['Shop_Id'] = $this->type;
 			$this->cdb;
@@ -91,7 +91,7 @@
 		foreach( $shops as $v ){
 			$nLevel = explode( ',', $v['Group_Level'] );
 			if( $uLevel >= $nLevel[0] && $uLevel <= $nLevel[1] ){
-				#$this->log->i( 'goodConfig:'.json_encode($v) );
+				$this->log->d( 'goodConfig:'.json_encode($v) );
 				$this->shopinfo[ $v['Item_Type'] ][] = $v;
 			}
 		}
@@ -161,10 +161,12 @@
 				$nums = $this->retRate($numArr);
 			}
 			if( empty( $temp ) ){
-				$this->log->e( 'shopinfo: '.json_encode($this->shopinfo[ $val ]) );
-				$this->log->e( 'index: '.$index );
-				$this->log->e( 'shopList: '.json_encode($list) );
-				$this->log->e( 'oList: '.json_encode($oList) );
+				$this->log->f('* ============================  ERROR  [ shopTypeItems ]  ========================== *');
+				$this->log->f( 'shopinfo: '.json_encode($this->shopinfo[ $val ]) );
+				$this->log->f( 'index: '.$index );
+				$this->log->f( 'shopList: '.json_encode($list) );
+				$this->log->f( 'oList: '.json_encode($oList) );
+				$this->log->f('* ============================           ERROR            ========================== *');
 			}
 			$retList['shopList'][$i]['gid'] = (int)$temp['Item_Id'];     			#gid
 			$retList['shopList'][$i]['name'] = $temp['Item_Name'];		 			#name

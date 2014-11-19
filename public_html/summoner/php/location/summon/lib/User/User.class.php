@@ -13,7 +13,7 @@
 		if( empty($skey) ) $skey = getReq('skey',-1);
 		$this->skey = $skey;
 		parent::__construct( $uid );
-		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
+		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		if( $this->skey != -1 && !C('test')){
 			$this->_check(); //检验用户登录
 		}
@@ -73,6 +73,7 @@
 				$this->redis->hmset( 'roleinfo:'.$this->uid.':skillPoint',$point );
 			}
 		}
+		$this->log->d( ' skillInfo: '.json_encode( $point ) );
 		$point = $point;
 		return $point;
 	}
@@ -112,7 +113,7 @@
 			$this->redis->hmset( 'roleinfo:'.$this->uid.':skillPoint',$point );
 			$lastPoint = $max;
 		}
-		$this->log->i('* 用户剩余技能点数'.$lastPoint);
+		$this->log->d('* 用户剩余技能点数'.$lastPoint);
 		return $lastPoint;
 	}
 /**
@@ -123,14 +124,14 @@
 		if( $userSkill['point'] < 1 ){
 			return false;
 		}
-		$this->log->i( '* 用户#'.$this->uid.'#扣除1点技能点' );
+		$this->log->d( '* 用户#'.$this->uid.'#扣除1点技能点' );
 		return $this->redis->hincr( 'roleinfo:'.$this->uid.':skillPoint','point',-1 );
 	}
 /**
  *@ 添加用户技能点数
  **/
 	public function addUserSkillPoint( $nums = 10 ){
-		$this->log->i( '* 用户#'.$this->uid.'#添加'.$nums.'点技能点' );
+		$this->log->d( '* 用户#'.$this->uid.'#添加'.$nums.'点技能点' );
 		return $this->redis->hincr( 'roleinfo:'.$this->uid.':skillPoint', 'point', $nums );
 	}
 /**
@@ -222,11 +223,11 @@
 		}
 		#同步用户record信息
 		if( is_array( self::$recordInfo[$this->uid] ) && !empty( self::$recordInfo[$this->uid] ) ){
-			$this->log->i( 'record:'.json_encode(self::$recordInfo[$this->uid]) );json_encode(self::$recordInfo[$this->uid]);
-			$this->log->i( 'roleinfo:'.$this->uid.':baseinfo -> recode :'.json_encode(self::$recordInfo[$this->uid]) );
+			$this->log->d( 'record:'.json_encode(self::$recordInfo[$this->uid]) );json_encode(self::$recordInfo[$this->uid]);
+			$this->log->d( 'roleinfo:'.$this->uid.':baseinfo -> recode :'.json_encode(self::$recordInfo[$this->uid]) );
 			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$recordInfo[$this->uid]);
 			$guide = $this->redis->hget('roleinfo:'.$this->uid.':baseinfo','guide');
-			$this->log->i( 'new_guide:'.$guide );
+			$this->log->d( 'new_guide:'.$guide );
 			$this->throwSQL( $this->baseRecordTable, self::$recordInfo[$this->uid], array('uid'=>$this->uid) );
 			self::$recordInfo[$this->uid]=array();
 		}

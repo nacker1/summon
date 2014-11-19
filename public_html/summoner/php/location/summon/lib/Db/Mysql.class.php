@@ -155,7 +155,7 @@ class Db_Mysql{
 		$this->setInsertId( mysql_insert_id( $t->getConn() ) );
 		if( !$ret ){
             		global $log;
-			gettype($log) == 'object' && $log->i($sql.'__'.$t->error());
+			gettype($log) == 'object' && $log->f($sql.'__'.$t->error());
 		}
 		return $ret;
 	}

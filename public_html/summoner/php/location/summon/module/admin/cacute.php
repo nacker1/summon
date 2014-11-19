@@ -246,7 +246,7 @@
 		$add['mFriend'] = 10;
 
 #============================每日刷副本日常任务=================================
-	$log->i( json_encode($add) );
+	$log->d( 'addInfo:'.json_encode($add) );
 	isset($temp_add_good) && is_array($temp_add_good) && $add['good'] = implode('#',$temp_add_good);
 	$updInfo = $user->sendGoodsFromConfig( $add ); 	//所有条件通过后统一发放物品
 	if( !isset( $input['getList'] ) ){

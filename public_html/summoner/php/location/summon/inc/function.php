@@ -87,7 +87,7 @@
 		echo $retString;
 		if( gettype($log)=='object' ){
 			$times = gettimeofday(true) - C('start');
-			$log->i(json_encode($ret));
+			$log->d(json_encode($ret));
 			$error = "接口调用结束【{$times}秒】包长=".strlen($retString)."<>".strlen(json_encode($ret))."\n";
 			if( $code != 0 ){
 				$error = $msg.'。'.$error;
