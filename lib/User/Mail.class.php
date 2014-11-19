@@ -29,7 +29,7 @@
 		$priMail = $this->mailRedis->getAll();
 		$pubMail = $this->pubRedis->getAll();
 		$mList = array();
-		$this->log->i( 'priMail:'.json_encode( $priMail ) );
+		$this->log->d( 'priMail:'.json_encode( $priMail ) );
 		if( !empty( $priMail ) )
 			$mList = array_merge( $mList, $priMail );
 		if( !empty( $pubMail ) ){
@@ -82,7 +82,7 @@
 			$toUser = new User_User( $to,-1 );
 			$toUser->setNewMail(1); //标记有新邮件  心跳中提示
 		}
-		$this->log->e('mail_info:'.json_encode($send));
+		$this->log->d('mail_info:'.json_encode($send));
 		return $mailRedis->set($send,$uniqKey,$time);
 	}
 /**
@@ -96,7 +96,7 @@
 
 	function getMailByKey( $key ){
 		$mail = $this->mailRedis->get( $key );
-		$this->log->e( 'mailConfig:'.json_encode($mail) );
+		$this->log->d( 'mailConfig:'.json_encode($mail) );
 		return $mail;
 	}
 
@@ -110,7 +110,7 @@
 
 	function getPubMailByKey( $key ){
 		$pubMail = $this->pubRedis->get( $key );
-		$this->log->e( 'pubMailConfig:'.json_encode($pubMail) );
+		$this->log->d( 'pubMailConfig:'.json_encode($pubMail) );
 		return $pubMail;
 	}
 

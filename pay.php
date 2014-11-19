@@ -19,9 +19,9 @@
 	$log = new Logger($mod->tag());
 	$bin = file_get_contents('php://input');
 	
-	$log->i( '充值调用开始['.($ver?$ver:0).'] - '.$tag.' IP:'.long2ip(getIp()) );
-	$log->i(json_encode($input));
-	$log->i( json_encode($_REQUEST) );
+	$log->f( '充值调用开始['.($ver?$ver:0).'] - '.$tag.' IP:'.long2ip(getIp()) );
+	$log->d(json_encode($input));
+	$log->d( json_encode($_REQUEST) );
 	$filepath = $mod->path();
 	unset($mod);
 	if( is_file( BOOT.$filepath ) ){

@@ -235,7 +235,7 @@
  **/
 	public function getValue(){
 		$ret = $this->bgood->getGoodConfig();
-		$this->log->i( json_encode($ret) );
+		$this->log->d( $this->gid.' 能量点：'.json_encode($ret) );
 		return $ret;
 	}
  }

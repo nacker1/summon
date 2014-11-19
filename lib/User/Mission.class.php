@@ -15,7 +15,7 @@
  	{
  		# code...
  		parent::__construct( $args['uid'] );
- 		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
+ 		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
  		$this->type = $args['type'];	
  		$this->class = $args['class'];
  		$this->_init();
@@ -62,7 +62,7 @@
  				$this->db;
  				$ret = $this->db->find( $this->userMissionTable, 'showMission,missing,progress,type', array( 'uid'=>$this->uid,'status'=>0 ) ); 
 
- 				#$this->log->i( 'db_mission:'.json_encode($ret) );	
+ 				$this->log->d( 'db_mission:'.json_encode($ret) );	
  				if( $ret && is_array( $ret ) ){
  					foreach( $ret as $v ){
  						$this->redis->del('roleinfo:'.$this->uid.':mission:'.$v['type']);
@@ -161,7 +161,7 @@
  				unset($set);
  			}
  		}
- 		$this->log->i( 'mList:'.json_encode($uMission) );
+ 		$this->log->d( 'mList:'.json_encode($uMission) );
  		return $uMission;
  	}
 /**
@@ -190,20 +190,20 @@
  			return false;
  		}
  		if( (int)$taskConfig['Task_Level'] > $this->getLevel() ){ 	//用户当前等级小于任务要求的最低等级  返回
- 			$this->log->e( json_encode($taskConfig).':userLevel->'.$this->getLevel() );
+ 			$this->log->d( 'taskConfig:'.json_encode($taskConfig).':userLevel->'.$this->getLevel() );
  			$this->errorInfo = ' min_level_'.(int)$taskConfig['Task_Level'];
  			return false;
  		}
  		if( 1 == $this->type ){ //系统任务领取处理
 	 		$uMissProgress = $this->redis->hgetall( 'roleinfo:'.$this->getUid().':mission:'.$taskConfig['Task_Class'] );
 	 		if( !empty( $uMissProgress['missing'] ) && $uMissProgress['showMission'] >= $uMissProgress['missing'] ){  //用户当前领取的任务实际未完成  返回
-	 			$this->log->e( 'uMissProgress相应配置信息'.json_encode($uMissProgress) );
+	 			$this->log->d( 'uMissProgress相应配置信息'.json_encode($uMissProgress) );
 	 			$this->errorInfo = ' no_finished ';
 	 			return false;
 	 		}
 	 		#设置用户当前showMission为下一任务id
 	 		$this->setUserShowMission( $taskConfig['Task_Class'],$taskConfig['Post_Task'] );
- 			$this->log->i( json_encode($taskConfig) );
+ 			$this->log->d( __LINE__.' taskConfig:'.json_encode($taskConfig) );
  			return $taskConfig['config']; 
 	 	}elseif( 2== $this->type ){ //日常任务领取处理
 	 		if( $taskConfig['Task_Class'] == 61 ){ //晚餐或午餐领取体力需要额外处理
@@ -264,7 +264,7 @@
  *@ setUserMissing 设置用户指定类型任务已完成任务的进度
  **/
 	function setUserMissing( $progress ){
-		$this->log->i('missionClass:'.$this->class.',this->type:'.$this->type.', progress:'.$progress);
+		$this->log->d('missionClass:'.$this->class.',this->type:'.$this->type.', progress:'.$progress);
 		if( 1==$this->type ){ //处理系统任务
 			$missing = $this->getUserMissingByClass( $this->class );
 			if( empty( $missing ) ) {return;}
@@ -272,7 +272,7 @@
 			$set['missing'] = (int)$missing['missing'];
 			$key = empty( $missing['missing'] ) ? $missing['showMission'] : $missing['missing'] ;
 			$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal','Task_Level' ) );
-			#$this->log->i( 'baseMission:'.json_encode($baseMission) );
+			$this->log->d( 'baseMission:'.json_encode($baseMission) );
 			if( $set['progress'] >= $baseMission['Task_Time'] ){
 				$set['missing'] = $baseMission[ 'Post_Task' ];
 			}
@@ -290,11 +290,7 @@
 			if( !empty( $dayMis ) ){
 				$dayMis['progress'] += $progress ;
 				$this->cond->set( $dayMis,$this->class );
-				#=====================  设置任务通知  ======================
-				/*$notice[] = $dayMis['tid'];
-				$notice[] = $dayMis['progress'];*/
 				$this->setMissionNotice( $this->type,$this->class, $dayMis );
-				#===========================================================
 			}			
 			return true;
 		}

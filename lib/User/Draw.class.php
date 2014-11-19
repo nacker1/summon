@@ -79,7 +79,7 @@ class User_Draw extends User_Base{
 			array_push( $ret, $this->_getGood() );
 		}
 		$this->setMissionId( 2,65,$nums );
-		$this->log->i( 'goods:'.json_encode($ret) );
+		$this->log->d( 'goods:'.json_encode($ret) );
 		return implode('#',$ret);
 	}
 /**
@@ -180,12 +180,10 @@ class User_Draw extends User_Base{
 				break;
 		}
 		$this->log->d('Group_Level:'.$flag);
-		#$keys = $this->pre->keys( 'baseDrawTypeConfig:'.$this->type.':'.$flag.':*' );
 		$ret = $this->pre->get( 'baseDrawTypeConfig:'.$this->type.':'.$flag );
 		$ret = json_decode($ret,true);
 		foreach( $ret as $v ){
-			#$info = $this->pre->hgetall( $v );
-			#$this->log->i( 'draw_goodType_info:'.json_encode($v) );
+			$this->log->d( 'draw_goodType_info:'.json_encode($v) );
 			$this->userType[] = $v;
 			$this->tolTypeRate += $v['Item_Random'];
 		}		

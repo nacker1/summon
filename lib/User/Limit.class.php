@@ -16,7 +16,7 @@ class User_Limit extends User_Base{
 	 **/
 	public function __construct( $tag,$domain='dayLimit',$time='' ){
 		parent::__construct();
-		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
+		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		$this->tag = $tag;
 		$this->flag = $tag;
 		if( !empty( $domain ) ){
@@ -102,7 +102,7 @@ class User_Limit extends User_Base{
  **/
 	public function getLastTimes( $key='' ){
 		$used = $this->getUsedTimes( $key );
-		$this->log->i('tolLimit:'.$this->tolLimit.', used:'.$used);
+		$this->log->d('tolLimit:'.$this->tolLimit.', used:'.$used);
 		return (int)( $this->tolLimit - $used );
 	}
 /**
@@ -170,7 +170,7 @@ class User_Limit extends User_Base{
 		}else{
 			$used = $this->getUsedTimes( $key );
 			$buyTimes = $used - $this->freeTimes;
-			$this->log->i( 'usedTimes:'.$used.', buyTimes:'.$buyTimes.', key:'.$key.', freeTimes:'.$freeTimes );
+			$this->log->d( 'usedTimes:'.$used.', buyTimes:'.$buyTimes.', key:'.$key.', freeTimes:'.$freeTimes );
 			if( $this->getRule() ){
 				$rate = array( 1=>1, 2=>1, 3=>2, 4=>2, 5=>4, 6=>4, 7=>8 ); //第7次封顶
 				$time = $buyTimes + 1;
