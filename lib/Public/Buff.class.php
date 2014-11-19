@@ -32,7 +32,7 @@ class Buff extends Base{
 	function getTime(){
 		$config = $this->getConfig();
 		if( !isset( $config[ 'time' ] ) || (int)$config[ 'time' ] < 10 ){
-			$config['time'] = 3600;
+			$config['time'] = BUFF_TIME;
 		}
 		return $config['time'];
 	}

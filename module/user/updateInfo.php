@@ -23,7 +23,7 @@
 		 	if( $filter->isOk() ){
 		 		if( $name != $user->getUserName() ){
 				 	if( $user->getUserName() != $user->getRid().$user->getServerId() ){
-						if( false === $user->reduceCooldou( 100 ) ){
+						if( false === $user->reduceCooldou( EDIT_USERNAME_COOLDOU ) ){
 							$log->e('* 用户#'.$user->getUid().'#钻石不足，无法修改名称'.$user->getUserName().'->'.$name);
 							ret( '钻石不足',-1 );
 						}
@@ -45,7 +45,7 @@
  		ret( $user->setUserGuide( $index, $gid ) );
  		break;
  	case '3': #用户禁言功能
-	 	$gag = new Cond( 'user_limit', $user->getUid(), 600 );
+	 	$gag = new Cond( 'user_limit', $user->getUid(), GAG_TIME );
 	 	$gag->set( 1,'gag' );
 	 	$ret['v'] = $gag->get('gag');
 	 	$ret['t'] = $gag->getTimes('gag');

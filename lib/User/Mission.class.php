@@ -136,6 +136,8 @@
  	}
 
  /**
+  * 不加apc: 37.57 [#/sec]
+  * 添加apc: 63.81 [#/sec]
   *@ getUserMission
   **/
  	private function getUserMission(){
