@@ -81,7 +81,6 @@ class User_Limit extends User_Base{
  *@ 添加今日已使用次数
  **/
 	public function addLimitTimes( $nums=1,$key='' ){
-		$this->log->i( $key );
 		if( $this->getLastFreeTimes($key) > 0 ){
 			if( $this->getTimeLimit( $key ) ){
 				return true;
@@ -170,8 +169,8 @@ class User_Limit extends User_Base{
 			return $this->checkTimeLimit( $key );
 		}else{
 			$used = $this->getUsedTimes( $key );
-			$this->log->i( 'usedTimes:'.$used );
 			$buyTimes = $used - $this->freeTimes;
+			$this->log->i( 'usedTimes:'.$used.', buyTimes:'.$buyTimes.', key:'.$key.', freeTimes:'.$freeTimes );
 			if( $this->getRule() ){
 				$rate = array( 1=>1, 2=>1, 3=>2, 4=>2, 5=>4, 6=>4, 7=>8 ); //第7次封顶
 				$time = $buyTimes + 1;
