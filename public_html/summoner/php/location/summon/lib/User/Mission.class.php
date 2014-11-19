@@ -226,6 +226,9 @@
 		 			$this->errorInfo = ' reward ';
 		 			return false;
 		 		}
+		 		if( $taskConfig['Task_Class'] == 60 ){
+		 			$taskConfig['Task_Time'] = $this->isMonthCode();
+		 		}
 		 		if( $mission['progress'] < (int)$taskConfig['Task_Time'] ){
 		 			$this->errorInfo = 'no_finished';
 		 			return false;
