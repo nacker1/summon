@@ -93,7 +93,7 @@
 				$error = $msg.'。'.$error;
 				$log->e($error);
 			}else{
-				$log->i($error);
+				$log->f($error);
 			}
 		}
 		exit;
