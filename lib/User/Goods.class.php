@@ -12,7 +12,7 @@
 
 	public function __construct( $uid,$gid='',$ugid='' ){
 		parent::__construct($uid);
-		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
+		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		$this->gid = (int)$gid;
 		$this->ugid = (int)$ugid;
 		$this->type = (int)substr($gid,0,1);
