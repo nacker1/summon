@@ -590,7 +590,9 @@
  **/
 	public function setMissionNotice( $type, $taskClass, $config ){
 			$this->log->i( '设置任务配置信息:'.json_encode($config) );
-			return self::$missionNotice[$this->uid][$type][$taskClass] = $config;
+			if( $config['missing'] > self::$missionNotice[$this->uid][$type][$taskClass]['missing'] )
+				return self::$missionNotice[$this->uid][$type][$taskClass] = $config;
+			return true;
 	}
 /**
  *@ getMissionNotice 设置任务标记

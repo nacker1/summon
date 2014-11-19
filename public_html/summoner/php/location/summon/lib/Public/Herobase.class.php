@@ -91,7 +91,7 @@ class Herobase extends Base{
  * $page :  打开页码
  **/
 	function getComment( $order, $page ){
-		$pagesize = 5;
+		$pagesize = PAGE_SIZE;
 		$this->sdb;
 		if( $order == 1 ){
 			$sql = ' select `id`,`uinfo`,`comment` com,`agree` from `'.$this->commentTable.'` where hid='.$this->hid.' order by `agree` desc limit '.$pagesize*($page-1).','.$pagesize;
