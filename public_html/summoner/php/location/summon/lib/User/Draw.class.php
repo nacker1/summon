@@ -138,7 +138,7 @@ class User_Draw extends User_Base{
 		$ret['color'] = (int)$this->userType[ $index ]['Item_Color'];
 		$ret['min'] = (int)$this->userType[ $index ]['Item_CountMin'];
 		$ret['max'] = (int)$this->userType[ $index ]['Item_CountMax'];
-		$this->log->e(json_encode($ret));
+		$this->log->d(json_encode($ret));
 		return $ret;
 	}
 /**
