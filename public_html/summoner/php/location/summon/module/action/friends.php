@@ -143,13 +143,13 @@
  		$hasMerc = $uMerc->getHadList();
  		$log->d( 'fList:'.json_encode($fList) );
  		foreach( $fList as $v ){
- 			if(  !empty( $hasMerc ) && in_array( $v['uid'], $hasMerc ) ){
+ 			if(  !empty( $hasMerc ) && in_array( $v[0], $hasMerc ) ){
  				continue;
  			}
- 			$merc = new User_Merc( $v['uid'] );
+ 			$merc = new User_Merc( $v[0] );
  			$fMerc = $merc->getMercHero();
  			if( !empty( $fMerc ) ){
- 				$ret[$v['uid']] = $fMerc;
+ 				$ret[ $v[0] ] = $fMerc;
  			}
  			unset($merc);
  		}
