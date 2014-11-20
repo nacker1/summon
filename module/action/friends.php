@@ -141,6 +141,7 @@
  		$fList = $friend->getFriendList();
  		$uMerc = new User_Merc();
  		$hasMerc = $uMerc->getHadList();
+ 		$log->d( 'fList:'.json_encode($fList) );
  		foreach( $fList as $v ){
  			if(  !empty( $hasMerc ) && in_array( $v['uid'], $hasMerc ) ){
  				continue;
