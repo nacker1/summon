@@ -194,7 +194,7 @@
 		if( isset($input['tasktype']) && $input['tasktype'] < 14 && $input['tasktype'] > 10 ){ // pve逻辑处理
 			$proxy = new Proxy( array('type'=>1,'uid'=>$user->getUid()), 'User_Mission', 'getUserMissingByClass' );
 			$miss = $proxy->exec( $input['tasktype'] );
-			if( $miss['progress']<$input['roundid'] ){//当前通关关卡比之前通关关卡id大，设置系统任务与用户通关进度
+			if( $miss['progress'] <= $input['roundid'] ){//当前通关关卡比之前通关关卡id大，设置系统任务与用户通关进度
 				$user->setMissionId( 1, $input['tasktype'] );
 			}
 
