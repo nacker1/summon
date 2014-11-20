@@ -41,13 +41,13 @@
 	}
 # ----------------------------------------------------------每天竞技场打斗限制-------------------------------------------------------------------------------------	
 	if( $pass ){//通关成功需要处理的事务
-		switch( $input['tasktype'] ){  //通关体力预判断
+		/*switch( $input['tasktype'] ){  //通关体力预判断
 			case '66':	//黄金矿山
 			case '68':	//英雄炼狱
 			case '69':	//呆小红
 			case '70':	//呆小蓝
 			case '71':	//无尽之地
-				$reLife = 10*$sweepNum;
+				$reLife = $*$sweepNum;
 				break;
 			case '11': 	//普通关卡
 				$reLife = 6*$sweepNum;
@@ -58,7 +58,8 @@
 			case '13':	//炼狱关卡
 				$reLife = 24*$sweepNum;
 				break;
-		}
+		}*/
+		$reLife = $input['playerexp'] * $sweepNum;
 		if( $user->getLife() < $reLife ){
 			ret( '体力不足', -1 );
 		}
@@ -106,6 +107,7 @@
 				$temp_add_good[] = $k.','.$v;
 			}
 			$input['ext'] = $ext;
+			$input['playerexp'] = 0;
 			unset($nums,$exp1,$exp2,$expBase,$config,$tolHeroExp,$ext);
 		}else{//给英雄添加经验
 			$heros = $input['heros'];
