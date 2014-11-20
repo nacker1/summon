@@ -291,13 +291,12 @@
 			if( $set['progress'] >= $baseMission['Task_Time'] ){
 				do{
 					$key = $set['missing'] = $baseMission[ 'Post_Task' ];
-					$nextMassion = $baseMission;
 					if( !empty( $key ) )
 						$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal','Task_Level' ) );
 				}while( $this->class > 13 && !empty( $key ) && $set['progress'] >= $baseMission['Task_Time'] );
 			}
 			if( $this->class < 14 ){
-				$set['progress'] = $nextMassion[ 'Task_Goal' ];
+				$set['progress'] = $baseMission[ 'Task_Goal' ];
 			}
 			
 			#=====================  设置任务通知  ======================
