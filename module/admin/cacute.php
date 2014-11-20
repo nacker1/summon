@@ -128,8 +128,7 @@
 		switch( $input['tasktype'] ){  //通关扣除体力
 			case '11': 	//普通关卡
 				$add['life'] = -6*$sweepNum;
-				for( $i=0;$i<$sweepNum;$i++ )
-					$user->setMissionId( 2, 14 ); //每日所有副本任务
+				$user->setMissionId( 2, 14,$sweepNum ); //每日所有副本任务
 				break;
 			case '12':	//精英关卡
 				$add['life'] = -12*$sweepNum;
