@@ -550,7 +550,6 @@
 			$this->upInfo = new Levelup( $nextinfo['level'] );
 			$upinfo = $this->upInfo->getUpinfo();
 			$nextinfo = $this->upInfo->getNextUpinfo();
-			
 			$this->log->d('* 用户#'.$this->uid.'#升级到 '.self::$userinfo[$this->uid]['level'].' 级，经验：'.self::$userinfo[$this->uid]['exp'].', 体力：'.self::$userinfo[$this->uid]['life'].', maxLife：'.self::$userinfo[$this->uid]['maxLife'].', getLife:'.$nextinfo['getLife']);
 			if( self::$userinfo[$this->uid]['level'] >= $this->upInfo->getMaxLevel() && $tolexp >= $upinfo['exp'] ){
 				self::$updinfo[$this->uid]['exp'] = self::$userinfo[$this->uid]['exp'] = $upinfo['exp'];
@@ -562,7 +561,7 @@
 			self::$userinfo[$this->uid]['exp'] += $nums;
 			self::$updinfo[$this->uid]['exp'] = self::$userinfo[$this->uid]['exp'];
 		}else{
-			$this->setMissionId(1,51,self::$userinfo[$this->uid]['level']);
+			$this->setMissionId(1,51,self::$userinfo[$this->uid]['level']-1);
 		}
 		$this->setUpdTime(3);
 		return true;
