@@ -129,7 +129,7 @@
 					switch( $k ) {
 			 			case '59':
 			 				$set['progress'] = $this->isWeekCode();break;
-			 			case '60'
+			 			case '60':
 			 				$set['progress'] = $this->isMonthCode();break;
 			 		}
 					$this->cond->set( $set,$k );
@@ -235,7 +235,7 @@
 		 		switch( $taskConfig['Task_Class'] ) {
 		 			case '59':
 		 				$mission['progress'] = $this->isWeekCode();break;
-		 			case '60'
+		 			case '60':
 		 				$mission['progress'] = $this->isMonthCode();break;
 		 		}
 		 		$this->log->d( 'mission:'.json_encode($mission).', taskConfig:'.json_encode($taskConfig).', isMonthCode:'.$this->isMonthCode );
