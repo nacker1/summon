@@ -23,7 +23,6 @@
 			
 	  		#初始化vip商店 
 	  		$sRedis = new Cond( 'userShop_2', $user->getUid() );
-	  		dump($sRedis);
 	  		$ret['vshop'] = $sRedis->getTimes();
  			break;
  		case '1'://获取用户背包数据
