@@ -285,13 +285,13 @@
 			$key = empty( $missing['missing'] ) ? $missing['showMission'] : $missing['missing'];
 			$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal','Task_Level' ) );
 			$this->log->d( 'baseMission:'.json_encode($baseMission) );
-			if( $set['progress'] >= $baseMission['Task_Goal'] ){
+			if( $set['progress'] >= $baseMission['Task_Time'] ){
 				do{
 					$key = $set['missing'] = $baseMission[ 'Post_Task' ];
 					$nextMassion = $baseMission;
 					if( !empty( $key ) )
 						$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal','Task_Level' ) );
-				}while( !empty( $key ) && $set['progress'] >= $baseMission['Task_Goal'] );
+				}while( $this->class > 13 && !empty( $key ) && $set['progress'] >= $baseMission['Task_Time'] );
 			}
 			if( $this->class < 14 ){
 				$set['progress'] = $nextMassion[ 'Task_Goal' ];
