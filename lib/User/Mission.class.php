@@ -94,6 +94,9 @@
  						if( $k == 51 ){
  							$set[$k]['progress'] = $this->getLevel();
  						}
+ 						if( $k < 14 ){
+ 							$set[$k]['progress'] = $v;
+ 						}
  						$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$k, $set[$k] );
  						$this->setThrowSQL($this->userMissionTable,$uMission[$k]);
  					}
