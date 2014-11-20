@@ -272,7 +272,7 @@
 		if( 1==$this->type ){ //处理系统任务
 			$missing = $this->getUserMissingByClass( $this->class );
 			if( $missing['missing'] === '0' ){
-				
+
 				return;
 			}
 			$this->log->d( 'missing:'.json_encode( $missing ) );
@@ -288,12 +288,13 @@
 			if( $set['progress'] >= $baseMission['Task_Goal'] ){
 				do{
 					$key = $set['missing'] = $baseMission[ 'Post_Task' ];
+					$nextMassion = $baseMission;
 					if( !empty( $key ) )
 						$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$key,array( 'Task_Time','Post_Task','Task_Goal','Task_Level' ) );
 				}while( !empty( $key ) && $set['progress'] >= $baseMission['Task_Goal'] );
 			}
 			if( $this->class < 14 ){
-				$set['progress'] = $baseMission[ 'Task_Goal' ];
+				$set['progress'] = $nextMassion[ 'Task_Goal' ];
 			}
 			
 			#=====================  设置任务通知  ======================
