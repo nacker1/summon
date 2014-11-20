@@ -133,13 +133,11 @@
 				break;
 			case '12':	//精英关卡
 				$add['life'] = -12*$sweepNum;
-				for( $i=0;$i<$sweepNum;$i++ )
-					$user->setMissionId(2,15);
+				$user->setMissionId(2,15,$sweepNum);
 				break;
 			case '13':	//炼狱关卡
 				$add['life'] = -24*$sweepNum;
-				for( $i=0;$i<$sweepNum;$i++ )
-					$user->setMissionId(2,16);
+				$user->setMissionId(2,16,$sweepNum);
 				break;
 			case '69':	//呆小红
 				$add['life'] = -6;
