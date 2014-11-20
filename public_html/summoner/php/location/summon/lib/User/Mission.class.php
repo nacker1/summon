@@ -126,7 +126,7 @@
 				}else{
 					$set['tid'] = (int)$v; 								#'tid'		任务id
 					$set['progress'] = 0; 								#'progress' 进度
-					switch ( $k ) {
+					switch( $k ) {
 			 			case '59':
 			 				$set['progress'] = $this->isWeekCode();break;
 			 			case '60'
@@ -232,7 +232,7 @@
 		 			$this->errorInfo = ' reward ';
 		 			return false;
 		 		}
-		 		switch ( $taskConfig['Task_Class'] ) {
+		 		switch( $taskConfig['Task_Class'] ) {
 		 			case '59':
 		 				$mission['progress'] = $this->isWeekCode();break;
 		 			case '60'
