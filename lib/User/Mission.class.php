@@ -126,9 +126,12 @@
 				}else{
 					$set['tid'] = (int)$v; 								#'tid'		任务id
 					$set['progress'] = 0; 								#'progress' 进度
-					if( $k == 60 ){
-						$set['progress'] = $this->isMonthCode();
-					}
+					switch ( $k ) {
+			 			case '59':
+			 				$set['progress'] = $this->isWeekCode();break;
+			 			case '60'
+			 				$set['progress'] = $this->isMonthCode();break;
+			 		}
 					$this->cond->set( $set,$k );
 					$uMission[] = $set;
  					unset($set);
@@ -229,8 +232,11 @@
 		 			$this->errorInfo = ' reward ';
 		 			return false;
 		 		}
-		 		if( $taskConfig['Task_Class'] == 60 ){
-		 			$mission['progress'] = $this->isMonthCode();
+		 		switch ( $taskConfig['Task_Class'] ) {
+		 			case '59':
+		 				$mission['progress'] = $this->isWeekCode();break;
+		 			case '60'
+		 				$mission['progress'] = $this->isMonthCode();break;
 		 		}
 		 		$this->log->d( 'mission:'.json_encode($mission).', taskConfig:'.json_encode($taskConfig).', isMonthCode:'.$this->isMonthCode );
 		 		if( $mission['progress'] < (int)$taskConfig['Task_Time'] ){
