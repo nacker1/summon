@@ -102,7 +102,11 @@
  **/
 	public function addGoods( $nums=1 ){
 		if( $nums < 1 ){return $this->reduceGoods( -$nums );}
-		
+		switch( $this->bgood->getColor() ){
+			case '3':$this->setMissionId(1,33,$nums);break;
+			case '4':$this->setMissionId(1,34,$nums);break;
+			case '5':$this->setMissionId(1,35,$nums);break;
+		}
 		if( $this->bgood->getGoodSuper() == 1 ){ //可重叠物品计算数量
 			if( $this->redis->exists( 'roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid ) ){
 				$this->goodinfo['nums'] += $nums;
@@ -126,11 +130,6 @@
 		}else{	
 			if( empty($this->ugid) && !$this->redis->exists('roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid.':'.$this->ugid) ){
 				for( $i=0;$i<$nums;$i++ ){ 
-					switch( $this->bgood->getColor() ){
-						case '3':$this->setMissionId(1,33);break;
-						case '4':$this->setMissionId(1,34);break;
-						case '5':$this->setMissionId(1,35);break;
-					}
 					unset($insert);
 					$insert['gid'] = $this->gid;
 					$insert['nums'] = 1;
