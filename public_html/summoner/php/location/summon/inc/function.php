@@ -82,7 +82,6 @@
 			$msg = array('msg'=>$msg);
 		}
 		$code==0 ? $ret['data']=$msg : $ret['desc']=$msg;
-		//echo json_encode($ret);
 		$retString = msgpack_pack($ret);
 		echo $retString;
 		if( gettype($log)=='object' ){
