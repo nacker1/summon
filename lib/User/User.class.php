@@ -213,7 +213,8 @@
 	public function __destruct(){
 		$this->redis->expire('roleinfo:'.$this->uid.':baseinfo',WEEK_TIMES);
 		# 同步用户信息
-		if( isset( self::$isupd[$this->uid] ) && self::$isupd[$this->uid] > 0 ){ 
+		if( isset( self::$isupd[$this->uid] ) && self::$isupd[$this->uid] > 0 ){
+			$this->log->d( 'updinfo:'.json_encode(self::$isupd[$this->uid]) );
 			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$updinfo[$this->uid]);
 			if( self::$isupd[$this->uid] >= 2 && !empty( self::$updinfo[$this->uid] ) ){
 				$this->throwSQL( $this->baseTable, self::$updinfo[$this->uid], array('userid'=>$this->uid) );
