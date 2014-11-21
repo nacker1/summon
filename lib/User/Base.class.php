@@ -669,7 +669,7 @@
 	public function getUserLastUpdInfo(){
 		$retinfo = self::$updinfo[$this->uid];
 		if( isset( self::$retinfo[$this->uid] ) ){
-			array_merge( $retinfo, self::$retinfo[$this->uid] );
+			$retinfo = array_merge( $retinfo, self::$retinfo[$this->uid] );
 		}
 		$this->log->i('updinfo:'.json_encode( $retinfo ));
 		return $retinfo;
