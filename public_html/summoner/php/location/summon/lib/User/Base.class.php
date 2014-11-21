@@ -6,7 +6,8 @@
  	protected static $recordInfo	=	array();												//用户对应的record信息 对就zy_uniqRoleRecord表 
  	protected static $throwSQL 		=	array();												//需要异步同步的数据
 	protected static $userinfo 		=	array(); 												//角色所有信息
-	protected static $updinfo 		=	array(); 												//角色所有信息
+	protected static $updinfo 		=	array(); 												//角色更新的信息  需要同步入库
+	protected static $retinfo 		=	array(); 												//返回给客户端的信息
 	protected static $isupd 		=	array(); 												//判断是否需要更新用户信息
 	protected static $missionNotice =	array();												//任务通知信息
 	protected static $lastUpdHero 	= 	array();												//英雄最后更新信息
@@ -300,8 +301,8 @@
  **/
 	public function setWeekCode(){
 		$this->log->d( '* 用户#'.$this->uid.'#充值周卡' );
-		self::$recordInfo[$this->uid]['ext1'] = self::$updinfo[$this->uid]['weekCode'] = self::$userinfo[$this->uid]['ext1'] = 1;
-		self::$recordInfo[$this->uid]['ext2'] = self::$updinfo[$this->uid]['weekCodeOverTime'] = self::$userinfo[$this->uid]['ext2'] = time() + 86400*7;
+		self::$recordInfo[$this->uid]['ext1'] = self::$retinfo[$this->uid]['weekCode'] = self::$userinfo[$this->uid]['ext1'] = 1;
+		self::$recordInfo[$this->uid]['ext2'] = self::$retinfo[$this->uid]['weekCodeOverTime'] = self::$userinfo[$this->uid]['ext2'] = time() + 86400*7;
 		return true;
 	}
 /**
@@ -666,8 +667,12 @@
  *@ getUserLastUpdInfo 获取用户信息中发生变化的那部分
  **/
 	public function getUserLastUpdInfo(){
-		$this->log->i('updinfo:'.json_encode(self::$updinfo[$this->uid]));
-		return self::$updinfo[$this->uid];
+		$retinfo = self::$updinfo[$this->uid];
+		if( isset( self::$retinfo[$this->uid] ) ){
+			array_merge( $retinfo, self::$retinfo[$this->uid] );
+		}
+		$this->log->i('updinfo:'.json_encode( $retinfo ));
+		return $retinfo;
 	}
 
 #====== * 用户设置或同步用户zy_uniqRoleRecord表中的信息 ==========================================================
@@ -679,7 +684,7 @@
  **/
 	public function setUserRecord( $key, $value ){
 		$this->log->d( '设置用户记录信息：'.$key.'=>'.$value );
-		return self::$updinfo[$this->uid][$key] = self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = $value;
+		return self::$retinfo[$this->uid][$key] = self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = $value;
 	}
 /**
  *@ getUserRecord() 设置用户的记录表信息
