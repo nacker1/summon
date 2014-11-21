@@ -8,7 +8,7 @@
 			if( is_array( $msg ) ){
 				$msg = json_encode($msg);
 			}
-			$this->debug($msg);
+			ISLOG && $this->debug($msg);
 		}
 		/**
 		 *@ i 接口基本信息
@@ -28,7 +28,7 @@
 			if( is_array( $msg ) ){
 				$msg = json_encode($msg);
 			}
-			$this->warn($msg);
+			ISLOG && $this->warn($msg);
 		}
 		/**
 		 *@ e 信息错误内容
@@ -38,7 +38,7 @@
 			if( is_array( $msg ) ){
 				$msg = json_encode($msg);
 			}
-			$this->error($msg);
+			ISLOG && $this->error($msg);
 		}
 		/**
 		 *@ f 严重错误信息
