@@ -50,6 +50,16 @@
 	 	$ret['v'] = $gag->get('gag');
 	 	$ret['t'] = $gag->getTimes('gag');
 	 	ret($ret);
+ 	case '4': #用户战争学院修炼功能
+ 		$type = $input[ 'wt' ];					#修炼方式  1普通   2中级  3为高级
+	 	$war = new User_War( $user->getUid(), $type, $user->getLevel() );
+	 	$money = $war->getMoney();
+	 	if( $user->getTypeInfo( $money['type'] ) < $money['nums'] ){
+	 		ret( '对应货币不足', -1 );
+	 	}
+	 	$war->begin();
+	 	$add[$money['type']] = -$money['nums'];
+	 	ret( $user->sendGoodsFromConfig( $add ) );
  	default:
  		# code...
  		break;
