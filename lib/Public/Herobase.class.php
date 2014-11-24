@@ -70,7 +70,7 @@ class Herobase extends Base{
 		$set['hid'] = $this->hid;
 		$set['uinfo'] = $uinfo;
 		$set['comment'] = $comment;
-		$set['agree'] = 1;
+		$set['agree'] = 0;
 		$set['time'] = time();
 		$this->throwSQL( $this->commentTable, $set, '', '', 'stats');
 	}
