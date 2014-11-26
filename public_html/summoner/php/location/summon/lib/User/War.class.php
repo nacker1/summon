@@ -37,14 +37,14 @@
 		function begin(){
 			$set['level'] = $this->level;
 			$set['time'] = time();
-			return $this->cond->set( $set );
+			return $this->cond->set( $set, $this->type );
 		}
 
 		/**
 		 *@ 领取修炼结果
 		 **/
 		function end(){
-			return $this->cond->get();
+			return $this->cond->get( $this->type );
 		}
 
 		/**
