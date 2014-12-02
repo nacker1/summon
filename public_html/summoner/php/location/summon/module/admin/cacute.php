@@ -107,7 +107,7 @@
 				$temp_add_good[] = $k.','.$v;
 			}
 			$input['ext'] = $ext;
-			$input['playerexp'] = 0;
+			#$input['playerexp'] = 0;
 			unset($nums,$exp1,$exp2,$expBase,$config,$tolHeroExp,$ext);
 		}else{//给英雄添加经验
 			$heros = $input['heros'];

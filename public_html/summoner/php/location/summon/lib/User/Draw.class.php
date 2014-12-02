@@ -9,6 +9,7 @@ class User_Draw extends User_Base{
 	private $dInfo;																	//指定类型抽卡配置内容
 	private $userType;																//指定类型抽卡配置内容
 	private $tolTypeRate=0;															//抽卡类型的各概率总和
+	private $giveHero = true;														//10连抽必送英雄
 
 	function __construct( $type ){
 		parent::__construct();
@@ -75,9 +76,12 @@ class User_Draw extends User_Base{
 			ret(' no_type_config'.__LINE__,-1);
 		}
 
-		for( $i=0;$i<$nums;$i++ ){
+		for( $i=0;$i<$nums-1;$i++ ){
 			array_push( $ret, $this->_getGood() );
 		}
+
+		array_push( $ret, $this->giveHero() );
+
 		$this->setMissionId( 2,65,$nums );
 		$this->log->d( 'goods:'.json_encode($ret) );
 		return implode('#',$ret);
@@ -88,8 +92,7 @@ class User_Draw extends User_Base{
 	private function _getGood(){
 		$uLevel = $this->getLevel();
 		$type = $this->_getType();
-		#$keys = $this->pre->keys( 'baseDrawConfig:'.$this->type.':'.$type['type'].':'.$type['color'].':*' );
-
+		if( $type['type'] == 1 ){ $this->giveHero = false; }
 #================================== 取物品 ==================================
 		$goods = json_decode( $this->pre->get( 'baseDrawConfig:'.$this->type.':'.$type['type'].':'.$type['color'] ), true );
 		if( empty( $goods ) ){
