@@ -107,7 +107,7 @@ class User_Hero extends User_Base{
  **/
 	public function giveHero( $color='' ){
 		empty( $color ) && $color = 1;
-		empty( $this->hid ) && ret( 'no_hid（'.__LINE__.'）' );
+		empty( $this->hid ) && ret( 'no_hid ('.__LINE__.')' );
 		if( !empty( $this->hinfo ) && $this->hinfo['hid'] == $this->hid ){
 			$nums = array( 1=>10,2=>20,3=>40,4=>80,5=>160 );
 			//转成英雄碎片
