@@ -82,6 +82,7 @@
 			$limit = new User_Limit( 'freeSweepTimesDay' );
 			$cooldou = $limit->getExpend();
 			$freeTime = $limit->getLastFreeTimes();
+			$log->e( '* freeTime:'.$freeTime );
 			if( $freeTime < $sweepNum ){
 				if( $cooldou > 0 && $user->getCooldou() < ( $cooldou*( $sweepNum-$freeTime ) ) ){
 					ret(' no_jewel ',-1);
