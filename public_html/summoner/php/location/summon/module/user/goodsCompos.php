@@ -93,7 +93,7 @@
  		if( $user->getMoney() < $money ){
  			ret( 'no_money', -1 );
  		}
-
+ 		
  		$give['money'] = -$money;
 
  		$tolEnergy = 0 ;

@@ -24,6 +24,7 @@ class Goodcompos extends Goodbase{
 	 			ret( 'max_level_'.__LINE__, -1 );
 	 		}
 		}
+		$this->log->d( 'composConfig:'.json_encode($this->cominfo) );
 	}
 	
 	public function getComItemInfo(){
