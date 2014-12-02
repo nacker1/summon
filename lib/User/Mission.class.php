@@ -210,7 +210,7 @@
 	 		}
 	 		#设置用户当前showMission为下一任务id
 	 		$this->setUserShowMission( $taskConfig['Task_Class'],$taskConfig['Post_Task'] );
- 			$this->log->d( __LINE__.' taskConfig:'.json_encode($taskConfig) );
+ 			$this->log->d( __LINE__.' taskConfig:'.json_encode($taskConfig).', userMission:'.json_encode( $uMissProgress ) );
  			return $taskConfig['config']; 
 	 	}elseif( 2== $this->type ){ //日常任务领取处理
 	 		if( $taskConfig['Task_Class'] == 61 ){ //晚餐或午餐领取体力需要额外处理
@@ -283,7 +283,6 @@
 		if( 1==$this->type ){ //处理系统任务
 			$missing = $this->getUserMissingByClass( $this->class );
 			if( $missing['missing'] === '0' ){
-
 				return;
 			}
 			$this->log->d( 'missing:'.json_encode( $missing ) );
