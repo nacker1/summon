@@ -266,7 +266,7 @@
 		$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$nextTaskId,array( 'Post_Task' ) );
 		$this->log->d( 'setShowMission:'.json_encode( $baseMission ) );
 		$set['showMission'] = $nextTaskId;
-		if( empty( $baseMission['Post_Task'] ) ){
+		if( empty( $baseMission['Post_Task'] ) && $baseMission['Post_Task'] !== '0' ){
 			$set['status'] = 1;
 			$this->redis->del( 'roleinfo:'.$this->getUid().':mission:'.$class );
 		}else{
