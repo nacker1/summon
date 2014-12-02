@@ -50,9 +50,10 @@ class User_Limit extends User_Base{
 		$this->tolLimit = (int)$limitInfo['times'];
 		$vipLimit = (int)$limitInfo['vipLimit'];
 		$vipTag = $limitInfo['vip'];
-
-		if( !empty( $vipTag ) && $this->getVlevel() > 0 ){
-			$vip = new Vip( $this->getVlevel() );
+		$vipLevel = $this->getVlevel();
+		$this->log->d( 'vipLevel:'.$vipLevel );
+		if( !empty( $vipTag ) && $vipLevel > 0 ){
+			$vip = new Vip( $vipLevel );
 			$ext = $vip->getTagValue( $vipTag );
 			if( !empty( $ext ) ){
 				if( $vipLimit == 1 ){
