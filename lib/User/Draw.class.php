@@ -81,20 +81,20 @@ class User_Draw extends User_Base{
 			array_push( $ret, $this->_getGood( $type ) );
 		}
 
-		array_push( $ret, $this->giveHero() );
+		array_push( $ret, $this->_giveHero() );
 
 		$this->setMissionId( 2,65,$nums );
 		$this->log->d( 'goods:'.json_encode($ret) );
 		return implode('#',$ret);
 	}
 
-	function giveHero(){
+	private function _giveHero(){
 		if( $this->giveHeroTag ){
 			$type['type'] = 1;
 			$type['color'] = 1;
 			$type['min'] = 1;
 			$type['max'] = 1;
-			$this->log->d( '10连抽送英雄：'.json_encode($type) );
+			$this->log->d( '10_draw 连抽送英雄：'.json_encode($type) );
 		}else{
 			$type = $this->_getType();
 		}
