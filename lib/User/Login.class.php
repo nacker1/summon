@@ -102,6 +102,9 @@
 			ret('Db error!',-1);
 		}
 	}
+/**
+ *@ 用户登录信息
+ **/
 	public function getUserBeginInfo(){
 		$this->setSkey();
 		$userinfo = $this->getUserInfo();
@@ -135,6 +138,8 @@
 		$ret['maxPvpTop'] = (int)$userinfo['maxPvpTop'];								#用户当前身上拥有的buff列表
 		$ret['lastLoginTime'] = (int)$userinfo['logintime'];							#用户上次登录时间
 		$ret['logintime'] = $this->loginTime;											#用户本次登录时间
+		$sign = new Act_Sign( $this->uid );
+		$ret['sign'] = $sign->checkSign();											#用户本次登录时间
 		$this->_logInfo();
 		return $ret;
 	}

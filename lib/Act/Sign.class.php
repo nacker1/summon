@@ -3,12 +3,12 @@
  *@ 每日签到类
  **/
 class Act_Sign extends User_Base{
-	private $table='zy_baseSignConfig';	//签到配置表
-	private $month;			//当月缩写
-	private $tolDay;				//累计签到天数
-	private $cond;				//cond 对应的redis连接源
-	private $overTime;			//过期时间
-	private $userSigninfo;			//当前用户的签到信息
+	private $table='zy_baseSignConfig';						//签到配置表
+	private $month;											//当月缩写
+	private $tolDay;										//累计签到天数
+	private $cond;											//cond 对应的redis连接源
+	private $overTime;										//过期时间
+	private $userSigninfo;									//当前用户的签到信息
 
 	function __construct( $uid ){
 		parent::__construct( $uid );
@@ -80,6 +80,15 @@ class Act_Sign extends User_Base{
 	public function getVipTimes(){
 		return (int)$this->cond->getDayTimes('vip');
 	}
+/**
+ *@ 判断是否可以签到 
+ **/
+	public function checkSign(){
+		if( $this->getCommonTimes() > 0 && $this->getVipTimes() > 0 ){
+			return 0;
+		}
+		return 1;
+	}	
 /**
  *@ 获取用户本月累计签到次数
  **/
