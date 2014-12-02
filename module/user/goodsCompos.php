@@ -89,8 +89,8 @@
  			ret( 'max_level_'.__LINE__, -1 );
  		}
 
- 		$money = $gCom->getMoney();
- 		if( $user->getUserMoney() < $money ){
+ 		$money = $gCom->getComMoney();
+ 		if( $user->getMoney() < $money ){
  			ret( 'no_money', -1 );
  		}
 
