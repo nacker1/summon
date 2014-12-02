@@ -76,14 +76,14 @@ class User_Draw extends User_Base{
 			ret(' no_type_config'.__LINE__,-1);
 		}
 
-		if( $nums == 10 ){
+		if( $nums == 10 && $this->getLevel() > 1 ){
 			for( $i=0;$i<$nums-1;$i++ ){
 				$type = $this->_getType();
 				array_push( $ret, $this->_getGood( $type ) );
 			}
 			array_push( $ret, $this->_giveHero() );
 		}else{
-			if( $this->getLevel() < 3 ){
+			if( $this->getLevel() < 2 ){
 				if( $this->type != 2 )
 					$this->giveHeroTag = false;
 				array_push( $ret, $this->_giveHero() );
