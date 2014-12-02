@@ -319,7 +319,7 @@
 		}elseif( 2==$this->type ){ //处理日常任务
 			$dayMis = $this->cond->get($this->class);
 			$this->log->d( 'dayMins:'.json_encode($dayMis) );
-			if( $uLevel < $dayMis['minLevel'] ){return;}
+			if( $uLevel < (int)$dayMis['minLevel'] ){return;}
 			unset( $dayMis['minLevel'] );
 			if( !empty( $dayMis ) ){
 				$dayMis['progress'] += $progress ;
