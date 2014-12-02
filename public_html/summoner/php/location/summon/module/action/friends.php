@@ -60,7 +60,7 @@
 
  		$friend = new User_Friend( $user->getUid(), $to );
  		if( 1==$opt ){
- 			if( $friend->isFriend( $to ) ){ $friend->delInvite(); ret( '添加成功' ); }
+ 			if( $friend->isFriend( $to ) ){ $friend->delInvite(); ret( '你们已经是好友了', -1 ); }
  			$ret = $friend->agreeUserInvite();
  		}else{
  			$ret = $friend->delInvite();
