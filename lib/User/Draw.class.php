@@ -102,9 +102,9 @@ class User_Draw extends User_Base{
 				$type['min'] = 1;
 				$type['max'] = 1;
 			}elseif( $this->type == 1 ){
-				$item = array( 3=>0.1, 5=>0.9 );
+				$item = array( 3=>0.1, 4=>0.9 );
 				$itemType = $this->retRate( $item );
-				if( !isset( $item[ $itemType ] ) ) $itemType = 5;
+				if( !isset( $item[ $itemType ] ) ) $itemType = 4;
 				$type['type'] = $itemType;
 				$type['color'] = 3;
 				$type['min'] = 1;
