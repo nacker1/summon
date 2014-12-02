@@ -26,6 +26,7 @@
 				ret( 'no_money',-1 );
 			}
 			$give['money'] = -$money;
+			$extItem = '63002,'.$nums;
 			break;
 		case '2'://钻石抽钻石
 			$limit = new User_Limit( 'jewelDrawDay','dayLimit', 3600*48 );
@@ -41,7 +42,7 @@
 				ret( 'no_jewel',-1 );
 			}
 			$give['cooldou'] = -$cooldou;
-			
+			$extItem = '63001,'.$nums;
 			break;
 		case '3'://友情点抽友情点
 			$limit = new User_Limit( 'friendDrawDay','dayLimit', 3600*48 );
@@ -58,12 +59,13 @@
 				ret( 'no_friendCoin',-1 );
 			}
 			$give['mFriend'] = -$cooldou;
+			$extItem = '63003,'.$nums;
 			break;
 	}
 
 	$draw = new User_Draw( $type );
 
-	$give['good'] = $draw->getGift( $num );
+	$give['good'] = $draw->getGift( $num ).'#'.$extItem;
 
 	$ret = $user->sendGoodsFromConfig($give);
 
