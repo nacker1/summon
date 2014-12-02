@@ -9,7 +9,7 @@ class User_Draw extends User_Base{
 	private $dInfo;																	//指定类型抽卡配置内容
 	private $userType;																//指定类型抽卡配置内容
 	private $tolTypeRate=0;															//抽卡类型的各概率总和
-	private $giveHeroTag = true;														//10连抽必送英雄
+	private $giveHeroTag = true;													//10连抽必送英雄
 
 	function __construct( $type ){
 		parent::__construct();
@@ -76,12 +76,17 @@ class User_Draw extends User_Base{
 			ret(' no_type_config'.__LINE__,-1);
 		}
 
-		for( $i=0;$i<$nums-1;$i++ ){
+		if( $nums == 10 ){
+			for( $i=0;$i<$nums;$i++ ){
+				$type = $this->_getType();
+				array_push( $ret, $this->_getGood( $type ) );
+			}
+
+			array_push( $ret, $this->_giveHero() );
+		}else{
 			$type = $this->_getType();
 			array_push( $ret, $this->_getGood( $type ) );
 		}
-
-		array_push( $ret, $this->_giveHero() );
 
 		$this->setMissionId( 2,65,$nums );
 		$this->log->d( 'goods:'.json_encode($ret) );
@@ -89,14 +94,23 @@ class User_Draw extends User_Base{
 	}
 
 	private function _giveHero(){
+		$type = $this->_getType();
 		if( $this->giveHeroTag ){
-			$type['type'] = 1;
-			$type['color'] = 1;
-			$type['min'] = 1;
-			$type['max'] = 1;
+			if( $this->type == 2 ){
+				$type['type'] = 1;
+				$type['color'] = 1;
+				$type['min'] = 1;
+				$type['max'] = 1;
+			}elseif( $this->type == 1 ){
+				$item = array( 3=>0.1, 5=>0.9 );
+				$itemType = $this->retRate( $item );
+				if( !isset( $item[ $itemType ] ) ) $itemType = 5;
+				$type['type'] = $itemType;
+				$type['color'] = 3;
+				$type['min'] = 1;
+				$type['max'] = 1;
+			}
 			$this->log->d( '10_draw 连抽送英雄：'.json_encode($type) );
-		}else{
-			$type = $this->_getType();
 		}
 
 		return $this->_getGood( $type );
@@ -106,7 +120,11 @@ class User_Draw extends User_Base{
  **/
 	private function _getGood( $type ){
 		$uLevel = $this->getLevel();
-		if( $type['type'] == 1 && $type['color'] != 0 ){ $this->giveHeroTag = false; }  #抽中英雄
+		if( $this->type == 2 ){
+			if( $type['type'] == 1 && $type['color'] != 0 ){ $this->giveHeroTag = false; }  #抽中英雄
+		}elseif(  $this->type == 1  ){
+			if( $type['color'] != 3 ){ $this->giveHeroTag = false; }  #抽中蓝色物品
+		}
 #================================== 取物品 ==================================
 		$goods = json_decode( $this->pre->get( 'baseDrawConfig:'.$this->type.':'.$type['type'].':'.$type['color'] ), true );
 		if( empty( $goods ) ){
