@@ -31,7 +31,7 @@ class Goodcompos extends Goodbase{
 		return $this->cominfo;
 	}
 /**
- *@ 获取装备强化需要的金币数量
+ *@ 获取装备合成需要的金币数量
  **/
 	public function getComMoney(){
 		return $this->cominfo['Cost_Gold'];

@@ -89,13 +89,6 @@
  			ret( 'max_level_'.__LINE__, -1 );
  		}
 
- 		$money = $gCom->getComMoney();
- 		if( $user->getMoney() < $money ){
- 			ret( 'no_money', -1 );
- 		}
- 		
- 		$give['money'] = -$money;
-
  		$tolEnergy = 0 ;
  		foreach( $iList as $v ){
  			$good = explode( ',', $v );
