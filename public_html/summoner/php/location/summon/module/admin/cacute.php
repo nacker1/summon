@@ -59,10 +59,14 @@
 				$reLife = 24*$sweepNum;
 				break;
 		}*/
-		$reLife = $input['playerexp'] * $sweepNum;
+		$reLife = 0;
+		if( $input['playerexp'] > 0 ){
+			$reLife = $input['playerexp'] * $sweepNum;
+		}
 		if( $user->getLife() < $reLife ){
 			ret( '体力不足', -1 );
 		}
+		$add['life'] = -$reLife;
 # ----------------------------------------------------------每天精英关卡与炼狱关卡通关次数限制-------------------------------------------------------------------------------------
 		if( in_array( $input['tasktype'], array( 12,13 ) ) ){					
 			$custLimit = new User_Limit( 'customsTimesDay' ); 
@@ -176,7 +180,7 @@
 				$actLimit->addLimitTimes();
 				break;
 		}
-		$add['life'] = -$reLife;
+		
 		if( isset( $input['buff'][0] ) && is_numeric( $input['buff'][0] ) ){ //活动添加buff  buff应对buff表中的buffid
 			$input['getList']['buff'] = $user->addRoleBuff( $input['buff'][0] );
 			unset( $input['buff'] );
