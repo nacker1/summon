@@ -320,12 +320,13 @@
 			$dayMis = $this->cond->get($this->class);
 			$this->log->d( 'dayMins:'.json_encode($dayMis) );
 			if( $uLevel < $dayMis['minLevel'] ){return;}
+			unset( $dayMis['minLevel'] );
 			if( !empty( $dayMis ) ){
 				$dayMis['progress'] += $progress ;
 				$this->cond->set( $dayMis,$this->class );
 				$this->setMissionNotice( $this->type,$this->class, $dayMis );
 			}		
-
+			$this->log->d( 'dayMins:'.json_encode($dayMis) );
 			return true;
 		}
 	}
