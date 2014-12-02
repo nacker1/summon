@@ -17,14 +17,13 @@ class Goodcompos extends Goodbase{
 			if( !$this->pre->exists('goodBase:compos:'.$this->gid) ){
 				ret('道具（'.$this->gid.'）不存在',-1);
 			}
-
 			$this->cominfo = $this->pre->hgetall( 'goodBase:compos:'.$this->gid );
+			$this->log->d( 'composConfig:'.json_encode($this->cominfo) );
 		}else{
 			if( !$this->checkLevel() ){
 	 			ret( 'max_level_'.__LINE__, -1 );
 	 		}
 		}
-		$this->log->d( 'composConfig:'.json_encode($this->cominfo) );
 	}
 	
 	public function getComItemInfo(){
