@@ -36,7 +36,7 @@ class User_Limit extends User_Base{
 		$this->pre;
 		if( C('test') || !$this->pre->exists('userLimit:'.$this->flag) || ! $this->pre->hget( 'userLimit:'.$this->flag.'_check' , 'check' )){
 			$this->cdb;
-			$ret = $this->cdb->findOne( $this->table,'tag,times,vip,expend,give,timeLimit,rule,freeTime,vipLimit', array( 'tag'=>$this->flag ));
+			$ret = $this->cdb->findOne( $this->table,'tag,times,vip,expend,give,timeLimit,rule,freeTime', array( 'tag'=>$this->flag ));
 			if( empty( $ret ) ){
 				ret( $this->flag.'_config_null',-1);
 			}
@@ -51,7 +51,8 @@ class User_Limit extends User_Base{
 		$vipLimit = (int)$limitInfo['vipLimit'];
 		$vipTag = $limitInfo['vip'];
 		$vipLevel = $this->getVlevel();
-		$this->log->d( 'vipLevel:'.json_encode($limitInfo) );
+		$this->log->d( 'vipLevel:'.$vipLevel );
+		$this->log->d( 'limitInfo:'.$limitInfo );
 		if( !empty( $vipTag ) && $vipLevel > 0 ){
 			$vip = new Vip( $vipLevel );
 			$ext = $vip->getTagValue( $vipTag );
