@@ -70,7 +70,9 @@ class Vip extends Pbase{
  *@ 获取当前召唤师指定下标的次数
  **/
 	public function getTagValue( $tag ){
-		return $this->vipConfig[ $tag ];
+		$ret = $this->vipConfig[ $tag ];
+		$this->log->d( $tag.':'.$ret );
+		return $ret;
 	}
 /**
  *@ getVipLevelByExp() 根据vip经验得到该经验对应的vip等级
