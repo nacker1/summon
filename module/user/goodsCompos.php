@@ -88,6 +88,14 @@
  			$log->e( '用户#'.$user->getUid().'#强化装备【'.$gCom->getGoodName().'】失败，强化没有能量点配置，已达强化最大级别。' );
  			ret( 'max_level_'.__LINE__, -1 );
  		}
+
+ 		$money = $gCom->getMoney();
+ 		if( $user->getUserMoney() < $money ){
+ 			ret( 'no_money', -1 );
+ 		}
+
+ 		$give['money'] = -$money;
+
  		$tolEnergy = 0 ;
  		foreach( $iList as $v ){
  			$good = explode( ',', $v );
