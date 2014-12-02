@@ -106,7 +106,7 @@ class User_Draw extends User_Base{
  **/
 	private function _getGood( $type ){
 		$uLevel = $this->getLevel();
-		if( $type['type'] == 1 && $type['color'] != 0 ){ $this->giveHeroTag = false; }
+		if( $type['type'] == 1 && $type['color'] != 0 ){ $this->giveHeroTag = false; }  #抽中英雄
 #================================== 取物品 ==================================
 		$goods = json_decode( $this->pre->get( 'baseDrawConfig:'.$this->type.':'.$type['type'].':'.$type['color'] ), true );
 		if( empty( $goods ) ){
