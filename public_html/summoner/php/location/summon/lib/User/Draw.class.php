@@ -90,7 +90,7 @@ class User_Draw extends User_Base{
 
 		$this->setMissionId( 2,65,$nums );
 		$this->log->d( 'goods:'.json_encode($ret) );
-		return implode('#',$ret);
+		return $ret;
 	}
 
 	private function _giveHero(){
