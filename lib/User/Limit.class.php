@@ -95,7 +95,9 @@ class User_Limit extends User_Base{
  *@ getUsedTimes()  获取当前已使用的次数
  **/
 	public function getUsedTimes( $key='' ){
-		return (int)$this->cond->get($key);
+		$used = (int)$this->cond->get($key);
+		$this->log->d( 'usedTime:'.$used );
+		return $used;
 	}
 /**
  *@ 获取用户当日此标签中的剩余次数
@@ -111,6 +113,7 @@ class User_Limit extends User_Base{
 	public function getLastFreeTimes( $key='' ){
 		$used = $this->getUsedTimes( $key );
 		$fTime = (int)( $this->freeTimes - $used );
+		$this->log->d( 'freeTimes:'.$fTime );
 		return $fTime>0?$fTime:0;
 	}
 /**
