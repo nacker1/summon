@@ -264,6 +264,7 @@
  **/
 	function setUserShowMission( $class,$nextTaskId ){
 		$baseMission = $this->pre->hmget( 'baseMissionConfig:'.$this->type.':'.$nextTaskId,array( 'Post_Task' ) );
+		$this->log->d( 'setShowMission:'.json_encode( $baseMission ) );
 		$set['showMission'] = $nextTaskId;
 		if( empty( $baseMission['Post_Task'] ) ){
 			$set['status'] = 1;
