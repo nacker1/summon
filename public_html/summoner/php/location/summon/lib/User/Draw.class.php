@@ -77,7 +77,7 @@ class User_Draw extends User_Base{
 		}
 
 		if( $nums == 10 ){
-			for( $i=0;$i<$nums;$i++ ){
+			for( $i=0;$i<$nums-1;$i++ ){
 				$type = $this->_getType();
 				array_push( $ret, $this->_getGood( $type ) );
 			}
