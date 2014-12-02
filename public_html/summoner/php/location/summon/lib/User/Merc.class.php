@@ -49,8 +49,10 @@ class User_Merc extends User_Base{
 		$ret = array();
 		$sysHero = self::$cond->get( 'sysTempUser' );
 		$sysHero = explode( '#', trim( $sysHero,'#' ) );
+		$uLevel = $this->getLevel();
 		foreach( $sysHero as $v ){
-			$ret[$v] = self::$cond->get( 'mercHero:'.$v );
+			if( $v['level'] >= $uLevel && $v['level'] <= ( $uLevel+10 ) )
+				$ret[$v] = self::$cond->get( 'mercHero:'.$v );
 		}
 		return $ret;
 	}
