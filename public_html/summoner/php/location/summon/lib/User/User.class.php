@@ -145,6 +145,7 @@
 		}else{
 			$goods = $config;
 		}
+		$this->log->i( 'sendConfig:'.$goods );
 		if( empty( $goods ) )return array();
 		$ret = array();
 		$temp = array('new'=>array(),'old'=>array());
