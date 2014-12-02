@@ -83,8 +83,12 @@ class User_Draw extends User_Base{
 			}
 			array_push( $ret, $this->_giveHero() );
 		}else{
-			$type = $this->_getType();
-			array_push( $ret, $this->_getGood( $type ) );
+			if( $this->getLevel() < 3 ){
+				array_push( $ret, $this->_giveHero() );
+			}else{
+				$type = $this->_getType();
+				array_push( $ret, $this->_getGood( $type ) );
+			}
 		}
 
 		$this->setMissionId( 2,65,$nums );
@@ -111,7 +115,6 @@ class User_Draw extends User_Base{
 			}
 			$this->log->d( '10_draw 连抽送英雄：'.json_encode($type) );
 		}
-
 		return $this->_getGood( $type );
 	}
 /**
