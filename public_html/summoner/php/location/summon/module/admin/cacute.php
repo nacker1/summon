@@ -131,37 +131,30 @@
 
 		switch( $input['tasktype'] ){  //通关扣除体力
 			case '11': 	//普通关卡
-				$add['life'] = -6*$sweepNum;
 				$user->setMissionId( 2, 14,$sweepNum ); //每日所有副本任务
 				break;
 			case '12':	//精英关卡
-				$add['life'] = -12*$sweepNum;
 				$user->setMissionId(2,15,$sweepNum);
 				break;
 			case '13':	//炼狱关卡
-				$add['life'] = -24*$sweepNum;
 				$user->setMissionId(2,16,$sweepNum);
 				break;
 			case '69':	//呆小红
-				$add['life'] = -6;
 				$user->setMissionId(2,69);
 				$actLimit = new User_Limit( 'minRedDay' );
 				$actLimit->addLimitTimes();
 				break;
 			case '70':	//呆小蓝
-				$add['life'] = -6;
 				$user->setMissionId(2,70);
 				$actLimit = new User_Limit( 'minBlueDay' );
 				$actLimit->addLimitTimes();
 				break;
 			case '71':	//无尽之地
-				$add['life'] = -6;
 				$user->setMissionId(2,71);
 				$actLimit = new User_Limit( 'endLessFieldDay' );
 				$actLimit->addLimitTimes();
 				break;
 			case '68':	//英雄炼狱
-				$add['life'] = -6;
 				$user->setMissionId(2,68);
 				if( $input['roundid'] == 960003 ){ #钢铁巢穴
 					$actLimit = new User_Limit( 'steelNestDay' );
@@ -175,13 +168,12 @@
 				}
 				break;
 			case '66':	//黄金矿山
-				$add['life'] = -6;
 				$user->setMissionId(2,66);
 				$actLimit = new User_Limit( 'goldMineDay' );
 				$actLimit->addLimitTimes();
 				break;
 		}
-
+		$add['life'] = $reLife;
 		if( isset( $input['buff'][0] ) && is_numeric( $input['buff'][0] ) ){ //活动添加buff  buff应对buff表中的buffid
 			$input['getList']['buff'] = $user->addRoleBuff( $input['buff'][0] );
 			unset( $input['buff'] );
