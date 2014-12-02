@@ -81,7 +81,6 @@ class User_Draw extends User_Base{
 				$type = $this->_getType();
 				array_push( $ret, $this->_getGood( $type ) );
 			}
-
 			array_push( $ret, $this->_giveHero() );
 		}else{
 			$type = $this->_getType();
@@ -123,7 +122,7 @@ class User_Draw extends User_Base{
 		if( $this->type == 2 ){
 			if( $type['type'] == 1 && $type['color'] != 0 ){ $this->giveHeroTag = false; }  #抽中英雄
 		}elseif(  $this->type == 1  ){
-			if( $type['color'] != 3 ){ $this->giveHeroTag = false; }  #抽中蓝色物品
+			if( $type['color'] == 3 ){ $this->giveHeroTag = false; }  #抽中蓝色物品
 		}
 #================================== 取物品 ==================================
 		$goods = json_decode( $this->pre->get( 'baseDrawConfig:'.$this->type.':'.$type['type'].':'.$type['color'] ), true );
