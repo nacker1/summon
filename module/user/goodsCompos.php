@@ -89,14 +89,6 @@
  			ret( 'max_level_'.__LINE__, -1 );
  		}
 
- 		$money = $consumeEnergy * 150;
-
- 		if( $user->getMoney() < $money ){
- 			ret( 'no_money', -1 );
- 		}
-
- 		$give['money'] = -$money;
-
  		$tolEnergy = 0 ;
  		foreach( $iList as $v ){
  			$good = explode( ',', $v );
@@ -128,8 +120,16 @@
  	#======================  设置强化任务   ==========================
  		$proxy = new Proxy( array('type'=>1,'uid'=>$user->getUid()), 'User_Mission', 'getUserMissingByClass' );
 		$miss = $proxy->exec( 36 );
-		if( $miss['progress']<($comid+1)%100 ){//当前通关关卡比之前通关关卡id大，设置系统任务与用户通关进度
+		if( $miss['progress']<($comid+1)%100 ){
 			$user->setMissionId( 1, 36 );
+		}
+		if( $miss['missing'] > 136001 ){
+			$money = $consumeEnergy * 150;
+			if( $user->getMoney() < $money ){
+	 			ret( 'no_money', -1 );
+	 		}
+
+	 		$give['money'] = -$money;
 		}
  	#======================  设置强化任务   ==========================
  		$give['good'] = implode( '#', $goods );
