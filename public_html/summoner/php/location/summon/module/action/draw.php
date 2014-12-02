@@ -65,11 +65,13 @@
 
 	$draw = new User_Draw( $type );
 
-	$give['good'] = array_merge( $give['good'], $draw->getGift( $num ) );
+	$dGood = $draw->getGift( $num );
+
+	$give['good'] = array_merge( $give['good'], $dGood );
 
 	$ret = $user->sendGoodsFromConfig($give);
 
-	$ret['get'] = $give['good'];
+	$ret['get'] = implode('#',$dGood);
 	#=========== 任务信息 ==================
 	$mis = $user->getMissionNotice();
 	if( !empty( $mis ) ){
