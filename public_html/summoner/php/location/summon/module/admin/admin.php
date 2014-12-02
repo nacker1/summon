@@ -63,7 +63,7 @@ switch ($type) {
 		$gBase = new Goodbase();
 		$gList = $gBase->getAllBaseGood();
 		foreach( $gList as $v ){
-			if( substr($v['Item_Id'],0,1) == 9 )continue;
+			if( substr($v['Item_Id'],0,1) == 9 || substr($v['Item_Id'],0,1) == 1 )continue;
 			$good = new User_Goods($user->getUid(), $v['Item_Id']);
 			$good->addGoods(10);
 		}
@@ -77,7 +77,7 @@ switch ($type) {
 		}
 		foreach ( $hList as $v ) {
 			$hero = new User_Hero( $user->getUid(),$v );
-			$hero->giveHero();
+			$hero->giveHero(4);
 			#unset($hero);
 		}
 		$ret['hero'] = $hero->getLastUpdField();
