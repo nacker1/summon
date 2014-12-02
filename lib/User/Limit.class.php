@@ -52,7 +52,7 @@ class User_Limit extends User_Base{
 		$vipTag = $limitInfo['vip'];
 		$vipLevel = $this->getVlevel();
 		$this->log->d( 'vipLevel:'.$vipLevel );
-		$this->log->d( 'limitInfo:'.$limitInfo );
+		$this->log->d( 'limitInfo:'.json_encode( $limitInfo ) );
 		if( !empty( $vipTag ) && $vipLevel > 0 ){
 			$vip = new Vip( $vipLevel );
 			$ext = $vip->getTagValue( $vipTag );
