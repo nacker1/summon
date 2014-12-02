@@ -224,7 +224,7 @@
 		return (int)self::$userinfo[$this->uid]['jewel'];
 	}
 /**
- *@ 获取角色当前钻石数量
+ *@ 获取角色当前金币数量
  **/
 	public function getMoney(){
 		return (string)self::$userinfo[$this->uid]['money'];
