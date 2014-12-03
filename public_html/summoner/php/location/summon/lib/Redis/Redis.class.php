@@ -3,11 +3,12 @@
  *@ redis»ù´¡Àà Ê¹ÓÃµ¥ÀýÄ£Ê½ 
  *@ author: < huangzy@51094.com >
  **/
- class Redis_Redis{
+ class Redis_Redis extends Base{
 	private $connect;
 	static $redis=array();
 
 	private function __construct($host,$port,$pass){
+		parent::__construct();
 		global $log;
 		if( empty($host) || empty($port) ){
 			gettype($log)=='object' && $log->e('Redis host or port null.£¨host:'.$host.',port:'.$port.',pass:'.$pass.'£©');
@@ -29,6 +30,7 @@
 		
 		if( !isset(self::$redis) || !is_array(self::$redis) || empty(self::$redis) || !isset(self::$redis[ $redname ]) ){
 			$redisConfig = $con->getRedisList();
+			$this->log->d( $redisConfig );
 			$host = $redisConfig['host'];
 			$port = $redisConfig['port'];
 			$pass = $redisConfig['pass'];
