@@ -3,7 +3,7 @@
  *@ redis»ù´¡Àà Ê¹ÓÃµ¥ÀýÄ£Ê½ 
  *@ author: < huangzy@51094.com >
  **/
- class Redis_Redis extends Base{
+ class Redis_Redis{
 	private $connect;
 	static $redis=array();
 
@@ -30,7 +30,7 @@
 		
 		if( !isset(self::$redis) || !is_array(self::$redis) || empty(self::$redis) || !isset(self::$redis[ $redname ]) ){
 			$redisConfig = $con->getRedisList();
-			$this->log->d( $redisConfig );
+			dump( $redisConfig );
 			$host = $redisConfig['host'];
 			$port = $redisConfig['port'];
 			$pass = $redisConfig['pass'];

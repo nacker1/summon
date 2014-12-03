@@ -1,5 +1,5 @@
 <?php
-class Config extends Base{
+class Config{
 	/**
 	 *@ ÔËÐÐ»·¾³  testÎª²âÊÔ»·¾³£¬onlineÎªÏßÉÏ»·¾³
 	 **/
@@ -158,7 +158,6 @@ class Config extends Base{
 
 
 	function __construct( $type='' ){
-		parent::__construct();
 		global $serverId;
 		empty( $serverId ) && $serverId = 2;
 		$this->type = $type;
