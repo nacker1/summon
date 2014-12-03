@@ -290,6 +290,7 @@
  *@ 角色是否是周卡用户
  **/
 	public function isWeekCode(){
+		$this->log->d( 'weekCode:'.self::$userinfo[$this->uid]['ext1'].self::$userinfo[$this->uid]['ext2'] );
 		$ret = 0;
 		if( self::$userinfo[$this->uid]['ext1'] > 0 && self::$userinfo[$this->uid]['ext2'] > time() ){
 			$ret = 1;
