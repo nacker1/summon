@@ -8,7 +8,6 @@
 	static $redis=array();
 
 	private function __construct($host,$port,$pass){
-		parent::__construct();
 		global $log;
 		if( empty($host) || empty($port) ){
 			gettype($log)=='object' && $log->e('Redis host or port null.£¨host:'.$host.',port:'.$port.',pass:'.$pass.'£©');
