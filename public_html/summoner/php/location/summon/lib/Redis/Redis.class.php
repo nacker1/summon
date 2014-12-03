@@ -29,7 +29,6 @@
 		
 		if( !isset(self::$redis) || !is_array(self::$redis) || empty(self::$redis) || !isset(self::$redis[ $redname ]) ){
 			$redisConfig = $con->getRedisList();
-			dump( $redisConfig );
 			$host = $redisConfig['host'];
 			$port = $redisConfig['port'];
 			$pass = $redisConfig['pass'];
