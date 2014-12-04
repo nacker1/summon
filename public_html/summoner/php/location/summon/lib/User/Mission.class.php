@@ -141,6 +141,7 @@
 			 		}
 					$this->cond->set( $set,$k );
 					$uMission[] = $set;
+					$this->log->d( 'dayMissionSet:'.json_encode($set) );
  					unset($set);
 				}
 			}
