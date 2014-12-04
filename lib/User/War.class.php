@@ -13,7 +13,7 @@
 			$this->type 	= $type;
 			$this->level 	= $level;
 			$this->_init();
-			$this->cond = new Cond( $war_table, $uid );
+			$this->cond = new Cond( $this->war_table, $uid );
 		}
 		
 		/**
