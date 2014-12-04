@@ -61,7 +61,7 @@
 	 	if( $war->checkWaring() ){
 	 		ret( '正在修炼中。。。',-1 );
 	 	}
-	 	$war->begin()
+	 	$war->begin();
 	 	$add[$money['type']] = -$money['nums'];
 	 	ret( $user->sendGoodsFromConfig( $add ) );
  	case '5':   #领取战争学院奖励
