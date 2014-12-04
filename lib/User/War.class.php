@@ -83,6 +83,8 @@
 		function getStatus(){
 			$wars = $this->cond->getAll();
 			dump($wars);
+			echo $this->cond;
+			dump($this->cond)
 		}
 /**
  *@ 结束修炼
