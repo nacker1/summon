@@ -672,8 +672,7 @@
 		if( isset( self::$retinfo[$this->uid] ) ){
 			$retinfo = array_merge( $retinfo, self::$retinfo[$this->uid] );
 		}
-		$this->log->i('updinfo:'.json_encode( self::$updinfo[$this->uid] ));
-		$this->log->i('updinfo:'.json_encode( $retinfo ));
+		$this->log->d('updinfo:'.json_encode( self::$updinfo[$this->uid] ));
 		return $retinfo;
 	}
 
