@@ -72,7 +72,7 @@
 	 	$war = new User_War( $user->getUid(), $type );
 	 	$exp = $war->over();
 	 	if( !$exp ){
-	 		ret( '正在修炼中。。。', -1 );
+	 		ret( $war->getError(), -1 );
 	 	}
 	 	$add[ 'exp' ] = $exp;
 	 	ret( $user->sendGoodsFromConfig( $add ) );
