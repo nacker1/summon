@@ -49,12 +49,17 @@ switch ($type) {
 		$user->setSkey();
 		ret( $user->getUserInfo() );
 	case '998':
-		#清空所有配置缓存
-		$cache = array(
-			'baseDrawConfig:*','baseDrawTypeConfig:*','baseMissionConfig:*','shopConfig:*','action:sign:*',
-			'baseBuffConfig:*','baseBuyGoldConfig:*','equip:baseinfo*','goodBase:base*','goodBase:equip*',
-			'goodBase:compos*','heroSkillCost:*','heroBase:*','roleLevelUp*','vipConfig*','server:list:*','server:list_check','userLimit:*'
-		);
+		$tag = $input['tag'];
+		if( empty( $tag ) ){
+			#清空所有配置缓存
+			$cache = array(
+				'baseDrawConfig:*','baseDrawTypeConfig:*','baseMissionConfig:*','shopConfig:*','action:sign:*',
+				'baseBuffConfig:*','baseBuyGoldConfig:*','equip:baseinfo*','goodBase:base*','goodBase:equip*',
+				'goodBase:compos*','heroSkillCost:*','heroBase:*','roleLevelUp*','vipConfig*','server:list:*','server:list_check','userLimit:*'
+			);
+		}else{
+			$cache = $tag;
+		}
 		$user->clearConfig( $cache );
 		ret('suc');
 		break;  
