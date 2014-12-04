@@ -138,6 +138,7 @@
 		$ret['maxPvpTop'] = (int)$userinfo['maxPvpTop'];								#用户当前身上拥有的buff列表
 		$ret['lastLoginTime'] = (int)$userinfo['logintime'];							#用户上次登录时间
 		$ret['logintime'] = $this->loginTime;											#用户本次登录时间
+		$ret['tolPay'] = (int)$userinfo['totalPay'];									#用户本次登录时间
 		$sign = new Act_Sign( $this->uid );
 		$ret['sign'] = $sign->checkSign();											#用户本次登录时间
 		$this->_logInfo();
