@@ -38,6 +38,7 @@
 		 *@ 开始修炼
 		 **/
 		function begin(){
+			$set['type'] = $this->type;								#修炼方式
 			$set['exp'] = $this->warInfo['War_Exp'];				#修炼得到的经验
 			$set['time'] = time();									#修炼时间
 			$set['costTime'] = $this->warInfo['War_Exp'] * 60;		#修炼完成需要的时间（秒）
