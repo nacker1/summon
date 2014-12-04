@@ -41,7 +41,7 @@
 			$set['type'] = $this->type;								#修炼方式
 			$set['exp'] = $this->warInfo['War_Exp'];				#修炼得到的经验
 			$set['time'] = time();									#修炼时间
-			$set['costTime'] = $this->warInfo['War_Exp'] * 60;		#修炼完成需要的时间（秒）
+			$set['costTime'] = $this->warInfo['War_Time'] * 60;		#修炼完成需要的时间（秒）
 			return $this->cond->set( $set, $this->type );
 		}
 
@@ -79,12 +79,18 @@
 			return $ret;
 		}
 	/**
-	 *@ 获取当前用户的所有修炼状态以及时间
+	 *@ 获取当前用户的所有修炼的剩余时间
+	 *return:
+	 *		array( 1=>0,2=>-1,3=>600 )  第一种修炼可以领取奖励，第二种修炼可以直接修炼，第三种修炼剩余600秒
 	 **/
 		function getStatus(){
+			$ret = array(1=>-1,2=>-1,3=>-1);
 			$wars = $this->cond->getAll();
-			dump($wars);
-			dump($this->cond);
+			foreach( $wars as $v ){
+				$times = $v[ 'costTime' ] - time() + $v[ 'time' ];  #剩余时间（秒）
+				$ret[ $v['type'] ] = $times>0 ? $times : 0;
+			}
+			return $ret;
 		}
 /**
  *@ 结束修炼

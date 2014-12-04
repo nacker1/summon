@@ -52,6 +52,7 @@
 	 	ret($ret);
  	case '4': #用户战争学院修炼功能
  		$tag = ' 战争学院修炼 ';
+ 		if( $user->getLevel() < WAR_LOW_LEVEL ){ret( '召唤师等级不足', -1 );}
  		$type = $input[ 'wt' ];					#修炼方式  1普通   2中级  3为高级
 	 	$war = new User_War( $user->getUid(), $type, $user->getLevel() );
 	 	$money = $war->getMoney();
@@ -66,6 +67,7 @@
 	 	ret( $user->sendGoodsFromConfig( $add ) );
  	case '5':   #领取战争学院奖励
  		$tag = ' 战争学院奖励领取 ';
+ 		if( $user->getLevel() < WAR_LOW_LEVEL ){ret( '召唤师等级不足', -1 );}
  		$type = $input[ 'wt' ];					#修炼方式  1普通   2中级  3为高级
 	 	$war = new User_War( $user->getUid(), $type );
 	 	$exp = $war->over();
@@ -76,6 +78,7 @@
 	 	ret( $user->sendGoodsFromConfig( $add ) );
  	case '6':#查询战争学院各种修炼模式的状态
  		$tag = ' 战争学院修炼 ';
+ 		if( $user->getLevel() < WAR_LOW_LEVEL ){ret( '召唤师等级不足', -1 );}
 	 	$war = new User_War( $user->getUid() );
 	 	ret( $war->getStatus() );
  	default:
