@@ -41,7 +41,7 @@
 	 					if( $v['Task_Class'] == 61 ){
 	 						$initTaskClass[ $v['Task_Class'] ][] = $v['Task_Id'];
 	 					}else{
-	 						$initTaskClass[ $v['Task_Class'] ] = $v['Task_Id'];
+	 						$initTaskClass[ $v['Task_Class'] ] = $v['Task_Id'].'_'.$v['Task_Level'];
 	 					}
 	 				}
 	 				unset($temp);
@@ -71,7 +71,9 @@
  				}else{
  					$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
  					$this->redis->hdel( 'roleinfo:'.$this->uid.':mission:*' );
- 					foreach( $taskClass as $k=>$v ){
+ 					foreach( $taskClass as $k=>$value ){
+ 						$temp = explode( '_', $value );
+ 						$v = $temp[0];
  						$set[$k]['type'] = $uMission[ $k ]['type'] = $k;			//任务类型
  						$set[$k]['showMission'] = $uMission[ $k ]['showMission'] = $v;
  						$set[$k]['missing'] = $uMission[ $k ]['missing'] = $v;
@@ -114,8 +116,9 @@
 		$uMission = $this->cond->getAll();
 		if( empty( $uMission ) ){ //初始化用户当日日常任务记录
 			$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
-			foreach( $taskClass as $k=>$v ){
-				$this->log->d($v);
+			foreach( $taskClass as $k=>$value ){
+				$temp = explode( '_', $value );
+				$v = $temp[0];
 				if( 61 == $k ){
 					$tasks = explode(',',$v);
 					foreach( $tasks as $val ){
@@ -127,7 +130,7 @@
  						unset($set);
 					}
 				}else{
-					$set['minLevel'] = $v['Task_Level'];
+					$set['minLevel'] = $temp[1];						#任务最小需求等级
 					$set['tid'] = (int)$v; 								#'tid'		任务id
 					$set['progress'] = 0; 								#'progress' 进度
 					switch( $k ) {
