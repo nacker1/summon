@@ -107,7 +107,9 @@
  			$this->cond = new Cond( $this->dayMissionTag,$this->uid,$overTime );
  		}
  	}
-
+/**
+ *@ 初始化日常任务
+ **/
  	private function _initMissionData(){
 		$uMission = $this->cond->getAll();
 		if( empty( $uMission ) ){ //初始化用户当日日常任务记录
@@ -135,6 +137,7 @@
 			 		}
 					$this->cond->set( $set,$k );
 					$uMission[] = $set;
+					$this->log->d($set);
  					unset($set);
 				}
 			}
