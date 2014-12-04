@@ -106,7 +106,7 @@
 			$keys = $this->cre->keys( $this->domain.'*' );
 		}else{
 			$keys = $this->cre->keys( $this->domain.':'.$keys.'*' );
-		}
+		}		
 		$ret = array();
 		if( !empty($keys) && is_array($keys) ){
 			foreach( $keys as $v ){
