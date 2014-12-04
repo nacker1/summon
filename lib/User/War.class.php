@@ -50,7 +50,12 @@
 		 **/
 		function over(){
 			$war = $this->cond->get( $this->type );
+			if( !$war ){ 
+				$this->error = ' 请先修炼 ';
+				return false;
+			}
 			if( ( time() - $war['time'] ) < $war['costTime'] ){
+				$this->error = ' 正在修炼中。。。 ';
 				return false;
 			}
 			$this->end();
@@ -97,6 +102,12 @@
  **/		
 		function end(){
 			return $this->cond->del( $this->type );
+		}
+/**
+ *@ 返回修炼错误信息
+ **/		
+		function getError(){
+			return $this->error;
 		}
 	}
 ?>
