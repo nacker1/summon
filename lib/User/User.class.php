@@ -34,9 +34,10 @@
 		$ret[] = (int)$uInfo['mail'];						#邮件标记
 		$ret[] = (int)$uInfo['message'];					#私聊消息
 		$ret[] = (int)$uInfo['jewel'];						#当前钻石数量
-		$ret[] = (int)$this->getCodeFlag();					#用户月卡或周卡标记
+		$ret[] = (int)$this->isMonthCode();					#用户月卡
 		$ret[] = (int)$uInfo['invite'];						#用户好友邀请标记
 		$ret[] = (int)$uInfo['vlevel'];						#用户vip等级
+		$ret[] = (int)$this->isWeekCode();					#用户周卡
 		$this->setUserHeart( '_heartTime', time() );		#设置用户心跳时间
 		return $ret;
 	}
