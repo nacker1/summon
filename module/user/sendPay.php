@@ -18,6 +18,9 @@
  if( isset( $uInfo[3] ) && $uInfo[3] == 1 ){
  	$user->setMonthCode();
  	$user->addCooldou( 300 );
+ }elseif( isset( $uInfo[3] ) && $uInfo[3] == 2 ){
+ 	$user->setWeekCode();
+ 	$user->addCooldou( 3000 );
  }else{
  	$user->addCooldou( $uInfo[1]*20 );
  }
