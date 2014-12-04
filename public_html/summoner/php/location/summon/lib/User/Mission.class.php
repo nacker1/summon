@@ -115,6 +115,7 @@
 		if( empty( $uMission ) ){ //初始化用户当日日常任务记录
 			$taskClass = $this->pre->hgetall( 'baseMissionConfig:TaskClass_'.$this->type );
 			foreach( $taskClass as $k=>$v ){
+				$this->log->d($v);
 				if( 61 == $k ){
 					$tasks = explode(',',$v);
 					foreach( $tasks as $val ){
@@ -137,7 +138,6 @@
 			 		}
 					$this->cond->set( $set,$k );
 					$uMission[] = $set;
-					$this->log->d($set);
  					unset($set);
 				}
 			}
