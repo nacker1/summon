@@ -56,6 +56,7 @@ class Top extends Base{
 		for( $i=1; $i<15001; $i++ ){
 			$key = 'pvpTopList:'.$i;
 			$uid = $this->pre->hget( $key, 'uid' );
+			$this->log->d( 'uid#'.$uid );
 			if( empty( $uid ) ) continue;
 			if( substr( $uid, 0, 2 ) == '38' || (int)$uid >= 1000000 ){
 				$con = '你在竞技场的精彩表现有目共睹。截至今天21:00，你的竞技场排名为 '.$i.' 名。角斗士联盟授予你以下奖励：';
