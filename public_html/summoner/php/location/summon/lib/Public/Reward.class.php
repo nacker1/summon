@@ -37,7 +37,7 @@ class Reward extends Base{
 			self::$reward_config[$this->tag] = $this->pre->get( $reward_table.':'.$this->tag );
 			$this->log->i(self::$reward_config[$this->tag]);
 			dump( $reward_table.':'.$this->tag );
-			dump( $this->pre->exists( $reward_table.':check' ) );
+			dump( ret );
 			exit;
 		}
 	}
