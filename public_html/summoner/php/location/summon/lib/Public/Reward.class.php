@@ -30,12 +30,14 @@ class Reward extends Base{
 					$temp['mArena'] = $v['Arena_FighterMoney'];
 					$temp['good'] = str_replace( '#',',',$v['Arena_ItemReward1'] ).'#'.str_replace( '#',',',$v['Arena_ItemReward2'] );
 					$this->pre->set( $reward_table.':'.$v['Arena_RankMin'], json_encode( $temp ) );
-					$this->log->i($temp);exit;
 					unset( $temp );
 				}
 				$this->pre->set( $reward_table.':check', 1, get3time() );
 			}
 			self::$reward_config[$this->tag] = $this->pre->get( $reward_table.':'.$this->tag );
+			$this->log->i(self::$reward_config[$this->tag]);
+			dump($this->pre);
+			exit;
 		}
 	}
 /**
@@ -85,7 +87,7 @@ class Reward extends Base{
 				$this->tag = 10001; break;
 			
 		}
-		$this->log->d( $this->tag );exit;
+		$this->log->d( $this->tag );
 	}
 
 	function getRewardConfig(){
