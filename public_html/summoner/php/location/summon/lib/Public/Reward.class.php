@@ -30,6 +30,7 @@ class Reward extends Base{
 						$temp['money'] = $v['Arena_Gold'];
 						$temp['mArena'] = $v['Arena_FighterMoney'];
 						$temp['good'] = str_replace( '#',',',$v['Arena_ItemReward1'] ).'#'.str_replace( '#',',',$v['Arena_ItemReward2'] );
+						$temp['good'] = trim( $temp['good'],'#' );
 						$this->pre->set( $this->reward_table.':'.$v['Arena_RankMin'], json_encode( $temp ) );
 						unset( $temp );
 					}
