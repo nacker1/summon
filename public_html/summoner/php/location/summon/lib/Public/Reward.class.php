@@ -21,30 +21,25 @@ class Reward extends Base{
 		# 取奖励配置信息
 		if( !isset( self::$reward_config[$this->tag] ) || empty( self::$reward_config[$this->tag] ) ){
 			$this->pre;
-			if(true || C('test') || !$this->pre->exists( $reward_table.':check' ) ){
+			if(true || C('test') || !$this->pre->exists( $this->reward_table.':check' ) ){
 				$this->cdb;
-				$ret = $this->cdb->find( $reward_table );
+				$ret = $this->cdb->find( $this->reward_table );
 				if( !empty( $ret ) ){
 					foreach( $ret as $v ){
 						$temp['jewel'] = $v['Arena_Diamond'];
 						$temp['money'] = $v['Arena_Gold'];
 						$temp['mArena'] = $v['Arena_FighterMoney'];
 						$temp['good'] = str_replace( '#',',',$v['Arena_ItemReward1'] ).'#'.str_replace( '#',',',$v['Arena_ItemReward2'] );
-						$this->pre->set( $reward_table.':'.$v['Arena_RankMin'], json_encode( $temp ) );
+						$this->pre->set( $this->reward_table.':'.$v['Arena_RankMin'], json_encode( $temp ) );
 						unset( $temp );
 					}
-					$this->pre->set( $reward_table.':check', 1, get3time() );
+					$this->pre->set( $this->reward_table.':check', 1, get3time() );
 				}else{
 					$this->log->f('pvpReward no config');
-					dump($this->cdb->getLastSql());
 					ret( '竞技场配置表为空', -1 );
 				}
 			}
-			self::$reward_config[$this->tag] = $this->pre->get( $reward_table.':'.$this->tag );
-			$this->log->i(self::$reward_config[$this->tag]);
-			dump( $reward_table.':'.$this->tag );
-
-			exit;
+			self::$reward_config[$this->tag] = $this->pre->get( $this->reward_table.':'.$this->tag );
 		}
 	}
 /**
@@ -98,7 +93,7 @@ class Reward extends Base{
 	}
 
 	function getRewardConfig(){
-		$this->log->d( 'rewardConfig:'.json_encode(self::$reward_config[$this->tag]) );
+		$this->log->d( 'rewardConfig:'.json_encode(self::$reward_config[$this->tag]) );exit;
 		return self::$reward_config[$this->tag];
 	}
 }
