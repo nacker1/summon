@@ -33,8 +33,8 @@ class Base{
 				break;
 			case 'pre': //存储配置信息的redis
 				$this->pre = Redis_Redis::init('default');break;
-			case 'public': //存储配置信息的redis
-				$this->pre = Redis_Redis::init('public');break;
+			case 'pubRedis': //存储配置信息的redis
+				$this->pubRedis = Redis_Redis::init('public');break;
 			case 'cdb': //存储配置信息的db
 				$this->cdb = Db_Mysql::init('config');break;
 			case 'db': //存储当前服务器用户信息的db
