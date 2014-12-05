@@ -44,10 +44,7 @@ class Top extends Base{
 		return $ret;
 	}
 
-	function setTopList($top){/*
-		for( $i=0;$i<10;$i++ ){
-			$top[$i] = array( 381440+$i, rand( 1,10 ), 80-2*$i, 10000 - 100*$i ,'name_'.$i);
-		}*/
+	function setTopList($top){
 		return $this->topPre->set($top);
 	}
 /**
