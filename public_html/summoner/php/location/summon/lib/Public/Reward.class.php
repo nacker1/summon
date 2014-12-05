@@ -17,10 +17,10 @@ class Reward extends Base{
 	}	
 
 	private function _init(){
-		$this->pre;
 		$this->_getTag();
 		# 取奖励配置信息
 		if( !isset( self::$reward_config[$this->tag] ) || empty( self::$reward_config[$this->tag] ) ){
+			$this->pre;
 			if( C('test') || !$this->pre->exists( $reward_table.':check' ) ){
 				$this->cdb;
 				$ret = $this->cdb->find( $reward_table, '*' );
@@ -85,6 +85,7 @@ class Reward extends Base{
 				$this->tag = 10001; break;
 			
 		}
+		$this->log->d( $this->tag );exit;
 	}
 
 	function getRewardConfig(){
