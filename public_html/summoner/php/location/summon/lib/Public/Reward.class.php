@@ -21,19 +21,23 @@ class Reward extends Base{
 		# 取奖励配置信息
 		if( !isset( self::$reward_config[$this->tag] ) || empty( self::$reward_config[$this->tag] ) ){
 			$this->pre;
-			if( C('test') || !$this->pre->exists( $reward_table.':check' ) ){
+			if(true || C('test') || !$this->pre->exists( $reward_table.':check' ) ){
 				$this->cdb;
 				$ret = $this->cdb->find( $reward_table, '*' );
-				dump( $ret );
-				foreach( $ret as $v ){
-					$temp['jewel'] = $v['Arena_Diamond'];
-					$temp['money'] = $v['Arena_Gold'];
-					$temp['mArena'] = $v['Arena_FighterMoney'];
-					$temp['good'] = str_replace( '#',',',$v['Arena_ItemReward1'] ).'#'.str_replace( '#',',',$v['Arena_ItemReward2'] );
-					$this->pre->set( $reward_table.':'.$v['Arena_RankMin'], json_encode( $temp ) );
-					unset( $temp );
+				if( !empty( $ret ) ){
+					foreach( $ret as $v ){
+						$temp['jewel'] = $v['Arena_Diamond'];
+						$temp['money'] = $v['Arena_Gold'];
+						$temp['mArena'] = $v['Arena_FighterMoney'];
+						$temp['good'] = str_replace( '#',',',$v['Arena_ItemReward1'] ).'#'.str_replace( '#',',',$v['Arena_ItemReward2'] );
+						$this->pre->set( $reward_table.':'.$v['Arena_RankMin'], json_encode( $temp ) );
+						unset( $temp );
+					}
+					$this->pre->set( $reward_table.':check', 1, get3time() );
+				}else{
+					$this->log->f('pvpReward no config');
+					ret( '竞技场配置表为空', -1 );
 				}
-				$this->pre->set( $reward_table.':check', 1, get3time() );
 			}
 			self::$reward_config[$this->tag] = $this->pre->get( $reward_table.':'.$this->tag );
 			$this->log->i(self::$reward_config[$this->tag]);
