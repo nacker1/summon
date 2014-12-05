@@ -38,6 +38,7 @@
 		$ret[] = (int)$uInfo['invite'];						#用户好友邀请标记
 		$ret[] = (int)$uInfo['vlevel'];						#用户vip等级
 		$ret[] = (int)$this->isWeekCode();					#用户周卡
+		$ret[] = (int)$uInfo['totalPay'];					#用户周卡
 		$this->setUserHeart( '_heartTime', time() );		#设置用户心跳时间
 		return $ret;
 	}
