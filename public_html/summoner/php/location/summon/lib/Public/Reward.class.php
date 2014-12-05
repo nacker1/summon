@@ -24,6 +24,7 @@ class Reward extends Base{
 			if( C('test') || !$this->pre->exists( $reward_table.':check' ) ){
 				$this->cdb;
 				$ret = $this->cdb->find( $reward_table, '*' );
+				dump( $ret );
 				foreach( $ret as $v ){
 					$temp['jewel'] = $v['Arena_Diamond'];
 					$temp['money'] = $v['Arena_Gold'];
@@ -37,7 +38,7 @@ class Reward extends Base{
 			self::$reward_config[$this->tag] = $this->pre->get( $reward_table.':'.$this->tag );
 			$this->log->i(self::$reward_config[$this->tag]);
 			dump( $reward_table.':'.$this->tag );
-			dump( ret );
+
 			exit;
 		}
 	}
