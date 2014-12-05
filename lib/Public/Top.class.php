@@ -52,7 +52,7 @@ class Top extends Base{
  **/
 	function sendPvpReward(){
 		$this->pre;
-		$mail = new User_Mail( ADMIN_UID );
+		$mail = new User_Mail( ADMIN_UID, 1 );
 		for( $i=1; $i<15001; $i++ ){
 			$key = 'pvpTopList:'.$i;
 			$uid = $this->pre->hget( $key, 'uid' );

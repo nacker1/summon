@@ -21,7 +21,7 @@ class Reward extends Base{
 		# 取奖励配置信息
 		if( !isset( self::$reward_config[$this->tag] ) || empty( self::$reward_config[$this->tag] ) ){
 			$this->pre;
-			if(true || C('test') || !$this->pre->exists( $this->reward_table.':check' ) ){
+			if( C('test') || !$this->pre->exists( $this->reward_table.':check' ) ){
 				$this->cdb;
 				$ret = $this->cdb->find( $this->reward_table );
 				if( !empty( $ret ) ){
@@ -47,43 +47,43 @@ class Reward extends Base{
  **/
 	private function _getTag(){
 		switch( 1 ){
-			case $level < 11:
+			case $this->level < 11:
 				$this->tag = $this->level;break;
-			case $level < 21:
+			case $this->level < 21:
 				$this->tag = 11; break;
-			case $level < 31:
+			case $this->level < 31:
 				$this->tag = 21; break;
-			case $level < 41:
+			case $this->level < 41:
 				$this->tag = 31; break;
-			case $level < 51:
+			case $this->level < 51:
 				$this->tag = 41; break;
-			case $level < 71:
+			case $this->level < 71:
 				$this->tag = 51; break;
-			case $level < 101:
+			case $this->level < 101:
 				$this->tag = 71; break;
-			case $level < 201:
+			case $this->level < 201:
 				$this->tag = 101; break;
-			case $level < 301:
+			case $this->level < 301:
 				$this->tag = 201; break;
-			case $level < 401:
+			case $this->level < 401:
 				$this->tag = 301; break;
-			case $level < 501:
+			case $this->level < 501:
 				$this->tag = 401; break;
-			case $level < 701:
+			case $this->level < 701:
 				$this->tag = 501; break;
-			case $level < 1001:
+			case $this->level < 1001:
 				$this->tag = 701; break;
-			case $level < 2001:
+			case $this->level < 2001:
 				$this->tag = 1001; break;
-			case $level < 3001:
+			case $this->level < 3001:
 				$this->tag = 2001; break;
-			case $level < 4001:
+			case $this->level < 4001:
 				$this->tag = 3001; break;
-			case $level < 5001:
+			case $this->level < 5001:
 				$this->tag = 4001; break;
-			case $level < 7001:
+			case $this->level < 7001:
 				$this->tag = 5001; break;
-			case $level < 10001:
+			case $this->level < 10001:
 				$this->tag = 7001; break;
 			default:#10000名以后
 				$this->tag = 10001; break;
