@@ -32,7 +32,8 @@
 			$this->log->e('uid is null');
 			ret( 'uid is null' );
 		}		
-		$this->_init();
+		if( $this->uid != ADMIN_UID )
+			$this->_init();
 	}
 
 	private function _init(){

@@ -117,8 +117,14 @@
 				if( !$hero->colorUp( $cLevel ) ){
 					ret('系统繁忙',-1);
 				}
+				$reGood[] = $gid.',-'.$color[ $cLevel ];
 			}else{
-				ret('灵魂石不足',-1);
+				$general = new User_Goods( $user->getUid(), GENERAL_ID );
+				$num = $color[ $cLevel ] - $goods->getGoodsNum();
+				if( $general->getGoodsNum() < $num )
+					ret('灵魂石不足',-1);
+				$reGood[] = GENERAL_ID.',-'.$num;
+				$reGood[] = $gid.',-'.$goods->getGoodsNum();
 			}
 		}else{ //英雄合成
 			if( $user->getMoney() < $money[ $cLevel  ] ){
@@ -128,12 +134,18 @@
 				if( !$hero->giveHero() ){
 					ret('系统繁忙',-1);
 				}
+				$reGood[] = $gid.',-'.$color[ $cLevel ];
 			}else{
-				ret('灵魂石不足',-1);
+				$general = new User_Goods( $user->getUid(), GENERAL_ID );
+				$num = $color[ $cLevel ] - $goods->getGoodsNum();
+				if( $general->getGoodsNum() < $num )
+					ret('灵魂石不足',-1);
+				$reGood[] = GENERAL_ID.',-'.$num;
+				$reGood[] = $gid.',-'.$goods->getGoodsNum();
 			}
 		}
 		$give['money'] = -$money[ $cLevel  ];
-		$reGood[] = $gid.',-'.$color[ $cLevel ];
+		
 		$give['good'] = implode('#',$reGood);
 		$ret = $user->sendGoodsFromConfig( $give );
 		$ret['hero'] = $hero->getLastUpdField();

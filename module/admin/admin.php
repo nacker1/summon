@@ -44,6 +44,11 @@ switch ($type) {
 				$user->setWeekCode();
 		}
 		ret( $user->getUserLastUpdInfo() );
+	
+	case '500':#发送竞技场排名奖励
+		$top = new Top( 4 );
+		$top->sendPvpReward();
+		ret( 'suc' );
 	case '997': #踢下线
 		$user->setLoginTime();
 		$user->setSkey();

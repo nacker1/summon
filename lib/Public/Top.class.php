@@ -3,11 +3,11 @@
  *@ 排行榜通用类
  **/
 class Top extends Base{
-	private $type;						//排行榜类型 1为金币排行榜  2为等级排行  3为钻石排行榜
+	private $type;						//排行榜类型 1为金币排行榜  2为等级排行  3为钻石排行榜 4为竞技场排行榜
 	private $redisTag='topList';		//排行榜在redis中的标签
 	private $topPre;					//排行榜redis连接源
 
-	function __construct( $type, $uid ){
+	function __construct( $type, $uid='' ){
 		parent::__construct( $uid );
 		$this->type = $type;
 		$this->topPre = new Cond( $this->redisTag.':'.$this->type );
@@ -49,6 +49,23 @@ class Top extends Base{
 			$top[$i] = array( 381440+$i, rand( 1,10 ), 80-2*$i, 10000 - 100*$i ,'name_'.$i);
 		}*/
 		return $this->topPre->set($top);
+	}
+/**
+ *@ 发送PVP竞技场排名奖励  每日晚上9点发放
+ **/
+	function sendPvpReward(){
+		$this->pre;
+		$mail = new User_Mail( ADMIN_UID );
+		for( $i=1; $i<15001; $i++ ){
+			$key = 'pvpTopList:'.$i;
+			$uid = $this->pre->hget( $key, 'uid' );
+			if( !empty( $uid ) ){
+				$con = '你在竞技场的精彩表现有目共睹。截至今天21:00，你的竞技场排名为 '.$i.' 名。角斗士联盟授予你以下奖励：';
+				$reward = new Reward( $i );
+				$mail->sendMail( $con, 2, $uid, '竞技场每日排名奖励', $reward->getRewardConfig(), '竞技场军需官  阿杰' );
+			}
+		}
+		return true;
 	}
 }
 ?>

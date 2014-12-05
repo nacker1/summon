@@ -20,6 +20,8 @@
 	define('BUFF_TIME'							,3600);              #buff默认有效时长3600秒/Buff.class.php 
 	define('EDIT_USERNAME_COOLDOU'				,100); 				 #修改召唤师昵称扣除钻石数量 /updateInfo.class.php
 	define('WAR_LOW_LEVEL'						,15);				 #战争学院用户最低等级
+	define('GENERAL_ID'							,99999);			 #万能灵魂石id
+	define('ADMIN_UID'							,1);				 #万能灵魂石id
 
 	#============= log打印 =================                ===================
 
