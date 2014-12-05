@@ -23,7 +23,7 @@ class Reward extends Base{
 			$this->pre;
 			if(true || C('test') || !$this->pre->exists( $reward_table.':check' ) ){
 				$this->cdb;
-				$ret = $this->cdb->find( $reward_table, '*' );
+				$ret = $this->cdb->find( $reward_table );
 				if( !empty( $ret ) ){
 					foreach( $ret as $v ){
 						$temp['jewel'] = $v['Arena_Diamond'];
@@ -36,6 +36,7 @@ class Reward extends Base{
 					$this->pre->set( $reward_table.':check', 1, get3time() );
 				}else{
 					$this->log->f('pvpReward no config');
+					dump($this->cdb->getLastSql());
 					ret( '竞技场配置表为空', -1 );
 				}
 			}
