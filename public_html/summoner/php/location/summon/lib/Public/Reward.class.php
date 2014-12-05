@@ -93,7 +93,7 @@ class Reward extends Base{
 	}
 
 	function getRewardConfig(){
-		$this->log->d( 'rewardConfig:'.json_encode(self::$reward_config[$this->tag]) );exit;
+		$this->log->d( 'rewardConfig:'.json_encode(self::$reward_config[$this->tag]) );
 		return self::$reward_config[$this->tag];
 	}
 }
