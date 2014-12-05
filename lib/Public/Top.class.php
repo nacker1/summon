@@ -59,7 +59,8 @@ class Top extends Base{
 			if( !empty( $uid ) ){
 				$con = '你在竞技场的精彩表现有目共睹。截至今天21:00，你的竞技场排名为 '.$i.' 名。角斗士联盟授予你以下奖励：';
 				$reward = new Reward( $i );
-				$mail->sendMail( $con, 2, $uid, '竞技场每日排名奖励', $reward->getRewardConfig(), '竞技场军需官  阿杰' );
+				$mail->sendMail( $con, 2, 382962, '竞技场每日排名奖励', $reward->getRewardConfig(), '竞技场军需官  阿杰' );
+				exit;
 			}
 		}
 		return true;
