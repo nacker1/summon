@@ -53,7 +53,7 @@
 		foreach( $this->shopConfig[$this->type]['time'] as $v ){
 			if( isset( $this->shopConfig[$this->type]['vip'] ) && $uLevel < $this->shopConfig[$this->type]['vip'] ){  #特殊处理vip等级低的玩家
 				$this->overTime = $this->shopConfig[$this->type]['save'];
-				$this->nextTime = date( 'H:i',time() + $this->shopConfig[$this->type]['save'] ).' 消失';
+				$this->nextTime = date( 'H点i分',time() + $this->shopConfig[$this->type]['save'] ).' 消失';
 			}else{
 				if( $now < $v ){
 					$this->overTime = mktime( $v,0,0 ) - time();
@@ -104,6 +104,8 @@
 		$ret;
 		if( empty( $this->isRef ) ){//如果没有主动刷新 取缓存数据
 			$ret = $this->actRedis->get();//缓存的商店数据
+		}else{
+			dump( $this->actRedis->get() );
 		}
 		
 		if( empty( $ret ) || !is_array( $ret ) ){
