@@ -218,6 +218,7 @@
 					if( isLucky( $rate/100 ) ){
 						$shop = new User_Shop( $uid, 2 );
 						$times = $shop->getShopLastTime();
+						$log->d( 'vshopLastTime:'.$times );
 						$input['getList']['vshop']  = 3590;
 						if( $times < 0 ){
 							$input['getList']['vshop'] = $times;
