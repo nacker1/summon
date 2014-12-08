@@ -104,14 +104,15 @@
 		$ret;
 		if( empty( $this->isRef ) ){//如果没有主动刷新 取缓存数据
 			$ret = $this->actRedis->get();//缓存的商店数据
-		}else{
-			dump( $this->actRedis->get() );
 		}
 		
 		if( empty( $ret ) || !is_array( $ret ) ){
 			if( isset( $this->shopConfig[$this->type]['vip'] ) && $this->getVlevel() < $this->shopConfig[$this->type]['vip'] && empty( $this->isRef ) ){
 				ret( ' 商店已消失 ',-1 );
 			}else{
+				$temp = $this->actRedis->get();
+				isset( $temp['overTime'] ) && $this->overTime = $temp['overTime'];
+				isset( $temp['time'] ) && $this->nextTime = $temp['time'];
 				$ret = $this->getTypeItems();
 			}
 		}
