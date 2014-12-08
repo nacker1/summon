@@ -116,6 +116,7 @@
 				$ret = $this->getTypeItems();
 			}
 		}
+		$ret['overTime'] = $this->getShopLastTime();
 		return $ret;
 	}
 /**
