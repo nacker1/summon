@@ -10,8 +10,8 @@
 
 	if( $num%10==0 ){
 		$nums = $num*0.9; 	//10连抽打9折
-	}
-
+	}	
+	$give['good'] = array();
 	switch( $type ){
 		case '1': //金币抽扣金币
 			$limit = new User_Limit( 'goldDrawDay' );
