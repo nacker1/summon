@@ -219,7 +219,7 @@
 						$shop = new User_Shop( $uid, 2 );
 						$times = $shop->getShopLastTime();
 						$input['getList']['vshop']  = 3590;
-						if( $times > 0 ){
+						if( $times < 0 ){
 							$input['getList']['vshop'] = $times;
 							$shop->getTypeItems();
 						}
