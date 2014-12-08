@@ -220,8 +220,9 @@
 						$times = $shop->getShopLastTime();
 						$log->d( 'vshopLastTime:'.$times );
 						$input['getList']['vshop']  = 3590;
-						if( $times < 0 ){
+						if( $times > 0 ){
 							$input['getList']['vshop'] = $times;
+						}else{
 							$shop->getTypeItems();
 						}
 					}
