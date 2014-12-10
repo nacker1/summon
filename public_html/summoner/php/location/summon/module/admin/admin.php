@@ -69,6 +69,11 @@ switch ($type) {
 			$pro = new User_Progress( $v, $user->getUid() );
 			$pro->setUserProgress(3);
 		}
+		#添加召唤师经验
+		$user->addExp( 1000000 );
+		$user->addMoney( 100000000 );
+		$user->addCooldou( 1000000 );
+
 		#添加所有道具
 		$gBase = new Goodbase();
 		$gList = $gBase->getAllBaseGood();
