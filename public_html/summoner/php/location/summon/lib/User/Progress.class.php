@@ -4,12 +4,12 @@
  **/
 class User_Progress extends User_Base{
 	private $progress_table = 'zy_uniqRoleProgress';				//用户关卡进度表
-	private $pList;									//用户关卡进度列表
-	private $type;									//关卡类型  1普通， 2精英 ， 3炼狱
-	private $cid;									//关卡id
+	private $pList;													//用户关卡进度列表
+	private $type;													//关卡类型  1普通， 2精英 ， 3炼狱
+	private $cid;													//关卡id
 
-	function __construct( $cid='' ){
-		parent::__construct();
+	function __construct( $cid='', $uid='' ){
+		parent::__construct($uid);
 		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		$this->type=substr($cid,1,1);
 		$this->cid=$cid;
