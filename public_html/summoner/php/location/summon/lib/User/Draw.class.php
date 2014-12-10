@@ -221,7 +221,7 @@ class User_Draw extends User_Base{
 		}
 		$this->log->d('Group_Level:'.$flag);
 		$ret = $this->pre->get( 'baseDrawTypeConfig:'.$this->type.':'.$flag );
-		$this->log->d( 'groupLevelTypeConfig:'.json_decode( $ret ) );
+		$this->log->d( 'groupLevelTypeConfig:'.$ret );
 		$ret = json_decode($ret,true);
 		foreach( $ret as $v ){
 			$this->log->d( 'draw_goodType_info:'.json_encode($v) );
