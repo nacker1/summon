@@ -3,8 +3,9 @@
  *@ 用户邮件类
  **/
  class User_Mail extends User_Base{
-	private $mailRedis;		//邮件连接的redis服务器
-	private $pubRedis;		//公共邮件连接redis服务器
+	private $mailRedis;		#邮件连接的redis服务器
+	private $pubRedis;		#公共邮件连接redis服务器
+	private $mType;			#邮件类型  1为私人邮件， 2 为公共邮件 ， 3为全部邮件
 	function __construct( $uid='', $mType=0 ){
 		parent::__construct( $uid );
 		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
