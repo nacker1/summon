@@ -64,7 +64,7 @@
 		}
 		if( empty( $this->overTime ) ){
 			$this->overTime = mktime( $this->shopConfig[$this->type]['time'][0],0,0 )+86400 - time();
-			$this->nextTime = '下次刷新时间：明日'.$this->shopConfig[$this->type]['time'][0].'点';
+			$this->nextTime = '每日'.$this->shopConfig[$this->type]['time'][0].'点刷新';
 		}
 		$this->_init();
 		$this->actRedis = new Cond( 'userShop_'.$this->type,$this->uid,$this->overTime-10 );
