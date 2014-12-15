@@ -9,6 +9,7 @@ class Act_Sign extends User_Base{
 	private $cond;											//cond 对应的redis连接源
 	private $overTime;										//过期时间
 	private $userSigninfo;									//当前用户的签到信息
+	private $tolSign;										//签到总次数
 
 	function __construct( $uid ){
 		parent::__construct( $uid );
@@ -85,7 +86,11 @@ class Act_Sign extends User_Base{
  *@ 判断是否可以签到 
  **/
 	public function checkSign(){
-		if( $this->getCommonTimes() > 0 && $this->getVipTimes() > 0 ){
+		if( $this->getCommonTimes() > 0 ){
+			$dayConfig = $this->getDayConf();
+			if( !empty( $dayConfig['Double_NeedVip'] ) )
+				if( $this->getVlevel() >= $dayConfig['Double_NeedVip'] && empty( $this->getVipTimes() ) )
+					return 1;
 			return 0;
 		}
 		return 1;
@@ -96,6 +101,26 @@ class Act_Sign extends User_Base{
 	public function getTotalTimes(){
 		return (int)$this->cond->get('total');
 	}
+/**
+ *@ 获取此次签到的配置信息
+ **/
+	public function getDayConf(){
+		$signInfo = $this->cond->get('total');
+		if( empty( $signInfo ) ){
+			$this->tolSign = 1;
+		}else{
+			$this->tolSign = $signInfo+1;
+		}
+		$daySign = $this->getCommonTimes();
+		$vipSign =$this->getVipTimes();
+		if( $daySign>0 && $vipSign<1 ){
+			$this->tolSign -= 1;
+		}
+		$dayConfig = $this->pre->hgetall( 'action:sign:month:'.$this->tolSign );
+
+		return $dayConfig;
+	}
+
 /**
  *@ 执行签到动作
  **/
