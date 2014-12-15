@@ -111,7 +111,8 @@ class Act_Sign extends User_Base{
 		}else{
 			$this->tolSign = $signInfo+1;
 		}
-		
+		$daySign = $this->getCommonTimes();
+		$vipSign =$this->getVipTimes();
 		if( $daySign>0 && $vipSign<1 ){
 			$this->tolSign -= 1;
 		}
