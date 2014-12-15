@@ -9,7 +9,6 @@ class Act_Sign extends User_Base{
 	private $cond;											//cond 对应的redis连接源
 	private $overTime;										//过期时间
 	private $userSigninfo;									//当前用户的签到信息
-	private $tolSign;										//签到总次数
 
 	function __construct( $uid ){
 		parent::__construct( $uid );
@@ -86,11 +85,7 @@ class Act_Sign extends User_Base{
  *@ 判断是否可以签到 
  **/
 	public function checkSign(){
-		if( $this->getCommonTimes() > 0 ){
-			$dayConfig = $this->getDayConf();
-			if( !empty( $dayConfig['Double_NeedVip'] ) )
-				if( $this->getVlevel() >= $dayConfig['Double_NeedVip'] && empty( $this->getVipTimes() ) )
-					return 1;
+		if( $this->getCommonTimes() > 0 && $this->getVipTimes() > 0 ){
 			return 0;
 		}
 		return 1;
@@ -102,29 +97,15 @@ class Act_Sign extends User_Base{
 		return (int)$this->cond->get('total');
 	}
 /**
- *@ 获取此次签到的配置信息
- **/
-	public function getDayConf(){
-		$signInfo = $this->cond->get('total');
-		if( empty( $signInfo ) ){
-			$this->tolSign = 1;
-		}else{
-			$this->tolSign = $signInfo+1;
-		}
-		$daySign = $this->getCommonTimes();
-		$vipSign =$this->getVipTimes();
-		if( $daySign>0 && $vipSign<1 ){
-			$this->tolSign -= 1;
-		}
-		$dayConfig = $this->pre->hgetall( 'action:sign:month:'.$this->tolSign );
-
-		return $dayConfig;
-	}
-/**
  *@ 执行签到动作
  **/
 	public function signIn(){
-		$vLevel = $this->getVlevel();
+		$signInfo = $this->cond->get('total');
+		if( empty( $signInfo ) ){
+			$total = 1;
+		}else{
+			$total = $signInfo+1;
+		}
 		$daySign = $this->getCommonTimes();
 		$vipSign =$this->getVipTimes();
 		$this->log->i( '用户#'.$this->uid.'#今日签到次数：com->'.$daySign.' & vip->'.$vipSign.' & vLevel:'.$this->getVlevel() );
@@ -132,7 +113,11 @@ class Act_Sign extends User_Base{
 			return false;
 		}
 		
-		$dayConfig = $this->getDayConf();
+		$vLevel = $this->getVlevel();
+		if( $daySign>0 && $vipSign<1 ){
+			$total -= 1;
+		}
+		$dayConfig = $this->pre->hgetall( 'action:sign:month:'.$total );
 		$addNums = $dayConfig['Item_Num'];
 		$add = false;
 		if( empty($daySign) ){//普通签到物品领取
@@ -154,7 +139,7 @@ class Act_Sign extends User_Base{
 					break;
 			}
 			#$this->setMissionId(1,62);
-			$this->cond->set( $this->tolSign,'total' );
+			$this->cond->set( $total,'total' );
 			$this->cond->setDayTimes(1,'common');	
 		}
 		$this->log->i( 'dayConfig:'.json_encode($dayConfig) );
