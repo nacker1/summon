@@ -111,7 +111,7 @@ class Act_Sign extends User_Base{
 		}else{
 			$this->tolSign = $signInfo+1;
 		}
-		$vLevel = $this->getVlevel();
+		
 		if( $daySign>0 && $vipSign<1 ){
 			$this->tolSign -= 1;
 		}
@@ -123,6 +123,7 @@ class Act_Sign extends User_Base{
  *@ 执行签到动作
  **/
 	public function signIn(){
+		$vLevel = $this->getVlevel();
 		$daySign = $this->getCommonTimes();
 		$vipSign =$this->getVipTimes();
 		$this->log->i( '用户#'.$this->uid.'#今日签到次数：com->'.$daySign.' & vip->'.$vipSign.' & vLevel:'.$this->getVlevel() );
