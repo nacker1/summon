@@ -245,8 +245,12 @@
 			$add['life'] = -1;
 	}
 #============================添加友情点=================================
-	if( isset($input['merc']) && is_numeric( $input['merc'] ))
-		$add['mFriend'] = 10;
+	if( isset($input['merc']) && is_numeric( $input['merc'] )){
+		$friend = new User_Friend( $user->getUid() );
+		$add['mFriend'] = 5;
+		if( $friend->isFriend( $input['merc'] ) )
+			$add['mFriend'] = 10;
+	}
 
 #============================每日刷副本日常任务=================================
 	$log->d( 'addInfo:'.json_encode($add) );
