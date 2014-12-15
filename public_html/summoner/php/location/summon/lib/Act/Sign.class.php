@@ -89,7 +89,7 @@ class Act_Sign extends User_Base{
 		if( $this->getCommonTimes() > 0 ){
 			$dayConfig = $this->getDayConf();
 			if( !empty( $dayConfig['Double_NeedVip'] ) ){
-				if( $this->getVlevel() >= $dayConfig['Double_NeedVip'] && empty( $this->getVipTimes() ) ){
+				if( $this->getVlevel() >= $dayConfig['Double_NeedVip'] && $this->getVipTimes()=='' ){
 					return 1;
 				}
 			}
