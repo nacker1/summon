@@ -67,7 +67,6 @@
  **/
 		function checkWaring(){
 			for( $i=1;$i<4;$i++ ){
-				$this->log->d( $this->cond->get( $i ) );
 				if( $this->cond->get( $i ) ){
 					return true;
 				}
