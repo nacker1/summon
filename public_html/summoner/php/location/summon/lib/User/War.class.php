@@ -94,7 +94,7 @@
 	 *		array( 1=>0,2=>-1,3=>600 )  第一种修炼可以领取奖励，第二种修炼可以直接修炼，第三种修炼剩余600秒
 	 **/
 		function getStatus(){
-			$ret = array(1=>-1,2=>-1,3=>-1);
+			$ret = array(1=>'-1',2=>'-1',3=>'-1');
 			$wars = $this->cond->getAll();
 			foreach( $wars as $v ){
 				$times = $v[ 'costTime' ] - time() + $v[ 'time' ];  #剩余时间（秒）
