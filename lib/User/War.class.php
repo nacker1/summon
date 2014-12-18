@@ -140,6 +140,8 @@
 			$set['costTime'] -= $reduceTime;
 			$set['strikeTime'] = time();
 			$this->cond->set( $set, $v['type'] );
+			$this->setUserHeart('warStrikeTime',$set['strikeTime']);
+			unset($set);
 		}
 		return true;
 	}
