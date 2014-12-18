@@ -25,6 +25,7 @@
 	  		$sRedis = new Cond( 'userShop_2', $user->getUid() );
 	  		$ret['vshop'] = $sRedis->getTimes();
 
+	  		#战争学院修炼状态
 	  		$war = new User_War( $user->getUid() );
 	  		$ret['war'] = $war->getStatus();
 
