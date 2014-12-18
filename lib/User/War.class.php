@@ -11,7 +11,7 @@
 		function __construct( $uid, $type='', $level='' ){
 			parent::__construct($uid);
 			$this->type 	= $type;
-			if( !in_array( $this->type, array( 1,2,3 ) ) ){ret('YMD',-1);}
+			if( !in_array( $this->type, array( 0,1,2,3 ) ) ){ret('YMD',-1);}
 			$this->level 	= $level;
 			$this->_init();
 			$this->cond = new Cond( $this->war_table, $uid );
