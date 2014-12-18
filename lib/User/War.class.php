@@ -126,7 +126,7 @@
 		if( isset( $times[ $index ] ) ){
 			$reduceTime = mt_rand( $times[$index][0], $times[$index][1] );
 			$this->setStrikeTime( $reduceTime );
-			return 1;
+			return $reduceTime;
 		}
 		return 0;
 	}
