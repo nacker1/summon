@@ -39,6 +39,7 @@
 		$ret[] = (int)$uInfo['vlevel'];						#用户vip等级
 		$ret[] = (int)$this->isWeekCode();					#用户周卡
 		$ret[] = (int)$uInfo['totalPay'];					#用户周卡
+		$ret[] = (int)$uInfo['warStrikeTime'];				#战争学院上次敲醒时间
 		$this->setUserHeart( '_heartTime', time() );		#设置用户心跳时间
 		return $ret;
 	}
