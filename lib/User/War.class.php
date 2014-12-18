@@ -100,7 +100,7 @@
 				$times = $v[ 'costTime' ] - time() + $v[ 'time' ];  #剩余时间（秒）
 				$temp[0] = $times>0 ? $times : 0;
 				if( $temp[0] > 0 )
-					$lastTime = STRIKE_TIMES - time() + $v['strikeTime']
+					$lastTime = STRIKE_TIMES - time() + $v['strikeTime'];
 					if( $lastTime < 1 ){
 						$temp[1] = 0;
 					}else{
