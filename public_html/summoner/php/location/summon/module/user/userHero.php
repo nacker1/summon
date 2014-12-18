@@ -212,7 +212,7 @@
 		if( empty( $hid ) ) ret( 'no_hid', -1 );
 		if( isset( $input['con'] ) ){
 			$con = $input['con'];
-			$limit = new User_Limit( 'commentHeroDay' );
+			$limit = new User_Limit(  $user->getUid(),'commentHeroDay' );
 			if( $limit->getTimeLimit( $hid ) ){
 				ret( '同一个英雄只能评论一次',-1 );
 			}
@@ -228,7 +228,7 @@
 			$limit->addLimitTimes( 1,$hid );
 		}else{
 			$cid = $input['cid'];
-			$limit = new User_Limit( 'laudHeroDay' );
+			$limit = new User_Limit(  $user->getUid(), 'laudHeroDay' );
 			if( $limit->getTimeLimit( $cid ) ){
 				ret( '一天只能点赞一次',-1 );
 			}

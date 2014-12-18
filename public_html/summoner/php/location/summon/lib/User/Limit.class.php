@@ -14,8 +14,8 @@ class User_Limit extends User_Base{
 	 *@ param:
 	 *	$tag: 	用户限制类型  
 	 **/
-	public function __construct( $tag,$domain='dayLimit',$time='' ){
-		parent::__construct();
+	public function __construct( $uid, $tag,$domain='dayLimit',$time='' ){
+		parent::__construct( $uid );
 		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		$this->tag = $tag;
 		$this->flag = $tag;

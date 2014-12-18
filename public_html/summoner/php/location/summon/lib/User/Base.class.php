@@ -387,6 +387,12 @@
 		return $this->redis->hset('roleinfo:'.$this->uid.':baseinfo', $tag, $val );#self::$userinfo[$this->uid][ $tag ] = $val;
 	}
 /**
+ *@ 获取用户指定字段内容
+ **/
+	public function getUserField( $tag ){
+		return $this->redis->hget('roleinfo:'.$this->uid.':baseinfo', $tag );#self::$userinfo[$this->uid][ $tag ] = $val;
+	}
+/**
  *@ 设置用户私信标记
  **/
 	public function setMessageFlag( $val ){

@@ -22,7 +22,7 @@
  	ret('YMD', -1);
  }
  $tag = $config[$type]['name'];
- $limit = new User_Limit( $config[$type]['tag'] );
+ $limit = new User_Limit( $user->getUid(), $config[$type]['tag'] );
  if( $limit->getLastTimes() < 1 ){
  	ret( ' 购买次数已达上限 ',-1);
  }
@@ -73,7 +73,7 @@
  		$cooldou = $limit->getOneTimeCooldou();
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
- 			$toLimit = new User_Limit( $config[$type]['to'] );
+ 			$toLimit = new User_Limit( $user->getUid(),$config[$type]['to'] );
  			$toLimit->delLimit();
  			$ret = $user->sendGoodsFromConfig($add);
  		}else{
@@ -84,7 +84,7 @@
  		$cooldou = $limit->getOneTimeCooldou();
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
- 			$toLimit = new User_Limit( $config[$type]['to'] );
+ 			$toLimit = new User_Limit( $user->getUid(), $config[$type]['to'] );
  			$toLimit->delTimeLimit();
  			$ret = $user->sendGoodsFromConfig($add);
  		}else{
@@ -121,7 +121,7 @@
  		$cooldou = $limit->getOneTimeCooldou( $roundid );
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
- 			$toLimit = new User_Limit( $config[$type]['to'] );
+ 			$toLimit = new User_Limit( $user->getUid(), $config[$type]['to'] );
  			$toLimit->delLimit( $roundid );
  			$ret = $user->sendGoodsFromConfig($add);
  		}else{

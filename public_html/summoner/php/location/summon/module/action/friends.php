@@ -85,7 +85,7 @@
  		if( $to == $user->getUid() ){
  			ret('YMD',-1);
  		}
- 		$limit = new User_Limit('giveLifeDay');
+ 		$limit = new User_Limit( $user->getUid(),'giveLifeDay');
  		if( $limit->getLastTimes() ){
  			if( $limit->getUsedTimes($to) ){
  				ret('同一好友每天只能赠送一次',-1);

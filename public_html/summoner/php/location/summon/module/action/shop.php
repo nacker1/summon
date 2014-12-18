@@ -22,7 +22,7 @@
 		 $tag = '拉取商店'.$tags[$shopId][0][1].'物品';
 		 $ref = isset( $input['ref']) ? $input['ref'] : 0;
 		 if( !empty($ref) ){ //刷新普通商店次数添加
-			$limit = new User_Limit( $tags[$shopId][0] );
+			$limit = new User_Limit( $user->getUid(), $tags[$shopId][0] );
 			if( $limit->getLastFreeTimes() < 1 ){ //获取剩余免费次数
 				$nums = $limit->getOneTimeCooldou(); //刷新商店所需要费用
 				if( $nums>0 && $user->getTypeInfo( $tags[$shopId][2] ) < $nums ){
