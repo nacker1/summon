@@ -91,13 +91,13 @@
 	 	if( $limit->getLastTimes() < 1 ){
 		 	ret( ' 敲醒次数已用完 ',-1);
 		}
-		$limit->addLimitTimes(1);
 	 	$war = new User_War( $user->getUid() );
 	 	if( $war->isWake() ){
 	 		ret( '修炼大师清醒中...',-1 );
 	 	}
 	 	$ret['war']['action'] = $war->wakeUp();
 	 	$ret['war']['list'] = $war->getStatus();
+	 	$limit->addLimitTimes(1);
 	 	ret( $ret );
  	default:
  		# code...
