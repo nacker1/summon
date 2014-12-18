@@ -4,7 +4,7 @@
  **/
 	class User_War extends User_Base{
 		private $war_table='zy_baseWarExp';					#战争学院的配置表
-		private $type;										#修炼方式
+		private $type;										#修炼方式   1金币修炼   2为低级钻石修炼  3为高级钻石修炼
 		private $level;										#玩家等级
 		private $warInfo;									#修炼的配置信息
 
@@ -65,8 +65,10 @@
  *@ 检测当前修炼类型是否还在修炼或未领取奖励   未修炼 返回false    正在修炼返回 true
  **/
 		function checkWaring(){
-			if( $this->cond->get( $this->type ) ){
-				return true;
+			for( $i=1;$i<4;$i++ ){
+				if( $this->cond->get( $this->type ) ){
+					return true;
+				}
 			}
 			return false;
 		}
