@@ -148,14 +148,15 @@
  **/
 	function isWake(){
 		$wars = $this->cond->getAll();
-		foreach( $wars as $v ){
-			$times = $v[ 'costTime' ] - time() + $v[ 'time' ];  #剩余时间（秒）
-			$temp[0] = $times>0 ? $times : 0;
-			if( $temp[0] > 0 )
-				if( time() - $v['strikeTime'] > STRIKE_TIMES ){
-					return false;
-				}
-		}
+		if( !empty( $wars ) )
+			foreach( $wars as $v ){
+				$times = $v[ 'costTime' ] - time() + $v[ 'time' ];  #剩余时间（秒）
+				$temp[0] = $times>0 ? $times : 0;
+				if( $temp[0] > 0 )
+					if( time() - $v['strikeTime'] > STRIKE_TIMES ){
+						return false;
+					}
+			}
 		return true;
 	}
 
