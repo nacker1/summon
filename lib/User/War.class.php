@@ -99,11 +99,12 @@
 			foreach( $wars as $v ){
 				$times = $v[ 'costTime' ] - time() + $v[ 'time' ];  #剩余时间（秒）
 				$temp[0] = $times>0 ? $times : 0;
-				if( time() - $v['strikeTime'] > STRIKE_TIMES && $temp[0] > 0 ){
-					$temp[1] = 1;
-				}else{
-					$temp[1] = 0;
-				}
+				if( $temp[0] > 0 )
+					if( time() - $v['strikeTime'] > STRIKE_TIMES ){
+						$temp[1] = 1;
+					}else{
+						$temp[1] = 0;
+					}
 				$ret[ $v['type'] ] = implode(',',$temp);
 				unset($temp);
 			}
