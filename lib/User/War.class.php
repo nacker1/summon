@@ -11,6 +11,7 @@
 		function __construct( $uid, $type='', $level='' ){
 			parent::__construct($uid);
 			$this->type 	= $type;
+			if( !in_array( $this->type, array( 1,2,3 ) ) ){ret('YMD',-1);}
 			$this->level 	= $level;
 			$this->_init();
 			$this->cond = new Cond( $this->war_table, $uid );
@@ -66,6 +67,7 @@
  **/
 		function checkWaring(){
 			for( $i=1;$i<4;$i++ ){
+				$this->log->d( $this->cond->get( $this->type ) );
 				if( $this->cond->get( $this->type ) ){
 					return true;
 				}
