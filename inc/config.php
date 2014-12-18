@@ -22,7 +22,7 @@
 	define('WAR_LOW_LEVEL'						,15);				 #战争学院用户最低等级
 	define('GENERAL_ID'							,11999);			 #万能灵魂石id
 	define('ADMIN_UID'							,1);				 #超级用户uid
-	define('STRIKE_TIMES'						,1800);				 #战争学院敲醒功能默认美中间隔时间
+	define('STRIKE_TIMES'						,1800);				 #战争学院敲醒功能默认美中间隔时间  30分钟
 
 	#============= log打印 =================                ===================
 
