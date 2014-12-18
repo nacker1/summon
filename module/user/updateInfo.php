@@ -62,9 +62,10 @@
 	 	if( $war->checkWaring() ){
 	 		ret( '正在修炼中。。。',-1 );
 	 	}
-	 	$war->begin();
 	 	$add[$money['type']] = -$money['nums'];
-	 	ret( $user->sendGoodsFromConfig( $add ) );
+	 	$ret = $user->sendGoodsFromConfig( $add );
+	 	$ret['war'][ $type ] = $war->begin();
+	 	ret( $ret );
  	case '5':   #领取战争学院奖励
  		$tag = ' 战争学院奖励领取 ';
  		if( $user->getLevel() < WAR_LOW_LEVEL ){ret( '召唤师等级不足', -1 );}
@@ -81,6 +82,19 @@
  		if( $user->getLevel() < WAR_LOW_LEVEL ){ret( '召唤师等级不足', -1 );}
 	 	$war = new User_War( $user->getUid() );
 	 	ret( $war->getStatus() );
+	 	
+ 	case '7':#战争学院修炼敲醒功能
+ 		$tag = '战争学院修炼敲醒';
+ 		if( $user->getLevel() < WAR_LOW_LEVEL ){ret( '召唤师等级不足', -1 );}
+	 	
+	 	$limit = new User_Limit(  $user->getUid(),'strikeTimesDay' );
+	 	if( $limit->getLastTimes() < 1 ){
+		 	ret( ' 敲醒次数已达上限 ',-1);
+		}
+		$limit->addLimitTimes(1);
+	 	$war = new User_War( $user->getUid() );
+
+	 	ret(  );
  	default:
  		# code...
  		break;

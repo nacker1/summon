@@ -14,7 +14,7 @@
 	$give['good'] = array();
 	switch( $type ){
 		case '1': //金币抽扣金币
-			$limit = new User_Limit( 'goldDrawDay' );
+			$limit = new User_Limit( $user->getUid(), 'goldDrawDay' );
 			if( $nums > 1 ){
 				$money = $limit->getExpend();
 			}else{
@@ -29,7 +29,7 @@
 			$money>0 && $give['good'][] = '63003,'.$num;
 			break;
 		case '2'://钻石抽钻石
-			$limit = new User_Limit( 'jewelDrawDay','dayLimit', 3600*48 );
+			$limit = new User_Limit( $user->getUid(), 'jewelDrawDay','dayLimit', 3600*48 );
 			if( $nums > 1 ){
 				$cooldou = $limit->getExpend();
 			}else{
@@ -45,7 +45,7 @@
 			$cooldou>0 && $give['good'][] = '63003,'.$num;
 			break;
 		case '3'://友情点抽友情点
-			$limit = new User_Limit( 'friendDrawDay','dayLimit', 3600*48 );
+			$limit = new User_Limit( $user->getUid(), 'friendDrawDay','dayLimit', 3600*48 );
 			
 			if( $nums > 1 ){
 				$cooldou = $limit->getExpend();

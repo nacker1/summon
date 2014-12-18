@@ -43,7 +43,10 @@
 			$set['exp'] = $this->warInfo['War_Exp'];				#修炼得到的经验
 			$set['time'] = time();									#修炼时间
 			$set['costTime'] = $this->warInfo['War_Time'] * 60;		#修炼完成需要的时间（秒）
-			return $this->cond->set( $set, $this->type );
+			$set['strikeTime'] = $set['time'];						#敲醒时间
+			$this->cond->set( $set, $this->type );
+			$this->setUserHeart('strikeTime',$set['time']);
+			return $set['costTime'];
 		}
 
 		/**
@@ -66,10 +69,9 @@
  *@ 检测当前修炼类型是否还在修炼或未领取奖励   未修炼 返回false    正在修炼返回 true
  **/
 		function checkWaring(){
-			for( $i=1;$i<4;$i++ ){
-				if( $this->cond->get( $i ) ){
-					return true;
-				}
+			$wars = $this->cond->getAll();
+			if( $wars ) {
+				return true;
 			}
 			return false;
 		}
@@ -96,7 +98,14 @@
 			$wars = $this->cond->getAll();
 			foreach( $wars as $v ){
 				$times = $v[ 'costTime' ] - time() + $v[ 'time' ];  #剩余时间（秒）
-				$ret[ $v['type'] ] = $times>0 ? $times : 0;
+				$temp[] = $times>0 ? $times : 0;
+				if( time() - $v['strikeTime'] > STRIKE_TIMES ){
+					$temp[] = 1;
+				}else{
+					$temp[] = 0;
+				}
+				$ret[ $v['type'] ] = implode(',',$temp);
+				unset($temp);
 			}
 			return $ret;
 		}

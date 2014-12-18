@@ -22,7 +22,7 @@
 # ----------------------------------------------------------每天竞技场打斗限制-------------------------------------------------------------------------------------
 	if( 64==$input['tasktype'] ){
 		$log->i('竞技场战斗结算');					
-		$custLimit = new User_Limit( 'doArenaTimesDay' ); 
+		$custLimit = new User_Limit( $user->getUid(), 'doArenaTimesDay' ); 
 		$user->setMissionId(2,64);
 		$pvpTop = $input['currnk']; 							#当前排名
 		$input['hrank'] = $user->getUserRecord( 'maxPvpTop' );	#历史最高排名
@@ -69,7 +69,7 @@
 		$add['life'] = -$reLife;
 # ----------------------------------------------------------每天精英关卡与炼狱关卡通关次数限制-------------------------------------------------------------------------------------
 		if( in_array( $input['tasktype'], array( 12,13 ) ) ){					
-			$custLimit = new User_Limit( 'customsTimesDay' ); 
+			$custLimit = new User_Limit( $user->getUid(), 'customsTimesDay' ); 
 			if( $custLimit->getLastTimes( $input['roundid'] ) < $sweepNum ){
 				ret('今日次数已用完',-1);
 			}
@@ -83,7 +83,7 @@
 				ret( 'YMD'.__LINE__,-1 );
 			}
 			//--------------------------扫荡扣除钻石------------------------------
-			$limit = new User_Limit( 'freeSweepTimesDay' );
+			$limit = new User_Limit( $user->getUid(), 'freeSweepTimesDay' );
 			$cooldou = $limit->getExpend();
 			$freeTime = $limit->getLastFreeTimes();
 			$log->e( '* freeTime:'.$freeTime );
@@ -148,35 +148,35 @@
 				break;
 			case '69':	//呆小红
 				$user->setMissionId(2,69);
-				$actLimit = new User_Limit( 'minRedDay' );
+				$actLimit = new User_Limit( $user->getUid(), 'minRedDay' );
 				$actLimit->addLimitTimes();
 				break;
 			case '70':	//呆小蓝
 				$user->setMissionId(2,70);
-				$actLimit = new User_Limit( 'minBlueDay' );
+				$actLimit = new User_Limit( $user->getUid(),'minBlueDay' );
 				$actLimit->addLimitTimes();
 				break;
 			case '71':	//无尽之地
 				$user->setMissionId(2,71);
-				$actLimit = new User_Limit( 'endLessFieldDay' );
+				$actLimit = new User_Limit( $user->getUid(), 'endLessFieldDay' );
 				$actLimit->addLimitTimes();
 				break;
 			case '68':	//英雄炼狱
 				$user->setMissionId(2,68);
 				if( $input['roundid'] == 960003 ){ #钢铁巢穴
-					$actLimit = new User_Limit( 'steelNestDay' );
+					$actLimit = new User_Limit( $user->getUid(), 'steelNestDay' );
 					$actLimit->addLimitTimes();
 				}elseif( $input['roundid'] == 960004 ){#飞龙宝藏
-					$actLimit = new User_Limit( 'hiryuTreasuresDay' );
+					$actLimit = new User_Limit( $user->getUid(), 'hiryuTreasuresDay' );
 					$actLimit->addLimitTimes();
 				}elseif( $input['roundid'] == 960005 ){#猎杀巨龙
-					$actLimit = new User_Limit( 'killDragonDay' );
+					$actLimit = new User_Limit( $user->getUid(), 'killDragonDay' );
 					$actLimit->addLimitTimes();
 				}
 				break;
 			case '66':	//黄金矿山
 				$user->setMissionId(2,66);
-				$actLimit = new User_Limit( 'goldMineDay' );
+				$actLimit = new User_Limit( $user->getUid(), 'goldMineDay' );
 				$actLimit->addLimitTimes();
 				break;
 		}

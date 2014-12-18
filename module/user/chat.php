@@ -29,7 +29,7 @@
  			if( $gagTime > 0 ){
  				ret('您已被禁言,'.ceil($gagTime/60).'分钟后自动解除',-1);
  			}
-	 		$limit = new User_Limit( 'helloWorld' );
+	 		$limit = new User_Limit(  $user->getUid(),'helloWorld' );
 	 		$money = $limit->getOneTimeCooldou();
 	 		if( $user->getMoney() >= $money ){
 	 			$limit->addLimitTimes();
