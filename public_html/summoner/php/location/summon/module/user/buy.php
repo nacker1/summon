@@ -17,7 +17,7 @@
  		5=>array('name'=>'购买技能点次数'	,'tag'=>'buyPointDay' ),
  		6=>array('name'=>'购买精英关卡次数'	,'tag'=>'resetEliteTimesDay', 'to'=>'customsTimesDay' ),
  		7=>array('name'=>'购买炼狱关卡次数'	,'tag'=>'resetGaolTimesDay', 'to'=>'customsTimesDay' ), 
- 		7=>array('name'=>'战争学院敲醒次数'	,'tag'=>'buyStrikeTimesDay', 'to'=>'strikeTimesDay' ), #战争学院敲醒次数
+ 		8=>array('name'=>'战争学院敲醒次数'	,'tag'=>'buyStrikeTimesDay', 'to'=>'strikeTimesDay' ), #战争学院敲醒次数
 	);
  if( !isset( $config[$type] ) ){
  	ret('YMD', -1);
