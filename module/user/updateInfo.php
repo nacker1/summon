@@ -82,19 +82,20 @@
  		if( $user->getLevel() < WAR_LOW_LEVEL ){ret( '召唤师等级不足', -1 );}
 	 	$war = new User_War( $user->getUid() );
 	 	ret( $war->getStatus() );
-	 	
+
  	case '7':#战争学院修炼敲醒功能
  		$tag = '战争学院修炼敲醒';
  		if( $user->getLevel() < WAR_LOW_LEVEL ){ret( '召唤师等级不足', -1 );}
 	 	
 	 	$limit = new User_Limit(  $user->getUid(),'strikeTimesDay' );
 	 	if( $limit->getLastTimes() < 1 ){
-		 	ret( ' 敲醒次数已达上限 ',-1);
+		 	ret( ' 敲醒次数已用完 ',-1);
 		}
 		$limit->addLimitTimes(1);
 	 	$war = new User_War( $user->getUid() );
-
-	 	ret(  );
+	 	$ret['war']['action'] = $war->wakeUp();
+	 	$ret['war']['list'] = $war->getStatus();
+	 	ret( $ret );
  	default:
  		# code...
  		break;

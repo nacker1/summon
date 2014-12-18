@@ -45,7 +45,7 @@
 			$set['costTime'] = $this->warInfo['War_Time'] * 60;		#修炼完成需要的时间（秒）
 			$set['strikeTime'] = $set['time'];						#敲醒时间
 			$this->cond->set( $set, $this->type );
-			$this->setUserHeart('strikeTime',$set['time']);
+			$this->setUserHeart('warStrikeTime',$set['time']);
 			return $set['costTime'];
 		}
 
@@ -116,6 +116,35 @@
 		function end(){
 			return $this->cond->del( $this->type );
 		}
+/**
+ *@ wakeUp 敲醒功能
+ **/
+	function wakeUp(){
+		$times = array( 2=>array(60,1800),3=>array(1801,5400),4=>array(5401,7200) );
+		$rate = array( 1=>'0.5',2=>'0.3',3=>'0.15',4=>'0.05' );
+		$index = $this->retRate( $rate );
+		if( isset( $times[ $index ] ) ){
+			$reduceTime = mt_rand( $times[$index][0], $times[$index][1] );
+			$this->setStrikeTime( $reduceTime );
+			return 1;
+		}
+		return 0;
+	}
+/**
+ *@ setStrikeTime();  更改敲打时间 并缩短修炼时间
+ **/
+	function setStrikeTime( $reduceTime ){
+		$wars = $this->cond->getAll();
+		foreach( $wars as $v ){
+			$set = $v;
+			$set['costTime'] -= $reduceTime;
+			$set['strikeTime'] = time();
+			$this->cond->set( $set, $v['type'] );
+		}
+		return true;
+	}
+
+
 /**
  *@ 返回修炼错误信息
  **/		
