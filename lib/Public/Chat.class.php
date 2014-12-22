@@ -36,7 +36,7 @@
  *		type|key|showCon   类型|唯一键(fromUid,toUid)|显示内容
  *		pvp => type:1, key:pvp生成， showCon: 显示在页面上的内容
  **/
- 	function sendChat( $con, $name='公告', $uid=ADMIN_UID, $level=1, $image=1, $other='' ){
+ 	function sendChat( $con, $name='公告', $uid='', $level=0, $image=0, $other='' ){
  		$chat = array(
  			'con'=>$con,
  			'name'=>$name,
