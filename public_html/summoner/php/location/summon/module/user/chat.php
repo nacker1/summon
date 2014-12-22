@@ -13,23 +13,30 @@
  	case '1': #拉取信息
  		$lasttime = isset( $input['lt'] ) ? $input['lt'] : 0;
  		$chat = new Chat( $user->getUid() );
- 		ret( $chat->getChat( $lasttime ) );
+ 		ret( $chat->getChat( $lasttime ));
  	case '2': #发送信息
  		$to = !empty( $input['to'] ) ? $input['to'] : '';
+ 		$ct = !empty( $input['ct'] ) ? $input['ct'] : '';
  		$con = $input['con'];
  		$other = $input['other'];  #pvp|key 
  		$strLen = abslength($con);
  		if( $strLen > 65 ){
  			ret( '内容不能超过65个汉字'.$strLen, -1 );
  		}
- 		if( empty( $to ) ){
+ 		if( $ct == 3 ){#聊天公告
+ 			$con = $input['con'];
+ 			$t = $input['t'];
+ 			$chat = new Chat( 14,3 );
+ 			$chat->sendChat( $con );
+ 			ret($con);
+ 		}elseif( empty( $to ) ){
  			$gag = new Cond( 'user_limit', $user->getUid() );
  			$log->e($gag->getTimes('gag'));
  			$gagTime = $gag->getTimes('gag');
  			if( $gagTime > 0 ){
  				ret('您已被禁言,'.ceil($gagTime/60).'分钟后自动解除',-1);
  			}
-	 		$limit = new User_Limit(  $user->getUid(),'helloWorld' );
+	 		$limit = new User_Limit( $user->getUid(),'helloWorld' );
 	 		$money = $limit->getOneTimeCooldou();
 	 		if( $user->getMoney() >= $money ){
 	 			$limit->addLimitTimes();
