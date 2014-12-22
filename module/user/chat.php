@@ -24,9 +24,11 @@
  			ret( '内容不能超过65个汉字'.$strLen, -1 );
  		}
  		if( $ct == 3 ){#聊天公告
+ 			$endTime = $input[ 'et' ];		#公告结束日期
+ 			$times = strtotime($endTime) - time();
  			$con = $input['con'];
  			$t = $input['t'];
- 			$chat = new Chat( 14,3 );
+ 			$chat = new Chat( 14,1,$times );
  			$chat->sendChat( $con );
  			ret($con);
  		}elseif( empty( $to ) ){

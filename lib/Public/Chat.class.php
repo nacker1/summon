@@ -5,12 +5,12 @@
  class Chat extends User_Base{
  	private $cond;				#世界信息redis连接源
  	private $uCond;				#玩家私信redis连接源
- 	private $type;				#信息类型  1为世界信息  2为私信  5为公会信息
+ 	private $type;				#信息类型  1为世界信息  2为私信  3为聊天公告 5为公会信息
 
- 	function __construct( $uid='', $type=1 ){
+ 	function __construct( $uid='', $type=1, $time=43200 ){
  		# $uid: 如果是发送信息则为接收者的uid, 如果是拉信息则为当前用户的uid
  		parent::__construct( $uid );
- 		$this->cond = new Cond( 'chat', 0, 43200 );
+ 		$this->cond = new Cond( 'chat', 0, $time );
  		$this->type = $type;
 		$this->uCond = new Cond( 'chat', $this->uid, 86400 );	#私信保存一天
  	}
@@ -36,7 +36,7 @@
  *		type|key|showCon   类型|唯一键(fromUid,toUid)|显示内容
  *		pvp => type:1, key:pvp生成， showCon: 显示在页面上的内容
  **/
- 	function sendChat( $con, $name, $uid, $level, $image, $other='' ){
+ 	function sendChat( $con, $name='公告', $uid=ADMIN_UID, $level=1, $image=1, $other='' ){
  		$chat = array(
  			'con'=>$con,
  			'name'=>$name,
