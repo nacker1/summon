@@ -99,6 +99,21 @@
 	 	$ret['war']['list'] = $war->getStatus();
 	 	$limit->addLimitTimes(1);
 	 	ret( $ret );
+     case '8': #用户禁言状态查询
+
+         $gag = new Cond( 'user_limit', $user->getUid(), 600 );
+         $ret['v'] = $gag->get('gag');
+         $ret['t'] = $gag->getTimes('gag');
+         ret($ret);
+         break;
+     case '9': #用户解禁
+         $gag=new Redis();
+         $gag = new Cond( 'user_limit', $user->getUid(), 600 );
+         $gag->del( 'gag' );
+         $ret['v'] = $gag->get('gag');
+         $ret['t'] = $gag->getTimes('gag');
+         ret($ret);
+         break;
  	default:
  		# code...
  		break;
