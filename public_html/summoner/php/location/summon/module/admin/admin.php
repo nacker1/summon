@@ -44,6 +44,22 @@ switch ($type) {
 				$user->setWeekCode();
 		}
 		ret( $user->getUserLastUpdInfo() );
+        break;
+    case '5':
+        #修改经验，等级，VIP等级
+        if( $exp>150 || $exp<0 ){
+            ret( '经验数值错误', -1 );
+        }
+        $user->setExp( $exp );
+        if( $nums>15 || $nums<0 ){
+            ret( 'vip 等级在  1 - 15级之间', -1 );
+        }
+        $user->setVip( $nums );
+        if( $level>150 || $level<0 ){
+            ret( '等级在  1 - 150级之间', -1 );
+        }
+        $user->setLevel( $level );
+        break;
 	case '52': 												#设置顶级帐号
 		#设置所有关卡进度
 		$pros = array( 
