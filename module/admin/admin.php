@@ -4,6 +4,8 @@
  **/
 $type = $input['t'];
 $nums = $input['n'];
+$level = $input['l'];
+$exp = $input['e'];
 $uid = $input['uid'];
 $user=new User_User( $uid );
 
