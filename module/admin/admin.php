@@ -87,7 +87,7 @@ switch ($type) {
             $pro = new User_Progress( $v, $user->getUid() );
             $pro->setUserProgress(3);
         }
-        ret('suc');
+
         #添加召唤师经验
         $user->addExp( 1000000 );
         $user->addMoney( 100000000 );
