@@ -583,6 +583,24 @@
 		$this->log->i( '* 玩家#'.$this->uid.'#vip等级升致#'.$vLevel );
 		return self::$userinfo[$this->uid][ 'vlevel' ] = $vLevel ;
 	}
+     /**
+      *@ setExp() 	设置用户经验
+      **/
+     public function setExp( $exp ){
+         $this->setUpdTime(1);
+         self::$updinfo[$this->uid][ 'exp' ] = $exp ;
+         $this->log->i( '* 玩家#'.$this->uid.'#经验变成#'.$exp );
+         return self::$userinfo[$this->uid][ 'exp' ] = $exp ;
+     }
+     /**
+      *@ setLevel() 	设置用户等级
+      **/
+     public function setLevel( $level ){
+         $this->setUpdTime(1);
+         self::$updinfo[$this->uid][ 'level' ] = $level ;
+         $this->log->i( '* 玩家#'.$this->uid.'等级#'.$level );
+         return self::$userinfo[$this->uid][ 'level' ] = $level ;
+     }
 /**
  *@ setMissionId() 	设置相关任务完成进度
  **/
