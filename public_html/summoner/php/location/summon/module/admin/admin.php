@@ -4,8 +4,6 @@
  **/
 $type = $input['t'];
 $nums = $input['n'];
-$level = $input['l'];
-$exp = $input['e'];
 $uid = $input['uid'];
 $user=new User_User( $uid );
 
@@ -48,6 +46,8 @@ switch ($type) {
         ret( $user->getUserLastUpdInfo() );
         break;
     case '5':
+        $level  = $input['l'];
+        $exp    = $input['e'];
         #修改经验，等级，VIP等级
 //        if( $exp>150 || $exp<0 ){
 //            ret( '经验数值错误', -1 );
