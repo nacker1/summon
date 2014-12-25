@@ -20,7 +20,7 @@
  		$con = $input['con'];
  		$other = $input['other'];  #pvp|key 
  		$strLen = abslength($con);
- 		if( $strLen > 65 || $ct != 3 ){
+ 		if( $strLen > 65 && $ct != 3 ){
  			ret( '内容不能超过65个汉字'.$strLen, -1 );
  		}
  		if( $ct == 3 ){#聊天公告
@@ -40,7 +40,7 @@
  			}
 	 		$limit = new User_Limit( $user->getUid(),'helloWorld' );
 	 		$money = $limit->getOneTimeCooldou();
-	 		if( $user->getMoney() >= $money ){
+	 		if( $user->getMoney() >= $money || $ct == 3 ){
 	 			$limit->addLimitTimes();
 	 			$chat = new Chat( $user->getUid() );
 	 			$chat->sendChat( $con, $user->getUserName(), $user->getUid(), $user->getLevel(), $user->getImage(),$other );
