@@ -69,7 +69,7 @@ class User_Limit extends User_Base{
 /**
  *@ 检测操作的时间间隔
  **/
-	private function checkTimeLimit( $key='' ){
+	public function checkTimeLimit( $key='' ){
 		if( $this->getTimeLimit( $key ) ){
 			if( $this->getExpend() > 0 ){ //时间限制内是否支持购买行为，如果支持则基数大于0
 				return $this->getExpend();
@@ -139,8 +139,9 @@ class User_Limit extends User_Base{
 /**
  *@ 设置每次数使用的时间间隔
  **/
-	private function setTimeLimit( $key='' ){
-		$times = (int)$this->limitConfig['timeLimit'];
+	public function setTimeLimit( $key='', $times=0 ){
+		if( empty( $times ) )
+			$times = (int)$this->limitConfig['timeLimit'];
 		if( empty( $times ) ){
 			return true;
 		}
