@@ -49,6 +49,7 @@ class Gold extends Base{
 			$this->pre->set( $this->gold_table.':check', 1, get3time() );
 		}
 		$this->config = $this->pre->hgetall( $this->gold_table.':'.$this->time );
+		$this->log->i( 'gold_config:'.json_encode($this->config) ); 
 	}
 
 	function getConfig(){
