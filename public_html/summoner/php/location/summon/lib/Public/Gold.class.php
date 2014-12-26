@@ -69,7 +69,7 @@ class Gold extends Base{
 		return $this->config['reward'];
 	}
 	function getNextTime(){
-		$nextConfig = $this->pre->hgetall( $this->gold_table.':'.( $this->time+1 ) );
+		$nextConfig = $this->pre->get( $this->gold_table.':'.( $this->time+1 ) );
 		if( empty( $nextConfig ) ){
 			return 0;
 		}
