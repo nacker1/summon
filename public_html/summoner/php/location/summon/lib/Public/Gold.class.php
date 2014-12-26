@@ -22,7 +22,6 @@ class Gold extends Base{
 			if( empty( $ret ) ){
 				$this->log->e( '@@@@ SELECT_DB_NULL @@@@' );	
 			}
-			dump($ret);
 			$this->log->d( '~~~~~~~~~~~~~~~~~~~~  SELECT_DB  ~~~~~~~~~~~~~~~~~~~~~~~' );
 			foreach ($ret as $v ) {
 				# code...
@@ -44,6 +43,7 @@ class Gold extends Base{
 					$good['money'] = $v['Mine_Gold'];
 				}
 				$temp['reward'] = $good;
+				dump($temp);
 				$this->pre->hset( $this->gold_table.':'.$v['Mine_Time'], $temp );
 				unset($goods);
 				unset($temp);
