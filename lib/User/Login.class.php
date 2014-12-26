@@ -80,7 +80,7 @@
 		$insert['life'] = 60;								//当前体力值
 		$insert['lead'] = 0;								//领导力
 		$insert['jewel'] = 0;								//钻石数量
-		$insert['money'] = 50000;							//金币数量
+		$insert['money'] = 0;								//金币数量
 		$insert['logintime'] = time();						//最后登录时间	
 		$insert['lastDeductTime'] = time();					//最后扣除体力时间
 		$insert['sex'] = 1;									//性别
