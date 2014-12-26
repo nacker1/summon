@@ -99,7 +99,7 @@
 		}
 		$hero = new User_Hero( $user->getUid(), $hid );
 		$color = array( 1=>10,2=>20,3=>40,4=>80,5=>160 );
-		$money = array(1=>5000,2=>10000,3=>20000,4=>40000,5=>80000);
+		$money = array(1=>0,2=>5000,3=>10000,4=>20000,5=>40000);
 		$gid = '11'.substr($hid,2);
 		$goods = new User_Goods( $user->getUid(), $gid );
 		$cLevel = 1;
