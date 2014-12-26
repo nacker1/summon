@@ -43,7 +43,7 @@ class Gold extends Base{
 					$good['money'] = $v['Mine_Gold'];
 				}
 				$temp['reward'] = $good;
-				$this->pre->hmset( $this->gold_table.':'.$v['Mine_Time'], $temp );
+				$this->pre->set( $this->gold_table.':'.$v['Mine_Time'], json_encode( $temp ) );
 				unset($goods);
 				unset($temp);
 				unset($good);
@@ -51,7 +51,7 @@ class Gold extends Base{
 
 			$this->pre->set( $this->gold_table.':check', 1, get3time() );
 		}
-		$this->config = $this->pre->hgetall( $this->gold_table.':'.$this->time );
+		$this->config = json_decode( $this->pre->get( $this->gold_table.':'.$this->time ), true);
 		$this->log->i( 'gold_config:'.json_encode($this->config) ); 
 	}
 
