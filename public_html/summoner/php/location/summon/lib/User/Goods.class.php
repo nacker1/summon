@@ -103,6 +103,7 @@
 	public function addGoods( $nums=1 ){
 		if( $nums < 1 ){return $this->reduceGoods( -$nums );}
 		switch( $this->bgood->getColor() ){
+			case '2':$this->setMissionId(1,32,$nums);break;
 			case '3':$this->setMissionId(1,33,$nums);break;
 			case '4':$this->setMissionId(1,34,$nums);break;
 			case '5':$this->setMissionId(1,35,$nums);break;
