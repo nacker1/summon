@@ -46,7 +46,7 @@
  		if( $times < 1 && ( time() - $user->getUserField('logintime') ) < $gold->getTime()  ){
  			ret( '正常冷却'.$gold->getTime(),-1 );
  		}
- 		#$limit->addLimitTimes(1);
+ 		$limit->addLimitTimes(1);
  		$limit->setTimeLimit('',$gold->getNextTime());
  		ret( $user->sendGoodsFromConfig( $gold->getReward() ) );
  	case '999':
