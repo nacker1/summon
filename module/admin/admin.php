@@ -143,7 +143,7 @@ switch ($type) {
             #清空所有配置缓存
             $cache = array(
                 'baseDrawConfig:*','baseDrawTypeConfig:*','baseMissionConfig:*','shopConfig:*','action:sign:*','zy_baseArenaReward*',
-                'baseBuffConfig:*','baseBuyGoldConfig:*','equip:baseinfo*','goodBase:base*','goodBase:equip*',
+                'baseBuffConfig:*','baseBuyGoldConfig:*','equip:baseinfo*','goodBase:base*','goodBase:equip*','zy_baseActivity:*'
                 'goodBase:compos*','heroSkillCost:*','heroBase:*','roleLevelUp*','vipConfig*','server:list:*','server:list_check','userLimit:*'
             );
         }else{
