@@ -73,7 +73,8 @@ class Gold extends Base{
 		if( empty( $nextConfig ) ){
 			return 0;
 		}
-		$this->log->i( 'gold_next_config:'.json_encode( $nextConfig ) );
+		$this->log->i( 'gold_next_config:'.$nextConfig);
+		$nextConfig = json_decode( $nextConfig );
 		return $nextConfig['time'];
 	}
 }
