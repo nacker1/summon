@@ -103,16 +103,19 @@
 		$gid = '11'.substr($hid,2);
 		$goods = new User_Goods( $user->getUid(), $gid );
 		$cLevel = 1;
-		if( $hero->getHeroInfo() ){ //品质升级
-			$hInfo = $hero->getHeroInfo();
+		$hInfo = $hero->getHeroInfo();
+		if( $hInfo ){ //品质升级
 			$cLevel = (int)$hInfo['color'] + 1;
 			if( $cLevel >= 5 ){
 				ret('品质已到顶级',-1);
 			}
-			if( $cLevel > 1 && $hid != 10002 )
+			if( $cLevel==2 && $hid == 10002 ){
+
+			}else{
 				if( $user->getMoney() < $money[ $cLevel ] ){
 					ret( '升级需要'.$money[$cLevel].'金币', -1 );
 				}
+			}
 
 			if( $goods->getGoodsNum() >= $color[ $cLevel ] ){
 				if( !$hero->colorUp( $cLevel ) ){
@@ -145,8 +148,11 @@
 				$reGood[] = $gid.',-'.$goods->getGoodsNum();
 			}
 		}
-		if( $cLevel > 1 && $hid != 10002 )
+		if( $cLevel==2 && $hid == 10002 ){
+			$give['money'] = 0;
+		}else{
 			$give['money'] = -$money[ $cLevel  ];
+		}
 		
 		$give['good'] = implode('#',$reGood);
 		$ret = $user->sendGoodsFromConfig( $give );
