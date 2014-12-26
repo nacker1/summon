@@ -16,12 +16,13 @@ class Gold extends Base{
 
 	private function _init(){
 		$this->pre;
-		if( C('test') || !$this->pre->exists( $this->gold_table.':check' ) ){
+		if( true || C('test') || !$this->pre->exists( $this->gold_table.':check' ) ){
 			$this->cdb;
 			$ret = $this->cdb->find( $this->gold_table );
 			if( empty( $ret ) ){
 				$this->log->e( '@@@@ SELECT_DB_NULL @@@@' );	
 			}
+			dump($ret);
 			$this->log->d( '~~~~~~~~~~~~~~~~~~~~  SELECT_DB  ~~~~~~~~~~~~~~~~~~~~~~~' );
 			foreach ($ret as $v ) {
 				# code...
