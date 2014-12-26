@@ -43,8 +43,7 @@ class Gold extends Base{
 					$good['money'] = $v['Mine_Gold'];
 				}
 				$temp['reward'] = $good;
-				dump($temp);
-				$this->pre->hset( $this->gold_table.':'.$v['Mine_Time'], $temp );
+				$this->pre->hmset( $this->gold_table.':'.$v['Mine_Time'], $temp );
 				unset($goods);
 				unset($temp);
 				unset($good);
