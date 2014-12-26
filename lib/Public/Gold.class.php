@@ -2,13 +2,13 @@
 /**
  *@ 黄金矿山配置
  **/
-class User_Gold extends User_Base{
+class Gold extends Base{
 	private $gold_table='zy_baseActivity';			#黄金矿山配置表
 	private $time;									#当日领取次数
 	private $config;								#本次修炼的配置信息
 
-	function __construct( $uid, $time ){
-		parent::__construct( $uid );
+	function __construct( $time ){
+		parent::__construct();
 		$this->time = $time;
 		$this->_init();
 	}

@@ -42,7 +42,7 @@
  			ret( '正常冷却',-1 );
  		}
  		$times = $limit->getUsedTimes();
- 		$gold = new User_Gold( $user->getUid(), $times+1 );
+ 		$gold = new Gold( $times+1 );
  		if( $times < 1 && ( time() - $user->getUserField('logintime') ) < $gold->getTime()  ){
  			ret( '正常冷却'.$gold->getTime(),-1 );
  		}
