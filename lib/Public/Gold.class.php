@@ -9,6 +9,7 @@ class Gold extends Base{
 
 	function __construct( $time ){
 		parent::__construct();
+		$this->log->d( '~~~~~~~~~~~~~~~~~~~~  Gold  ~~~~~~~~~~~~~~~~~~~~~~~' );
 		$this->time = $time;
 		$this->_init();
 	}
@@ -18,6 +19,7 @@ class Gold extends Base{
 		if( C('test') || !$this->pre->exists( $this->gold_table.':check' ) ){
 			$this->cdb;
 			$ret = $this->cdb->find( $this->gold_table );
+			$this->log->d( '~~~~~~~~~~~~~~~~~~~~  SELECT_DB  ~~~~~~~~~~~~~~~~~~~~~~~' );
 			foreach ($ret as $v ) {
 				# code...
 				$temp['time'] = $v['Mine_Countdown'];
@@ -50,13 +52,16 @@ class Gold extends Base{
 	}
 
 	function getConfig(){
+		$this->log->i( $this->config );
 		return $this->config;
 	}
 
 	function getTime(){
+		$this->log->i( $this->config );
 		return $this->config['time'];
 	}
 	function getReward(){
+		$this->log->i( $this->config );
 		return $this->config['reward'];
 	}
 	function getNextTime(){
@@ -64,6 +69,7 @@ class Gold extends Base{
 		if( empty( $nextConfig ) ){
 			return 0;
 		}
+		$this->log->i( $nextConfig );
 		return $nextConfig['time'];
 	}
 }
