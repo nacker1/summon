@@ -19,6 +19,9 @@ class Gold extends Base{
 		if( C('test') || !$this->pre->exists( $this->gold_table.':check' ) ){
 			$this->cdb;
 			$ret = $this->cdb->find( $this->gold_table );
+			if( empty( $ret ) ){
+				$this->log->e( '@@@@ SELECT_DB_NULL @@@@' );	
+			}
 			$this->log->d( '~~~~~~~~~~~~~~~~~~~~  SELECT_DB  ~~~~~~~~~~~~~~~~~~~~~~~' );
 			foreach ($ret as $v ) {
 				# code...
