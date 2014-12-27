@@ -24,29 +24,12 @@ class Gold extends Base{
 			}
 			$this->log->d( '~~~~~~~~~~~~~~~~~~~~  SELECT_DB  ~~~~~~~~~~~~~~~~~~~~~~~' );
 			foreach ($ret as $v ) {
-				# code...
-				$temp['time'] = $v['Mine_Countdown'];
-				if( !empty( $v['Mine_ItemReward1'] ) ){
-					$goods[] = str_replace( '#',',',$v['Mine_ItemReward1'] );
-				}
-				if( !empty( $v['Mine_ItemReward2'] ) ){
-					$goods[] = str_replace( '#',',',$v['Mine_ItemReward2'] );
-				}
-				if( !empty( $v['Mine_ItemReward3'] ) ){
-					$goods[] = str_replace( '#',',',$v['Mine_ItemReward3'] );
-				}
-				$good['good'] = implode('#',$goods);
-				if( !empty( $v['Mine_Diamond'] ) ){
-					$good['cooldou'] = $v['Mine_Diamond'];
-				}
-				if( !empty( $v['Mine_Gold'] ) ){
-					$good['money'] = $v['Mine_Gold'];
-				}
-				$temp['reward'] = $good;
-				$this->pre->set( $this->gold_table.':'.$v['Mine_Time'], json_encode( $temp ) );
-				unset($goods);
-				unset($temp);
-				unset($good);
+				$set['time'] = $v['Mine_Times'];
+				$set['cooldouMin'] = $v['Diamond_CountMin'];
+				$set['cooldouMax'] = $v['Diamond_CountMax'];
+				$set['moneyMin'] = $v['Gold_CountMin'];
+				$set['moneyMax'] = $v['Gold_CountMax'];
+				$this->pre->set( $this->gold_table.':'.$v['Mine_Times'], json_encode( $set ) );
 			}
 
 			$this->pre->set( $this->gold_table.':check', 1, get3time() );
@@ -66,7 +49,10 @@ class Gold extends Base{
 	}
 	function getReward(){
 		$this->log->i( $this->config );
-		return $this->config['reward'];
+		$config = $this->getConfig();
+		$ret['money'] = mt_rand( $config['moneyMin'], $config['moneyMax'] );
+		$ret['cooldou'] = mt_rand( $config['cooldouMin'], $config['cooldouMax'] );
+		return $ret;
 	}
 	function getNextTime(){
 		$nextConfig = $this->pre->get( $this->gold_table.':'.( $this->time+1 ) );
