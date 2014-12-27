@@ -24,7 +24,7 @@ class Gold extends Base{
 			}
 			$this->log->d( '~~~~~~~~~~~~~~~~~~~~  SELECT_DB  ~~~~~~~~~~~~~~~~~~~~~~~' );
 			foreach ($ret as $v ) {
-				$set['time'] = $v['Mine_Times'];
+				$set['time'] = $v['Mine_Countdown'];
 				$set['cooldouMin'] = $v['Diamond_CountMin'];
 				$set['cooldouMax'] = $v['Diamond_CountMax'];
 				$set['moneyMin'] = $v['Gold_CountMin'];
