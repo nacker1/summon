@@ -135,12 +135,19 @@
 		$ret['mArena'] = (int)$userinfo['mArena'];										#用户的竞技场币数量
 		$ret['mAction'] = (int)$userinfo['mAction'];									#用户的
 		$ret['buff'] = $this->getRoleBuff();											#用户当前身上拥有的buff列表
-		$ret['maxPvpTop'] = (int)$userinfo['maxPvpTop'];								#用户当前身上拥有的buff列表
+		$ret['maxPvpTop'] = (int)$userinfo['maxPvpTop'];								#玩家pvp最高名次
 		$ret['lastLoginTime'] = (int)$userinfo['logintime'];							#用户上次登录时间
-		$ret['logintime'] = $this->loginTime;											#用户本次登录时间
-		$ret['tolPay'] = (int)$userinfo['totalPay'];									#用户本次登录时间
+		$ret['logintime'] = $this->loginTime;											#本次登录时间
+		$ret['tolPay'] = (int)$userinfo['totalPay'];									#总充值额度
+		$ret['fLoginTime'] = (int)$userinfo['fLoginTime'];
 		$sign = new Act_Sign( $this->uid );
-		$ret['sign'] = $sign->checkSign();											#用户本次登录时间
+		$ret['sign'] = $sign->checkSign();
+		if( (int)$userinfo['logintime'] < today3unix() && $this->loginTime >= today3unix() ){
+			$ret['fLoginTime'] = $this->loginTime;
+			$this->setUserHeart('fLoginTime',$this->loginTime);
+		}
+		$this->setLoginTime( $this->loginTime );								#设置用户登录时间
+		$this->setUserHeart( '_heartTime', time() );							#设置用户心跳时间
 		$this->_logInfo();
 		return $ret;
 	}
@@ -169,8 +176,6 @@
 		$insert['time'] = date('Y-m-d H:i:s');
 		$insert['isNew'] = $this->isNew;
 		$this->setThrowSQL( $this->loginLogTable,$insert,'',1,'stats' );
-		$this->setLoginTime( $this->loginTime );								#设置用户登录时间
-		$this->setUserHeart( '_heartTime', time() );							#设置用户心跳时间
 		$this->_other();
 	}
 
