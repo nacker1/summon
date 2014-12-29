@@ -129,25 +129,25 @@
 		$ret['maxHeroLevel'] = (int)$userinfo['maxHeroLevel'];
 		$ret['skey'] = $userinfo['skey'];
 		$ret['mail'] = (int)$userinfo['mail'];
-		$ret['guide'] = $userinfo['guide'];												#新手引导完成的进度id
-		$ret['maxStageid'] = (int)$userinfo['maxStageid'];								#无尽之地的最大关卡id
-		$ret['mFriend'] = (int)$userinfo['mFriend'];									#用户的友情点数
-		$ret['mArena'] = (int)$userinfo['mArena'];										#用户的竞技场币数量
-		$ret['mAction'] = (int)$userinfo['mAction'];									#用户的
-		$ret['buff'] = $this->getRoleBuff();											#用户当前身上拥有的buff列表
-		$ret['maxPvpTop'] = (int)$userinfo['maxPvpTop'];								#玩家pvp最高名次
-		$ret['lastLoginTime'] = (int)$userinfo['logintime'];							#用户上次登录时间
-		$ret['logintime'] = $this->loginTime;											#本次登录时间
-		$ret['tolPay'] = (int)$userinfo['totalPay'];									#总充值额度
-		$ret['fLoginTime'] = (int)$userinfo['fLoginTime'];
+		$ret['guide'] = $userinfo['guide'];																		#新手引导完成的进度id
+		$ret['maxStageid'] = (int)$userinfo['maxStageid'];														#无尽之地的最大关卡id
+		$ret['mFriend'] = (int)$userinfo['mFriend'];															#用户的友情点数
+		$ret['mArena'] = (int)$userinfo['mArena'];																#用户的竞技场币数量
+		$ret['mAction'] = (int)$userinfo['mAction'];															#用户的
+		$ret['buff'] = $this->getRoleBuff();																	#用户当前身上拥有的buff列表
+		$ret['maxPvpTop'] = (int)$userinfo['maxPvpTop'];														#玩家pvp最高名次
+		$ret['lastLoginTime'] = (int)$userinfo['logintime'];													#用户上次登录时间
+		$ret['logintime'] = $this->loginTime;																	#本次登录时间
+		$ret['tolPay'] = (int)$userinfo['totalPay'];															#总充值额度
+		$ret['fLoginTime'] = isset($userinfo['fLoginTime']) ? (int)$userinfo['fLoginTime']:$this->loginTime;    #今日第一次登录时间
 		$sign = new Act_Sign( $this->uid );
 		$ret['sign'] = $sign->checkSign();
 		if( (int)$userinfo['logintime'] < today3unix() && $this->loginTime >= today3unix() ){
 			$ret['fLoginTime'] = $this->loginTime;
-			$this->setUserHeart('fLoginTime',$this->loginTime);
+			$this->setUserHeart('fLoginTime',$this->loginTime);													#设置第一次便当时间
 		}
-		$this->setLoginTime( $this->loginTime );								#设置用户登录时间
-		$this->setUserHeart( '_heartTime', time() );							#设置用户心跳时间
+		$this->setLoginTime( $this->loginTime );																#设置用户登录时间
+		$this->setUserHeart( '_heartTime', time() );															#设置用户心跳时间
 		$this->_logInfo();
 		return $ret;
 	}
