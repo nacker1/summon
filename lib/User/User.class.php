@@ -62,7 +62,7 @@
 		}else{
 			$max = SKILL_MAX_VALUE_1;				//最大技能点数
 		}
-		$recover = RECOVER_TIME;	//恢复一点需要时间
+		$recover = RECOVER_POINT_TIME;	//恢复一点需要时间
 		$now = time();
 		$point = array( 'point'=>$max,'lastTime'=>$now );
 		if( $this->redis->exists('roleinfo:'.$this->uid.':skillPoint') ){
@@ -90,7 +90,7 @@
 		}else{
 			$max = SKILL_MAX_VALUE_1;	//最大技能点数
 		}
-		$recover = RECOVER_TIME;	//恢复一点需要时间
+		$recover = RECOVER_POINT_TIME;	//恢复一点需要时间
 		$now = time();
 		if( $this->redis->exists('roleinfo:'.$this->uid.':skillPoint') ){
 			$userSkill = $this->getUserSkill();

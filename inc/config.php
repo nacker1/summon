@@ -2,7 +2,8 @@
 /**
  *@ 服务器配置文件
  **/
-	define('RECOVER_TIME'						, 360 );			 #恢复时间
+	define('RECOVER_LIFE_TIME'					, 360 );			 #恢复1点体力需要的时间
+	define('RECOVER_POINT_TIME'					, 600 );			 #恢复1点技能点需要的时间
 	define('GAG_TIME'							, 600 );			 #禁言时间 10 分钟
 	define('WEEK_TIMES'							, 604800 );			 #用户数据保存时间
 	define('MAIL_REGET'							, false );			 #邮件可以重复领取  true 可以重复领取  false 不可重复领取

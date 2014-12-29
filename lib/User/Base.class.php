@@ -137,7 +137,7 @@ class User_Base extends Base{
      *@ 恢复角色体力值
      **/
     private function _resetLife(){
-        $recover = RECOVER_TIME;	//恢复一点需要时间
+        $recover = RECOVER_LIFE_TIME;	//恢复一点需要时间
         $max = $this->getUserMaxLife();
         $now = time();
         $tolTime = $now - $this->getUserReductTime(); //已经恢复的总时间
