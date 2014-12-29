@@ -139,10 +139,10 @@
 		$ret['lastLoginTime'] = (int)$userinfo['logintime'];													#用户上次登录时间
 		$ret['logintime'] = $this->loginTime;																	#本次登录时间
 		$ret['tolPay'] = (int)$userinfo['totalPay'];															#总充值额度
-		$ret['fLoginTime'] = isset($userinfo['fLoginTime']) ? (int)$userinfo['fLoginTime']:$this->loginTime;    #今日第一次登录时间
+		$ret['fLoginTime'] = (int)$userinfo['fLoginTime'];    #今日第一次登录时间
 		$sign = new Act_Sign( $this->uid );
 		$ret['sign'] = $sign->checkSign();
-		if( (int)$userinfo['logintime'] < today3unix() && $this->loginTime >= today3unix() ){
+		if( ( (int)$userinfo['logintime'] < today3unix() && $this->loginTime >= today3unix() ) || empty( $ret['fLoginTime'] ) ){
 			$ret['fLoginTime'] = $this->loginTime;
 			$this->setUserHeart('fLoginTime',$this->loginTime);													#设置第一次便当时间
 		}
