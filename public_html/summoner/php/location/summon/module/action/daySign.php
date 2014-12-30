@@ -43,7 +43,7 @@
  		}
  		$times = $limit->getUsedTimes();
  		$gold = new Gold( $times+1 );
- 		if( $times < 1 && ( time() - $user->getUserField('logintime') ) < $gold->getTime()  ){  #登录时间少于第一次规定的时间
+ 		if( $times < 1 && ( time() - $user->getUserField('fLoginTime') ) < $gold->getTime()  ){  #登录时间少于第一次规定的时间
  			ret( '领取时间未到'.$gold->getTime(),-1 );
  		}
  		$limit->addLimitTimes(1);
