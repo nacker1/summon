@@ -61,9 +61,33 @@
 			$give['mFriend'] = -$cooldou;
 			$give['good'][] = '63003,'.$num;
 			break;
+		case '10': #赏金之路钻石抽
+			$roundnum = $input['roundnum'];  #赏金之路关卡id
+			$actLimit = new User_Limit( $user->getUid(), 'endLessFieldDay', $roundnum );
+			if( $actLimit->getUsedTimes() < 1 ){
+				#ret( '通关后地能抽取对应奖励',-1 );
+			}
+			$type = $input['gid'];
+			switch ($type) {
+				case '11': #普通宝箱
+					break;
+				case '12': #普通宝箱
+					$give['cooldou'] = -100;
+					break;
+				case '13':
+					$give['cooldou'] = -200;
+					break;
+				case '14':
+					$give['cooldou'] = -400;
+					break;
+				default:
+					ret( 'gid_error~'.__LINE__, -1 );
+					break;
+			}
+			
 	}
 
-	$draw = new User_Draw( $type );
+	$draw = new User_Draw( $type, $roundnum );
 
 	$dGood = $draw->getGift( $num );
 

@@ -168,7 +168,7 @@
 					$this->addExp($v);
 					break;
 				case 'mFriend':		#友情点
-				case 'mAction':		#活动币
+				case 'mAction':		#赏金之路币 活动币
 				case 'mArena':		#竞技场币
 					$this->addUserRecord( $k,$v );
 					break;

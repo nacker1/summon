@@ -156,9 +156,10 @@
 				$actLimit = new User_Limit( $user->getUid(),'minBlueDay' );
 				$actLimit->addLimitTimes();
 				break;
-			case '71':	//无尽之地
+			case '71':	//无尽之地  赏金之路
+				$add['mAction'] = $input['endlessmoney'];  #赏金之路钱
 				$user->setMissionId(2,71);
-				$actLimit = new User_Limit( $user->getUid(), 'endLessFieldDay' );
+				$actLimit = new User_Limit( $user->getUid(), 'endLessFieldDay', $input['roundnum'] );
 				$actLimit->addLimitTimes();
 				break;
 			case '68':	//英雄炼狱
