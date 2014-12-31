@@ -159,6 +159,7 @@ class User_Draw extends User_Base{
 				}
 			}
 		}
+		$this->log->d( 'tempInfo:'.json_encode($tempInfo) );
 #================================== END ==================================
 
 		foreach( $tempInfo as $k=>$v ){
