@@ -5,15 +5,21 @@
 class User_Draw extends User_Base{
 	private $draw_type_table='zy_baseDrawTypeConfig';								//抽卡类型配置表
 	private $draw_table='zy_baseDrawConfig';										//抽卡物品配置表
-	private $type;																	//抽卡类型  1为金币  2为钻石 3为友情点
+	private $type;																	//抽卡类型  1为金币  2为钻石 3为友情点  10赏金之路普通抽
 	private $dInfo;																	//指定类型抽卡配置内容
 	private $userType;																//指定类型抽卡配置内容
 	private $tolTypeRate=0;															//抽卡类型的各概率总和
 	private $giveHeroTag = true;													//10连抽必送英雄
+	private $groupLevel;															//对应宝箱类型表中的Group_Level字段   有可能是等级，有可能是赏金之路通关层数
 
-	function __construct( $type ){
+	function __construct( $type, $groupLevel='' ){
 		parent::__construct();
 		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
+		if( empty( $groupLevel ) ){
+			$this->groupLevel = $this->getLevel();
+		}else{
+			$this->groupLevel = $groupLevel;
+		}
 		$this->type = $type;
 		$this->_init();
 		$this->_getDrawType();			#获取可抽奖品的类型集
@@ -44,7 +50,7 @@ class User_Draw extends User_Base{
 			}
 			#=============  初始化物品配置表  =================================================
 			unset($ret);
-			$ret = $this->cdb->find( $this->draw_table, 'Group_Level,Item_Id,Item_Type,Item_Color,Item_Random', array( 'Box_Id'=>$this->type ) );
+			$ret = $this->cdb->find( $this->draw_table, 'Group_Level,Item_Id,Item_Type,Item_Color,Item_Random,Customs_Grade', array( 'Box_Id'=>$this->type ) );
 			if( empty( $ret ) || !is_array( $ret ) ){
 				$this->log->e( '类型（'.$this->type.'）对应的物品配置信息未找到。' );
 				ret( 'no_config' ,-1);
@@ -141,8 +147,16 @@ class User_Draw extends User_Base{
 		foreach( $goods as $v ){
 			$Group_Level = explode(',',$v['Group_Level']);
 			if( $uLevel>=$Group_Level[0] && $uLevel<=$Group_Level[1] ){
-				$tempInfo[] = $v;
-				$tolRate += (int)$v['Item_Random'];
+				if( empty( $v['Customs_Grade'] ) ){
+					$tempInfo[] = $v;
+					$tolRate += (int)$v['Item_Random'];
+				}else{
+					$customs = explode( ',', $v['Customs_Grade'] );
+					if( $this->groupLevel >= $customs[0] && $this->groupLevel <= $customs[1] ){
+						$tempInfo[] = $v;
+						$tolRate += (int)$v['Item_Random'];
+					}
+				}
 			}
 		}
 #================================== END ==================================
@@ -185,7 +199,7 @@ class User_Draw extends User_Base{
  *@ _getDrawType 获取可以抽奖的类型信息
  **/
 	private function _getDrawType(){
-		$uLevel = $this->getLevel();
+		$uLevel = $this->groupLevel;
 		switch (1) {
 			case 0<$uLevel && $uLevel<5:#1-4级
 				$flag = '1,4';
@@ -208,11 +222,17 @@ class User_Draw extends User_Base{
 			case 49<$uLevel && $uLevel<60:#50-59级
 				$flag = '50,59';
 				break;
-			case 59<$uLevel && $uLevel<70:#50-59级
+			case 59<$uLevel && $uLevel<70:#60-69级
 				$flag = '60,69';
 				break;
-			case 69<$uLevel && $uLevel<80:#50-59级
+			case 69<$uLevel && $uLevel<80:#70-79级
 				$flag = '70,79';
+				break;
+			case 79<$uLevel && $uLevel<90:#80-89级
+				$flag = '80,89';
+				break;
+			case 89<$uLevel && $uLevel<=100:#90-100级
+				$flag = '90,100';
 				break;
 			default:
 				# code...
