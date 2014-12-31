@@ -201,11 +201,8 @@ class User_Draw extends User_Base{
 	private function _getDrawType(){
 		$uLevel = $this->groupLevel;
 		switch (1) {
-			case 0<$uLevel && $uLevel<5:#1-4级
-				$flag = '1,4';
-				break;
-			case 4<$uLevel && $uLevel<10:#5-9级
-				$flag = '5,9';
+			case 0<$uLevel && $uLevel<10:#1-9级
+				$flag = '1,9';
 				break;
 			case 9<$uLevel && $uLevel<20:#10-19级
 				$flag = '10,19';
