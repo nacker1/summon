@@ -98,5 +98,12 @@ class Base{
 		$proxy = $this->proxy( $init, 'Sync', 'sendCommand' );
 		$proxy->exec();
 	}
+/**
+ *@ log 写日志
+ **/
+	public function log( $str ){
+		$this->log->f( $str );
+	}
+
 }
 ?>
