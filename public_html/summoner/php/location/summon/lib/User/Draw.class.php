@@ -37,7 +37,7 @@ class User_Draw extends User_Base{
 			$ret = $this->cdb->find( $this->draw_type_table, 'id,Group_Level,Item_Type,Item_Color,Item_Random,Item_CountMin,Item_CountMax', array( 'Box_Id'=>$this->type ) );
 			if( empty( $ret ) || !is_array( $ret ) ){
 				$this->log->e( '类型（'.$this->type.'）对应的类型配置信息未找到。' );
-				ret( 'no_type_config' ,-1);
+				ret( 'db_no_type_config' ,-1);
 			}
 			foreach( $ret as $v ){
 				#$this->pre->hmset( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'], $v );
@@ -53,7 +53,7 @@ class User_Draw extends User_Base{
 			$ret = $this->cdb->find( $this->draw_table, 'Group_Level,Item_Id,Item_Type,Item_Color,Item_Random,Customs_Grade', array( 'Box_Id'=>$this->type ) );
 			if( empty( $ret ) || !is_array( $ret ) ){
 				$this->log->e( '类型（'.$this->type.'）对应的物品配置信息未找到。' );
-				ret( 'no_config' ,-1);
+				ret( 'db_no_goods_config' ,-1);
 			}
 			
 			foreach( $ret as $v ){
@@ -189,10 +189,10 @@ class User_Draw extends User_Base{
 			}
 		}
 		$index = $this->retRate( $list );
-		$ret['type'] = (int)$this->userType[ $index ]['Item_Type'];
-		$ret['color'] = (int)$this->userType[ $index ]['Item_Color'];
-		$ret['min'] = (int)$this->userType[ $index ]['Item_CountMin'];
-		$ret['max'] = (int)$this->userType[ $index ]['Item_CountMax'];
+		$ret['type'] = isset( $this->userType[ $index ]['Item_Type'] ) ? (int)$this->userType[ $index ]['Item_Type'] : 6;
+		$ret['color'] = isset( $this->userType[ $index ]['Item_Color'] ) ? (int)$this->userType[ $index ]['Item_Color'] : 0;
+		$ret['min'] = isset( $this->userType[ $index ]['Item_CountMin'] ) ? (int)$this->userType[ $index ]['Item_CountMin'] : 1;
+		$ret['max'] = isset( $this->userType[ $index ]['Item_CountMax'] ) ? (int)$this->userType[ $index ]['Item_CountMax'] : 1;
 		$this->log->d('drawType:'.json_encode($ret));
 		return $ret;
 	}
