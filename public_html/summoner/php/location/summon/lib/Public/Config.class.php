@@ -152,7 +152,7 @@ class Config{
 			'default' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357')
 		),
 		'online'=>array( //ÐÅÏ¢´ýÉÏÏßÈ·ÈÏºóÔÙ½øÐÐÅäÖÃ
-			'public' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          						#所有区公共配置
+			'public' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),         						#所有区公共配置
 			'default' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          					#当前区公共配置 通用
 		));
 
