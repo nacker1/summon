@@ -46,8 +46,8 @@ switch ($type) {
         ret( $user->getUserLastUpdInfo() );
         break;
     case '5':
-        $level  = $input['l'];
-        $exp    = $input['e'];
+        $level = $input['l'];
+        $exp = $input['e'];
         #修改经验，等级，VIP等级
 //        if( $exp>150 || $exp<0 ){
 //            ret( '经验数值错误', -1 );
@@ -87,7 +87,7 @@ switch ($type) {
             $pro = new User_Progress( $v, $user->getUid() );
             $pro->setUserProgress(3);
         }
-
+        ret('suc');
         #添加召唤师经验
         $user->addExp( 1000000 );
         $user->addMoney( 100000000 );
@@ -143,7 +143,7 @@ switch ($type) {
             #清空所有配置缓存
             $cache = array(
                 'baseDrawConfig:*','baseDrawTypeConfig:*','baseMissionConfig:*','shopConfig:*','action:sign:*','zy_baseArenaReward*',
-                'baseBuffConfig:*','baseBuyGoldConfig:*','equip:baseinfo*','goodBase:base*','goodBase:equip*','zy_baseActivity:*',
+                'baseBuffConfig:*','baseBuyGoldConfig:*','equip:baseinfo*','goodBase:base*','goodBase:equip*',
                 'goodBase:compos*','heroSkillCost:*','heroBase:*','roleLevelUp*','vipConfig*','server:list:*','server:list_check','userLimit:*'
             );
         }else{
@@ -197,7 +197,7 @@ switch ($type) {
         ret( $user->getUserInfo() );
         break;
     case '1003': #发送个人邮件
-        $toUser = $input['toUser'];
+
         $content = $input['content'];
         $type = $input['type'];
         $goods = $input['goods'];
@@ -205,13 +205,14 @@ switch ($type) {
         $sendUser = $input['sendUser'];
         $time = $input['time'];
 
-        $uMail = new User_Mail($toUser);
+        $uMail = new User_Mail($uid);
         if( $uMail->sendMail($content,$type,$toUser,$title,$goods,$sendUser,$time)){
-            jret( '发送成功——：'.$time,-1 );
+            ret( '发送成功——：'.$time,-1 );
         }else{
-            jret( '操作失败，请重试！',-1 );
+            ret( '操作失败，请重试！',-1 );
         }
         break;
+
     default:
         # code...
         phpinfo();
