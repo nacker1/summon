@@ -267,6 +267,12 @@
 			return $suffix ? $slice.'...' : $slice;
     }
 /**
+ *@ getUniqCode 生成指定长度的唯一字符串
+ **/
+	function getUniqCode( $length = 10 ){
+		return uniqid(rand(1, 100000));
+	}
+/**
 * 可以统计中文字符串长度的函数
 */
 	function abslength($str)
