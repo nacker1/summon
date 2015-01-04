@@ -196,6 +196,22 @@ switch ($type) {
     case '1002': #获取用户基本信息
         ret( $user->getUserInfo() );
         break;
+    case '1003': #发送个人邮件
+        $toUser = $input['toUser'];
+        $content = $input['content'];
+        $type = $input['type'];
+        $goods = $input['goods'];
+        $title = $input['title'];
+        $sendUser = $input['sendUser'];
+        $time = $input['time'];
+
+        $uMail = new User_Mail($toUser);
+        if( $uMail->sendMail($content,$type,$toUser,$title,$goods,$sendUser,$time)){
+            jret( '发送成功——：'.$time,-1 );
+        }else{
+            jret( '操作失败，请重试！',-1 );
+        }
+        break;
     default:
         # code...
         phpinfo();
