@@ -24,7 +24,6 @@
 	 *	$node:	redis节点标签
 	 **/
 	function __construct( $tag, $uid='', $times=0, $node='Cond' ){
-
 		$this->tag = $tag;
 		$this->times = $times;
 		$this->node = $node;

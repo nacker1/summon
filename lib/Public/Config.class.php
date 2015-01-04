@@ -152,7 +152,8 @@ class Config{
 			'default' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357')
 		),
 		'online'=>array( //ÐÅÏ¢´ýÉÏÏßÈ·ÈÏºóÔÙ½øÐÐÅäÖÃ
-			'default' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          				#公共配置 通用
+			'public' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          						#所有区公共配置
+			'default' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357')          					#当前区公共配置 通用
 		));
 
 
@@ -180,6 +181,7 @@ class Config{
 	}
 /**
  *@ 获取指定tag的redis配置信息
+ * return: 默认返回当前区的公共数据端口 20010
  **/
 	function getRedisList(){
 		if( !empty( $this->type ) ){
