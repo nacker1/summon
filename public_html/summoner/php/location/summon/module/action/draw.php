@@ -84,6 +84,7 @@
 					ret( 'gid_error~'.__LINE__, -1 );
 					break;
 			}
+			break;
 		default:
 			ret('YMD', -1);
 	}
