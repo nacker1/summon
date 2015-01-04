@@ -10,7 +10,7 @@
  	case '1': //兑换码兑换
  		$tag = ' 兑换码兑换 ';
 		$code = $input['code'];
-		if(  8 != strlen( $code ) ){
+		if(  18 != strlen( $code ) ){
 			ret( '兑换码有误',-1 );
 		}
 		$c = new Act_Code( $code );
