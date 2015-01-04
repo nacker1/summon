@@ -84,7 +84,8 @@
 					ret( 'gid_error~'.__LINE__, -1 );
 					break;
 			}
-			
+		default:
+			ret('YMD', -1);
 	}
 
 	$draw = new User_Draw( $type, $roundnum );
