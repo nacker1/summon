@@ -270,11 +270,12 @@
  *@ getUniqCode 生成指定长度的唯一字符串
  **/
 	function getUniqCode( $length = 10 ){
-		$code = crypt(gettimeofday(true),rand(1,10000));
+		return uniqid(rand(1, 100000000));
+		/*$code = crypt(gettimeofday(true),rand(1,10000));
 		while( preg_match('/\W/', $code) ){
 			$code = crypt(gettimeofday(true),rand(1,10000));
 		}
-		return $code;
+		return $code;*/
 	}
 /**
 * 可以统计中文字符串长度的函数
