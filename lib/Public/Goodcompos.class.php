@@ -41,11 +41,11 @@ class Goodcompos extends Goodbase{
 	public function getEnergy(){
 		//$eList 装备升级需要的能量点配置信息， $eList的下标为装备品质等级，最后的数组为等级对应的能量点数
 		$eList = array(
-				1=>array(),			#白色品质
-				2=>array(20),			#绿色品质
-				3=>array(30,50,80),		#蓝色品质
-				4=>array(60,100,160,300,500),	#紫色品质
-				5=>array(60,100,160,300,500),	#橙色品质
+				1=>array(),							#白色品质
+				2=>array(10),						#绿色品质
+				3=>array(30,50,80),					#蓝色品质
+				4=>array(60,100,160,300,500),		#紫色品质
+				5=>array(60,100,160,300,500),		#橙色品质
 			);
 		$gLevel = $this->getColor();
 		return (int)$eList[$gLevel][ $this->getEquipLevel() ];
