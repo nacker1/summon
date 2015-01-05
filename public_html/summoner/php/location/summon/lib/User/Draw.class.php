@@ -171,7 +171,7 @@ class User_Draw extends User_Base{
 			$index = 0;
 		}
 		$good[]= isset( $tempInfo[$index]['Item_Id'] ) ? $tempInfo[$index]['Item_Id'] : 64002;					#默认物品 64002
-		$good[] = isset( $type['min'] ) && isset( $type['max'] ) ? mt_rand( $type['min'], $type['max'] ) ? 1;	#默认个数 1 个
+		$good[] = isset( $type['min'] ) && isset( $type['max'] ) ? mt_rand( $type['min'], $type['max'] ) : 1;	#默认个数 1 个
 		if( $tempInfo[$index]['Item_Id'] < 11000 ){	#如果是英雄给定英雄的品质
 			$good[] = isset( $tempInfo[$index]['Item_Color'] ) ? $tempInfo[$index]['Item_Color'] : 1;
 		}
