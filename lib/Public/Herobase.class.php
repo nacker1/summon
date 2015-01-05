@@ -55,7 +55,7 @@ class Herobase extends Base{
 				$sTolLevel += $v;
 			}
 
-		$ret = ceil( ( ($att+$def+$sor+$res)*$speed + ( $hp + $gethp * 2 + $mp + $getmp * 2 ) )/10 ) + $color*100*( 1+$sTolLevel/10 );
+		$ret = ceil( ( ($att+$def+$sor+$res)*$speed + ( $hp + $gethp * 2 + $mp + $getmp * 2 ) )/10 ) + $color*20*( 1+$sTolLevel/10 );
 		$this->log->i( self::$hInfo[$this->hid]['Hero_Id'].'=>'.$ret );
 		return $ret;
 	}
