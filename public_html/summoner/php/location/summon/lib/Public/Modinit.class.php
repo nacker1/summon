@@ -36,7 +36,7 @@ class Public_Modinit{
             unset($modinfo['id']);
             if($modinfo){
 				$modinfo['info'] = strip_tags($modinfo['info']);
-                $pre->hmset('modinfo:'.$this->gameid.':'.$this->mid,$modinfo);
+                $pre->hmset('modinfo:'.$this->gameid.':'.$this->mid,$modinfo,get3time());
             }
         }
         if( is_array($modinfo) && count($modinfo)>0 ){

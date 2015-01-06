@@ -32,6 +32,7 @@ class Act_Sign extends User_Base{
 			$this->pre->hdel('action:sign:month:*');
 			$ret = $this->adb->find( $this->table,'*',array( 'Sign_Month'=>$this->month ) );
 			$this->log->d(' ========================== ~ select db ~ ========================= ');
+			$this->log->d( ' DB_CONFIG '.json_encode($this->adb->getConfig()) );
 			if( empty( $ret ) ){
 				$this->log->e( '本月（'.$this->month.'月）签到未配置' );
 				#ret( 'no_config_'.$this->month );
