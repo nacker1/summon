@@ -14,7 +14,7 @@
  		1=>array('freeRefShopDay','普通商店','jewel'),
  		2=>array('vipRefShopDay','神秘商店','jewel'),
  		3=>array('arenaRefShopDay','竞技场商店','mArena'),
- 		4=>array('endRefShopDay','远征商店','')
+ 		4=>array('endRefShopDay','远征商店','mAction')
  	);
 
  switch( $type ){
