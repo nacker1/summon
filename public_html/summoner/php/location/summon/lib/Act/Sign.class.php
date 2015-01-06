@@ -28,15 +28,15 @@ class Act_Sign extends User_Base{
 		 *@ 拉取签到奖品配置信息
 		 **/
 		if( C('test') || !$this->pre->hget('action:sign:month_checked','check') ){
-			$this->adb;
+			$this->cdb;
 			$this->pre->hdel('action:sign:month:*');
-			$ret = $this->adb->find( $this->table,'*',array( 'Sign_Month'=>$this->month ) );
+			$ret = $this->cdb->find( $this->table,'*',array( 'Sign_Month'=>$this->month ) );
 			$this->log->d(' ========================== ~ select db ~ ========================= ');
-			$this->log->d( ' DB_CONFIG '.json_encode($this->adb->getConfig()) );
+			$this->log->d( ' DB_CONFIG '.json_encode($this->cdb->getConfig()) );
 			if( empty( $ret ) ){
 				$this->log->e( '本月（'.$this->month.'月）签到未配置' );
 				#ret( 'no_config_'.$this->month );
-				$ret = $this->adb->find( $this->table,'*',array( 'Sign_Month'=>0 ) );	//默认配置
+				$ret = $this->cdb->find( $this->table,'*',array( 'Sign_Month'=>0 ) );	//默认配置
 			}
 			foreach( $ret as $v ){
 				$this->pre->hmset( 'action:sign:month:'.$v['Sign_Day'],$v );

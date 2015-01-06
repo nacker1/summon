@@ -22,8 +22,8 @@
  *@ 获取兑换码对应的奖品配置信息
  **/
 	public function getConfig(){
-		$this->adb;
-		$keyConfig = $this->adb->findOne( $this->table,'*',array( 'cdkey'=>$this->code ) );
+		$this->cdb;
+		$keyConfig = $this->cdb->findOne( $this->table,'*',array( 'cdkey'=>$this->code ) );
 		if( empty( $keyConfig ) ){
 			$this->log->e(' 用户#'.$this->uid.'#使用兑换码#'.$this->code.'#无效，兑换结束');
 			$this->errInfo = ' 无效兑换码 ';

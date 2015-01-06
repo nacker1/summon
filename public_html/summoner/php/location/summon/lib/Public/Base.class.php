@@ -41,8 +41,6 @@ class Base{
 				$this->db = Db_Mysql::init('slave');break;
 			case 'sdb'://统计数据db
 				$this->sdb = Db_Mysql::init('stats');break;
-			case 'adb'://活动库db
-				$this->adb = Db_Mysql::init('action');break;
 		}
 	}
 	/**
