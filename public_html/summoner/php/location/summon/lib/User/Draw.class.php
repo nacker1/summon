@@ -140,7 +140,7 @@ class User_Draw extends User_Base{
 		$this->log->d( 'baseItemConfig:'.json_encode($goods) );
 		if( empty( $goods ) ){
 			$this->log->e( '抽奖获取'.$this->type.'_'.$type['type'].'_'.$type['color'].'类型对应的物品出错，没有读取到配置信息' );
-			ret(' no_good_config'.__LINE__,-1);
+			#ret(' no_good_config'.__LINE__,-1);
 		}
 		$tolRate = 0;
 		$tempInfo = array();
