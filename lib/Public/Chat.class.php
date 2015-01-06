@@ -24,7 +24,7 @@
  		$ret['u'] = $this->_getUserChat( $lasttime );
  		return $ret;
  	}
-/**
+/** 
  *@ sendChat() 发布聊天信息
  * param:
  *	$con:	 发送的内容
