@@ -133,7 +133,7 @@
 		$ret['maxStageid'] = (int)$userinfo['maxStageid'];														#无尽之地的最大关卡id
 		$ret['mFriend'] = (int)$userinfo['mFriend'];															#用户的友情点数
 		$ret['mArena'] = (int)$userinfo['mArena'];																#用户的竞技场币数量
-		$ret['mAction'] = (int)$userinfo['mAction'];															#用户的
+		$ret['mAction'] = (int)$userinfo['mAction'];															#用户的远征币
 		$ret['buff'] = $this->getRoleBuff();																	#用户当前身上拥有的buff列表
 		$ret['maxPvpTop'] = (int)$userinfo['maxPvpTop'];														#玩家pvp最高名次
 		$ret['lastLoginTime'] = (int)$userinfo['logintime'];													#用户上次登录时间
