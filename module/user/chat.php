@@ -28,7 +28,7 @@
  			$times = strtotime($endTime) - time();
  			$con = $input['con'];
  			$t = $input['t'];
- 			$chat = new Chat( 14,1,$times );
+ 			$chat = new Chat( ADMIN_UID,1,$times );
  			$chat->sendChat( $con );
  			ret($con);
  		}elseif( empty( $to ) ){
