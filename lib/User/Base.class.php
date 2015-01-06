@@ -44,7 +44,7 @@ class User_Base extends Base{
                 $uinfo = $this->db->findOne($this->baseTable,'*',array( 'userid'=>$this->uid ));
                 if( empty($uinfo) ){
                     $this->log->e('no user uid='.$this->uid);
-                    ret('no user!');
+                    ret('no user!',-1);
                 }
                 $uinfo['skey'] = md5( gettimeofday(true).rand(1000,9999) ); //登录校验
                 #$uinfo['lastUpdTime'] = time(); //用户信息最后更新时间
