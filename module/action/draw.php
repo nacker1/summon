@@ -78,7 +78,7 @@
 					$give['cooldou'] = -200;
 					break;
 				case '14':
-					$give['cooldou'] = -400;
+					$give['cooldou'] = -300;
 					break;
 				default:
 					ret( 'gid_error~'.__LINE__, -1 );
