@@ -89,7 +89,7 @@
 		$shops = json_decode( $shops,true );
 		$uLevel = $this->getLevel();
 		foreach( $shops as $v ){
-			$nLevel = explode( ',', $v['Group_Level'] );
+			$nLevel = explode( '#', $v['Group_Level'] );
 			if( $uLevel >= $nLevel[0] && $uLevel <= $nLevel[1] ){
 				$this->log->d( 'goodConfig:'.json_encode($v) );
 				$this->shopinfo[ $v['Item_Type'] ][] = $v;
