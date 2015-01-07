@@ -253,7 +253,8 @@ switch ($type) {
             $flag_user = 0;
             $flag_uc = 0;
         }
-        ret(array('num'=>$tol_user_nums));
+        $ret['num']=$tol_user_nums;
+        ret($ret);
         break;
 
     default:
