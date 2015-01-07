@@ -241,10 +241,10 @@ switch ($type) {
                     continue;
                 }
                 $beat = $userinfo['heartTime'];
-                if( count($userinfo) < 20 ){
+                /*if( count($userinfo) < 20 ){
                     $abnormal[] = $userinfo['uid'];
                     continue;
-                }
+                }*/
 
                 if( ( time() - $beat ) < 300 ){
                     $tol_user_nums += 1;
