@@ -145,13 +145,13 @@ class User_Draw extends User_Base{
 		$tolRate = 0;
 		$tempInfo = array();
 		foreach( $goods as $v ){
-			$Group_Level = explode(',',$v['Group_Level']);
+			$Group_Level = explode('#',$v['Group_Level']);
 			if( $uLevel>=$Group_Level[0] && $uLevel<=$Group_Level[1] ){
 				if( empty( $v['Customs_Grade'] ) ){
 					$tempInfo[] = $v;
 					$tolRate += (int)$v['Item_Random'];
 				}else{
-					$customs = explode( ',', $v['Customs_Grade'] );
+					$customs = explode( '#', $v['Customs_Grade'] );
 					if( $this->groupLevel >= $customs[0] && $this->groupLevel <= $customs[1] ){
 						$tempInfo[] = $v;
 						$tolRate += (int)$v['Item_Random'];
@@ -203,38 +203,38 @@ class User_Draw extends User_Base{
 		$uLevel = $this->groupLevel;
 		switch (1) {
 			case 0<$uLevel && $uLevel<10:#1-9级
-				$flag = '1,9';
+				$flag = '1#9';
 				break;
 			case 9<$uLevel && $uLevel<20:#10-19级
-				$flag = '10,19';
+				$flag = '10#19';
 				break;
 			case 19<$uLevel && $uLevel<30:#20-29级
-				$flag = '20,29';
+				$flag = '20#29';
 				break;
 			case 29<$uLevel && $uLevel<40:#30-39级
-				$flag = '30,39';
+				$flag = '30#39';
 				break;
 			case 39<$uLevel && $uLevel<50:#40-49级
-				$flag = '40,49';
+				$flag = '40#49';
 				break;
 			case 49<$uLevel && $uLevel<60:#50-59级
-				$flag = '50,59';
+				$flag = '50#59';
 				break;
 			case 59<$uLevel && $uLevel<70:#60-69级
-				$flag = '60,69';
+				$flag = '60#69';
 				break;
 			case 69<$uLevel && $uLevel<80:#70-79级
-				$flag = '70,79';
+				$flag = '70#79';
 				break;
 			case 79<$uLevel && $uLevel<90:#80-89级
-				$flag = '80,89';
+				$flag = '80#89';
 				break;
 			case 89<$uLevel && $uLevel<=100:#90-100级
-				$flag = '90,100';
+				$flag = '90#100';
 				break;
 			default:
 				# code...
-				$flag = '80,80';
+				$flag = '80#80';
 				break;
 		}
 		$this->log->d('Group_Level:'.$flag);
