@@ -89,7 +89,6 @@
 		$shops = json_decode( $shops,true );
 		$uLevel = $this->getLevel();
 		foreach( $shops as $v ){
-			$this->log->d( $v );
 			$nLevel = explode( '#', $v['Group_Level'] );
 			if( $uLevel >= $nLevel[0] && $uLevel <= $nLevel[1] ){
 				$this->log->d( 'goodConfig:'.json_encode($v) );
