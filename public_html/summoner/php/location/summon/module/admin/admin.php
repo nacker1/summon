@@ -214,7 +214,7 @@ switch ($type) {
         break;
     case '1004': #统计在线人数
 
-        $id = $input['id'];
+
         global $log;
         $now = time();
         define('ISLOG',true);
@@ -224,12 +224,10 @@ switch ($type) {
             $include = 'C:/wamp/www/summon/inc/inc.php';
         require_once $include;
         $log = new Logger('xync_userinfo','/data/web/summonAdmin/logs/sync/');
-        $db =  Db_Mysql::init('slave');
         $tol_user_nums = 0;
         for($i=0;$i<10;$i++){
             $pre = Redis_Redis::initRedis($i);
             $allkeys = $pre->keys('roleinfo:*:baseinfo');
-
             $flag_user = 0;
             $flag_uc = 0;
             $start = time();
@@ -245,7 +243,6 @@ switch ($type) {
                     $abnormal[] = $userinfo['uid'];
                     continue;
                 }*/
-
                 if( ( time() - $beat ) < 300 ){
                     $tol_user_nums += 1;
                 }
@@ -256,9 +253,7 @@ switch ($type) {
             $flag_user = 0;
             $flag_uc = 0;
         }
-//server:服务器ID ，不同服务器该值不同
-        $db->insert('zy_statsUsernum',array( 'num'=>$tol_user_nums , 'ts'=>$now,'server' =>$id));//统计在线人数
-        ret( 'suc' );
+        ret(array('num'=>$tol_user_nums));
         break;
 
     default:
