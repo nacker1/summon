@@ -216,7 +216,7 @@ switch ($type) {
 
 
         global $log;
-        $now = time();
+
         define('ISLOG',true);
         if( PHP_OS == 'Linux' )
             $include = '/data/web/summon/inc/inc.php';
