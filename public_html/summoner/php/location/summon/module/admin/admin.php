@@ -212,6 +212,54 @@ switch ($type) {
             ret( '操作失败，请重试！',-1 );
         }
         break;
+    case '1004': #统计在线人数
+
+        $id = $input['id'];
+        global $log;
+        $now = time();
+        define('ISLOG',true);
+        if( PHP_OS == 'Linux' )
+            $include = '/data/web/summon/inc/inc.php';
+        else
+            $include = 'C:/wamp/www/summon/inc/inc.php';
+        require_once $include;
+        $log = new Logger('xync_userinfo','/data/web/summonAdmin/logs/sync/');
+        $db =  Db_Mysql::init('slave');
+        $tol_user_nums = 0;
+        for($i=0;$i<10;$i++){
+            $pre = Redis_Redis::initRedis($i);
+            $allkeys = $pre->keys('roleinfo:*:baseinfo');
+
+            $flag_user = 0;
+            $flag_uc = 0;
+            $start = time();
+            foreach($allkeys as $v){
+                $userinfo['heartTime'] = $pre->hget($v,'_heartTime');
+                $userinfo['uid'] = substr($v,strpos($v,':')+1);
+                if( empty($userinfo['uid']) ){
+                    $log->e('用户uid取不到值，v:'.$v.',userinfo:'.json_encode($userinfo));
+                    continue;
+                }
+                $beat = $userinfo['heartTime'];
+                if( count($userinfo) < 20 ){
+                    $abnormal[] = $userinfo['uid'];
+                    continue;
+                }
+
+                if( ( time() - $beat ) < 300 ){
+                    $tol_user_nums += 1;
+                }
+                unset($userinfo);
+                unset($beat);
+            }
+            $end = time();
+            $flag_user = 0;
+            $flag_uc = 0;
+        }
+//server:服务器ID ，不同服务器该值不同
+        $db->insert('zy_statsUsernum',array( 'num'=>$tol_user_nums , 'ts'=>$now,'server' =>$id));//统计在线人数
+        ret( 'suc' );
+        break;
 
     default:
         # code...
