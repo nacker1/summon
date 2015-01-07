@@ -139,8 +139,9 @@
 		foreach( $this->shopConfig[ $this->type ]['type'] as $val ){
 			$list = $oList = array();
 			if( !isset( $this->shopinfo[ $val ] ) ){
-				$this->log->e('* 配置（'.json_encode($this->shopConfig[$this->type]['type']).'）错误，无商品类型（'.$val.'），类:'.__CLASS__);
-				ret('Config_Error! Code:'.__LINE__,-1);
+				$this->log->e('* 配置（'.json_encode($this->shopConfig[$this->type]['type']).'）错误，无商品类型（'.$val.'），发放默认物品，类:'.__CLASS__);
+				$this->shopinfo[ $val ][] = array('Item_Random'=>1,'Item_Type'=>'6','Item_Id'=>64002,'Item_Name'=>'魔能填充剂·中','Currency_Type'=>1,'Item__Price'=>'7500');
+				#ret('Config_Error! Code:'.__LINE__,-1);
 			}
 			if( !is_array( $this->shopinfo[ $val ] ) ){
 				$this->log->e('* 无指定类型的商品配置（'.$val.'）,类:'.__CLASS__);
