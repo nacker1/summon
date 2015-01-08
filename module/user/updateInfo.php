@@ -9,7 +9,7 @@
  switch ($type) {
  	case '1': #
  		$image = isset($input['img']) ? $input['img'] : '' ;
-		$name = isset($input['name']) ? $input['name'] : '' ;
+		$name = isset($input['name']) ? trim($input['name']) : '' ;
 
 		if( !empty( $image ) ){
 		 	if( $image != $user->getImage() ){
