@@ -724,11 +724,11 @@ class User_Base extends Base{
      *@ addUserRecord() 添加或减少用户的记录表信息
      *param:
      * 	$key: 	对应 zy_uniqRoleRecord 表中的属性值
-     *	$value:	$key 对应需要添加的值
+     *	$value:	$key 对应需要添加的值 self::$updinfo[$this->uid][$key] = 
      **/
     public function addUserRecord( $key, $value ){
         $this->log->d( '添加用户记录信息：'.$key.'+='.$value );
-        return self::$updinfo[$this->uid][$key] = self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
+        return self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
     }
     /**
      *@ setUserGuide 设置用户的新手引导进度
