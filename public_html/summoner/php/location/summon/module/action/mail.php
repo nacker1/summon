@@ -44,11 +44,7 @@
 		}
 		$log->i( '* 用户#'.$user->getUid().'#邮箱物品领取配置信息'.json_encode($goods) );
 		$ret = $user->sendGoodsFromConfig( $goods );
-		#=========== 任务信息 ==================
-		$mis = $user->getMissionNotice();
-		if( !empty( $mis ) ){
-			$ret['mis'] = $mis;
-		}
+		
 		ret( $ret );
 	default:
 		ret('Type_ERROR!',-1);

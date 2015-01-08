@@ -20,11 +20,7 @@
 		}else{
 			$ret = $user->sendGoodsFromConfig( $config );
 		}
-		#=========== 任务信息 ==================
-		$mis = $user->getMissionNotice();
-		if( !empty( $mis ) ){
-			$ret['mis'] = $mis;
-		}
+		
 		ret( $ret );
 	case '2'://用户反馈
 		$tag = ' 用户反馈 ';
