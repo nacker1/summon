@@ -30,6 +30,7 @@
 			return false;
 		}
 		$this->cdb;
+		$this->log->d( '~~~~~~~~~~~~~~~~~~~~~~ SELECT DB ~~~~~~~~~~~~~~~~~~~~~~~' );
 		$keyConfig = $this->cdb->findOne( $this->table,'*',array( 'cdkey'=>$this->code ) );
 		if( empty( $keyConfig ) ){
 			$this->log->e(' 用户#'.$this->uid.'#使用兑换码#'.$this->code.'#无效，兑换结束');
