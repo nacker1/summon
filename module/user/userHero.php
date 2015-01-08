@@ -55,11 +55,7 @@
 		$give['good'] = implode('#',$gList);
 		$ret = $user->sendGoodsFromConfig($give);
 		$ret['hero'] = $hero->getLastUpdField();
-		#=========== 任务信息 ==================
-		$mis = $user->getMissionNotice();
-		if( !empty( $mis ) ){
-			$ret['mis'] = $mis;
-		}
+		
 		ret( $ret );
 	case '4'://取下英雄装备 equipInfo 格式=>(index&index 装备框下标&装备框下标)
 		$index = $input['index'];
@@ -157,11 +153,7 @@
 		$give['good'] = implode('#',$reGood);
 		$ret = $user->sendGoodsFromConfig( $give );
 		$ret['hero'] = $hero->getLastUpdField();
-		#=========== 任务信息 ==================
-		$mis = $user->getMissionNotice();
-		if( !empty( $mis ) ){
-			$ret['mis'] = $mis;
-		}
+		
 		ret( $ret );
 	case '6': //英雄技能升级
 		$tag = '英雄技能升级';

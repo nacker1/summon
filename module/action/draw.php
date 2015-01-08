@@ -98,11 +98,7 @@
 	$ret = $user->sendGoodsFromConfig($give);
 
 	$ret['get'] = implode('#',$dGood);
-	#=========== 任务信息 ==================
-	$mis = $user->getMissionNotice();
-	if( !empty( $mis ) ){
-		$ret['mis'] = $mis;
-	}
+	
 	ret( $ret );
 
 ?>

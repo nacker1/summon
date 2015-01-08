@@ -25,11 +25,7 @@
  		$ret['tol'] = $sign->getTotalTimes();
 		$ret['com']= $sign->getCommonTimes();
 		$ret['vip'] = $sign->getVipTimes();
-		#=========== 任务信息 ==================
-		$mis = $user->getMissionNotice();
-		if( !empty( $mis ) ){
-			$ret['mis'] = $mis;
-		}
+		
  		ret( $ret );
  		break;
  	case '10': #黄金矿山领取奖励
@@ -50,12 +46,7 @@
  		$limit->addLimitTimes(1);
  		$limit->setTimeLimit('',$gold->getNextTime());
  		$ret = $user->sendGoodsFromConfig( $gold->getReward() );
- 		#=========== 任务信息 ==================
-		$mis = $user->getMissionNotice();
-		if( !empty( $mis ) ){
-			$ret['mis'] = $mis;
-		}
-
+ 		
  		ret( $ret );
  	case '999':
  		#清除签到相关数据

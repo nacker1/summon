@@ -212,6 +212,13 @@
 		if( is_array( $uInfo ) ){
 			$ret = array_merge( $ret, $uInfo );
 		}
+
+		#=========== 任务信息 ==================
+		$mis = $this->getMissionNotice();
+		if( !empty( $mis ) ){
+			$ret['mis'] = $mis;
+		}
+
 		return $ret;
 	}
 	public function __destruct(){
