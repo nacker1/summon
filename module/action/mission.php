@@ -32,11 +32,6 @@
  			ret( $mission->getErrorInfo(),-1 );
  		}else{
  			$ret = $user->sendGoodsFromConfig( $goodsConfig );
- 			#=========== 任务信息 ==================
-			$mis = $user->getMissionNotice();
-			if( !empty( $mis ) ){
-				$ret['mis'] = $mis;
-			}
 			
  			ret( $ret );
  		}
