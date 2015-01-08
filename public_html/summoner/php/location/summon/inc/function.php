@@ -269,7 +269,7 @@
 /**
  *@ getUniqCode 生成指定长度的唯一字符串
  **/
-	function getUniqCode( $length = 10 ){
+	function getUniqCode(){
 		return uniqid(rand(1, 100000000));
 		/*$code = crypt(gettimeofday(true),rand(1,10000));
 		while( preg_match('/\W/', $code) ){
