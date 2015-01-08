@@ -62,6 +62,16 @@ switch ($type) {
 //        }
         $user->setLevel( $level );
         break;
+    case '51':# 发放测试桩用数据
+        $goods['money'] = 100000000;
+        $goods['cooldou'] = 100000000;
+        $goods['exp'] = 100000;
+        $goods['life'] = 100000000;
+        $goods['mFriend'] = 100000000;
+        $goods['mAction'] = 100000000;
+        $goods['mArena'] = 100000000;
+        $goods['good'] = array('63003,100000#11001,1000#10001,1#3012700,10000');
+        ret( $user->sendGoodsFromConfig($goods) );
     case '52': 												#设置顶级帐号
         #设置所有关卡进度
         $pros = array(
