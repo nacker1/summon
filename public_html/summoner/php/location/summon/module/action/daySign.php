@@ -46,6 +46,7 @@
  		if( $times < 1 && ( time() - $user->getUserField('fLoginTime') ) < $gold->getTime()  ){  #登录时间少于第一次规定的时间
  			ret( '领取时间未到'.$gold->getTime(),-1 );
  		}
+ 		$user->setMissionId( 2, 66 );
  		$limit->addLimitTimes(1);
  		$limit->setTimeLimit('',$gold->getNextTime());
  		ret( $user->sendGoodsFromConfig( $gold->getReward() ) );
