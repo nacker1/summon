@@ -6,15 +6,18 @@
  	private $table='zy_actionCdkey';	//兑换码表
 	private $code;				//兑换码 	
 	private $errInfo='兑换成功';		//兑换码错误信息
+	private $cond;
 
 	public function __construct( $code ){
 		parent::__construct();
 		$this->code = $code;
+		$this->cond = new Cond( $this->table, $code );
 	}
 /**
  *@ getExchangeInfo() 获取兑换结果信息
  **/
 	function  getExchangeInfo(){
+		$this->cond->set( $this->errInfo );
 		return $this->errInfo;
 	}
 
@@ -22,6 +25,10 @@
  *@ 获取兑换码对应的奖品配置信息
  **/
 	public function getConfig(){
+		if( $error = $this->cond->get() ){
+			$this->errInfo = $error;
+			return false;
+		}
 		$this->cdb;
 		$keyConfig = $this->cdb->findOne( $this->table,'*',array( 'cdkey'=>$this->code ) );
 		if( empty( $keyConfig ) ){
