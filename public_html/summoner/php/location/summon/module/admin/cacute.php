@@ -262,8 +262,8 @@
 	}
 	if( isset( $updInfo ) && is_array( $updInfo ) )
 		$input['getList'] = array_merge( $input['getList'], $updInfo );
-	$mis = $user->getMissionNotice();
+	/*$mis = $user->getMissionNotice();
 	if( !empty( $mis ) )
-		$input['getList']['mis'] = $mis;
+		$input['getList']['mis'] = $mis;*/
 
 	ret( $input );

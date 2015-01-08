@@ -34,7 +34,7 @@
  			$add['jewel'] = -$cooldou;
  			$add['life'] = $limit->getGiveNum();
  			$ret = $user->sendGoodsFromConfig($add);
- 			$ret['mis'] = $user->getMissionNotice();
+ 			#$ret['mis'] = $user->getMissionNotice();
  		}else{
  			ret( 'no_jewel', -1 );
  		}
@@ -60,12 +60,12 @@
 			}
 
 			$good['money'] = $config['BuyGold_Get'] * $rate;
+			$user->setMissionId( 2, 67 );
 			$ret = $user->sendGoodsFromConfig(json_encode($good));
 			$ret['addMoney'] = $good['money'];
 			$ret['rate'] = $rate;
 			$ret['times'] = $times+1;
-			$user->setMissionId( 2, 67 );
-			$ret['mis'] = $user->getMissionNotice();
+			#$ret['mis'] = $user->getMissionNotice();
 		}else{
 			ret( '钻石不足',-1 );
 		}
