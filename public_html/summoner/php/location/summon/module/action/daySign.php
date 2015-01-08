@@ -49,7 +49,14 @@
  		$user->setMissionId( 2, 66 );
  		$limit->addLimitTimes(1);
  		$limit->setTimeLimit('',$gold->getNextTime());
- 		ret( $user->sendGoodsFromConfig( $gold->getReward() ) );
+ 		$ret = $user->sendGoodsFromConfig( $gold->getReward() );
+ 		#=========== 任务信息 ==================
+		$mis = $user->getMissionNotice();
+		if( !empty( $mis ) ){
+			$ret['mis'] = $mis;
+		}
+
+ 		ret( $ret );
  	case '999':
  		#清除签到相关数据
  		$sign->delCache();
