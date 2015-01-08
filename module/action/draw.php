@@ -72,13 +72,13 @@
 				case '11': #普通宝箱
 					break;
 				case '12': #普通宝箱
-					$give['cooldou'] = -100;
+					$give['cooldou'] = -50;
 					break;
 				case '13':
 					$give['cooldou'] = -200;
 					break;
 				case '14':
-					$give['cooldou'] = -300;
+					$give['cooldou'] = -500;
 					break;
 				default:
 					ret( 'gid_error~'.__LINE__, -1 );
