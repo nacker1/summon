@@ -10,7 +10,7 @@
 	define('GIVE_LIFE'							, 2 );				 #好友一次性赠送体力值
 															
 	#==============		环境配置	=================================================================
-	define( 'COND_TAG'							, 10 );				 #Cond类对应的redis端口数量  使用uid对该值取模  （支持标签 Cond, Friend, uniqPay）
+	define( 'COND_TAG'							, 5 );				 #Cond类对应的redis端口数量  使用uid对该值取模  （支持标签 Cond, Friend, uniqPay）
 	define( 'USER_TAG'							, 10 );				 #用户信息对应的redis端口数量  使用uid对该值取模
 	define( 'LOGIN_TAG'							, 10 );				 #用户登录信息对应的redis端口数量  使用uid对该值取模
 	define( 'UNLOCK_SKILL_MAX_VALUE_VIP_LEVEL'	, 4);				 #解锁技能点上限的vip等级
