@@ -11,7 +11,7 @@
 
  switch( $type ){
  	case '1': #拉取信息
- 		$lasttime = isset( $input['lt'] ) ? $input['lt'] : 0;
+ 		$lasttime = isset( $input['lt'] ) ? $input['lt'] : time();
  		$chat = new Chat( $user->getUid() );
  		ret( $chat->getChat( $lasttime ));
  	case '2': #发送信息
