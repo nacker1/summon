@@ -70,7 +70,12 @@ class Base{
 
 	public function clearConfig( $config ){
 		$this->pre;
-		return $this->pre->hdel( $config );
+		$this->pre->hdel( $config );
+		for( $i=0; $i<COND_TAG; $i++ ){
+			$cond = Redis_Redis::init( 'Cond_'.$i );
+			$cond->hdel( $config );
+		}
+		return true;
 	}
 /**
  *@ 公共代理类
