@@ -175,7 +175,6 @@ class Db_Mysql{
 		return $this->lastInsertId = $id;
 	}
 	/**
-     * È¡µÃÊý¾Ý¿âµÄ±íÐÅÏ¢
      * @access public
      * @return array
      */
@@ -198,8 +197,6 @@ class Db_Mysql{
 	}
 
 	/**
-     * Êý¾Ý¿â´íÎóÐÅÏ¢
-     * ²¢ÏÔÊ¾µ±Ç°µÄSQLÓï¾ä
      * @access public
      * @return string
      */
@@ -207,7 +204,6 @@ class Db_Mysql{
         return mysql_errno($this->connect).':'.mysql_error($this->connect).' == Config:'.json_encode($this->getConfig());
     }
 	/**
-     * ÊÍ·Å²éÑ¯½á¹û
      * @access public
      */
     public function free() {
@@ -222,25 +218,20 @@ class Db_Mysql{
         $this->connect = null;
     }
 	 /**
-     * ¹Ø±ÕÊý¾Ý¿â
      * @access public
      * @return void
      */
     public function close() {
         foreach( self::$mysql as $v ){
         	dump($v);
-			$v->_close();
+        	if( gettype( $v ) == 'object' )
+				$v->_close();
 		}
     }
 	/**
-     * Îö¹¹·½·¨
      * @access public
      */
     public function __destruct() {
-        // ÊÍ·Å²éÑ¯
-        /*if ( !empty( $this->queryId ) ){
-            $this->free();
-        }*/
         $this->close();
     }
 }
