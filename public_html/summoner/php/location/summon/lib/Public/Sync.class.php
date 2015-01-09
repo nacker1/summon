@@ -60,8 +60,10 @@ class Sync extends Base{
 				$ret = $this->db->delete( $this->table,$this->where );break;
 		}
 		$this->log->i( $this->db->getLastSql().'【'. ( gettimeofday(true) - C('com_start') ).'】' );
-		if( !$ret )
+		if( !$ret ){
+			$this->log->e( json_encode($ret) );
 			$this->log->e( $this->dbTag.', SQL:'.$this->db->getLastSql().' === '.$this->db->error()  );
+		}
 	}
 }
 ?>
