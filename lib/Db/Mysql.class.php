@@ -240,6 +240,6 @@ class Db_Mysql{
         /*if ( !empty( $this->queryId ) ){
             $this->free();
         }*/
-        $this->_close();
+        $this->close();
     }
 }
