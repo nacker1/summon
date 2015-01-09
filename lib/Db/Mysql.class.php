@@ -222,10 +222,11 @@ class Db_Mysql{
      * @return void
      */
     public function close() {
-        foreach( self::$mysql as $v ){
-        	dump($v);
-        	if( gettype( $v ) == 'object' )
+        foreach( self::$mysql as $k=>$v ){
+        	if( gettype( $v ) == 'object' ){
 				$v->_close();
+				unset(self::$mysql[$k]);
+			}
 		}
     }
 	/**
