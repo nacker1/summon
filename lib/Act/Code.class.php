@@ -60,7 +60,7 @@
 		$upd['useTime'] = time();
 		$upd['serverId'] = $this->getServerId();
 		$upd['rid'] = $this->getRid();
-		$this->setThrowSQL($this->table,$upd,array('cdkey'=>$this->code),'','config');
+		$this->setThrowSQL($this->table,$upd,array('cdkey'=>$this->code),'','action');
 	}
 }
 ?>
