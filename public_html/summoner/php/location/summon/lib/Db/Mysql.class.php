@@ -215,7 +215,6 @@ class Db_Mysql{
             $ret = mysql_close($this->connect);
             self::$mysql[$this->type] = null;
         }
-        $this->connect = null;
     }
 	 /**
      * @access public
