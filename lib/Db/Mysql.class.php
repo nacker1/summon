@@ -228,6 +228,7 @@ class Db_Mysql{
      */
     public function close() {
         foreach( self::$mysql as $v ){
+        	dump($v);
 			$v->_close();
 		}
     }
