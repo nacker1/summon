@@ -42,7 +42,7 @@
 				ret( 'no_jewel',-1 );
 			}
 			$give['cooldou'] = -$cooldou;
-			$cooldou>0 && $give['good'][] = '63003,'.$num;
+			$cooldou>0 && $give['good'][] = '63002,'.$num;
 			break;
 		case '3'://友情点抽友情点
 			$limit = new User_Limit( $user->getUid(), 'friendDrawDay','dayLimit', 3600*48 );
