@@ -50,7 +50,7 @@ class Public_Modinit{
             $this->islog = $modinfo['islog'];
             $this->exist = true;
             $this->online = $modinfo['online'];
-		$this->name = isset($modinfo['name'])?$modinfo['name']:'';
+		    $this->name = isset($modinfo['name'])?$modinfo['name']:'无名端口';
         }else{
             $this->exist = false;
         }
