@@ -50,7 +50,6 @@ class Sync extends Base{
 	}
 
 	function exec(){ //执行sendCommand抛出来的sql
-		C('com_start',gettimeofday(true));
 		$this->db = Db_Mysql::init( $this->dbTag );
 		switch( $this->opt ){
 			case '1':
