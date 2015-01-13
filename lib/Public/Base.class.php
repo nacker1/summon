@@ -11,7 +11,7 @@ class Base{
 		if( gettype($log) == 'object' ){
 			$this->log = $log;
 		}else{
-			$this->log = new Logger('sync');
+			$this->log = new Logger('sync','/data/web/summon/logs/sync/');
 		}
 		if( !empty($uid) ){
 			$this->uid = (int)$uid;
