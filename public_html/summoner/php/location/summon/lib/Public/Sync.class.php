@@ -18,7 +18,7 @@ class Sync extends Base{
 		$this->data = $data['data'];
 		$this->where = $data['where'];
 		$this->opt = isset($data['opt'])?$data['opt']:'';
-		$this->dbTag = isset($data['tag'])?$data['tag']:'master';
+		$this->dbTag = isset( $data['tag'] )&&!empty( $data['tag'] )?$data['tag']:'master';
 
 		if( empty($this->opt) ){
 			if( empty( $this->where ) ){
