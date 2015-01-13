@@ -42,7 +42,7 @@ class Base{
 			case 'sdb'://统计数据db
 				$this->sdb = Db_Mysql::init('stats');break;
 			case 'adb'://活动数据db    所有服务器统一处理  防止同上兑换码被多人同时使用
-				$this->sdb = Db_Mysql::init('action');break;
+				$this->adb = Db_Mysql::init('action');break;
 		}
 	}
 	/**
