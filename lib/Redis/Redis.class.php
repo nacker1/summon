@@ -14,7 +14,7 @@
 			ret('redis_class_'.__LINE__);
 		}
 		$this->connect = new Redis();
-		if( !$this->connect->pconnect($host,$port) ){
+		if( !$this->connect->connect($host,$port) ){
 			gettype($log)=='object' && $log->e('Redis connect fail£¨host:'.$host.',port:'.$port.',pass:'.$pass.'£©');
 			ret('redis_class_'.__LINE__.$host.':'.$port);
 		}

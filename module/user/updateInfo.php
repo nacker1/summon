@@ -31,7 +31,7 @@
 					if( $user->getInfo( $name ) ){
 						ret( '名称已存在', -1 );
 					}
-					$user->setUserName($name);
+					$user->setUserName($name); 
 				}
 				ret( $user->getUserLastUpdInfo() );
 			}else{
