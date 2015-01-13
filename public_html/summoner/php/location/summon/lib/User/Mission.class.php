@@ -295,7 +295,8 @@
 			}
 			$this->log->d( 'missing:'.json_encode( $missing ) );
 			if( empty( $missing ) ) {
-				$this->log->e( 'missing值为空,未取到用户当前正在进行的任务。missionClass:'.$this->class.',this->type:'.$this->type.', progress:'.$progress );
+				$this->log->e( 'missing值为空,未取到用户当前正在进行的任务或任务已经完成。missionClass:'.$this->class.',this->type:'.$this->type.', progress:'.$progress );
+				/*  这样处理会将已经完成的任务重新激活
 				$taskClass = $this->pre->hget( 'baseMissionConfig:TaskClass_'.$this->type, $this->class );
 				$temp = explode( '_', $taskClass );
 				$missing['type'] = $this->type;			//任务类型
@@ -306,8 +307,8 @@
 				$missing['uid'] = $this->uid;
 				$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$this->type, $missing );
 				$this->log->d( 'mission 设置新任务及进度.'.json_encode( $missing ) );
-				$this->setThrowSQL( $this->userMissionTable, $missing );
-				#return;
+				$this->setThrowSQL( $this->userMissionTable, $missing );*/
+				return;
 			}
 			$set['progress'] = (int)$missing['progress'] + $progress;
 			$set['missing'] = (int)$missing['missing'];
