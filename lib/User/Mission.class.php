@@ -305,6 +305,7 @@
 				$missing['progress'] = 0;
 				$missing['uid'] = $this->uid;
 				$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$this->type, $missing );
+				$this->log->d( 'mission 设置新任务及进度.'.json_encode( $missing ) );
 				$this->setThrowSQL( $this->userMissionTable, $missing );
 				#return;
 			}
