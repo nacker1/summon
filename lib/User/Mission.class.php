@@ -296,7 +296,17 @@
 			$this->log->d( 'missing:'.json_encode( $missing ) );
 			if( empty( $missing ) ) {
 				$this->log->e( 'missing值为空,未取到用户当前正在进行的任务。missionClass:'.$this->class.',this->type:'.$this->type.', progress:'.$progress );
-				return;
+				$taskClass = $this->pre->hget( 'baseMissionConfig:TaskClass_'.$this->type, $this->class );
+				$temp = explode( '_', $taskClass );
+				$missing['type'] = $this->type;			//任务类型
+				$missing['showMission'] = $temp[0];
+				$missing['missing'] = $temp[0];
+				$missing['time'] = time();
+				$missing['progress'] = 0;
+				$missing['uid'] = $this->uid;
+				$this->redis->hmset( 'roleinfo:'.$this->uid.':mission:'.$this->type, $missing );
+				$this->setThrowSQL( $this->userMissionTable, $missing );
+				#return;
 			}
 			$set['progress'] = (int)$missing['progress'] + $progress;
 			$set['missing'] = (int)$missing['missing'];
