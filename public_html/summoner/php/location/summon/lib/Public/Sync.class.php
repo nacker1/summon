@@ -47,7 +47,7 @@ class Sync extends Base{
 		$data['where'] = $this->where;
 		$data['opt'] = $this->opt;
 		$data['tag'] = $this->dbTag;
-		$this->sync_redis->rpush( 'sync_db_select', $data );
+		$this->sync_redis->rpush( 'sync_db_select', json_encode( $data ) );
 	}
 
 	function exec(){ //执行sendCommand抛出来的sql
