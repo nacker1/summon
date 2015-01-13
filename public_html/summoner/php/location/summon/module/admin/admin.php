@@ -255,7 +255,7 @@ switch ($type) {
                     $abnormal[] = $userinfo['uid'];
                     continue;
                 }*/
-                if( ( time() - $beat ) < 30000 ){
+                if( ( time() - $beat ) < 300 ){
                     $tol_user_nums += 1;
                 }
                 unset($userinfo);
