@@ -26,7 +26,7 @@
          * @param String logfile - [optional] Absolute file name/path. Defaults to ubuntu apache log.
          * @return void
          **/        
-        function __construct($tag='public',$log_file = '/data/web/summon/logs/sync') {
+        function __construct($tag='public',$log_file = '/data/web/summon/logs/sync/') {
 			$this->tag = $tag;
             $this->log_file = $log_file.date('Ymd').'ddz.log';
 
