@@ -222,7 +222,8 @@
 		return $ret;
 	}
 	public function __destruct(){
-		$this->redis->expire('roleinfo:'.$this->uid.':baseinfo',WEEK_TIMES);
+		if( $this->uid != ADMIN_UID )
+			$this->redis->expire('roleinfo:'.$this->uid.':baseinfo',WEEK_TIMES);
 		# 同步用户信息
 		if( isset( self::$updinfo[$this->uid] ) && !empty( self::$updinfo[$this->uid] ) ){
 			$this->redis->hmset('roleinfo:'.$this->uid.':baseinfo',self::$updinfo[$this->uid]);

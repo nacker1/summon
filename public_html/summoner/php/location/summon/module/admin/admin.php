@@ -236,7 +236,6 @@ switch ($type) {
         break;
     case '1004': #统计在线人数
         $tag = '统计在线人数';
-        $log = new Logger('xync_userinfo','/data/web/summonAdmin/logs/sync/');
         $tol_user_nums = 0;
         for($i=0;$i<10;$i++){
             $pre = Redis_Redis::initRedis($i);
@@ -248,7 +247,7 @@ switch ($type) {
                 $userinfo['heartTime'] = $pre->hget($v,'_heartTime');
                 $userinfo['uid'] = substr($v,strpos($v,':')+1);
                 if( empty($userinfo['uid']) ){
-                    $log->e('用户uid取不到值，v:'.$v.',userinfo:'.json_encode($userinfo));
+                    $user->log->e('用户uid取不到值，v:'.$v.',userinfo:'.json_encode($userinfo));
                     continue;
                 }
                 $beat = $userinfo['heartTime'];
