@@ -9,7 +9,7 @@ class Sync extends Base{
 	private $opt;				//操作类型  1为insert, 2为updata, 3为删除
 	private $db;				//用户数据库
 	private $dbTag;				//数据库标签
-	private $cond;				//存储需要同步的DB信息
+	private $sync_redis;		//存储需要同步的DB信息
 
 	function __construct( $data ){
 		parent::__construct( 0 );
@@ -34,18 +34,20 @@ class Sync extends Base{
 	function sendCommand(){
 		$com = 'php /data/web/summon/syncDb.php -t '.$this->table.' -d \''.serialize($this->data).'\' -w \''.serialize($this->where).'\' -o '.$this->opt.' -f '.$this->dbTag.' &';
 		@pclose( popen( $com,'r' ) );
+		$this->syncToRedis();
 		#$this->log->e($com.PHP_OS);
 	}
 /**
  *@ 将用户需要同步的数据同步到   暂时不用
  **/
 	function syncToRedis(){ 
-		$this->redis;
+		$this->sync_redis = Redis_Redis::init( 'sync_db' );
 		$data['table'] = $this->table;
-		$data['data'] = $this->table;
-		$data['where'] = $this->table;
-		$data['opt'] = $this->table;
-		$data['target'] = $this->table;
+		$data['data'] = $this->data;
+		$data['where'] = $this->where;
+		$data['opt'] = $this->opt;
+		$data['tag'] = $this->dbTag;
+		$this->sync_redis->rpush( 'sync_db_select', $data );
 	}
 
 	function exec(){ //执行sendCommand抛出来的sql
