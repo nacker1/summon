@@ -279,6 +279,11 @@
 	public function rpush($key,$val){
 		return $this->connect->rpush($key,$val);
 	}
+
+	public function lpop($key){
+		return $this->connect->lpop($key);
+	}
+
 	public function close(){
 		$this->connect->close();
 	}
