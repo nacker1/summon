@@ -38,13 +38,15 @@
 	$sync_redis = Redis_Redis::init( 'sync_db' );
 	while(1){
 		$data = $sync_redis->lpop( 'sync_db_select' );
+		var_dump();
 		if( empty( $data ) ){
 			sleep(3);  #如果没数据需要同步休息3秒钟
-		}
-		$data = json_decode( $data, true );
-		if( is_array( $data ) ){
-			$sync = new Sync( $data );
-			$sync->exec();
+		}else{
+			$data = json_decode( $data, true );
+			if( is_array( $data ) ){
+				$sync = new Sync( $data );
+				$sync->exec();
+			}
 		}
 	}
 ?>
