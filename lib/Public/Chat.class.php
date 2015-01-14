@@ -7,9 +7,12 @@
  	private $uCond;				#玩家私信redis连接源
  	private $type;				#信息类型  1为世界信息  2为私信  3为聊天公告 5为公会信息
 
- 	function __construct( $uid='', $type=1, $time=36000 ){
+ 	function __construct( $uid='', $type=1, $time=0 ){
  		# $uid: 如果是发送信息则为接收者的uid, 如果是拉信息则为当前用户的uid
  		parent::__construct( $uid );
+ 		if( $time < 1 ){
+ 			$time = CHAT_DEFAULT_TIMES;
+ 		}
  		$this->cond = new Cond( 'chat', 0, $time );
  		$this->type = $type;
 		$this->uCond = new Cond( 'chat', $this->uid, 86400 );	#私信保存一天
