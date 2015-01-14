@@ -5,17 +5,19 @@
  **/
  class Redis_Redis{
 	private $connect;
+	private $type;
 	static $redis=array();
 
-	private function __construct($host,$port,$pass){
+	private function __construct($host,$port,$pass,$type='default'){
 		global $log;
+		$this->type = $type;
 		if( empty($host) || empty($port) ){
-			gettype($log)=='object' && $log->e('Redis host or port null.£¨host:'.$host.',port:'.$port.',pass:'.$pass.'£©');
+			gettype($log)=='object' && $log->e( 'Redis host or port null:host:'.$host.',port:'.$port.',pass:'.$pass.',type:'.$this->type );
 			ret('redis_class_'.__LINE__);
 		}
 		$this->connect = new Redis();
 		if( !$this->connect->connect($host,$port) ){
-			gettype($log)=='object' && $log->e('Redis connect fail£¨host:'.$host.',port:'.$port.',pass:'.$pass.'£©');
+			gettype($log)=='object' && $log->e( 'Redis connect fail£¨host:'.$host.',port:'.$port.',pass:'.$pass.',type:'.$this->type );
 			ret('redis_class_'.__LINE__.$host.':'.$port);
 		}
 		!empty($pass) && $this->connect->auth($pass);
@@ -32,7 +34,7 @@
 			$host = $redisConfig['host'];
 			$port = $redisConfig['port'];
 			$pass = $redisConfig['pass'];
-			self::$redis[$redname] = new Redis_Redis($host,$port,$pass);
+			self::$redis[$redname] = new Redis_Redis($host,$port,$pass,$type);
 		}
 		return self::$redis[$redname];
 	}
