@@ -261,8 +261,8 @@ switch ($type) {
         $title = $input['title'];
         $sendUser = $input['sendUser'];
         $time = $input['time'];
-        $uMail = new User_Mail(0);
-        if( $uMail->sendMail($content,$type,$uid,$title,$goods,$sendUser,$time)){
+        $uMail = new User_Mail($uid);
+        if( $uMail->sendMail($content,$type,0,$title,$goods,$sendUser,$time)){
             ret( '发送成功——：'.$time,-1 );
         }else{
             ret( '操作失败，请重试！',-1 );
