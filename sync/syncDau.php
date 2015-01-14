@@ -18,7 +18,7 @@
 		return $row;
 	}
 
-	$access[1] = getSQL( 1 );
+	$access[1] = getSQL( 3 );
 	$access[3] = getSQL( 3 );
 	$access[4] = getSQL( 4 );
 	$access[5] = getSQL( 5 );
