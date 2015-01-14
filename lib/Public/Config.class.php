@@ -153,7 +153,9 @@ class Config{
 		),
 		'online'=>array( //ÐÅÏ¢´ýÉÏÏßÈ·ÈÏºóÔÙ½øÐÐÅäÖÃ
 			'sync_db' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          					#保存同步sql语句的redis
-			'default' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),         					#当前区公共配置 通用
+			'default_1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),         					#当前区公共配置 通用   三个端口分流用
+			'default_2' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),         					#当前区公共配置 通用
+			'default_3' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),         					#当前区公共配置 通用
 		));
 
 
@@ -161,6 +163,10 @@ class Config{
 	function __construct( $type='' ){
 		global $serverId;
 		empty( $serverId ) && $serverId = 2;
+		if( empty( $type ) || $type=='default' ){  #默认分流
+			$rand = mt_rand( 1, MAX_DEFAULT_REDIS_PORT_NUMS );
+			$type = 'default_'.$rand;
+		}
 		$this->type = $type;
 		$this->sid = $serverId;
 	}
@@ -196,7 +202,11 @@ class Config{
 				}
 			}
 		}
-		return isset( self::$redis_config[self::$env][$this->type] ) ? self::$redis_config[self::$env][$this->type] : self::$redis_config[self::$env]['default'];
+		if( isset( self::$redis_config[self::$env][$this->type] ) ){
+			return self::$redis_config[self::$env][$this->type];
+		}else{
+			return self::$redis_config[self::$env]['default'];
+		}
 	}
 
 	function getType(){
