@@ -2,12 +2,13 @@
 /**
  *@ 服务器配置文件
  **/
-	define('RECOVER_LIFE_TIME'					, 360 );			 #恢复1点体力需要的时间
-	define('RECOVER_POINT_TIME'					, 600 );			 #恢复1点技能点需要的时间
-	define('GAG_TIME'							, 600 );			 #禁言时间 10 分钟
-	define('WEEK_TIMES'							, 604800 );			 #用户数据保存时间
-	define('MAIL_REGET'							, false );			 #邮件可以重复领取  true 可以重复领取  false 不可重复领取
-	define('GIVE_LIFE'							, 2 );				 #好友一次性赠送体力值
+	define( 'RECOVER_LIFE_TIME'					, 360 );			 #恢复1点体力需要的时间
+	define( 'RECOVER_POINT_TIME'				, 600 );		 #恢复1点技能点需要的时间
+	define( 'GAG_TIME'							, 600 );			 #禁言时间 10 分钟
+	define( 'WEEK_TIMES'						, 604800 );		 #用户数据保存时间
+	define( 'CHAT_DEFAULT_TIMES' 				, 300 );			 #世界聊天默认只在的时间（秒）
+	define( 'MAIL_REGET'						, false );		 #邮件可以重复领取  true 可以重复领取  false 不可重复领取
+	define( 'GIVE_LIFE'							, 2 );				 #好友一次性赠送体力值
 															
 	#==============		环境配置	=================================================================
 	define( 'COND_TAG'							, 5 );				 #Cond类对应的redis端口数量  使用uid对该值取模  （支持标签 Cond, Friend, uniqPay）
