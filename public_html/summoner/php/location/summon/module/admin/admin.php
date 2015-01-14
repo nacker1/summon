@@ -10,7 +10,6 @@ $user=new User_User( $uid );
 switch ($type) {
     case '1':
         # code...
-        $tag = '添加英雄或召唤师经验';
         $hid = $input['hid'];
         if( empty( $hid ) ){
             $user->addExp( $nums );
@@ -21,7 +20,6 @@ switch ($type) {
         break;
     case '2':
         #添加vip
-        $tag = '设置召唤师vip等级';
         if( $nums>15 || $nums<0 ){
             ret( 'vip 等级在  1 - 15级之间', -1 );
         }
@@ -29,12 +27,10 @@ switch ($type) {
         break;
     case '3':
         #添加用户体力
-        $tag = '设置召唤师体力';
         $user->addLife( $nums );
         ret($user->getUserLastUpdInfo());
     case '4':
         #添加用户周卡
-        $tag = '设置召唤师周卡或月卡';
         $n = isset($input['n']) ? $input['n'] : 3;
         switch( $n ){
             case '1':
@@ -50,7 +46,6 @@ switch ($type) {
         ret( $user->getUserLastUpdInfo() );
         break;
     case '5':
-        $tag = '设置召唤师vip等级';
         $level = $input['l'];
         $exp = $input['e'];
         #修改经验，等级，VIP等级
@@ -67,20 +62,8 @@ switch ($type) {
 //        }
         $user->setLevel( $level );
         break;
-    case '51':# 发放测试桩用数据
-        $tag = '发放测试桩物品';
-        $goods['money'] = 100000000;
-        $goods['cooldou'] = 100000000;
-        $goods['exp'] = 100000;
-        $goods['life'] = 100000000;
-        $goods['mFriend'] = 100000000;
-        $goods['mAction'] = 100000000;
-        $goods['mArena'] = 100000000;
-        $goods['good'] = '63003,100000#11001,1000#10001,1#3012700,10000';
-        ret( $user->sendGoodsFromConfig($goods) );
     case '52': 												#设置顶级帐号
         #设置所有关卡进度
-        $tag = '后台配置用户关卡进度';
         $pros = array(
             910101,910102,910103,910104,910105,910106,910107,910108,910109,910110,910111,910112,910113,910114,910115,910116,910117,910118,910119,910120,
             910201,910202,910203,910204,910205,910206,910207,910208,910209,910210,910211,910212,910213,910214,910215,910216,910217,910218,910219,910220,
@@ -147,17 +130,14 @@ switch ($type) {
         $user->setSkey();
         ret( 'suc' );
     case '500':#发送竞技场排名奖励
-        $tag = '发放竞技场奖励';
         $top = new Top( 4 );
         $top->sendPvpReward();
         ret( 'suc' );
     case '997': #踢下线
-        $tag = '踢玩家下线';
         $user->setLoginTime();
         $user->setSkey();
         ret( $user->getUserInfo() );
     case '998':
-        $tag = '清空所有缓存';
         $tag = $input['tag'];
         if( empty( $tag ) ){
             #清空所有配置缓存
@@ -173,7 +153,6 @@ switch ($type) {
         ret('suc');
         break;
     case '999':
-        $tag = '发放所有物品';
         #添加所有道具
         $gBase = new Goodbase();
         $gList = $gBase->getAllBaseGood();
@@ -186,7 +165,6 @@ switch ($type) {
         break;
     case '1000':
         #添加所有英雄
-        $tag = '发放所有英雄';
         $hList = $input['heros'];
         if( empty( $hList ) ){
             $hList = array(
@@ -219,7 +197,7 @@ switch ($type) {
         ret( $user->getUserInfo() );
         break;
     case '1003': #发送个人邮件
-        $tag = '后台发送个人邮件';
+
         $content = $input['content'];
         $type = $input['type'];
         $goods = $input['goods'];
@@ -235,7 +213,14 @@ switch ($type) {
         }
         break;
     case '1004': #统计在线人数
-        $tag = '统计在线人数';
+        global $log;
+        define('ISLOG',true);
+        if( PHP_OS == 'Linux' )
+            $include = '/data/web/summon/inc/inc.php';
+        else
+            $include = 'C:/wamp/www/summon/inc/inc.php';
+        require_once $include;
+        $log = new Logger('xync_userinfo','/data/web/summonAdmin/logs/sync/');
         $tol_user_nums = 0;
         for($i=0;$i<10;$i++){
             $pre = Redis_Redis::initRedis($i);
@@ -247,7 +232,7 @@ switch ($type) {
                 $userinfo['heartTime'] = $pre->hget($v,'_heartTime');
                 $userinfo['uid'] = substr($v,strpos($v,':')+1);
                 if( empty($userinfo['uid']) ){
-                    $user->log->e('用户uid取不到值，v:'.$v.',userinfo:'.json_encode($userinfo));
+                    $log->e('用户uid取不到值，v:'.$v.',userinfo:'.json_encode($userinfo));
                     continue;
                 }
                 $beat = $userinfo['heartTime'];
@@ -268,7 +253,21 @@ switch ($type) {
         $ret['num']=$tol_user_nums;
         ret($ret);
         break;
+    case '1005': #发送公共邮件
 
+        $content = $input['content'];
+        $type = $input['type'];
+        $goods = $input['goods'];
+        $title = $input['title'];
+        $sendUser = $input['sendUser'];
+        $time = $input['time'];
+        $uMail = new User_Mail(0);
+        if( $uMail->sendMail($content,$type,$uid,$title,$goods,$sendUser,$time)){
+            ret( '发送成功——：'.$time,-1 );
+        }else{
+            ret( '操作失败，请重试！',-1 );
+        }
+        break;
     default:
         # code...
         phpinfo();
