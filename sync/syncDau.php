@@ -16,7 +16,8 @@
 //========================== 用户回访数据统计 ===========================
 	function getSQL( $days ){
 		$datetime = ( mktime(0,0,0)- 86400 );
-		$sql = 'select count(1) nums,channel,date from (select count(1) nums,zu.channel channel,FROM_UNIXTIME(nu.time,"%Y-%m-%d") date,zu.sid sid from ( select uid,time from zy_statsUserLoginLog where isNew=1 and time> '.( $datetime-$days*86400 ).' and time < '.( $datetime-($days-1)*86400 ).' ) nu,zy_statsUserLoginLog zu where zu.uid=nu.uid and zu.isNew=0 and zu.time>'.$datetime.' and zu.time<'.mktime(0,0,0).' group by zu.sid,zu.channel,zu.uid) a group by channel';
+		echo $sql = 'select count(1) nums,channel,date from (select count(1) nums,zu.channel channel,FROM_UNIXTIME(nu.time,"%Y-%m-%d") date,zu.sid sid from ( select uid,time from zy_statsUserLoginLog where isNew=1 and time> '.( $datetime-$days*86400 ).' and time < '.( $datetime-($days-1)*86400 ).' ) nu,zy_statsUserLoginLog zu where zu.uid=nu.uid and zu.isNew=0 and zu.time>'.$datetime.' and zu.time<'.mktime(0,0,0).' group by zu.sid,zu.channel,zu.uid) a group by channel';
+		exit;
 		$sdb = Db_Mysql::init('stats');
 		$row = $sdb->query($sql);
 		return $row;
