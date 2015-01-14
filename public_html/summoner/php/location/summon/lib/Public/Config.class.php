@@ -205,7 +205,7 @@ class Config{
 		if( isset( self::$redis_config[self::$env][$this->type] ) ){
 			return self::$redis_config[self::$env][$this->type];
 		}else{
-			return self::$redis_config[self::$env]['default'];
+			return self::$redis_config[self::$env]['default_1'];
 		}
 	}
 
