@@ -159,6 +159,9 @@ class Db_Mysql{
 		}
 		return $ret;
 	}
+	public function ping(){
+		return mysql_ping( $this->connect );
+	}
 	private function _setLastSql($sql){
 		$this->lastSql = $sql;
 	}

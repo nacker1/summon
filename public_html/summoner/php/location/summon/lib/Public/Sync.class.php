@@ -51,6 +51,7 @@ class Sync extends Base{
 
 	function exec(){ //执行sendCommand抛出来的sql
 		$this->db = Db_Mysql::init( $this->dbTag );
+		$this->db->ping();
 		switch( $this->opt ){
 			case '1':
 				$ret = $this->db->insert( $this->table,$this->data );break;
