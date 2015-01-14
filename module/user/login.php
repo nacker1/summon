@@ -2,13 +2,14 @@
 /**
  *@ 通用登录接口
  **/
- $name = $input['n'];  //登录平台用户昵称
- $source = $input['s']; //登录平台id
- $source_id = $input['sid']; //登录平台角色id (唯一id)
- $channel = $input['cid']; //登录平台角色id (唯一id)
- $time = $input['ts'];	//登录时间
- $sign = $input['sign'];//校验
- $serverLastUpdTime = $input['slt'];
+ $name 				= $input['n'];  			#登录平台用户昵称
+ $source 			= $input['s']; 				#登录平台id
+ $source_id 		= $input['sid']; 			#登录平台角色id (唯一id)
+ $channel 			= $input['cid']; 			#登录平台角色id (唯一id)
+ $time 				= $input['ts'];				#登录时间
+ $sign 				= $input['sign'];			#校验
+ $ver  				= (int)$input['ver'];			#版本id  用户检测热更新
+ $serverLastUpdTime = $input['slt'];			#客户端本地服务器列表最后更新的时间
  $key = md5($name.$source.$source_id.$channel.$time);
  $input['key'] = $key;
  if( $key == $sign ){
@@ -22,6 +23,11 @@
 		$ret['sinfo']['slt'] = $serverLast;
 	}
 	$ret['sinfo']['sStatus'] = $server->getServersStatus();
+	$ret['down']['ver'] = $server->getServerVer();
+	$ret['down']['url'] = 'http://summon.51094.com/download/2.zip';
+	if( $ret['down']['ver'] - $ver < 2 ){
+		$ret['down']['url'] = 'http://summon.51094.com/download/1.zip';
+	}
 	ret( $ret );
  }else{
 	ret('错误：'.json_encode($input),-1);

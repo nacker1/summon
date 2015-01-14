@@ -103,6 +103,16 @@
 		return $this->slist;
 	}
 /**
+ *@ 获取游戏最新版本
+ **/
+	public function getServerVer(){
+		$ret = $this->pre->hgetall( 'summon:version' );
+		if( empty( $ret ) || !isset( $ret['ver'] ) ){
+			$ret['ver'] = 1;
+		}
+		return (int)$ret['ver'];
+	}
+/**
  *@ 获取服务器php请求地址
  **/
 	public function getServerPhpUrl(){
