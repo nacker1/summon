@@ -3,7 +3,7 @@
  *@ 后台同步用户留存等数据
  **/
 	define('ISLOG',true);
-	require_once dirname(__FILE__).'/inc/inc.php';
+	require_once '/data/web/summon/inc/inc.php';
 	$end = date('Y-m-d');
 	$start = date('Y-m-d',strtotime('-1 days'));
 	$sdb = Db_Mysql::init('stats');
