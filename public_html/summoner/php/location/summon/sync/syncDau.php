@@ -38,7 +38,6 @@
 					$insert['channel'] = empty($v['channel'])?1:$v['channel'];
 					$insert['sid'] = $v['sid'];
 					$sdb->insert('zy_statsUserBack',$insert);
-					$log->i($sdb->getLastSql());
 				}
 			}
 		}
