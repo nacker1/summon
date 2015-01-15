@@ -14,6 +14,7 @@
 	$give['good'] = array();
 	switch( $type ){
 		case '1': //金币抽扣金币
+			$tag = '金币抽';
 			$limit = new User_Limit( $user->getUid(), 'goldDrawDay' );
 			if( $nums > 1 ){
 				$money = $limit->getExpend();
@@ -29,6 +30,7 @@
 			$money>0 && $give['good'][] = '63003,'.$num;
 			break;
 		case '2'://钻石抽钻石
+			$tag = '钻石抽';
 			$limit = new User_Limit( $user->getUid(), 'jewelDrawDay','dayLimit', 3600*48 );
 			if( $nums > 1 ){
 				$cooldou = $limit->getExpend();
@@ -45,6 +47,7 @@
 			$cooldou>0 && $give['good'][] = '63002,'.$num;
 			break;
 		case '3'://友情点抽友情点
+			$tag = '友情点抽';
 			$limit = new User_Limit( $user->getUid(), 'friendDrawDay','dayLimit', 3600*48 );
 			
 			if( $nums > 1 ){
@@ -62,6 +65,7 @@
 			$give['good'][] = '63003,'.$num;
 			break;
 		case '10': #赏金之路钻石抽
+			$tag = '赏金之路开宝箱';
 			$roundnum = $input['roundnum'];  #赏金之路关卡id
 			$actLimit = new User_Limit( $user->getUid(), 'endLessFieldDay', $roundnum );
 			if( $actLimit->getUsedTimes() < 1 ){
