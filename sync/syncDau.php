@@ -11,12 +11,14 @@
 //========================== 用户回访数据统计 ===========================
 	function getSQL( $days ){
 		$datetime = ( mktime(0,0,0)- 86400 );
-		$sql = 'select count(1) nums,channel,date,sid from (select count(1) nums,zu.channel channel,FROM_UNIXTIME(nu.time,"%Y-%m-%d") date,zu.sid sid from ( select uid,UNIX_TIMESTAMP(time) time from zy_statsUserLoginLog where isNew=1 and time> "'.date('Y-m-d', $datetime-$days*86400 ).'" and time < "'.date('Y-m-d', $datetime-($days-1)*86400 ).'" ) nu,zy_statsUserLoginLog zu where zu.uid=nu.uid and zu.isNew=0 and zu.time>"'.date('Y-m-d',$datetime).'" and zu.time<"'.date('Y-m-d',mktime(0,0,0)).'" group by zu.sid,zu.channel,zu.uid) a group by channel,sid';
+		echo $sql = 'select count(1) nums,channel,date,sid from (select count(1) nums,zu.channel channel,FROM_UNIXTIME(nu.time,"%Y-%m-%d") date,zu.sid sid from ( select uid,UNIX_TIMESTAMP(time) time from zy_statsUserLoginLog where isNew=1 and time> "'.date('Y-m-d', $datetime-$days*86400 ).'" and time < "'.date('Y-m-d', $datetime-($days-1)*86400 ).'" ) nu,zy_statsUserLoginLog zu where zu.uid=nu.uid and zu.time>"'.date('Y-m-d',$datetime).'" and zu.time<"'.date('Y-m-d',mktime(0,0,0)).'" group by zu.sid,zu.channel,zu.uid) a group by channel,sid';
+		exit;
 		$sdb = Db_Mysql::init('stats');
 		$row = $sdb->query($sql);
 		return $row;
 	}
 
+	$access[0] = getSQL( 0 );
 	$access[1] = getSQL( 1 );
 	$access[3] = getSQL( 3 );
 	$access[4] = getSQL( 4 );
