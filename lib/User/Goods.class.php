@@ -3,12 +3,13 @@
  *@ 召唤师背包物品
  **/
  class User_Goods extends User_Base{
-	private $table='zy_uniqRoleGoods'; 							//用户物品表
-	private $gid;										//物品id
-	private $ugid;										//用户拥有物品id  对应roolgoods表中的id
-	private $type;										//物品类型
-	private $goodinfo;									//物品清单   所有物品时存储所有物品是个数据   指定类型时存储指定类型的所有物品  指定物品存储指定物品信息
-	private $bgood;									//物品基本配置类
+	private $table='zy_uniqRoleGoods'; 							#用户物品表
+	private $gid;												#物品id
+	private $ugid;												#用户拥有物品id  对应roolgoods表中的id
+	private $type;												#物品类型
+	private $goodinfo;											#物品清单   所有物品时存储所有物品是个数据   指定类型时存储指定类型的所有物品  指定物品存储指定物品信息
+	private $bgood;												#物品基本配置类
+	private $itemLog;											#道具流水日志
 
 	public function __construct( $uid,$gid='',$ugid='' ){
 		parent::__construct($uid);
@@ -102,6 +103,9 @@
  **/
 	public function addGoods( $nums=1 ){
 		if( $nums < 1 ){return $this->reduceGoods( -$nums );}
+		$key = uniqid();
+		$this->itemLog[$key]['nums'] = $nums;
+		$this->itemLog[$key]['type'] = 1;
 		switch( $this->bgood->getColor() ){
 			case '2':$this->setMissionId(1,32,$nums);break;
 			case '3':$this->setMissionId(1,33,$nums);break;
@@ -170,6 +174,9 @@
 			$this->log->e('* 物品（'.$this->gid.'）不足无法扣除（剩余：'.$ugood.' )）');
 			return false;
 		}
+		$key = uniqid();
+		$this->itemLog[$key]['nums'] = $nums;
+		$this->itemLog[$key]['type'] = 2;
 
 		if( $this->bgood->getGoodSuper() == 1 ){ //可重叠物品计算数量
 			if( $this->redis->hincr( 'roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid, 'nums' ,-$nums ) !==false ){
@@ -237,6 +244,22 @@
 		$ret = $this->bgood->getGoodConfig();
 		$this->log->d( $this->gid.' 能量点：'.json_encode($ret) );
 		return $ret;
+	}
+
+	function __destruct(){
+		if( is_array( $this->itemLog ) ){
+			global $tag;
+			$set['sid'] = $this->getServerId();
+			$set['uid'] = $this->getUid();
+			$set['gid'] = $this->gid;
+			$set['tag'] = $tag;
+			foreach( $this->itemLog as $v ){
+				$set['nums'] = $v['nums'];
+				$set['type'] = $v['type'];
+				$set['time'] = date('Y-m-d H:i:s');
+				$this->setThrowSQL( 'zy_statsUserItemLog', $set ,'' ,'1' ,'stats' );	
+			}
+		}
 	}
  }
 ?>
