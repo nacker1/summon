@@ -23,12 +23,15 @@
 		$ret['sinfo']['slt'] = $serverLast;
 	}
 	$ret['sinfo']['sStatus'] = $server->getServersStatus();
-	$ret['down']['ver'] = $server->getServerVer();
-	$ret['down']['url'] = 'http://summon.51094.com/download/2.zip';
-	$ret['down']['size'] = filesize( SUMMON_ROOT.'/download/2.zip' );
-	if( $ret['down']['ver'] - $ver < 2 ){
-		$ret['down']['url'] = 'http://summon.51094.com/download/1.zip';
-		$ret['down']['size'] = filesize( SUMMON_ROOT.'/download/1.zip' );
+	$tVer = $server->getServerVer();
+	if( $tVer > $ver ){
+		$ret['down']['ver'] = $tVer;
+		$ret['down']['url'] = 'http://summon.51094.com/download/2.zip';
+		$ret['down']['size'] = filesize( SUMMON_ROOT.'/download/2.zip' );
+		if( $tVer - $ver < 2 ){
+			$ret['down']['url'] = 'http://summon.51094.com/download/1.zip';
+			$ret['down']['size'] = filesize( SUMMON_ROOT.'/download/1.zip' );
+		}
 	}
 	ret( $ret );
  }else{
