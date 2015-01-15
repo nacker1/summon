@@ -164,13 +164,13 @@
 				break;
 			case '68':	//英雄炼狱
 				$user->setMissionId(2,68);
-				if( $input['roundid'] == 960003 ){ #钢铁巢穴
+				if( $input['stageid'] == 960003 ){ #钢铁巢穴
 					$actLimit = new User_Limit( $user->getUid(), 'steelNestDay' );
 					$actLimit->addLimitTimes();
-				}elseif( $input['roundid'] == 960004 ){#飞龙宝藏
+				}elseif( $input['stageid'] == 960004 ){#飞龙宝藏
 					$actLimit = new User_Limit( $user->getUid(), 'hiryuTreasuresDay' );
 					$actLimit->addLimitTimes();
-				}elseif( $input['roundid'] == 960005 ){#猎杀巨龙
+				}elseif( $input['stageid'] == 960005 ){#猎杀巨龙
 					$actLimit = new User_Limit( $user->getUid(), 'killDragonDay' );
 					$actLimit->addLimitTimes();
 				}
