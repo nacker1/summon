@@ -29,6 +29,7 @@
  }
  switch ($type) {
  	case '1': //购买体力 
+ 		$tag = '购买体力';
  		$cooldou = $limit->getOneTimeCooldou();
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
@@ -40,6 +41,7 @@
  		}
  		break;
  	case '2'://点金手 		$u
+ 		$tag = '点金手';
 		$times = $limit->getUsedTimes();
 		$reCooldou = true;
 		$buyGold = new Buy( 'buyGold', ($times+1) );
@@ -71,6 +73,7 @@
 		}
  		break;
  	case '3': //购买竞技场战斗次数
+ 		$tag = '购买竞技场战斗次数';
  		$cooldou = $limit->getOneTimeCooldou();
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
@@ -82,6 +85,7 @@
  		}
  		break;
  	case '4': //消除竞技场冷却时间
+ 		$tag = '消除竞技场冷却时间';
  		$cooldou = $limit->getOneTimeCooldou();
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
@@ -93,6 +97,7 @@
  		}
  		break;
  	case '5': //购买技能点
+ 		$tag = '购买技能点';
  		$cooldou = $limit->getOneTimeCooldou();
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
@@ -104,6 +109,7 @@
  		}
  		break;
  	case '6': //购买精英关卡
+ 		$tag = '购买精英关卡';
  		$roundid = $input['roundid'];  #关卡id
  		if( empty( $roundid ) ){ ret(' YMD'.__LINE__,-1); }
  		$cooldou = $limit->getOneTimeCooldou( $roundid );
@@ -117,6 +123,7 @@
  		}
  		break;
  	case '7': //购买炼狱关卡
+ 		$tag = '购买炼狱关卡';
  		$roundid = $input['roundid'];  #关卡id
  		if( empty( $roundid ) ){ ret(' YMD'.__LINE__,-1); }
  		$cooldou = $limit->getOneTimeCooldou( $roundid );
@@ -130,6 +137,7 @@
  		}
  		break;
  	case '8': //购买战争学院敲醒次数
+ 		$tag = '购买战争学院敲醒次数';
  		$cooldou = $limit->getOneTimeCooldou( $roundid );
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
