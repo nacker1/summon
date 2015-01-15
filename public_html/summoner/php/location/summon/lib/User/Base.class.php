@@ -728,7 +728,7 @@ class User_Base extends Base{
      **/
     public function addUserRecord( $key, $value ){
         $this->log->d( '添加用户记录信息：'.$key.'+='.$value );
-        return self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
+        return self::$retinfo[$this->uid][$key] = self::$userinfo[$this->uid][$key] = self::$recordInfo[$this->uid][$key] = (int)self::$userinfo[$this->uid][$key] + $value;
     }
     /**
      *@ setUserGuide 设置用户的新手引导进度
