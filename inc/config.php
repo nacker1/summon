@@ -36,5 +36,5 @@
 	#============== 关卡类配置  ===================
 	define( 'INIT_ROUNDID', 910102);								#初始关卡任务的关卡id
 
-	define( 'ROOT', dirname(__DIR__) );
+	define( 'SUMMON_ROOT', dirname(__DIR__) );
 ?>
