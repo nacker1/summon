@@ -225,36 +225,17 @@ switch ($type) {
         for($i=0;$i<10;$i++){
             $pre = Redis_Redis::initRedis($i);
             $allkeys = $pre->keys('roleinfo:*:baseinfo');
-            $flag_user = 0;
-            $flag_uc = 0;
-            $start = time();
+            $now = time();
             foreach($allkeys as $v){
-                $userinfo['heartTime'] = $pre->hget($v,'_heartTime');
-                $userinfo['uid'] = substr($v,strpos($v,':')+1);
-                if( empty($userinfo['uid']) ){
-                    $log->e('用户uid取不到值，v:'.$v.',userinfo:'.json_encode($userinfo));
-                    continue;
-                }
-                $beat = $userinfo['heartTime'];
-                /*if( count($userinfo) < 20 ){
-                    $abnormal[] = $userinfo['uid'];
-                    continue;
-                }*/
-                if( ( time() - $beat ) < 300 ){
+                $beat = $pre->hget($v,'_heartTime');
+                if( ( $now - $beat ) < 300 ){
                     $tol_user_nums += 1;
                 }
-                unset($userinfo);
-                unset($beat);
             }
-            $end = time();
-            $flag_user = 0;
-            $flag_uc = 0;
         }
         $ret['num']=$tol_user_nums;
         ret($ret);
-        break;
     case '1005': #发送公共邮件
-
         $content = $input['content'];
         $type = $input['type'];
         $goods = $input['goods'];
@@ -272,7 +253,6 @@ switch ($type) {
         # code...
         phpinfo();
         ret( ' YMD '.__LINE__, -1 );
-        break;
 }
 
 $ret = $user->getUserLastUpdInfo();
