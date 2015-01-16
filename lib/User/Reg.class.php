@@ -28,7 +28,7 @@
 		$this->loginDb = Db_Mysql::init('login');
 		$this->_init();	
 	}
-	
+
 	private function _init(){
 		$ret = $this->loginDb->findOne($this->table,'id,status',array( 'source'=>$this->source, 'source_id'=>$this->source_id ));
 		if( $ret && is_array($ret) && count($ret)>0 ){
