@@ -197,7 +197,6 @@ switch ($type) {
         ret( $user->getUserInfo() );
         break;
     case '1003': #发送个人邮件
-
         $content = $input['content'];
         $type = $input['type'];
         $goods = $input['goods'];
@@ -213,14 +212,6 @@ switch ($type) {
         }
         break;
     case '1004': #统计在线人数
-        global $log;
-        define('ISLOG',true);
-        if( PHP_OS == 'Linux' )
-            $include = '/data/web/summon/inc/inc.php';
-        else
-            $include = 'C:/wamp/www/summon/inc/inc.php';
-        require_once $include;
-        $log = new Logger('xync_userinfo','/data/web/summonAdmin/logs/sync/');
         $tol_user_nums = 0;
         for($i=0;$i<10;$i++){
             $pre = Redis_Redis::initRedis($i);
