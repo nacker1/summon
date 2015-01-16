@@ -67,7 +67,7 @@
 		case '10': #赏金之路钻石抽
 			$tag = '赏金之路开宝箱';
 			$roundnum = $input['roundnum'];  #赏金之路关卡id
-			$actLimit = new User_Limit( $user->getUid(), 'endLessFieldDay', $roundnum );
+			$actLimit = new User_Limit( $user->getUid(), 'endLessFieldDay' );
 			if( $actLimit->getUsedTimes() < 1 ){
 				#ret( '通关后地能抽取对应奖励',-1 );
 			}
