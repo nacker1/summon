@@ -23,6 +23,7 @@
 	 	$ret['down']['url'] = 'http://summon.51094.com/download/2.zip';
 	 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/download/2.zip');
 	 }
+	 ret($ret);
  }else{
 	 if( $key == $sign ){
 		$user = new User_Reg( $source, $source_id , $name, $channel );
