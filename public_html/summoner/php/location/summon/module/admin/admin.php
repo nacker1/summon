@@ -213,7 +213,7 @@ switch ($type) {
         break;
     case '1004': #统计在线人数
         $tol_user_nums = 0;
-        for($i=0;$i<10;$i++){
+        for($i=10;$i<20;$i++){
             $pre = Redis_Redis::initRedis($i);
             $allkeys = $pre->keys('roleinfo:*:baseinfo');
             $now = time();
