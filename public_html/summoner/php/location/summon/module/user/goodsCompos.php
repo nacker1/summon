@@ -137,6 +137,7 @@
  		
  		ret( array_merge($ret, $result) );
  	case '3'://给用户发放物品接口
+ 		$tag = '管理后台发放物品';
  		$gid   = isset($input['g']) ? $input['g'] : 0;
  		$num = isset($input['n']) ? $input['n'] : 10;
  		if( empty( $gid ) ){

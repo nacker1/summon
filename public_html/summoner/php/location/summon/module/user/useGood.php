@@ -9,6 +9,7 @@
  //exit;
  switch( $type ){
 	case '1': //基础消耗品使用 如体力药水
+		$tag = '背包里使用物品';
 		$gid = $input['gid'];	//物品id
 		$nums = isset( $input['nums'] ) && is_numeric( $input['nums'] ) && $input['nums'] > 0 ? $input['nums'] : 1;	//消耗物品数量
 		$good = new User_Goods( $user->getUid(),$gid );
@@ -83,6 +84,7 @@
 		}
 		ret( '你确定他能吃？', -1 );
 	case '2': //物品出售
+		$tag = '出售物品';
 		$gid = $input['gid'];	//物品id
 		$ugid = $input['ugid'];	//用户拥有物品id
 		$nums = isset( $input['nums'] ) && is_numeric( $input['nums'] ) && $input['nums'] > 0 ? $input['nums'] : 1;	//消耗物品数量

@@ -8,6 +8,7 @@
  $hid = $input['hid'];
  switch( $type ){
 	case '1'://获取用户所有英雄 
+		$tag = '获取英雄列表';
 		$hero = new User_Hero( $user->getUid() );
 		$heroList = $hero->getUserHeroList();
 		if( empty( $heroList ) ){
@@ -17,6 +18,7 @@
 		}
 	
 	case '3'://给英雄穿装备 equipInfo 格式=>( 英雄装备框id:装备id:用户道具id&装备id )
+		$tag = '英雄穿装';
 		if( empty($hid) ){
 			ret('param error ('.__line__.') !',-1);
 		}
@@ -58,6 +60,7 @@
 		
 		ret( $ret );
 	case '4'://取下英雄装备 equipInfo 格式=>(index&index 装备框下标&装备框下标)
+		$tag = '英雄卸装';
 		$index = $input['index'];
 		if( empty($hid) || empty( $index ) ){
 			ret('param error ('.__line__.') !',-1);
@@ -211,6 +214,7 @@
 	case '7':#评论英雄以及点赞功能
 		if( empty( $hid ) ) ret( 'no_hid', -1 );
 		if( isset( $input['con'] ) ){
+			$tag = '评论英雄';
 			$con = $input['con'];
 			$limit = new User_Limit(  $user->getUid(),'commentHeroDay' );
 			if( $limit->getTimeLimit( $hid ) ){
@@ -227,6 +231,7 @@
 			$do->commentHero( implode('|',$uinfo), $con );
 			$limit->addLimitTimes( 1,$hid );
 		}else{
+			$tag = '英雄点赞';
 			$cid = $input['cid'];
 			$limit = new User_Limit(  $user->getUid(), 'laudHeroDay' );
 			if( $limit->getTimeLimit( $cid ) ){
@@ -276,6 +281,7 @@
 		}
 		ret( $ret );
 	case '999'://给英雄添加经验
+		$tag = '后台添加英雄经验';
 		$hero = new User_Hero( $user->getUid(), $hid );
 		ret($hero->getTotalFire());
 		if( empty($hid) ){
