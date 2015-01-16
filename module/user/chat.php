@@ -12,7 +12,7 @@
  switch( $type ){
  	case '1': #拉取信息
  		$tag = '拉取世界信息';
- 		$lasttime = isset( $input['lt'] ) ? $input['lt'] : time();
+ 		$lasttime = isset( $input['lt'] ) ? $input['lt'] : (time()-600);
  		$chat = new Chat( $user->getUid() );
  		ret( $chat->getChat( $lasttime ));
  	case '2': #发送信息
