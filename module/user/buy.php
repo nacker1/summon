@@ -109,13 +109,13 @@
  		}
  		break;
  	case '6': //购买精英关卡
- 		$tag = '购买精英关卡';
+ 		$tag = '购买困难关卡';
  		$roundid = $input['roundid'];  #关卡id
  		if( empty( $roundid ) ){ ret(' YMD'.__LINE__,-1); }
  		$cooldou = $limit->getOneTimeCooldou( $roundid );
  		if( $user->getCooldou() >= $cooldou ){
  			$add['jewel'] = -$cooldou;
- 			$toLimit = new User_Limit( $config[$type]['to'] );
+ 			$toLimit = new User_Limit( $user->getUid(), $config[$type]['to'] );
  			$toLimit->delLimit( $roundid );
  			$ret = $user->sendGoodsFromConfig($add);
  		}else{
