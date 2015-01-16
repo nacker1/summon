@@ -14,7 +14,7 @@
 		$this->skey = $skey;
 		parent::__construct( $uid );
 		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
-		if( $this->skey != -1 && !C('test')){
+		if( $this->skey != -1 && $this->uid != ADMIN_UID ){
 			$this->_check(); //检验用户登录
 		}
 	}
