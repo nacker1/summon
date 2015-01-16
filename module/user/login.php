@@ -15,13 +15,15 @@
  if( empty( $source ) && empty( $source_id ) && empty( $channel ) ){
  	 $server = new Server();
  	 $tVer = $server->getServerVer();
- 	 $ret['down']['ver'] = $tVer;
-	 if( $tVer - $ver < 2 ){
-	 	$ret['down']['url'] = 'http://summon.51094.com/download/1.zip';
-	 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/download/1.zip');
-	 }else{
-	 	$ret['down']['url'] = 'http://summon.51094.com/download/2.zip';
-	 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/download/2.zip');
+ 	 if( $tVer > $ver ){
+	 	 $ret['down']['ver'] = $tVer;
+		 if( $tVer - $ver < 2 ){
+		 	$ret['down']['url'] = 'http://summon.51094.com/download/1.zip';
+		 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/download/1.zip');
+		 }else{
+		 	$ret['down']['url'] = 'http://summon.51094.com/download/2.zip';
+		 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/download/2.zip');
+		 }
 	 }
 	 ret($ret);
  }else{
