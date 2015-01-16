@@ -21,6 +21,7 @@
 
 # ----------------------------------------------------------每天竞技场打斗限制-------------------------------------------------------------------------------------
 	if( 64==$input['tasktype'] ){
+		$tag = '挑战竞技场';
 		$log->i('竞技场战斗结算');					
 		$custLimit = new User_Limit( $user->getUid(), 'doArenaTimesDay' ); 
 		$user->setMissionId(2,64);
@@ -78,6 +79,7 @@
 		}
 # ----------------------------------------------------------每天精英关卡与炼狱关卡通关次数限制-------------------------------------------------------------------------------------
 		if( 4 == $input['stagetype'] ){//扫荡处理 英雄经验转化成药水
+			$tag = 'pve扫荡';
 			if( empty($input['isboss']) ){
 				$log->e( '* 关卡不是大关卡，无法扫荡。');
 				ret( 'YMD'.__LINE__,-1 );
@@ -138,25 +140,31 @@
 
 		switch( $input['tasktype'] ){  //通关扣除体力
 			case '11': 	//普通关卡
+				$tag = 'pev普通关卡';
 				$user->setMissionId( 2, 14,$sweepNum ); //每日所有副本任务
 				break;
 			case '12':	//精英关卡
+				$tag = 'pev困难关卡';
 				$user->setMissionId(2,15,$sweepNum);
 				break;
 			case '13':	//炼狱关卡
+				$tag = 'pev炼狱关卡';
 				$user->setMissionId(2,16,$sweepNum);
 				break;
 			case '69':	//呆小红
+				$tag = '活动呆小红';
 				$user->setMissionId(2,69);
 				$actLimit = new User_Limit( $user->getUid(), 'minRedDay' );
 				$actLimit->addLimitTimes();
 				break;
 			case '70':	//呆小蓝
+				$tag = '活动呆小蓝';
 				$user->setMissionId(2,70);
 				$actLimit = new User_Limit( $user->getUid(),'minBlueDay' );
 				$actLimit->addLimitTimes();
 				break;
 			case '71':	//无尽之地  赏金之路
+				$tag = '活动赏金之路';
 				$add['mAction'] = $input['endlessmoney'];  #赏金之路钱
 				$user->setMissionId(2,71);
 				$actLimit = new User_Limit( $user->getUid(), 'endLessFieldDay', $input['roundnum'] );
@@ -165,17 +173,21 @@
 			case '68':	//英雄炼狱
 				$user->setMissionId(2,68);
 				if( $input['stageid'] == 960003 ){ #钢铁巢穴
+					$tag = '活动钢铁巢穴';
 					$actLimit = new User_Limit( $user->getUid(), 'steelNestDay' );
 					$actLimit->addLimitTimes();
 				}elseif( $input['stageid'] == 960004 ){#飞龙宝藏
+					$tag = '活动飞龙宝藏';
 					$actLimit = new User_Limit( $user->getUid(), 'hiryuTreasuresDay' );
 					$actLimit->addLimitTimes();
 				}elseif( $input['stageid'] == 960005 ){#猎杀巨龙
+					$tag = '活动猎杀巨龙';
 					$actLimit = new User_Limit( $user->getUid(), 'killDragonDay' );
 					$actLimit->addLimitTimes();
 				}
 				break;
 			case '66':	//黄金矿山
+				$tag = '活动黄金矿山';
 				$user->setMissionId(2,66);
 				$actLimit = new User_Limit( $user->getUid(), 'goldMineDay' );
 				$actLimit->addLimitTimes();

@@ -8,6 +8,7 @@
 
  switch ($type) {
  	case '1': #
+ 		$tag = '改名';
  		$image = isset($input['img']) ? $input['img'] : '' ;
 		$name = isset($input['name']) ? trim($input['name']) : '' ;
 
@@ -40,11 +41,13 @@
 		}
  		break;
  	case '2': #记录用户新手引导进度
+ 		$tag = '设置新手引导';
  		$index = $input['index'];
  		$gid = $input['gid'];
  		ret( $user->setUserGuide( $index, $gid ) );
  		break;
  	case '3': #用户禁言功能
+ 		$tag = '用户禁言功能';
 	 	$gag = new Cond( 'user_limit', $user->getUid(), GAG_TIME );
 	 	$gag->set( 1,'gag' );
 	 	$ret['v'] = $gag->get('gag');
@@ -100,13 +103,14 @@
 	 	$limit->addLimitTimes(1);
 	 	ret( $ret );
      case '8': #用户禁言状态查询
-
+     	 $tag = '用户禁言状态查询';
          $gag = new Cond( 'user_limit', $user->getUid(), 600 );
          $ret['v'] = $gag->get('gag');
          $ret['t'] = $gag->getTimes('gag');
          ret($ret);
          break;
      case '9': #用户解禁
+     	 $tag = '用户解禁';
          $gag=new Redis();
          $gag = new Cond( 'user_limit', $user->getUid(), 600 );
          $gag->del( 'gag' );

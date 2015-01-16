@@ -11,10 +11,12 @@
 
  switch( $type ){
  	case '1': #拉取信息
+ 		$tag = '拉取世界信息';
  		$lasttime = isset( $input['lt'] ) ? $input['lt'] : time();
  		$chat = new Chat( $user->getUid() );
  		ret( $chat->getChat( $lasttime ));
  	case '2': #发送信息
+ 		$tag = '发布世界信息';
  		$to = !empty( $input['to'] ) ? $input['to'] : '';
  		$ct = !empty( $input['ct'] ) ? $input['ct'] : '';
  		$con = $input['con'];
@@ -57,6 +59,7 @@
 	 		ret('发送成功');
 	 	}
 	 case '3': #
+	 	$tag = '玩家禁言';
 	 	$gag = new Cond( 'user_limit', $user->getUid(), 600 );
 	 	$gag->set( 1,'gag' );
 	 	$ret['v'] = $gag->get('gag');
