@@ -5,7 +5,7 @@
  $name 				= $input['n'];  			#登录平台用户昵称
  $source 			= $input['s']; 				#登录平台id
  $source_id 		= $input['sid']; 			#登录平台角色id (唯一id)
- $channel 			= $input['cid']; 			#登录平台角色id (唯一id)
+ $channel 			= $input['cid']; 			#登录渠道id
  $time 				= $input['ts'];				#登录时间
  $sign 				= $input['sign'];			#校验
  $ver  				= (int)$input['ver'];			#版本id  用户检测热更新
