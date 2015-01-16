@@ -200,7 +200,7 @@ class User_Draw extends User_Base{
  *@ _getDrawType 获取可以抽奖的类型信息
  **/
 	private function _getDrawType(){
-		$uLevel = $this->getLevel();
+		$uLevel = $this->groupLevel;
 		switch (1) {
 			case 0<$uLevel && $uLevel<10:#1-9级
 				$flag = '1#9';
