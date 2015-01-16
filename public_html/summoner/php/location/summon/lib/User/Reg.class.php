@@ -13,9 +13,10 @@
 
 
 	
-	public function __construct($source,$source_id,$name='',$channel=''){
+	public function __construct($source,$source_id,$name='',$channel='1'){
 		$this->source = $source ;
 		$this->source_id = $source_id ;
+		$this->channel = $channel;
 		if( empty( $name ) ){
 			$this->name = $source.'_'.$source_id;
 		}else{
