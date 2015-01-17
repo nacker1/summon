@@ -109,7 +109,7 @@
  		}
  		break;
  	case '6': //购买精英关卡
- 		$tag = '购买困难关卡';
+ 		$tag = '购买困难关卡次数';
  		$roundid = $input['roundid'];  #关卡id
  		if( empty( $roundid ) ){ ret(' YMD'.__LINE__,-1); }
  		$cooldou = $limit->getOneTimeCooldou( $roundid );
@@ -123,7 +123,7 @@
  		}
  		break;
  	case '7': //购买炼狱关卡
- 		$tag = '购买炼狱关卡';
+ 		$tag = '购买炼狱关卡次数';
  		$roundid = $input['roundid'];  #关卡id
  		if( empty( $roundid ) ){ ret(' YMD'.__LINE__,-1); }
  		$cooldou = $limit->getOneTimeCooldou( $roundid );

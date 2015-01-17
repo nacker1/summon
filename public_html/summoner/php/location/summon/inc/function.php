@@ -270,8 +270,14 @@
  *@ getUniqCode 生成指定长度的唯一字符串
  **/
 	function getUniqCode(){
+		$code = crc32(uniqid(rand(10000,99999)));
+		while( $code<0 || strlen( $code ) != 10 ){
+			$code = crc32(uniqid(rand(10000,99999)));
+		}
+		return $code;
+		/*
 		return uniqid(rand(10000, 99999));
-		/*$code = crypt(gettimeofday(true),rand(1,10000));
+		$code = crypt(gettimeofday(true),rand(1,10000));
 		while( preg_match('/\W/', $code) ){
 			$code = crypt(gettimeofday(true),rand(1,10000));
 		}
