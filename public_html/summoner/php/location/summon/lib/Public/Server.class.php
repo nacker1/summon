@@ -108,7 +108,7 @@
 	public function getServerVer(){
 		$ret = $this->pre->hgetall( 'summon:version' );
 		if( empty( $ret ) || !isset( $ret['ver'] ) ){
-			$ret['ver'] = 2;
+			$ret['ver'] = 1;
 		}
 		return (int)$ret['ver'];
 	}
