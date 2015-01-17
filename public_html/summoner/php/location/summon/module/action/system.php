@@ -20,7 +20,7 @@
 		}else{
 			$ret = $user->sendGoodsFromConfig( $config );
 		}
-		
+		$ret['get'] = $config;
 		ret( $ret );
 	case '2'://用户反馈
 		$tag = ' 用户反馈 ';
