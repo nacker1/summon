@@ -43,7 +43,7 @@ class Db_Mysql{
 				if( is_array($v) ){
 					if( isset( $v['>'] ) || isset( $v['<'] ) || isset( $v['<>'] ) ){
 						foreach( $v as $kk=>$vv){
-							$cond .= ' and `'.$k.'` '.$kk.$vv;
+							$cond .= ' and `'.$k.'` '.$kk.'"'.$vv.'"';
 						}
 					}else{
 						$cond .= ' AND `'.$k.'` in ('.implode(',',$v).')';
