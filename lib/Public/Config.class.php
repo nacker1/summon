@@ -149,7 +149,9 @@ class Config{
 			'uniqPay_7' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
 			'uniqPay_8' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
 			'uniqPay_9' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),          				#充值订单记录  通用
-			'default' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357')
+			'default_1' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),
+			'default_2' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),
+			'default_3' => array('host' => '192.168.0.202', 'port' => 20010, 'pass' => 'coolplay159357'),
 		),
 		'online'=>array( //ÐÅÏ¢´ýÉÏÏßÈ·ÈÏºóÔÙ½øÐÐÅäÖÃ
 			'sync_db' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          					#保存同步sql语句的redis
