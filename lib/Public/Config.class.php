@@ -190,21 +190,21 @@ class Config{
  * return: 默认返回当前区的公共数据端口 20010
  **/
 	function getRedisList(){
+		if( !empty( $this->type ) ){
+			if( is_numeric($this->type) ){
+				$this->type = 'redis'.( $this->type%USER_TAG );
+			}
+			if( !isset( self::$redis_config[self::$env][$this->type] ) ){
+				$ser = new Server( $this->sid );
+				$List = $ser->getRedisList();
+				foreach( $List as $k=>$v ){
+					self::$redis_config[self::$env][ $k ] = $v;
+				}
+			}
+		}
 		if( isset( self::$redis_config[self::$env][$this->type] ) ){
 			return self::$redis_config[self::$env][$this->type];
 		}else{
-			if( !empty( $this->type ) ){
-				if( is_numeric($this->type) ){
-					$this->type = 'redis'.( $this->type%USER_TAG );
-				}
-				if( !isset( self::$redis_config[self::$env][$this->type] ) ){
-					$ser = new Server( $this->sid );
-					$List = $ser->getRedisList();
-					foreach( $List as $k=>$v ){
-						self::$redis_config[self::$env][ $k ] = $v;
-					}
-				}
-			}
 			return self::$redis_config[self::$env]['default_1'];
 		}
 	}
