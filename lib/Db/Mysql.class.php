@@ -54,8 +54,8 @@ class Db_Mysql{
 				}
 			}
 		}
-	        	$sql = "select $columns FROM `{$table}` $cond $other";
-	    	return $this->query($sql);
+		$sql = "select $columns FROM `{$table}` $cond $other";
+		return $this->query($sql);
 	}
 	
 	public function findOne($table, $columns='*', $where='', $other = ''){
@@ -76,8 +76,8 @@ class Db_Mysql{
 				}
 			}
 		}
-	        	$sql = "select $columns FROM `{$table}` $cond $other limit 1";
-	    	$ret = $this->query($sql);
+				$sql = "select $columns FROM `{$table}` $cond $other limit 1";
+			$ret = $this->query($sql);
 		return is_array($ret)&&count($ret)>0 ? $ret[0] : false;
 	}
 
@@ -95,37 +95,37 @@ class Db_Mysql{
 	}
 
 	public function update($table, $row, $where='') {
-        $stat = '';
-        foreach ($row as $k => $v) {
+		$stat = '';
+		foreach ($row as $k => $v) {
 			$value = mysql_real_escape_string($v);
-            $stat .= "`$k` = '$value',";
-        }
-        $stat = substr($stat, 0, strlen($stat) - 1);
+			$stat .= "`$k` = '$value',";
+		}
+		$stat = substr($stat, 0, strlen($stat) - 1);
 		
-        $cond = ' where 1=1';
-        foreach ($where as $k => $v) {
+		$cond = ' where 1=1';
+		foreach ($where as $k => $v) {
 			if( is_array($v) ){
 				$cond .= ' and  '.$k.' in ('.implode($v,',').')';
 			}else{
 				$value = mysql_real_escape_string($v);
 				$cond .= " and `$k` = '$value' ";
 			}
-        }
+		}
 		
-        $sql = "update `{$table}` SET $stat $cond";
-        return  $this->_exet($sql);
+		$sql = "update `{$table}` SET $stat $cond";
+		return  $this->_exet($sql);
 	}
 
 	public function delete( $table,$where ){
 		$cond = ' where 1=1';
-	            foreach ($where as $k => $v) {
+		foreach ($where as $k => $v) {
 			if( is_array($v) ){
 				$cond .= ' and  '.$k.' in ('.implode($v,',').')';
 			}else{
 				$value = mysql_real_escape_string($v);
 				$cond .= " and `$k` = '$value' ";
 			}
-	            }
+				}
 		$sql = 'delete from `'.$table.'` '.$cond;
 		return $this->_exet( $sql );
 	}
@@ -154,7 +154,7 @@ class Db_Mysql{
 		$ret = mysql_query($sql,$t->getConn());
 		$this->setInsertId( mysql_insert_id( $t->getConn() ) );
 		if( !$ret ){
-            		global $log;
+					global $log;
 			gettype($log) == 'object' && $log->f($sql.'__'.$t->error());
 		}
 		return $ret;
@@ -178,63 +178,63 @@ class Db_Mysql{
 		return $this->lastInsertId = $id;
 	}
 	/**
-     * @access public
-     * @return array
-     */
-    public function getTables($dbName='') {
-        if(!empty($dbName)) {
-           $sql    = 'SHOW TABLES FROM '.$dbName;
-        }else{
-           $sql    = 'SHOW TABLES ';
-        }
-        $result =   $this->query($sql);
-        $info   =   array();
-        foreach ($result as $key => $val) {
-            $info[$key] = current($val);
-        }
-        return $info;
-    }
+	 * @access public
+	 * @return array
+	 */
+	public function getTables($dbName='') {
+		if(!empty($dbName)) {
+		   $sql	= 'SHOW TABLES FROM '.$dbName;
+		}else{
+		   $sql	= 'SHOW TABLES ';
+		}
+		$result =   $this->query($sql);
+		$info   =   array();
+		foreach ($result as $key => $val) {
+			$info[$key] = current($val);
+		}
+		return $info;
+	}
 
 	public function getConn(){
 		return $this->connect;
 	}
 
 	/**
-     * @access public
-     * @return string
-     */
-    public function error() {
-        return mysql_errno($this->connect).':'.mysql_error($this->connect).' == Config:'.json_encode($this->getConfig());
-    }
+	 * @access public
+	 * @return string
+	 */
+	public function error() {
+		return mysql_errno($this->connect).':'.mysql_error($this->connect).' == Config:'.json_encode($this->getConfig());
+	}
 	/**
-     * @access public
-     */
-    public function free() {
-        mysql_free_result($this->queryId);
-        $this->queryID = null;
-    }
+	 * @access public
+	 */
+	public function free() {
+		mysql_free_result($this->queryId);
+		$this->queryID = null;
+	}
 	public function _close() {
-        if($this->connect){
-            $ret = mysql_close($this->connect);
-            self::$mysql[$this->type] = null;
-        }
-    }
+		if($this->connect){
+			$ret = mysql_close($this->connect);
+			self::$mysql[$this->type] = null;
+		}
+	}
 	 /**
-     * @access public
-     * @return void
-     */
-    public function close() {
-        foreach( self::$mysql as $k=>$v ){
-        	if( gettype( $v ) == 'object' ){
+	 * @access public
+	 * @return void
+	 */
+	public function close() {
+		foreach( self::$mysql as $k=>$v ){
+			if( gettype( $v ) == 'object' ){
 				$v->_close();
 				unset(self::$mysql[$k]);
 			}
 		}
-    }
+	}
 	/**
-     * @access public
-     */
-    public function __destruct() {
-        $this->close();
-    }
+	 * @access public
+	 */
+	public function __destruct() {
+		$this->close();
+	}
 }
