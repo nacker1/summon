@@ -68,7 +68,7 @@
 					}
 					if( $hero->addHeroExp( $gConfig['Hero_Exp'] * $nums ) ){
 						$good->reduceGoods( $nums );
-						$ret['hero'][$hid] = $hero->getLastUpdField();
+						$ret['hero'] = $hero->getLastUpdField();
 						$ret['list'] = $good->getLastUpdGoods();
 						ret( $ret );
 					}else{
