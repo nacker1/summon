@@ -40,7 +40,7 @@ class Public_Modinit{
             }
         }
         if( is_array($modinfo) && count($modinfo)>0 ){
-            $this->key == $modinfo['key'] || ret('key error('.$this->mid.'-'.$this->key.')!',-1);
+            $this->key == $modinfo['key'] || ret('key error('.$modinfo['key'].'-'.$this->key.')!',-1);
             $this->path = $modinfo['path'];
             if( !empty($modinfo['version']) && $modinfo['version'] > 0 ){
                 $this->version >= $modinfo['version'] || ret('Version '.$modinfo['version'].' minimum requirements');
