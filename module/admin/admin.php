@@ -219,7 +219,7 @@ switch ($type) {
             $now = time();
             foreach($allkeys as $v){
                 $beat = $pre->hget($v,'_heartTime');
-                if( ( $now - $beat ) < 300 ){
+                if( ( $now - $beat ) < 30000 ){
                     $tol_user_nums += 1;
                 }
             }
