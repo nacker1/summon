@@ -39,7 +39,6 @@ class Public_Modinit{
                 $pre->hmset('modinfo:'.$this->gameid.':'.$this->mid,$modinfo,get3time());
             }
         }
-        dump($modinfo);
         if( is_array($modinfo) && count($modinfo)>0 ){
             $this->key == $modinfo['key'] || ret('key error('.$modinfo['key'].'-'.$this->key.')!',-1);
             $this->path = $modinfo['path'];
