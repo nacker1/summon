@@ -30,7 +30,7 @@ class Public_Modinit{
     private function _getModinfo(){
         $pre = Redis_Redis::init();
         $modinfo = $pre->hgetall('modinfo:'.$this->gameid.':'.$this->mid);
-        if( C('test') || !$modinfo || !is_array($modinfo) || !count($modinfo)>0 ){
+        if( C('test') || !$modinfo || !is_array($modinfo) || !count($modinfo)>0 || !isset( $modinfo['key'] ) ){
             $db = Db_Mysql::init('admin');
             $modinfo = $db->findOne('zy_modConfig','`mid`,`path`,`version`,`status`,`tag`,`key`,`islog`,`online`,`info`,`name`',array('mid'=>$this->mid,'gameid'=>$this->gameid) );
             unset($modinfo['id']);
