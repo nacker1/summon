@@ -16,7 +16,7 @@ class User_Friend extends User_Base{
  **/
 	function __construct( $uid='', $toUid='' ){
 		parent::__construct( $uid );
-		$this->log->i('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
+		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		$this->toUid = $toUid;
 		$this->cond = new Cond( 'userFriendList',$this->getUid(),0,'Friend' );
 		if( !empty( $this->toUid ) ){

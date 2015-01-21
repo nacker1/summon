@@ -72,6 +72,9 @@
  *@ 创建新角色
  **/
 	private function _createRole(){
+		if( REFUSE_REGISTER ){
+			ret( ' 当前服务器人数过多，请选择其他服务器注册。 ',-1 );
+		}
 		$insert['nickname'] = $this->rid.$this->sid;		//昵称
 		$insert['image'] = '1';								//头像
 		$insert['level'] = 1;								//等级

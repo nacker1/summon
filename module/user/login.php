@@ -8,7 +8,7 @@
  $channel 			= $input['cid']; 			#登录平台角色id (唯一id)
  $time 				= $input['ts'];				#登录时间
  $sign 				= $input['sign'];			#校验
- $ver  				= (int)$input['ver'];			#版本id  用户检测热更新
+ $ver  				= (int)$input['ver'];		#版本id  用户检测热更新
  $serverLastUpdTime = $input['slt'];			#客户端本地服务器列表最后更新的时间
  $key = md5($name.$source.$source_id.$channel.$time);
  $input['key'] = $key;

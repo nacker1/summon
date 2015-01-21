@@ -1,6 +1,6 @@
 <?php
 /**
- *@ 每日签到接口
+ *@ 每日活动接口
  **/
 
  $user = new User_User();
@@ -46,7 +46,6 @@
  		$limit->addLimitTimes(1);
  		$limit->setTimeLimit('',$gold->getNextTime());
  		$ret = $user->sendGoodsFromConfig( $gold->getReward() );
- 		
  		ret( $ret );
  	case '999':
  		#清除签到相关数据
@@ -56,6 +55,6 @@
  	default:
  		# code...
  		break;
- }
+}
 ret( '看~~  灰机~~', -1 );
 ?>

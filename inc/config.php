@@ -37,4 +37,6 @@
 	define( 'INIT_ROUNDID', 910102);								#初始关卡任务的关卡id
 
 	define( 'SUMMON_ROOT', dirname(__DIR__) );
+
+	define( 'REFUSE_REGISTER', 0 );									#禁止注册  1为禁止 
 ?>
