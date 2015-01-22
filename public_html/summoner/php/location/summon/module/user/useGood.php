@@ -147,14 +147,12 @@
 		}
 		foreach( $heros as $key=>$value ){
 			foreach( $value as $k=>$v ){
-				$good[] = $k.','.$v; 
 				$hero = new User_Hero( $user->getUid(), $key );
-				if( !$hero->addHeroExp( $target[$k]['Hero_Exp'] * $v ) ){
-					ret( '英雄已达最大等级', -1 );
-				}
+				$hero->addHeroExp( $target[$k]['Hero_Exp'] * $v );
+				$good[] = $k.','.$v; 
 			}
 		}
-		$ret = $user->sendGoodsFromConfig( implode('#',$good) );
+		$ret = $user->sendGoodsFromConfig( array('good'=>implode('#',$good) ) );
 		$ret['hero'] = $hero->getLastUpdField();
 		ret( $ret );
 		break;
