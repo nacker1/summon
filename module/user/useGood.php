@@ -149,11 +149,11 @@
 			foreach( $value as $k=>$v ){
 				$hero = new User_Hero( $user->getUid(), $key );
 				$hero->addHeroExp( $target[$k]['Hero_Exp'] * $v );
-				$good[] = $k.','.$v; 
+				$red_good[] = $k.','.$v; 
 			}
 		}
-		dump($good);exit;
-		$ret = $user->sendGoodsFromConfig( array('good'=>implode('#',$good) ) );
+		dump($red_good);exit;
+		$ret = $user->sendGoodsFromConfig( array('good'=>implode('#',$red_good) ) );
 		$ret['hero'] = $hero->getLastUpdField();
 		ret( $ret );
 		break;
