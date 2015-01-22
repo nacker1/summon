@@ -149,7 +149,7 @@
 			foreach( $value as $k=>$v ){
 				$hero = new User_Hero( $user->getUid(), $key );
 				$hero->addHeroExp( $target[$k]['Hero_Exp'] * $v );
-				$red_good[] = $k.','.$v; 
+				$red_good[] = $k.',-'.$v; 
 			}
 		}
 		$ret = $user->sendGoodsFromConfig( array('good'=>implode('#',$red_good) ) );
