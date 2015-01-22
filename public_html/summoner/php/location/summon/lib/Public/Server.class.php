@@ -219,7 +219,7 @@
 		$config['updtime'] = time();
 		$this->cdb;
 		$this->setTop();
-		#$this->pre->hdel('server:list:*');
+		$this->pre->hdel('server:list:*');
 		if( !empty($this->sid) ){
 			$ret = $this->cdb->update( $this->table, $config, array( 'id'=>$this->sid ) );
 		}else{
