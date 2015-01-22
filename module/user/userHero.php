@@ -117,9 +117,6 @@
 			}
 
 			if( $goods->getGoodsNum() >= $color[ $cLevel ] ){
-				if( !$hero->colorUp( $cLevel ) ){
-					ret('系统繁忙',-1);
-				}
 				$reGood[] = $gid.',-'.$color[ $cLevel ];
 			}else{
 				$general = new User_Goods( $user->getUid(), GENERAL_ID );
@@ -128,15 +125,15 @@
 					ret('灵魂石不足',-1);
 				$reGood[] = GENERAL_ID.',-'.$num;
 				$reGood[] = $gid.',-'.$goods->getGoodsNum();
+			}
+			if( !$hero->colorUp( $cLevel ) ){
+				ret('系统繁忙',-1);
 			}
 		}else{ //英雄合成
 			if( $user->getMoney() < $money[ $cLevel  ] ){
 				ret( '合成英雄需要'.$money[$cLevel ].'金币', -1 );
 			}
 			if( $goods->getGoodsNum() >= $color[ $cLevel  ] ){
-				if( !$hero->giveHero() ){
-					ret('系统繁忙',-1);
-				}
 				$reGood[] = $gid.',-'.$color[ $cLevel ];
 			}else{
 				$general = new User_Goods( $user->getUid(), GENERAL_ID );
@@ -145,6 +142,9 @@
 					ret('灵魂石不足',-1);
 				$reGood[] = GENERAL_ID.',-'.$num;
 				$reGood[] = $gid.',-'.$goods->getGoodsNum();
+			}
+			if( !$hero->giveHero() ){
+				ret('系统繁忙',-1);
 			}
 		}
 		if( $cLevel==2 && $hid == 10002 ){
