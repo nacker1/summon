@@ -63,9 +63,6 @@
 				}
 				$hero = new User_Hero( $user->getUid(), $hid );
 				if( isset( $gConfig['Hero_Exp'] ) ){
-					if( $good->getGoodsNum() < $nums ){
-						ret('物品数量不足',-1);
-					}
 					if( $hero->addHeroExp( $gConfig['Hero_Exp'] * $nums ) ){
 						$good->reduceGoods( $nums );
 						$ret['hero'] = $hero->getLastUpdField();
@@ -105,6 +102,62 @@
 		}else{
 			ret('no_enough_item'.__LINE__,-1);
 		}
+	case '3': #数据格式  list='hid,gid,nums#hid,gid,nums....'
+		$tag = '英雄磕药';
+		$list = $input['list'];
+		if( empty( $list ) ){
+			ret( 'no_con', -1 );
+		}
+		$list = explode('#',$list);
+		if( !is_array( $list ) ){
+			ret( 'con_err', -1 );
+		}
+		$nums = 0;
+		foreach( $list as $v ){
+			$info = explode(',',$v);
+			if( isset( $gids[$info[1]] ) ){
+				$gids[$info[1]] += $info[2];
+			}else{
+				$gids[$info[1]] = $info[2];
+			}
+			if( isset( $heros[ $info[0] ][ $info[1] ] ) ){
+				$heros[ $info[0] ][ $info[1] ] += $info[2];
+			}else{
+				$heros[ $info[0] ][ $info[1] ] = $info[2];
+			}
+		}
+		foreach( $gids as $k => $v ){
+			$good[ $k ] = new User_Goods( $user->getUid(), $k );
+			if( $good[ $k ]->getType() != 6 ){
+				ret( '['.$good[ $k ]->getGoodName().']错误',-1 );
+			}
+			if( $good[ $k ]->getGoodsNum() < $v ){
+				ret('['.$good[ $k ]->getGoodName().']不足'.__LINE__,-1);
+			}
+			$target[ $k ] = $good[$k]->getBaseConfig();
+			if( !isset( $target[ $k ]['target'] ) ){
+				ret( 'no_target_config', -1 );
+			}
+			if( 'hero' != $target[ $k ]['target'] ){
+				ret( '此药药性太大，英雄承受不起', -1 );
+			}
+			if( !isset( $target[ $k ]['Hero_Exp'] ) ){
+				ret( 'no_exp', -1 );
+			}
+		}
+		foreach( $heros as $key=>$value ){
+			foreach( $value as $k=>$v ){
+				$good[] = $k.','.$v; 
+				$hero = new User_Hero( $user->getUid(), $key );
+				if( !$hero->addHeroExp( $target[$k]['Hero_Exp'] * $v ) ){
+					ret( '英雄已达最大等级', -1 );
+				}
+			}
+		}
+		$ret = $user->sendGoodsFromConfig( implode('#',$good) );
+		$ret['hero'] = $hero->getLastUpdField();
+		ret( $ret );
+		break;
 	default:
 		ret('param error',-1);
  }
