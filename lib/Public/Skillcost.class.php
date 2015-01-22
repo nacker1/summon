@@ -3,7 +3,7 @@
  *@ 技能等级升级消耗基础类  对就 zy_baseHeroSkillCost
  **/
  class Skillcost extends Pbase{
-	private $table = 'zy_baseHeroSkillCost'; //技能升级表
+	private $table = 'zy_baseHeroSkillUp'; //技能升级表
 	private $sIndex;	//第几个技能
 	private $level;		//技能等级
 	private $sInfo;		//技能信息
@@ -23,8 +23,8 @@
 			$this->cdb;
 			$skills = $this->cdb->find( $this->table );
 			foreach( $skills as $v ){
-				$this->pre->hmset( 'heroSkillCost:list:'.$v['id'],$v );
-				if( $v['id'] == $this->level ){
+				$this->pre->hmset( 'heroSkillCost:list:'.$v['Skill_Level'],$v );
+				if( $v['Skill_Level'] == $this->level ){
 					$this->sInfo = $v;
 				}
 			}
@@ -37,7 +37,7 @@
 	 *@ 获取当前等级升级需要消耗的金币数
 	 **/
 	public function getCostMoney(){
-		$ret = $this->sInfo[ 'skill'.$this->sIndex ];
+		$ret = $this->sInfo[ 'Skill'.$this->sIndex.'_Cose' ];
 		return  empty($ret) ? 0 : $ret;
 	}
 
