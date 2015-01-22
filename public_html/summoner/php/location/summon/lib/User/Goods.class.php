@@ -217,6 +217,13 @@
 	}
 
 /**
+ *@ 物品的配置信息
+ **/
+	public function getBaseConfig(){
+		return $this->bgood->getGoodConfig();
+	}
+
+/**
  *@ 获取用户指定物品数量
  **/
 	public function getGoodsNum(){
