@@ -26,7 +26,7 @@
 				$this->cdb;
 				$slist = $this->cdb->find($this->table);
 				foreach( $slist as $v ){
-					$this->pre->hmset( 'server:list:'.$v['id'],$v,86400 );
+					$this->pre->hmset( 'server:list:'.$v['id'],$v,get3time() );
 					$ret[$v['id']] = $v;
 					if( empty($this->updtime) || $this->updtime < $v['updtime'] ){
 						$this->updtime = $v['updtime'];
@@ -39,7 +39,7 @@
 						$this->pre->hmset('server:status:'.$v['id'],$stats);
 					}
 				}
-				$this->pre->set( 'server:list_check', 1, 86400 );
+				$this->pre->set( 'server:list_check', 1, get3time() );
 			}else{
 				$skeys = $this->pre->keys('server:list:*');
 				foreach( $skeys as $v ){
@@ -58,7 +58,7 @@
 			if( C( 'test' ) || !$this->pre->exists( 'server:list:'.$this->sid ) ){
 				$this->cdb;
 				$slist = $this->cdb->findOne($this->table,'*',array('id'=>$this->sid));
-				$this->pre->hmset( 'server:list:'.$slist['id'],$slist,86400 );
+				$this->pre->hmset( 'server:list:'.$slist['id'],$slist,get3time() );
 				if( C( 'test' ) || !$this->pre->exists('server:status:'.$slist['id']) ){
 					$stats = array('stats'=>2,'cInfo'=>'');
 					$this->pre->hmset('server:status:'.$slist['id'],$stats);
