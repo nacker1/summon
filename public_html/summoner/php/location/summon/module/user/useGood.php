@@ -152,7 +152,6 @@
 				$red_good[] = $k.','.$v; 
 			}
 		}
-		dump($red_good);exit;
 		$ret = $user->sendGoodsFromConfig( array('good'=>implode('#',$red_good) ) );
 		$ret['hero'] = $hero->getLastUpdField();
 		ret( $ret );
