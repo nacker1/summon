@@ -9,7 +9,7 @@ check_process()
                         sleep 3 
                 else
                         #这里启动进程 eg: /usr/local/webserver/nginx/sbin/nginx
-                        nohup php /data/web/summon/syncDb.php &
+                        nohup php /data/web/summon/sync/syncDb.php &
                         sleep 3
                 fi
         done
