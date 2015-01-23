@@ -4,7 +4,7 @@ check_process()
 {
         while [ 1 ]
         do
-                count=`ps -ef|grep "processname"|grep -v "grep"|wc -l`
+                count=`ps -ef|grep "syncDb.php"|grep -v "grep"|wc -l`
                 if [ $count -ge 1 ];then
                         echo "sleep 2s"
                         sleep 2
