@@ -38,7 +38,7 @@
 	 **/
 	public function getCostMoney(){
 		$this->log->d( json_encode($this->sInfo).'Skill'.$this->sIndex.'_Cose' );
-		$ret = $this->sInfo[ 'Skill'.$this->sIndex.'_Cose' ]; Skill1_Cost
+		$ret = $this->sInfo[ 'Skill'.$this->sIndex.'_Cose' ];
 		return  empty($ret) ? 0 : (int)$ret;
 	}
 
