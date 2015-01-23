@@ -1,4 +1,5 @@
 #!/bin/bash
+
 check_process()
 {
         while [ 1 ]
