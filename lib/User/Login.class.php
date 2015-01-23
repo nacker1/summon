@@ -66,7 +66,7 @@
 
 		$role = new User_Rolebase( $this->rid );
 		$role->setUserLastServerId( $this->sid ); //登录成功后设置用户最后登录服务器
-
+		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 	}
 /**
  *@ 创建新角色
