@@ -3,7 +3,7 @@
  *@ 数据库同步脚本
  **/
 	error_reporting(0);
-	require_once dirname(__FILE__).'/inc/inc.php';
+	require_once dirname(dirname(__FILE__)).'/inc/inc.php';
 	
 	# 抛出SQL模式使用  无需要启动监听进程
 	/*C('com_start',gettimeofday(true));
