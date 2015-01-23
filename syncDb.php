@@ -6,7 +6,7 @@
 	require_once dirname(__FILE__).'/inc/inc.php';
 	
 	# 抛出SQL模式使用  无需要启动监听进程
-	C('com_start',gettimeofday(true));
+	/*C('com_start',gettimeofday(true));
 	$nums = $_SERVER['argc'];
 	for( $i=1;$i<$nums;$i+=2 ){
 		switch( $_SERVER['argv'][$i] ){
@@ -34,11 +34,11 @@
 		exit('参数错误');
 	}
 	$sync = new Sync( $data );
-	$sync->exec();
+	$sync->exec();*/
 
 
 #================   开启监听进程，监听20030端口redis   ==============================
-	/*$sync_redis = Redis_Redis::init( 'sync_db' );
+	$sync_redis = Redis_Redis::init( 'sync_db' );
 	while(1){
 		C('com_start',gettimeofday(true));
 		$data = $sync_redis->lpop( 'sync_db_select' );
@@ -51,5 +51,5 @@
 				$sync->exec();
 			}
 		}
-	}*/
+	}
 ?>
