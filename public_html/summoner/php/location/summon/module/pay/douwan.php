@@ -2,6 +2,7 @@
 /**
  *@ 豆玩充值回调   ext格式： sidauidaisMonth  大区id + 用户uid + 是否充值月卡    使用字母 a 连接
  **/
+	ret('删档测试不开放充值功能',-1);
 	$money = $input['price'];
 	$ext = $input['ext'];
 
