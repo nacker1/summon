@@ -37,6 +37,7 @@
 	 *@ 获取当前等级升级需要消耗的金币数
 	 **/
 	public function getCostMoney(){
+		$this->log->d( json_encode($this->sInfo) );
 		$ret = $this->sInfo[ 'Skill'.$this->sIndex.'_Cose' ];
 		return  empty($ret) ? 0 : $ret;
 	}
