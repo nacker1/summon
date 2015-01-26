@@ -1,5 +1,4 @@
 <?php
-	echo getUniqCode();
 /**
  *@ get3unix() 获取明早3点的时间戳
  **/
