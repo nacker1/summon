@@ -284,7 +284,10 @@
 	function urlstr($str){
 	    $url="";
 	    for($i=0;$i<=strlen($str);$i++){
-	        $url.=base_convert(ord(substr($str,$i,1)),10,16);
+	    	if( !is_numeric( $str[$i] ) )
+	        	$url .= ord( $str[$i] );
+	        else
+	        	$url .= $str[$i];
 	    }
 	    return $url;
 	}
