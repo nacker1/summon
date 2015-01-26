@@ -272,7 +272,7 @@
 	function getUniqCode($tag){
 		$charid = md5(uniqid(mt_rand(), true));
         $uuid = substr($charid,22,10);
-        return $tag.$uuid;
+        return urlstr($tag.$uuid);
 		/*
 		return uniqid(rand(10000, 99999));
 		$code = crypt(gettimeofday(true),rand(1,10000));
@@ -280,6 +280,16 @@
 			$code = crypt(gettimeofday(true),rand(1,10000));
 		}
 		return $code;*/
+	}
+	function urlstr($str){
+	    $url="";
+	    $m1="";
+	    for($i=0;$i<=strlen($str);$i++){
+	        $m1=base_convert(ord(substr($str,$i,1)),10,16);
+	        if ($m1!="0")
+	            $url=$url."\x".$m1;
+	    }
+	    return $url;
 	}
 /**
 * 可以统计中文字符串长度的函数
