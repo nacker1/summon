@@ -272,7 +272,7 @@
 	function getUniqCode($tag){
 		$charid = md5(uniqid(mt_rand(), true));
         $uuid = substr($charid,22,10);
-        return urlstr($tag.$uuid);
+        return base_convert(urlstr($tag.$uuid),10,16);
 		/*
 		return uniqid(rand(10000, 99999));
 		$code = crypt(gettimeofday(true),rand(1,10000));
