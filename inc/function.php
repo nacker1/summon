@@ -1,4 +1,5 @@
 <?php
+	echo getUniqCode();
 /**
  *@ get3unix() 获取明早3点的时间戳
  **/
@@ -269,12 +270,10 @@
 /**
  *@ getUniqCode 生成指定长度的唯一字符串
  **/
-	function getUniqCode(){
-		$code = crc32(uniqid(rand(10000,99999)));
-		while( $code<0 || strlen( $code ) != 10 ){
-			$code = crc32(uniqid(rand(10000,99999)));
-		}
-		return $code;
+	function getUniqCode($tag){
+		$charid = md5(uniqid(mt_rand(), true));
+        $uuid = substr($charid,22,10);
+        return $tag.$uuid;
 		/*
 		return uniqid(rand(10000, 99999));
 		$code = crypt(gettimeofday(true),rand(1,10000));
