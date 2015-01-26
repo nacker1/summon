@@ -283,11 +283,8 @@
 	}
 	function urlstr($str){
 	    $url="";
-	    $m1="";
 	    for($i=0;$i<=strlen($str);$i++){
-	        $m1=base_convert(ord(substr($str,$i,1)),10,16);
-	        if ($m1!="0")
-	            $url=$url."\x".$m1;
+	        $url.=base_convert(ord(substr($str,$i,1)),10,16);
 	    }
 	    return $url;
 	}
