@@ -221,7 +221,7 @@
 				$uLevel = $user->getLevel();
 				$input['getList']['vshop'] = -1;
 
-				if( $uLevel > 8 ){
+				if( $uLevel > 0 ){
 					if( $uLevel > 60 ){
 						$rate = 30;
 					}else{
