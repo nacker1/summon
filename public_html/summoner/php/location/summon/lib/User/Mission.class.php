@@ -237,7 +237,7 @@
 	 		}else{
 	 			$mission = $this->cond->get( $taskConfig['Task_Class'] );
 		 		if( empty( $mission ) ){ //如果信息不存在说明键值已被删除，用户已领取过奖品
-		 			$this->errorInfo = ' reward ';
+		 			$this->errorInfo = ' rewarded ';
 		 			return false;
 		 		}
 		 		switch( $taskConfig['Task_Class'] ) {
