@@ -163,7 +163,7 @@ class User_Base extends Base{
         $ulife = $this->getLife();
         if( $nums>0 && $ulife>=$nums ){
             $this->setUpdTime(3);
-            $this->log->d('* 用户#'.$this->uid.'#扣除#'.$nums.'#体力'.self::$userinfo[$this->uid]['life'].'->'.( self::$userinfo[$this->uid]['life']-$nums ) );
+            $this->log->i('* 用户#'.$this->uid.'#扣除#'.$nums.'#体力'.self::$userinfo[$this->uid]['life'].'->'.( self::$userinfo[$this->uid]['life']-$nums ) );
             self::$updinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life'] = self::$userinfo[$this->uid]['life']-$nums;
             return self::$userinfo[$this->uid]['life'];
         }else{
@@ -416,7 +416,7 @@ class User_Base extends Base{
             $this->userLog['nums'] = $nums;
 
             $this->setUpdTime(2);
-            $this->log->d('* 用户#'.$this->uid.'#添加#'.$nums.'#金币'.self::$userinfo[$this->uid]['money'].'->'.( self::$userinfo[$this->uid]['money']+$nums ) );
+            $this->log->i('* 用户#'.$this->uid.'#添加#'.$nums.'#金币'.self::$userinfo[$this->uid]['money'].'->'.( self::$userinfo[$this->uid]['money']+$nums ) );
             self::$updinfo[$this->uid]['money'] = self::$userinfo[$this->uid]['money'] + $nums;
             return self::$userinfo[$this->uid]['money'] += $nums;
         }else{
@@ -435,7 +435,7 @@ class User_Base extends Base{
             $this->userLog['nums'] = $nums;
 
             $this->setUpdTime(2);
-            $this->log->d('* 用户#'.$this->uid.'#扣除#'.$nums.'#金币'.self::$userinfo[$this->uid]['money'].'->'.( self::$userinfo[$this->uid]['money']-$nums ) );
+            $this->log->i('* 用户#'.$this->uid.'#扣除#'.$nums.'#金币'.self::$userinfo[$this->uid]['money'].'->'.( self::$userinfo[$this->uid]['money']-$nums ) );
             self::$updinfo[$this->uid]['money'] = self::$userinfo[$this->uid]['money'] - $nums;
             return self::$userinfo[$this->uid]['money'] -= $nums;
         }else{
@@ -453,7 +453,7 @@ class User_Base extends Base{
             $this->userLog['nums'] = $nums;
 
             $this->setUpdTime(2);
-            $this->log->d('* 用户#'.$this->uid.'#添加#'.$nums.'#钻石'.self::$userinfo[$this->uid]['jewel'].'->'.( self::$userinfo[$this->uid]['jewel']+$nums ) );
+            $this->log->i('* 用户#'.$this->uid.'#添加#'.$nums.'#钻石'.self::$userinfo[$this->uid]['jewel'].'->'.( self::$userinfo[$this->uid]['jewel']+$nums ) );
             self::$updinfo[$this->uid]['jewel'] = self::$userinfo[$this->uid]['jewel'] + $nums;
             return self::$userinfo[$this->uid]['jewel'] += $nums;
         }else{
@@ -472,7 +472,7 @@ class User_Base extends Base{
             $this->userLog['nums'] = $nums;
 
             $this->setUpdTime(2);
-            $this->log->d('* 用户#'.$this->uid.'#扣除#'.$nums.'#钻石'.self::$userinfo[$this->uid]['jewel'].'->'.( self::$userinfo[$this->uid]['jewel']-$nums ) );
+            $this->log->i('* 用户#'.$this->uid.'#扣除#'.$nums.'#钻石'.self::$userinfo[$this->uid]['jewel'].'->'.( self::$userinfo[$this->uid]['jewel']-$nums ) );
             self::$updinfo[$this->uid]['jewel'] = self::$userinfo[$this->uid]['jewel'] - $nums;
             return self::$userinfo[$this->uid]['jewel'] -= $nums;
         }else{
