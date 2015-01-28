@@ -3,15 +3,15 @@
  *@ User_User 游戏初始化类 获取召唤师信息以及自动创建角色信息
  **/
  class User_Login extends User_Base{
-	private $loginLogTable = 'zy_statsUserLoginLog';	// 登录日志表
-	private $roleTable='zy_uniqRole';			//用户角色表
-	private $recordTable='zy_uniqRoleRecord';		//用户固定信息记录表
-	private $rid;						//注册用户id
-	private $sid;						//用户选择服务器id
-	private $sre;						//注册号+服务器id 组成的健值对应redis 根据相应值找出 rid+sid 对应的 uid
-	private $isNew=0;					//标记是否为新角色
-	private $loginTime;					//此次登录时间
-	
+	private $loginLogTable = 'zy_statsUserLoginLog';				// 登录日志表
+	private $roleTable='zy_uniqRole';								//用户角色表
+	private $recordTable='zy_uniqRoleRecord';						//用户固定信息记录表
+	private $rid;													//注册用户id
+	private $sid;													//用户选择服务器id
+	private $sre;													//注册号+服务器id 组成的健值对应redis 根据相应值找出 rid+sid 对应的 uid
+	private $isNew=0;												//标记是否为新角色
+	private $loginTime;												//此次登录时间
+				
 	public function __construct( $rid,$sid ){
 		$this->rid = $rid;
 		$this->sid = $sid;

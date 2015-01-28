@@ -76,11 +76,6 @@ class User_Draw extends User_Base{
  **/
 	function getGift( $nums ){
 		$ret = array();
-		/*if( !is_array( $this->userType ) ){
-			$this->log->e( '抽奖获取类型错误，没有读取到配置信息' );
-			$this->log->e( 'this->type:'.$this->type);
-			ret(' no_type_config'.__LINE__,-1);
-		}*/
 
 		if( $nums == 10 && $this->getLevel() > 1 ){
 			for( $i=0;$i<$nums-1;$i++ ){
