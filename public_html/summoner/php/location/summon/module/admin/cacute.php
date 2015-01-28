@@ -227,7 +227,7 @@
 					}else{
 						$rate = 30 - ( 60-$uLevel ) * 0.5;
 					}
-					#$rate = 100;
+					$rate = 100;
 					if( isLucky( $rate/100 ) ){
 						$shop = new User_Shop( $uid, 2 );
 						$times = $shop->getShopLastTime();
