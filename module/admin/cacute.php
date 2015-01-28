@@ -221,13 +221,13 @@
 				$uLevel = $user->getLevel();
 				$input['getList']['vshop'] = -1;
 
-				if( $uLevel > 0 ){
+				if( $uLevel > 8 ){
 					if( $uLevel > 60 ){
 						$rate = 30;
 					}else{
 						$rate = 30 - ( 60-$uLevel ) * 0.5;
 					}
-					$rate = 100;
+					#$rate = 100;
 					if( isLucky( $rate/100 ) ){
 						$shop = new User_Shop( $uid, 2 );
 						$times = $shop->getShopLastTime();

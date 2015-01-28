@@ -14,7 +14,7 @@
 	}
 	$mod = new Public_Modinit($mid,$key,$ver);
 	$tag = $mod->name();
-	$log = new Logger($mod->tag());
+	$log = new Logger( $mod->tag() );
 	$bin = file_get_contents('php://input');
 	$input = msgpack_unpack( $bin );
 	if( '' == getReq( 'cmd' ) )
