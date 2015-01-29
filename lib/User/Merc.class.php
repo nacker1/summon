@@ -53,9 +53,10 @@ class User_Merc extends User_Base{
 		foreach( $sysHero as $v ){
 			#if( $v['level'] >= $uLevel && $v['level'] <= ( $uLevel+10 ) )
 			$temp = self::$cond->get( 'mercHero:'.$v );
-			if( $temp['level'] >= $uLevel && $temp['level'] <= ( $uLevel+10 ) )
+			if( $temp['level'] >= $uLevel && $temp['level'] <= ( $uLevel+10 ) ){
 				$ret[$v] = $temp;
-			$this->log->d( 'mercs:'.json_encode( $ret[$v] ) );
+				$this->log->d( 'mercs:'.json_encode( $ret[$v] ) );
+			}
 		}
 		return $ret;
 	}
