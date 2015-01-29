@@ -263,6 +263,8 @@
 		$add['mFriend'] = 5;
 		if( $friend->isFriend( $input['merc'] ) )
 			$add['mFriend'] = 10;
+		$merc = new User_Merc( $user->getUid() );
+		$merc->addHadUid( $input['merc'] );
 	}
 
 #============================每日刷副本日常任务=================================
