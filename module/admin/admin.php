@@ -118,7 +118,10 @@ switch ($type) {
             $hero->giveHero(4);
             $hero->addHeroExp( 100000000 );
             $hero->colorUp( 4 );
-            $hero->skillUp( 80 );
+            $hero->skillUp( 1,80 );
+            $hero->skillUp( 2,80 );
+            $hero->skillUp( 3,80 );
+            $hero->skillUp( 4,80 );
             #unset($hero);
         }
         $ret['hero'] = $hero->getLastUpdField();
