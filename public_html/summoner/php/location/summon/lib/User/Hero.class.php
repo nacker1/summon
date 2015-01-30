@@ -342,9 +342,9 @@ class User_Hero extends User_Base{
 /**
  *@ 英雄指定技能的升级
  **/
-	function skillUp( $skillIndex ){
+	function skillUp( $skillIndex, $level=1 ){
 		$skillConf =$this->getSkillConfig();
-		$skillConf[ $skillIndex ] += 1;
+		$skillConf[ $skillIndex ] += $level;
 		$this->log->d('* 用户#'.$this->uid.'#升级英雄#'.$this->hid.'#'.$skillIndex.'技能->'.$skillConf[ $skillIndex ]);
 		$this->setMissionId( 2, 27 );
 		self::$lastUpdHero[$this->uid][$this->hid]['config'] = json_encode($skillConf);
