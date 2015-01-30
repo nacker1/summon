@@ -39,4 +39,6 @@
 	define( 'SUMMON_ROOT', dirname(__DIR__) );
 
 	define( 'REFUSE_REGISTER', 0 );									#禁止注册  1为禁止 
+
+	define( 'CACUTE_RATE', 1 );
 ?>

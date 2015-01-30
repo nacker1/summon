@@ -91,6 +91,7 @@
 		$insert['friends'] = 5;								//最大好友数量
 		$insert['rid'] = $this->rid;						//游戏表id
 		$insert['sid'] = $this->sid;						//大区id
+		$insert['regtime'] = time();						//注册时间
 		$i=0;
 		do{
 			$ret = $this->db->insert( $this->roleTable,$insert );
