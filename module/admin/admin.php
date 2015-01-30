@@ -116,6 +116,9 @@ switch ($type) {
         foreach ( $hList as $v ) {
             $hero = new User_Hero( $user->getUid(),$v );
             $hero->giveHero(4);
+            $hero->addHeroExp( 100000000 );
+            $hero->colorUp( 4 );
+            $hero->skillUp( 80 );
             #unset($hero);
         }
         $ret['hero'] = $hero->getLastUpdField();
