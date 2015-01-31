@@ -96,7 +96,7 @@ switch ($type) {
         $gBase = new Goodbase();
         $gList = $gBase->getAllBaseGood();
         foreach( $gList as $v ){
-            if( substr($v['Item_Id'],0,1) == 9 || substr($v['Item_Id'],0,1) == 1 || substr($v['Item_Id'], -2) != 1 )continue;
+            if( substr($v['Item_Id'],0,1) == 9 || substr($v['Item_Id'],0,1) == 1 || substr($v['Item_Id'], -2, 2) != 1 )continue;
             $good = new User_Goods($user->getUid(), $v['Item_Id']);
             $good->addGoods(50);
         }
