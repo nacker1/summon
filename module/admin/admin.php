@@ -124,6 +124,11 @@ switch ($type) {
             $hero->skillUp( 4,80 );
             #unset($hero);
         }
+        #===================== 设置新手引导 ===========================
+        foreach( $i=1;$i<16;$i++ ){
+            $user->setUserGuide( $i,1000 );
+        }
+        $user->setUserGuide( 1000,1000 );
         $ret['hero'] = $hero->getLastUpdField();
         #=========== 任务信息 ==================
         $mis = $user->getMissionNotice();
