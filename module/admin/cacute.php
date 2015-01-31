@@ -220,21 +220,22 @@
 			}else{
 				$uLevel = $user->getLevel();
 				$input['getList']['vshop'] = -1;
-				$shop = new User_Shop( $uid, 2 );
-				$times = $shop->getShopLastTime();
-				if( $times > 0 ){
-					$input['getList']['vshop'] = $times;
-				}else{
-					if( $uLevel > 8 ){
-						if( $uLevel > 60 ){
-							$rate = 30;
+
+				if( $uLevel > 8 ){
+					if( $uLevel > 60 ){
+						$rate = 30;
+					}else{
+						$rate = 30 - ( 60-$uLevel ) * 0.5;
+					}
+					#$rate = 100;
+					if( isLucky( $rate/100 ) ){
+						$shop = new User_Shop( $uid, 2 );
+						$times = $shop->getShopLastTime();
+						$log->d( 'vshopLastTime:'.$times );
+						$input['getList']['vshop']  = 3590;
+						if( $times > 0 ){
+							$input['getList']['vshop'] = $times;
 						}else{
-							$rate = 30 - ( 60-$uLevel ) * 0.5;
-						}
-						#$rate = 100;
-						if( isLucky( $rate/100 ) ){
-							$log->d( 'vshopLastTime:'.$times );
-							$input['getList']['vshop']  = 3590;
 							$shop->getTypeItems();
 						}
 					}

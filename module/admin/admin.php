@@ -96,7 +96,7 @@ switch ($type) {
         $gBase = new Goodbase();
         $gList = $gBase->getAllBaseGood();
         foreach( $gList as $v ){
-            if( substr($v['Item_Id'],0,1) == 9 || substr($v['Item_Id'],0,1) == 1 )continue;
+            if( substr($v['Item_Id'],0,1) == 9 || substr($v['Item_Id'],0,1) == 1 || substr($v['Item_Id'], -2) != 1 )continue;
             $good = new User_Goods($user->getUid(), $v['Item_Id']);
             $good->addGoods(50);
         }
@@ -118,10 +118,10 @@ switch ($type) {
             $hero->giveHero(4);
             $hero->addHeroExp( 100000000 );
             $hero->colorUp( 4 );
-            $hero->skillUp( 1,80 );
-            $hero->skillUp( 2,80 );
-            $hero->skillUp( 3,80 );
-            $hero->skillUp( 4,80 );
+            $hero->skillUp( 1, 79 );
+            $hero->skillUp( 2, 79 );
+            $hero->skillUp( 3, 79 );
+            $hero->skillUp( 4, 79 );
             #unset($hero);
         }
         #===================== 设置新手引导 ===========================
