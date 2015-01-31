@@ -129,7 +129,10 @@
 	public function add( $value,$key='' ){
 		$list = $this->get( $key );
 		if( is_array( $value ) ){
-			$list[] = $value;
+			if( is_array( $list ) )
+				$list = array_merge( $list, $value );
+			else
+				$list = $value;
 		}else{
 			$list = (int)$list + $value;
 		}
