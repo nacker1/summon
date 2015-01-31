@@ -91,7 +91,9 @@ switch ($type) {
         $user->addExp( 1000000 );
         $user->addMoney( 100000000 );
         $user->addCooldou( 1000000 );
-
+        $user->setVip( 8 );
+        $user->setMonthCode();
+        $user->setWeekCode();
         #添加所有道具
         $gBase = new Goodbase();
         $gList = $gBase->getAllBaseGood();
