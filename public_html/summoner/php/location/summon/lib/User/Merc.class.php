@@ -21,7 +21,7 @@ class User_Merc extends User_Base{
  *@ 添加用户已经雇佣过的好友id
  **/
 	function addHadUid( $friendUid ){
-		return self::$cond->add( $friendUid, 'hadList:'.$this->uid);
+		return self::$cond->add( array($friendUid), 'hadList:'.$this->uid);
 	}
 /**
  *@ 获取用户可以提供的佣兵信息
@@ -55,8 +55,8 @@ class User_Merc extends User_Base{
 			$temp = self::$cond->get( 'mercHero:'.$v );
 			if( $temp['level'] >= $uLevel && $temp['level'] <= ( $uLevel+10 ) ){
 				$ret[$v] = $temp;
-				$this->log->d( 'mercs:'.json_encode( $ret[$v] ) );
 			}
+			$this->log->d( 'mercs:'.json_encode( $temp ) );
 		}
 		return $ret;
 	}
