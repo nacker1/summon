@@ -9,7 +9,7 @@ class User_Merc extends User_Base{
 		parent::__construct($uid);
 		$this->log->d('~~~~~~~~~~~~~~~~~~  '.__CLASS__.' ~~~~~~~~~~~~~~~~~~');
 		if( empty( self::$cond ) )
-			self::$cond = new Cond( 'merc', '', 0 , 'Friend');
+			self::$cond = new Cond( 'merc', '', get3time() , 'Friend');
 	}
 /**
  *@ 获取用户已经雇佣过的好友id
@@ -40,7 +40,7 @@ class User_Merc extends User_Base{
 			if( !in_array( $this->uid, $sysList ) )
 				self::$cond->set( $sysListString.'#'.$this->uid, 'sysTempUser', get3time() );
 		}
-		return self::$cond->set( $heroInfo, 'mercHero:'.$this->uid );
+		return self::$cond->set( $heroInfo, 'mercHero:'.$this->uid, 86400*7 );
 	}
 /**
  *@ 获取系统佣兵
