@@ -113,7 +113,7 @@
 				$temp = $this->actRedis->get();
 				isset( $temp['overTime'] ) && $this->overTime = $temp['overTime'];
 				isset( $temp['time'] ) && $this->nextTime = $temp['time'];
-				$ret = $this->getTypeItems();
+				$ret = $this->	();
 			}
 		}
 		$ret['overTime'] = $this->getShopLastTime();
