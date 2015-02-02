@@ -1,5 +1,4 @@
 <?php
-echo time();exit;
 /**
  *@ Notice 公告类
  **/
