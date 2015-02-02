@@ -24,6 +24,9 @@
 		 	$ret['down']['url'] = 'http://summon.51094.com/download/2.zip';
 		 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/download/2.zip');
 		 }
+	 }else{
+	 	$notice = new Notice();
+	 	$ret['notice'] = $notice->getNoticeList();
 	 }
 	 ret($ret);
  }else{
