@@ -165,6 +165,10 @@
 				$hero = new User_Hero( $this->uid, $v );
 				$hero->giveHero();
 			}
+			#封测时期注册送周卡
+			if( time() > strtotime( '2015-02-02' ) && time() < strtotime( '2015-02-16' ) ){
+				$this->setWeekCode();
+			}
 		}
 	}
 
