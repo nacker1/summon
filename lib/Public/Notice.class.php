@@ -23,7 +23,15 @@ class Notice extends Base{
 	}
 
 	function getNoticeList(){
-		return $this->pre->get( $this->notice_table );
+		$nList = json_decode( $this->pre->get( $this->notice_table ) , true);
+		if( empty( $nList ) ) return '';
+		$ret = array();
+		foreach( $nList as $v ){
+			$ret[$i]['title'] = $v['title'];
+			$ret[$i]['content'][0]['titleSub'] = '活动时间：'.date('Y-m-d H:i:s',$v['start']).' - '..date('Y-m-d H:i:s',$v['end']);
+			$ret[$i]['content'][0]['contentSub'] = $v['content'];
+		}
+		return $ret;
 	}
 }
 ?>
