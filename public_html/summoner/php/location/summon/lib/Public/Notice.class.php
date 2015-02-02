@@ -15,7 +15,7 @@ class Notice extends Base{
 		if( C('test') || !$this->pre->exists( $this->notice_table.'_check' ) ){
 			$this->log->d( '~~~~~~~~~~~~~~~~~~~~~ DB_SELECT ~~~~~~~~~~~~~~~~~~~~~~' );
 			$this->cdb;
-			$ret = $this->cdb->find( $this->notice_table, array( 'end'=>array( '>'=>time() ) ) );
+			$ret = $this->cdb->find( $this->notice_table, '*' , array( 'end'=>array( '>'=>time() ) ) );
 			var_dump( $this->cdb->getLastSql() );
 			if( !empty( $ret ) )
 				$this->pre->set( $this->notice_table, json_encode( $ret ), get3time() );
