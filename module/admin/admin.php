@@ -252,6 +252,10 @@ switch ($type) {
             ret( '操作失败，请重试！',-1 );
         }
         break;
+    case '1006': #添加技能点
+
+        $user->addUserSkillPoint($nums);
+        break;
     default:
         # code...
         phpinfo();
