@@ -106,11 +106,13 @@
 		$key = uniqid();
 		$this->itemLog[$key]['nums'] = $nums;
 		$this->itemLog[$key]['type'] = 1;
-		switch( $this->bgood->getColor() ){
-			case '2':$this->setMissionId(1,32,$nums);break;
-			case '3':$this->setMissionId(1,33,$nums);break;
-			case '4':$this->setMissionId(1,34,$nums);break;
-			case '5':$this->setMissionId(1,35,$nums);break;
+		if( !( $this->type == 3 && (int)substr($gid,-2,2) > 0 ) ){
+			switch( $this->bgood->getColor() ){
+				case '2':$this->setMissionId(1,32,$nums);break;
+				case '3':$this->setMissionId(1,33,$nums);break;
+				case '4':$this->setMissionId(1,34,$nums);break;
+				case '5':$this->setMissionId(1,35,$nums);break;
+			}
 		}
 		if( $this->bgood->getGoodSuper() == 1 ){ //可重叠物品计算数量
 			if( $this->redis->exists( 'roleinfo:'.$this->uid.':goods:'.$this->type.':'.$this->gid ) ){
