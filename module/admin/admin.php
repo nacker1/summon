@@ -4,8 +4,7 @@
  **/
 $type = $input['t'];
 $nums = $input['n'];
-$uid = $input['uid'];
-$user=new User_User( $uid );
+
 
 switch ($type) {
     case '1':
@@ -209,6 +208,7 @@ switch ($type) {
         ret( $user->getUserInfo() );
         break;
     case '1003': #发送个人邮件
+        $user=new User_User();
         $content = $input['content'];
         $type = $input['type'];
         $goods = $input['goods'];
@@ -216,8 +216,8 @@ switch ($type) {
         $sendUser = $input['sendUser'];
         $time = $input['time'];
 
-        $uMail = new User_Mail($uid);
-        if( $uMail->sendMail($content,$type,$uid,$title,$goods,$sendUser,$time)){
+        $uMail = new User_Mail($user->getUid());
+        if( $uMail->sendMail($content,$type,$user->getUid(),$title,$goods,$sendUser,$time)){
             ret( '发送成功——：'.$time,-1 );
         }else{
             ret( '操作失败，请重试！',-1 );
@@ -245,7 +245,7 @@ switch ($type) {
         $title = $input['title'];
         $sendUser = $input['sendUser'];
         $time = $input['time'];
-        $uMail = new User_Mail($uid);
+        $uMail = new User_Mail();
         if( $uMail->sendMail($content,$type,0,$title,$goods,$sendUser,$time)){
             ret( '发送成功——：'.$time,-1 );
         }else{
