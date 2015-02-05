@@ -29,7 +29,7 @@ class User_Draw extends User_Base{
 		//初始化抽卡配置表   
 		$this->pre;
 		if( C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
-			$this->cdb;$this->preMaster;
+			$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 			$this->log->d('+++++++++++++++++ DB select ++++++++++++++++');
 			$this->preMaster->hdel('baseDrawTypeConfig:*');
 			$this->preMaster->hdel('baseDrawConfig:*');

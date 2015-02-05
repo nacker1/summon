@@ -28,7 +28,7 @@ class Act_Sign extends User_Base{
 		 *@ 拉取签到奖品配置信息
 		 **/
 		if( C('test') || !$this->pre->hget('action:sign:month_checked','check') ){
-			$this->cdb;$this->preMaster;
+			$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 			$this->preMaster->hdel('action:sign:month:*');
 			$ret = $this->cdb->find( $this->table,'*',array( 'Sign_Month'=>$this->month ) );
 			$this->log->d(' ========================== ~ select db ~ ========================= ');
@@ -50,7 +50,7 @@ class Act_Sign extends User_Base{
  *@ 清除签到相关数据
  **/
 	function delCache(){
-		$this->preMaster;
+		$this->preMaster;$this->pre=$this->preMaster;
 		$this->preMaster->del('action:sign:month_checked');
 		$this->cond->delDayTimes('common');
 		$this->cond->delDayTimes('vip');

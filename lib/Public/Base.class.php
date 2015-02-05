@@ -71,7 +71,7 @@ class Base{
 	}
 
 	public function clearConfig( $config ){
-		$this->preMaster;
+		$this->preMaster;$this->pre=$this->preMaster;
 		$this->preMaster->hdel( $config );
 		for( $i=0; $i<COND_TAG; $i++ ){
 			$cond = Redis_Redis::init( 'Cond_'.$i );

@@ -17,7 +17,7 @@ class Gold extends Base{
 	private function _init(){
 		$this->pre;
 		if( true || C('test') || !$this->pre->exists( $this->gold_table.':check' ) ){
-			$this->cdb;$this->preMaster;
+			$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 			$ret = $this->cdb->find( $this->gold_table );
 			if( empty( $ret ) ){
 				$this->log->e( '@@@@ SELECT_DB_NULL @@@@' );	

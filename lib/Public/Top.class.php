@@ -51,7 +51,7 @@ class Top extends Base{
  *@ 发送PVP竞技场排名奖励  每日晚上9点发放
  **/
 	function sendPvpReward(){
-		$this->preMaster;
+		$this->preMaster;$this->pre=$this->preMaster;
 		$mail = new User_Mail( ADMIN_UID, 1 );
 		for( $i=1; $i<15001; $i++ ){
 			$key = 'pvpTopList:'.$i;

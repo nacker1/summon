@@ -15,7 +15,7 @@ class Vip extends Pbase{
 	}
 	private function _init(){
 		if( C('test') || !$this->pre->hget( 'vipConfig:check','check' ) ){
-			$this->cdb;$this->preMaster;
+			$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 			$ret = $this->cdb->find( $this->vipTable );
 			foreach( $ret as $v ){
 				$this->preMaster->hmset( 'vipConfig:'.$v['Vip_Level'],$v );

@@ -25,7 +25,7 @@
  		$this->pre;
  		if( C('test') || !$this->pre->exists( 'baseMissionConfig:'.$this->type.':check' ) ){
  			if( !isset( self::$dbCehck[$this->uid] ) || empty( self::$dbCehck[$this->uid] ) ){
-	 			$this->cdb;$this->preMaster;
+	 			$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 	 			$this->preMaster->hdel( 'baseMissionConfig:'.$this->type.':*' );
 	 			$ret = $this->cdb->find( $this->missionTable,'*',array('Task_Type'=>$this->type) );
 	 			foreach( $ret as $v ){
