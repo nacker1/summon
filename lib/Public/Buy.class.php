@@ -20,12 +20,12 @@
 
  	private function _init(){
  		if( C('test') || !$this->pre->hget( 'baseBuyGoldConfig:check', 'checked' ) ){
- 			$this->cdb;
+ 			$this->cdb;$this->preMaster;
  			$ret = $this->cdb->find( $this->buyConfig[$this->tag]['name'] );
  			foreach( $ret as $v ){
- 				$this->pre->hmset( 'baseBuyGoldConfig:'.$v[ $this->buyConfig[$this->tag]['key'] ], $v );
+ 				$this->preMaster->hmset( 'baseBuyGoldConfig:'.$v[ $this->buyConfig[$this->tag]['key'] ], $v );
  			}
- 			$this->pre->hset( 'baseBuyGoldConfig:check', 'checked', 1, get3time() );
+ 			$this->preMaster->hset( 'baseBuyGoldConfig:check', 'checked', 1, get3time() );
  		}
  		$this->config = $this->pre->hgetall( 'baseBuyGoldConfig:'.$this->key );
  	}

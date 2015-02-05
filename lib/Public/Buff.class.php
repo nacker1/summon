@@ -13,12 +13,12 @@ class Buff extends Base{
 	private function _init(){
 		$this->pre;
 		if( C('test') || !$this->pre->hget( 'baseBuffConfig:check','check' ) ){
-			$this->cdb;
+			$this->cdb;$this->preMaster;
 			$ret = $this->cdb->find( $this->buffTable, 'Buff_id bid,Buff_Type type,Buff_Value config' );
 			foreach( $ret as $v ){
-				$this->pre->hmset( 'baseBuffConfig:'.$v['bid'], $v );
+				$this->preMaster->hmset( 'baseBuffConfig:'.$v['bid'], $v );
 			}
-			$this->pre->hset( 'baseBuffConfig:check', 'check', 1, get3time() );
+			$this->preMaster->hset( 'baseBuffConfig:check', 'check', 1, get3time() );
 		}
 		$this->buffInfo = $this->pre->hgetall( 'baseBuffConfig:'.$this->buffid );
 	}

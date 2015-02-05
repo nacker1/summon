@@ -29,10 +29,10 @@ class User_Draw extends User_Base{
 		//初始化抽卡配置表   
 		$this->pre;
 		if( C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
-			$this->cdb;
+			$this->cdb;$this->preMaster;
 			$this->log->d('+++++++++++++++++ DB select ++++++++++++++++');
-			$this->pre->hdel('baseDrawTypeConfig:*');
-			$this->pre->hdel('baseDrawConfig:*');
+			$this->preMaster->hdel('baseDrawTypeConfig:*');
+			$this->preMaster->hdel('baseDrawConfig:*');
 			#=============  初始化类型配置表  =================================================
 			$ret = $this->cdb->find( $this->draw_type_table, 'id,Group_Level,Item_Type,Item_Color,Item_Random,Item_CountMin,Item_CountMax', array( 'Box_Id'=>$this->type ) );
 			if( empty( $ret ) || !is_array( $ret ) ){
@@ -40,13 +40,13 @@ class User_Draw extends User_Base{
 				ret( 'db_no_type_config' ,-1);
 			}
 			foreach( $ret as $v ){
-				#$this->pre->hmset( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'], $v );
+				#$this->preMaster->hmset( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'], $v );
 				$rret[$v['Group_Level']][ $v['id'] ] = $v;
 			}
 			#$this->log->i('rret:'.json_encode($rret));
 			foreach ($rret as $key => $value) {
 				# code...
-				$this->pre->set( 'baseDrawTypeConfig:'.$this->type.':'.$key, json_encode($value) );
+				$this->preMaster->set( 'baseDrawTypeConfig:'.$this->type.':'.$key, json_encode($value) );
 			}
 			#=============  初始化物品配置表  =================================================
 			unset($ret);
@@ -57,16 +57,16 @@ class User_Draw extends User_Base{
 			}
 			
 			foreach( $ret as $v ){
-				#$this->pre->hmset( 'baseDrawConfig:'.$this->type.':'.$v['Item_Type'].':'.$v['Item_Color'].':'.$v['Item_Id'], $v );
+				#$this->preMaster->hmset( 'baseDrawConfig:'.$this->type.':'.$v['Item_Type'].':'.$v['Item_Color'].':'.$v['Item_Id'], $v );
 				$temp = $this->type.':'.$v['Item_Type'].':'.$v['Item_Color'];
 				$ret[ $temp ][ $v['Item_Id'] ] = $v;
 			}
 
 			foreach( $ret as $key=>$val ){
-				$this->pre->set( 'baseDrawConfig:'.$key, json_encode( $val ) );
+				$this->preMaster->set( 'baseDrawConfig:'.$key, json_encode( $val ) );
 			}
 
-			$this->pre->hset( 'baseDrawConfig:'.$this->type.':check','checked', 1, get3time() );
+			$this->preMaster->hset( 'baseDrawConfig:'.$this->type.':check','checked', 1, get3time() );
 		}
 	}
 /**

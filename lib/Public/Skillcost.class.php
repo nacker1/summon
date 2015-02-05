@@ -21,14 +21,15 @@
 	private function _init(){
 		if( C('test') || !$this->pre->exists('heroSkillCost:checked') ){
 			$this->cdb;
+			$this->preMaster;
 			$skills = $this->cdb->find( $this->table );
 			foreach( $skills as $v ){
-				$this->pre->hmset( 'heroSkillCost:list:'.$v['Skill_Level'],$v );
+				$this->preMaster->hmset( 'heroSkillCost:list:'.$v['Skill_Level'],$v );
 				if( $v['Skill_Level'] == $this->level ){
 					$this->sInfo = $v;
 				}
 			}
-			$this->pre->set( 'heroSkillCost:checked',1,get3time() );
+			$this->preMaster->set( 'heroSkillCost:checked',1,get3time() );
 		}else{
 			$this->sInfo = $this->pre->hgetall( 'heroSkillCost:list:'.$this->level );
 		}

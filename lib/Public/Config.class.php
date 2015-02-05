@@ -155,7 +155,7 @@ class Config{
 		),
 		'online'=>array( //ÐÅÏ¢´ýÉÏÏßÈ·ÈÏºóÔÙ½øÐÐÅäÖÃ
 			'sync_db' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),          					#保存同步sql语句的redis
-			'default_1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),         					#当前区公共配置 通用   三个端口分流用
+			'default_1' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),         					#当前区公共配置 通用   三个端口分流用   default_1为 主redis
 			'default_2' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),         					#当前区公共配置 通用
 			'default_3' => array('host' => '127.0.0.1', 'port' => 20000, 'pass' => 'coolplay159357'),         					#当前区公共配置 通用
 		));

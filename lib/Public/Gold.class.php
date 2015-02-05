@@ -17,7 +17,7 @@ class Gold extends Base{
 	private function _init(){
 		$this->pre;
 		if( true || C('test') || !$this->pre->exists( $this->gold_table.':check' ) ){
-			$this->cdb;
+			$this->cdb;$this->preMaster;
 			$ret = $this->cdb->find( $this->gold_table );
 			if( empty( $ret ) ){
 				$this->log->e( '@@@@ SELECT_DB_NULL @@@@' );	
@@ -29,10 +29,10 @@ class Gold extends Base{
 				$set['cooldouMax'] = $v['Diamond_CountMax'];
 				$set['moneyMin'] = $v['Gold_CountMin'];
 				$set['moneyMax'] = $v['Gold_CountMax'];
-				$this->pre->set( $this->gold_table.':'.$v['Mine_Times'], json_encode( $set ) );
+				$this->preMaster->set( $this->gold_table.':'.$v['Mine_Times'], json_encode( $set ) );
 			}
 
-			$this->pre->set( $this->gold_table.':check', 1, get3time() );
+			$this->preMaster->set( $this->gold_table.':check', 1, get3time() );
 		}
 		$this->config = json_decode( $this->pre->get( $this->gold_table.':'.$this->time ), true);
 		$this->log->i( 'gold_config:'.json_encode($this->config) ); 

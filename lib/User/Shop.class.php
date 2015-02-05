@@ -75,15 +75,15 @@
 	private function _init(){
 		$this->pre;
 		if( C('test') || !$this->pre->exists('shopConfig:'.$this->type) ){
+			$this->cdb;$this->preMaster;
 			$this->log->d('+++++++++++++++++ DB select ++++++++++++++++');
-			$this->pre->hdel('shopConfig:*');
+			$this->preMaster->hdel('shopConfig:*');
 			$where['Shop_Id'] = $this->type;
-			$this->cdb;
 			$ret = $this->cdb->find( $this->table, '*' , $where );
 			if( empty( $ret ) ){
 				ret('Config_Error! Code:'.__LINE__);
 			}
-			$this->pre->set( 'shopConfig:'.$this->type, json_encode($ret), get3time() );
+			$this->preMaster->set( 'shopConfig:'.$this->type, json_encode($ret), get3time() );
 		}
 		$shops = $this->pre->get('shopConfig:'.$this->type);
 		$shops = json_decode( $shops,true );

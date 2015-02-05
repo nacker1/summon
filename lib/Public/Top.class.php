@@ -51,11 +51,11 @@ class Top extends Base{
  *@ 发送PVP竞技场排名奖励  每日晚上9点发放
  **/
 	function sendPvpReward(){
-		$this->pubRedis;
+		$this->preMaster;
 		$mail = new User_Mail( ADMIN_UID, 1 );
 		for( $i=1; $i<15001; $i++ ){
 			$key = 'pvpTopList:'.$i;
-			$uid = $this->pubRedis->hget( $key, 'uid' );
+			$uid = $this->preMaster->hget( $key, 'uid' );
 			if( empty( $uid ) ) continue;
 			if( substr( $uid, 0, 2 ) == '38' || (int)$uid >= 1000000 ){
 				$con = '你在竞技场的精彩表现有目共睹。截至今天21:00，你的竞技场排名为'.$i.'名。角斗士联盟授予你以下奖励：';

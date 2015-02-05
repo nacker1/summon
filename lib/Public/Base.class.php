@@ -31,10 +31,10 @@ class Base{
 			case 'redis': //存储用户信息的redis
 				$this->redis = Redis_Redis::init($this->uid);	
 				break;
-			case 'pre': //存储配置信息的redis
+			case 'pre': //存储配置信息的从redis
 				$this->pre = Redis_Redis::init('default');break;
-			case 'pubRedis': //存储当前大区公共信息的redis
-				$this->pubRedis = Redis_Redis::init('default');break;
+			case 'preMaster': //存储当前大区公共信息的主redis
+				$this->preMaster = Redis_Redis::init('default_1');break;
 			case 'cdb': //存储配置信息的db
 				$this->cdb = Db_Mysql::init('config');break;
 			case 'db': //存储当前服务器用户信息的db
@@ -71,8 +71,8 @@ class Base{
 	}
 
 	public function clearConfig( $config ){
-		$this->pre;
-		$this->pre->hdel( $config );
+		$this->preMaster;
+		$this->preMaster->hdel( $config );
 		for( $i=0; $i<COND_TAG; $i++ ){
 			$cond = Redis_Redis::init( 'Cond_'.$i );
 			$cond->hdel( $config );

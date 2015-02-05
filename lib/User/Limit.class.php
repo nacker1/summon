@@ -35,13 +35,13 @@ class User_Limit extends User_Base{
 	private function _init(){
 		$this->pre;
 		if( C('test') || !$this->pre->exists('userLimit:'.$this->flag) || ! $this->pre->hget( 'userLimit:'.$this->flag.'_check' , 'check' )){
-			$this->cdb;
+			$this->cdb;$this->preMaster;
 			$ret = $this->cdb->findOne( $this->table,'tag,times,vip,expend,give,timeLimit,rule,freeTime,vipLimit', array( 'tag'=>$this->flag ));
 			if( empty( $ret ) ){
 				ret( $this->flag.'_config_null',-1);
 			}
-			$this->pre->hmset( 'userLimit:'.$this->flag,$ret );
-			$this->pre->hset( 'userLimit:'.$this->flag.'_check' , 'check' , 1 );
+			$this->preMaster->hmset( 'userLimit:'.$this->flag,$ret );
+			$this->preMaster->hset( 'userLimit:'.$this->flag.'_check' , 'check' , 1 );
 			$this->pre->expire( 'userLimit:'.$this->flag.'_check',86400 );
 		}
 		$limitInfo = $this->pre->hgetall( 'userLimit:'.$this->flag );#$this->pre->hmget('userLimit:'.$this->flag,array('freeTime','times','vipLimit','vip'));

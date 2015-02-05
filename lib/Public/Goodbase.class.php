@@ -22,15 +22,16 @@
 
 	private function _init(){
 		if( C('test') || !$this->pre->hget('goodBase:base_check','check') ){ //查库
-			$this->cdb;
-			$this->pre->hdel('goodBase:base:*');
+			$this->cdb;$this->preMaster;
+			$this->preMaster;
+			$this->preMaster->hdel('goodBase:base:*');
 			$ret = $this->cdb->find($this->base_table);
 			if( $ret && is_array($ret) ){
 				foreach( $ret as $v ){
-					$this->pre->hmset('goodBase:base:'.$v['Item_Id'], $v);
+					$this->preMaster->hmset('goodBase:base:'.$v['Item_Id'], $v);
 				}
 			}
-			$this->pre->hset('goodBase:base_check','check',1, get3time());
+			$this->preMaster->hset('goodBase:base_check','check',1, get3time());
 		}
 
 		if( !empty( $this->gid ) ){
@@ -46,27 +47,28 @@
 		}
 
 		if( C('test') || !$this->pre->hget('goodBase:equip_check','check') ){
-			$this->cdb;
-			$this->pre->hdel('goodBase:equip:*');
+			$this->cdb;$this->preMaster;
+			$this->preMaster;
+			$this->preMaster->hdel('goodBase:equip:*');
 			$ret = $this->cdb->find($this->equip_table);
 			if( $ret && is_array($ret) ){
 				foreach( $ret as $v ){
-					$this->pre->hmset('goodBase:equip:'.$v['Equip_Id'], $v);
+					$this->preMaster->hmset('goodBase:equip:'.$v['Equip_Id'], $v);
 				}
 			}
-			$this->pre->hset('goodBase:equip_check','check',1, get3time());
+			$this->preMaster->hset('goodBase:equip_check','check',1, get3time());
 		}
 
 		if( C('test') || !$this->pre->hget('goodBase:compos_check','check') ){
-			$this->pre->hdel('goodBase:compos:*');
-			$this->cdb;
+			$this->cdb;$this->preMaster;
+			$this->preMaster->hdel('goodBase:compos:*');
 			$ret = $this->cdb->find($this->compos_table);
 			if( $ret && is_array($ret) ){
 				foreach( $ret as $v ){
-					$this->pre->hmset('goodBase:compos:'.$v['Item_Id'], $v);
+					$this->preMaster->hmset('goodBase:compos:'.$v['Item_Id'], $v);
 				}
 			}
-			$this->pre->hset('goodBase:compos_check','check',1, get3time());
+			$this->preMaster->hset('goodBase:compos_check','check',1, get3time());
 		}
 		if( 3 == $this->type ){
 			$this->ginfo['color']  = $this->pre->hget( 'goodBase:equip:'.$this->equid,'Equip_Color' );		//装备品质等级
