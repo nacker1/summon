@@ -24,12 +24,12 @@
 			if( !empty( $this->type ) && !empty( $this->level ) ){   #开始修炼时运行
 				$this->pre;
 				if( C( 'test' ) || !$this->pre->exists( 'war_base_check:'.$this->type ) ){
-					$this->cdb;
+					$this->cdb;$this->preMaster;
 					$ret = $this->cdb->find( $this->war_table, '*', array( 'War_Type'=>$this->type ) );
 					foreach( $ret as $v ){
-						$this->pre->hmset( 'war_base:'.$this->type.':'.$v['Player_Level'], $v );
+						$this->preMaster->hmset( 'war_base:'.$this->type.':'.$v['Player_Level'], $v );
 					}
-					$this->pre->set( 'war_base_check:'.$this->type, 1, get3time() );
+					$this->preMaster->set( 'war_base_check:'.$this->type, 1, get3time() );
 				}
 				#开始修改时运行
 				$this->warInfo = $this->pre->hgetall( 'war_base:'.$this->type.':'.$this->level );

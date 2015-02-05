@@ -20,15 +20,15 @@ class Herobase extends Base{
 		$this->pre;
 		if( !isset( self::$hInfo[$this->hid] ) ){
 			if( C('test') || !$this->pre->exists('heroBase:check') ){
-				$this->cdb;
+				$this->cdb;$this->preMaster;
 				$ret = $this->cdb->find( $this->heroBaseTable,'Hero_Id,Hero_Hp,Hero_UpHp,Hero_Mp,Hero_UpMp,Hero_Att,Hero_UpAtt,Hero_Sor,Hero_UpSor,Hero_Def,Hero_UpDef,Hero_Res,Hero_UpRes,Hero_GetHp,Hero_UpGetHp,Hero_GetMp,Hero_UpGetMp,Hero_AttSpd,Hero_UpAttSpd,Hero_Mov,Hero_Pry',array( 'Hero_Id'=>array('<'=>20000) ) );
 				if( empty($ret) ){
 					ret('no_baseHero_config');
 				}
 				foreach( $ret as $v ){
-					$this->pre->hmset( 'heroBase:heroinfo:'.$v['Hero_Id'], $v );
+					$this->preMaster->hmset( 'heroBase:heroinfo:'.$v['Hero_Id'], $v );
 				}
-				$this->pre->hset( 'heroBase:check', 'check', 1, get3time() );
+				$this->preMaster->hset( 'heroBase:check', 'check', 1, get3time() );
 			}
 			self::$hInfo[$this->hid] = $this->pre->hgetall( 'heroBase:heroinfo:'.$this->hid );
 		}

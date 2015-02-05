@@ -28,8 +28,8 @@ class Act_Sign extends User_Base{
 		 *@ 拉取签到奖品配置信息
 		 **/
 		if( C('test') || !$this->pre->hget('action:sign:month_checked','check') ){
-			$this->cdb;
-			$this->pre->hdel('action:sign:month:*');
+			$this->cdb;$this->preMaster;
+			$this->preMaster->hdel('action:sign:month:*');
 			$ret = $this->cdb->find( $this->table,'*',array( 'Sign_Month'=>$this->month ) );
 			$this->log->d(' ========================== ~ select db ~ ========================= ');
 			$this->log->d( ' DB_CONFIG '.json_encode($this->cdb->getConfig()) );
@@ -39,18 +39,19 @@ class Act_Sign extends User_Base{
 				$ret = $this->cdb->find( $this->table,'*',array( 'Sign_Month'=>0 ) );	//默认配置
 			}
 			foreach( $ret as $v ){
-				$this->pre->hmset( 'action:sign:month:'.$v['Sign_Day'],$v );
+				$this->preMaster->hmset( 'action:sign:month:'.$v['Sign_Day'],$v );
 			}
-			$this->pre->hset( 'action:sign:month_checked','check',1 );
-			$this->pre->hset( 'action:sign:month_checked','month',$this->month );
-			$this->pre->expire( 'action:sign:month_checked',$this->overTime  ); //签到过期时间为下月第一天的 3：00：00
+			$this->preMaster->hset( 'action:sign:month_checked','check',1 );
+			$this->preMaster->hset( 'action:sign:month_checked','month',$this->month );
+			$this->preMaster->expire( 'action:sign:month_checked',$this->overTime  ); //签到过期时间为下月第一天的 3：00：00
 		}
 	}
 /**
  *@ 清除签到相关数据
  **/
 	function delCache(){
-		$this->pre->del('action:sign:month_checked');
+		$this->preMaster;
+		$this->preMaster->del('action:sign:month_checked');
 		$this->cond->delDayTimes('common');
 		$this->cond->delDayTimes('vip');
 	}

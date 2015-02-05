@@ -25,8 +25,8 @@
  		$this->pre;
  		if( C('test') || !$this->pre->exists( 'baseMissionConfig:'.$this->type.':check' ) ){
  			if( !isset( self::$dbCehck[$this->uid] ) || empty( self::$dbCehck[$this->uid] ) ){
-	 			$this->pre->hdel( 'baseMissionConfig:'.$this->type.':*' );
-	 			$this->cdb;
+	 			$this->cdb;$this->preMaster;
+	 			$this->preMaster->hdel( 'baseMissionConfig:'.$this->type.':*' );
 	 			$ret = $this->cdb->find( $this->missionTable,'*',array('Task_Type'=>$this->type) );
 	 			foreach( $ret as $v ){
 	 				empty( $v[ 'Item_Reward' ] ) ? '' : $temp['good'] = str_replace(array('#','*'),array(',',','),$v[ 'Item_Reward' ]);
@@ -36,7 +36,7 @@
 					empty( $v[ 'PlayerAction_Reward' ] ) ? '' : $temp['life'] = $v[ 'PlayerAction_Reward' ];
 					unset( $v['Item_Reward'], $v['PlayerExp_Reward'], $v['Money_Reward'], $v['Diamond_Reward'], $v[ 'PlayerAction_Reward' ] );
 					$v['config'] = json_encode($temp);
-	 				$this->pre->hmset( 'baseMissionConfig:'.$v['Task_Type'].':'.$v['Task_Id'], $v );
+	 				$this->preMaster->hmset( 'baseMissionConfig:'.$v['Task_Type'].':'.$v['Task_Id'], $v );
 	 				if( substr($v['Task_Id'], -3) == 1 || $v['Task_Class'] == 61 ){ //初始化用户默认任务
 	 					if( $v['Task_Class'] == 61 ){
 	 						$initTaskClass[ $v['Task_Class'] ][] = $v['Task_Id'];
@@ -49,9 +49,9 @@
 	 			if( isset( $initTaskClass['61'] ) ){ //午餐和晚餐任务特殊处理
 					$initTaskClass['61'] = implode(',', $initTaskClass['61']);
 				}
-	 			$this->pre->del( 'baseMissionConfig:TaskClass_'.$this->type );
-	 			$this->pre->hmset( 'baseMissionConfig:TaskClass_'.$this->type, $initTaskClass );
-	 			$this->pre->hset( 'baseMissionConfig:'.$this->type.':check', 'checked',1,get3time() );
+	 			$this->preMaster->del( 'baseMissionConfig:TaskClass_'.$this->type );
+	 			$this->preMaster->hmset( 'baseMissionConfig:TaskClass_'.$this->type, $initTaskClass );
+	 			$this->preMaster->hset( 'baseMissionConfig:'.$this->type.':check', 'checked',1,get3time() );
 	 			self::$dbCehck[$this->uid] = 1;
 	 		}
  		}

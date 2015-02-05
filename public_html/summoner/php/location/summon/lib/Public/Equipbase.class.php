@@ -15,13 +15,13 @@
 
 	private function _init(){
 		if( C('test') || !$this->pre->exists('equip:baseinfo_check') ){
-			$this->cdb;
+			$this->cdb;$this->preMaster;
 			$ret = $this->cdb->find($this->table);
 			foreach( $ret as $v ){
-				$this->pre->hmset( 'equip:baseinfo:'.$v['Equip_Id'],$v );
+				$this->preMaster->hmset( 'equip:baseinfo:'.$v['Equip_Id'],$v );
 			}
-			$this->pre->set('equip:baseinfo_check',1);
-			$this->pre->expireat( 'equip:baseinfo_check',( mktime(23,59,59)+1800 ) );
+			$this->preMaster->set('equip:baseinfo_check',1);
+			$this->preMaster->expireat( 'equip:baseinfo_check',( mktime(23,59,59)+1800 ) );
 		}
 
 		if( !empty($this->eid) ){

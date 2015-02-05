@@ -22,7 +22,7 @@ class Reward extends Base{
 		if( !isset( self::$reward_config[$this->tag] ) || empty( self::$reward_config[$this->tag] ) ){
 			$this->pre;
 			if( C('test') || !$this->pre->exists( $this->reward_table.':check' ) ){
-				$this->cdb;
+				$this->cdb;$this->preMaster;
 				$ret = $this->cdb->find( $this->reward_table );
 				if( !empty( $ret ) ){
 					foreach( $ret as $v ){
@@ -31,10 +31,10 @@ class Reward extends Base{
 						$temp['mArena'] = $v['Arena_FighterMoney'];
 						$temp['good'] = str_replace( '#',',',$v['Arena_ItemReward1'] ).'#'.str_replace( '#',',',$v['Arena_ItemReward2'] );
 						$temp['good'] = trim( $temp['good'],'#' );
-						$this->pre->set( $this->reward_table.':'.$v['Arena_RankMin'], json_encode( $temp ) );
+						$this->preMaster->set( $this->reward_table.':'.$v['Arena_RankMin'], json_encode( $temp ) );
 						unset( $temp );
 					}
-					$this->pre->set( $this->reward_table.':check', 1, get3time() );
+					$this->preMaster->set( $this->reward_table.':check', 1, get3time() );
 				}else{
 					$this->log->f('pvpReward no config');
 					ret( '竞技场配置表为空', -1 );

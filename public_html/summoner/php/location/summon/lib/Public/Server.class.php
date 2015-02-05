@@ -22,11 +22,11 @@
 		$ret;
 		if( empty( $this->sid ) ){ //初始化所有服务器列表
 			if( C( 'test' ) || !$this->pre->exists( 'server:list_check' ) ){
-				$this->pre->hdel( 'server:list:*' );
-				$this->cdb;
+				$this->cdb;$this->preMaster;
+				$this->preMaster->hdel( 'server:list:*' );
 				$slist = $this->cdb->find($this->table);
 				foreach( $slist as $v ){
-					$this->pre->hmset( 'server:list:'.$v['id'],$v,get3time() );
+					$this->preMaster->hmset( 'server:list:'.$v['id'],$v,get3time() );
 					$ret[$v['id']] = $v;
 					if( empty($this->updtime) || $this->updtime < $v['updtime'] ){
 						$this->updtime = $v['updtime'];
@@ -36,10 +36,10 @@
 					}
 					if( C( 'test' ) || !$this->pre->exists('server:status:'.$v['id']) ){
 						$stats = array('stats'=>2,'cInfo'=>'');
-						$this->pre->hmset('server:status:'.$v['id'],$stats);
+						$this->preMaster->hmset('server:status:'.$v['id'],$stats);
 					}
 				}
-				$this->pre->set( 'server:list_check', 1, get3time() );
+				$this->preMaster->set( 'server:list_check', 1, get3time() );
 			}else{
 				$skeys = $this->pre->keys('server:list:*');
 				foreach( $skeys as $v ){
@@ -56,12 +56,12 @@
 			$this->slist = $ret;
 		}else{ //初始化指定id服务器
 			if( C( 'test' ) || !$this->pre->exists( 'server:list:'.$this->sid ) ){
-				$this->cdb;
+				$this->cdb;$this->preMaster;
 				$slist = $this->cdb->findOne($this->table,'*',array('id'=>$this->sid));
-				$this->pre->hmset( 'server:list:'.$slist['id'],$slist,get3time() );
+				$this->preMaster->hmset( 'server:list:'.$slist['id'],$slist,get3time() );
 				if( C( 'test' ) || !$this->pre->exists('server:status:'.$slist['id']) ){
 					$stats = array('stats'=>2,'cInfo'=>'');
-					$this->pre->hmset('server:status:'.$slist['id'],$stats);
+					$this->preMaster->hmset('server:status:'.$slist['id'],$stats);
 				}
 			}else{
 				$slist = $this->pre->hgetall('server:list:'.$this->sid);
@@ -190,26 +190,26 @@
  *@ 获取服务器列表
  **/
 	public function setTop(){ //暂时删除redis数据
-		$this->pre->del( 'server:list_check' );
-		$this->pre->hdel('server:list:*');
+		$this->preMaster->del( 'server:list_check' );
+		$this->preMaster->hdel('server:list:*');
 	}
 /**
  *@ 关闭服务器   stats=> 1:关闭  2:空闲  3:繁忙 4：爆满
  **/
 	public function stopServer( $str='' ){
-		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>1,'cInfo'=>$str));
+		return $this->preMaster->hmset('server:status:'.$this->sid,array('stats'=>1,'cInfo'=>$str));
 	}
 /**
  *@ 开启服务器
  **/
 	public function startServer(){
-		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>2,'cInfo'=>''));
+		return $this->preMaster->hmset('server:status:'.$this->sid,array('stats'=>2,'cInfo'=>''));
 	}
 /**
  *@ 设置服务器状态
  **/
 	public function setServerStart( $val ){
-		return $this->pre->hmset('server:status:'.$this->sid,array('stats'=>$val,'cInfo'=>''));
+		return $this->preMaster->hmset('server:status:'.$this->sid,array('stats'=>$val,'cInfo'=>''));
 	}
 /**
  *@ 更新或添加服务器信息
@@ -217,9 +217,9 @@
 	public function update( $config ){
 		if( empty( $config['name'] )  || empty( $config['tcp'] ) || empty( $config['php'] ) || empty( $config['max'] ) ){ return false; }
 		$config['updtime'] = time();
-		$this->cdb;
+		$this->cdb;$this->preMaster;
 		$this->setTop();
-		$this->pre->hdel('server:list:*');
+		$this->preMaster->hdel('server:list:*');
 		if( !empty($this->sid) ){
 			$ret = $this->cdb->update( $this->table, $config, array( 'id'=>$this->sid ) );
 		}else{
