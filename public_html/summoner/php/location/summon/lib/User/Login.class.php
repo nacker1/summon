@@ -183,6 +183,7 @@
 		$insert['channel'] = $channel ? $channel : 1;
 		$insert['time'] = date('Y-m-d H:i:s');
 		$insert['isNew'] = $this->isNew;
+		$insert['config'] = json_encode($uInfo);
 		$this->setThrowSQL( $this->loginLogTable,$insert,'',1,'stats' );
 		$this->_other();
 	}
