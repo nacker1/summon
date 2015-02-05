@@ -15,7 +15,7 @@
 
 	private function _init(){
 		if( C('test') || !$this->pre->exists('equip:baseinfo_check') ){
-			$this->cdb;$this->preMaster;
+			$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 			$ret = $this->cdb->find($this->table);
 			foreach( $ret as $v ){
 				$this->preMaster->hmset( 'equip:baseinfo:'.$v['Equip_Id'],$v );

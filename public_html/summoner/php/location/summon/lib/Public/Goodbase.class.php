@@ -22,8 +22,8 @@
 
 	private function _init(){
 		if( C('test') || !$this->pre->hget('goodBase:base_check','check') ){ //查库
-			$this->cdb;$this->preMaster;
-			$this->preMaster;
+			$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
+			$this->preMaster;$this->pre=$this->preMaster;
 			$this->preMaster->hdel('goodBase:base:*');
 			$ret = $this->cdb->find($this->base_table);
 			if( $ret && is_array($ret) ){
@@ -47,8 +47,8 @@
 		}
 
 		if( C('test') || !$this->pre->hget('goodBase:equip_check','check') ){
-			$this->cdb;$this->preMaster;
-			$this->preMaster;
+			$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
+			$this->preMaster;$this->pre=$this->preMaster;
 			$this->preMaster->hdel('goodBase:equip:*');
 			$ret = $this->cdb->find($this->equip_table);
 			if( $ret && is_array($ret) ){
@@ -60,7 +60,7 @@
 		}
 
 		if( C('test') || !$this->pre->hget('goodBase:compos_check','check') ){
-			$this->cdb;$this->preMaster;
+			$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 			$this->preMaster->hdel('goodBase:compos:*');
 			$ret = $this->cdb->find($this->compos_table);
 			if( $ret && is_array($ret) ){

@@ -21,7 +21,7 @@
 	private function _init(){ //初始化角色升级信息
 		if( $this->type == 'user' ){
 			if( C('test') || !$this->pre->exists('roleLevelUp_check') ){
-				$this->cdb;$this->preMaster;$this->preMaster;
+				$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 				$upinfo = $this->cdb->find($this->role_table,'*');
 				foreach( $upinfo as $v ){
 					$this->preMaster->hmset('roleLevelUp:'.$v['level'],$v);
@@ -32,7 +32,7 @@
 			$this->next = $this->pre->hgetall('roleLevelUp:'.( $this->level+1 ) );
 		}elseif( $this->type == 'hero' ){
 			if( C('test') || !$this->pre->hexists('heroLevelUp:*') ){
-				$this->cdb;$this->preMaster;
+				$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 				$upinfo = $this->cdb->find($this->hero_table,'*');
 				foreach( $upinfo as $v ){
 					$this->preMaster->hmset('heroLevelUp:'.$v['level'],$v);

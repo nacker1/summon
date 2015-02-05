@@ -22,7 +22,7 @@ class Reward extends Base{
 		if( !isset( self::$reward_config[$this->tag] ) || empty( self::$reward_config[$this->tag] ) ){
 			$this->pre;
 			if( C('test') || !$this->pre->exists( $this->reward_table.':check' ) ){
-				$this->cdb;$this->preMaster;
+				$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 				$ret = $this->cdb->find( $this->reward_table );
 				if( !empty( $ret ) ){
 					foreach( $ret as $v ){

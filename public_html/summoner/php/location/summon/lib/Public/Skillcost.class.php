@@ -21,7 +21,7 @@
 	private function _init(){
 		if( C('test') || !$this->pre->exists('heroSkillCost:checked') ){
 			$this->cdb;
-			$this->preMaster;
+			$this->preMaster;$this->pre=$this->preMaster;
 			$skills = $this->cdb->find( $this->table );
 			foreach( $skills as $v ){
 				$this->preMaster->hmset( 'heroSkillCost:list:'.$v['Skill_Level'],$v );

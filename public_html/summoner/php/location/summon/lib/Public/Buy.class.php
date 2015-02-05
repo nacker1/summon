@@ -20,7 +20,7 @@
 
  	private function _init(){
  		if( C('test') || !$this->pre->hget( 'baseBuyGoldConfig:check', 'checked' ) ){
- 			$this->cdb;$this->preMaster;
+ 			$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
  			$ret = $this->cdb->find( $this->buyConfig[$this->tag]['name'] );
  			foreach( $ret as $v ){
  				$this->preMaster->hmset( 'baseBuyGoldConfig:'.$v[ $this->buyConfig[$this->tag]['key'] ], $v );

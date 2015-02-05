@@ -22,7 +22,7 @@
 		$ret;
 		if( empty( $this->sid ) ){ //初始化所有服务器列表
 			if( C( 'test' ) || !$this->pre->exists( 'server:list_check' ) ){
-				$this->cdb;$this->preMaster;
+				$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 				$this->preMaster->hdel( 'server:list:*' );
 				$slist = $this->cdb->find($this->table);
 				foreach( $slist as $v ){
@@ -56,7 +56,7 @@
 			$this->slist = $ret;
 		}else{ //初始化指定id服务器
 			if( C( 'test' ) || !$this->pre->exists( 'server:list:'.$this->sid ) ){
-				$this->cdb;$this->preMaster;
+				$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 				$slist = $this->cdb->findOne($this->table,'*',array('id'=>$this->sid));
 				$this->preMaster->hmset( 'server:list:'.$slist['id'],$slist,get3time() );
 				if( C( 'test' ) || !$this->pre->exists('server:status:'.$slist['id']) ){
@@ -190,6 +190,7 @@
  *@ 获取服务器列表
  **/
 	public function setTop(){ //暂时删除redis数据
+		$this->preMaster;$this->pre=$this->preMaster;
 		$this->preMaster->del( 'server:list_check' );
 		$this->preMaster->hdel('server:list:*');
 	}
@@ -197,18 +198,21 @@
  *@ 关闭服务器   stats=> 1:关闭  2:空闲  3:繁忙 4：爆满
  **/
 	public function stopServer( $str='' ){
+		$this->preMaster;$this->pre=$this->preMaster;
 		return $this->preMaster->hmset('server:status:'.$this->sid,array('stats'=>1,'cInfo'=>$str));
 	}
 /**
  *@ 开启服务器
  **/
 	public function startServer(){
+		$this->preMaster;$this->pre=$this->preMaster;
 		return $this->preMaster->hmset('server:status:'.$this->sid,array('stats'=>2,'cInfo'=>''));
 	}
 /**
  *@ 设置服务器状态
  **/
 	public function setServerStart( $val ){
+		$this->preMaster;$this->pre=$this->preMaster;
 		return $this->preMaster->hmset('server:status:'.$this->sid,array('stats'=>$val,'cInfo'=>''));
 	}
 /**
@@ -217,7 +221,7 @@
 	public function update( $config ){
 		if( empty( $config['name'] )  || empty( $config['tcp'] ) || empty( $config['php'] ) || empty( $config['max'] ) ){ return false; }
 		$config['updtime'] = time();
-		$this->cdb;$this->preMaster;
+		$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 		$this->setTop();
 		$this->preMaster->hdel('server:list:*');
 		if( !empty($this->sid) ){

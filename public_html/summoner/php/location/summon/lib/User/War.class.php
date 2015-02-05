@@ -24,7 +24,7 @@
 			if( !empty( $this->type ) && !empty( $this->level ) ){   #开始修炼时运行
 				$this->pre;
 				if( C( 'test' ) || !$this->pre->exists( 'war_base_check:'.$this->type ) ){
-					$this->cdb;$this->preMaster;
+					$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 					$ret = $this->cdb->find( $this->war_table, '*', array( 'War_Type'=>$this->type ) );
 					foreach( $ret as $v ){
 						$this->preMaster->hmset( 'war_base:'.$this->type.':'.$v['Player_Level'], $v );
