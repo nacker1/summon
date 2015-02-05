@@ -155,7 +155,7 @@
 				$list[$k] = number_format( $v['Item_Random']/$tolRate, 4 );
 			}
 			$index = $this->retRate($list);
-			$temp = $this->shopinfo[ $val ][$index];
+			$temp = isset( $this->shopinfo[ $val ][$index] ) ? $this->shopinfo[ $val ][$index] : $this->shopinfo[ $val ][ count($list)-1 ];
 
 			if( 6 == $temp['Item_Type'] ){
 				$nums = 5;
