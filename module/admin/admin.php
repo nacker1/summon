@@ -61,6 +61,10 @@ switch ($type) {
 //        }
         $user->setLevel( $level );
         break;
+    case '51':
+        $user->addMoney(10000000);
+        $user->addCooldou(10000000);
+        ret('suc');
     case '52': 												#设置顶级帐号
         #设置所有关卡进度
         $pros = array(
