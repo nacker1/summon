@@ -579,9 +579,9 @@ class User_Base extends Base{
      **/
     public function setVip( $vLevel ){
         $this->setUpdTime(3);
-        self::$updinfo[$this->uid][ 'vlevel' ] = $vLevel ;
+        self::$updinfo[$this->uid][ 'vlevel' ] = (int)$vLevel ;
         $this->log->i( '* 玩家#'.$this->uid.'#vip等级升致#'.$vLevel );
-        return self::$userinfo[$this->uid][ 'vlevel' ] = $vLevel ;
+        return self::$userinfo[$this->uid][ 'vlevel' ] = (int)$vLevel ;
     }
     /**
      *@ setExp() 	设置用户经验
