@@ -167,6 +167,9 @@
 				case 'exp':
 					$this->addExp($v);
 					break;
+				case 'vip':
+					$this->setVip($v);
+					break;
 				case 'mFriend':		#友情点
 				case 'mAction':		#赏金之路币 活动币
 				case 'mArena':		#竞技场币
