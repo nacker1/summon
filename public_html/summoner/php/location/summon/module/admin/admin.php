@@ -4,7 +4,7 @@
  **/
 $type = $input['t'];
 $nums = $input['n'];
-
+$user = new User_User();
 
 switch ($type) {
     case '1':
