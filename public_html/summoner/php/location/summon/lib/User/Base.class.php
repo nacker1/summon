@@ -560,10 +560,20 @@ class User_Base extends Base{
             $upinfo = $this->upInfo->getUpinfo();
             $nextinfo = $this->upInfo->getNextUpinfo();
             $this->setMissionId(1,51);
-            if( self::$userinfo[$this->uid]['level'] == 2 ){
+            if( self::$userinfo[$this->uid]['level'] == 30 ){
                 $this->addMoney(50000);
                 $good = new User_Goods($this->uid,11040);
                 $good->addGoods(30);
+            }elseif( self::$userinfo[$this->uid]['level'] == 40 ){
+                $this->addMoney(100000);
+                $good = new User_Goods($this->uid,11020);
+                $good->addGoods(30);
+            }elseif(self::$userinfo[$this->uid]['level'] == 50){
+                $this->addMoney(200000);
+                $good = new User_Goods($this->uid,11020);
+                $good->addGoods(30);
+                $good1 = new User_Goods($this->uid,11040);
+                $good1->addGoods(30);
             }
             $this->log->d('* 用户#'.$this->uid.'#升级到 '.self::$userinfo[$this->uid]['level'].' 级，经验：'.self::$userinfo[$this->uid]['exp'].', 体力：'.self::$userinfo[$this->uid]['life'].', maxLife：'.self::$userinfo[$this->uid]['maxLife'].', getLife:'.$nextinfo['getLife']);
             if( self::$userinfo[$this->uid]['level'] >= $this->upInfo->getMaxLevel() && $tolexp >= $upinfo['exp'] ){
