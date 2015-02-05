@@ -22,7 +22,7 @@
 		}
 	}
 /**
- *@ get3time() 获取今天清空缓存时3点的时间戳
+ *@ today3unix() 获取今天清空缓存时3点的时间戳
  **/
 	function today3unix(){
 		$now = date('H');
@@ -31,6 +31,12 @@
 		}else{
 			return mktime(3,0,0);
 		}
+	}
+/**
+ *@ yes3time() 获取昨天天清空缓存时3点的时间戳
+ **/
+	function yes3time(){
+		return mktime( 3,0,0 ) - 86400;
 	}
 /**
  *@ get15daySeconds() 获取30天后的时间秒数
