@@ -25,7 +25,7 @@
  *@ 获取兑换码对应的奖品配置信息
  **/
 	public function getConfig(){
-		if( $error = $this->cond->get($this->key) ){
+		if( $error = $this->cond->get( $this->key ) ){
 			$this->errInfo = $error;
 			return false;
 		}
