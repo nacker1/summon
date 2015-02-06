@@ -45,7 +45,7 @@ class Top extends Base{
 	}
 
 	function setTopList($top){
-		return $this->topPre->set($top);
+		return $this->topPre->set( $top );
 	}
 /**
  *@ 发送PVP竞技场排名奖励  每日晚上9点发放
