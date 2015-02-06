@@ -57,10 +57,10 @@ class User_Draw extends User_Base{
 			foreach( $ret as $v ){
 				#$this->preMaster->hmset( 'baseDrawConfig:'.$this->type.':'.$v['Item_Type'].':'.$v['Item_Color'].':'.$v['Item_Id'], $v );
 				$temp = $this->type.':'.$v['Item_Type'].':'.$v['Item_Color'];
-				$ret[ $temp ][ $v['Item_Id'] ] = $v;
+				$config_ret[ $temp ][ $v['Item_Id'] ] = $v;
 			}
 
-			foreach( $ret as $key=>$val ){
+			foreach( $config_ret as $key=>$val ){
 				$this->preMaster->set( 'baseDrawConfig:'.$key, json_encode( $val ) );
 			}
 
