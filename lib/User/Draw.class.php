@@ -31,8 +31,6 @@ class User_Draw extends User_Base{
 		if( C('test') || !$this->pre->exists( 'baseDrawConfig:'.$this->type.':check' ) ){
 			$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 			$this->log->d('+++++++++++++++++ DB select ++++++++++++++++');
-			$this->preMaster->hdel('baseDrawTypeConfig:'.$this->type.'*');
-			$this->preMaster->hdel('baseDrawConfig:'.$this->type.'*');
 			#=============  初始化类型配置表  =================================================
 			$ret = $this->cdb->find( $this->draw_type_table, 'id,Group_Level,Item_Type,Item_Color,Item_Random,Item_CountMin,Item_CountMax', array( 'Box_Id'=>$this->type ) );
 			if( empty( $ret ) || !is_array( $ret ) ){
