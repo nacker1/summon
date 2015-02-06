@@ -41,4 +41,6 @@
 	define( 'REFUSE_REGISTER', 0 );									#禁止注册  1为禁止 
 
 	define( 'CACUTE_RATE', 1 );
+
+	define( 'SUMMON_VERSION', 1 );									#服务器版本
 ?>
