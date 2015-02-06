@@ -77,7 +77,7 @@
 		if( C('test') || !$this->pre->exists('shopConfig:'.$this->type) ){
 			$this->cdb;$this->preMaster;$this->pre=$this->preMaster;
 			$this->log->d('+++++++++++++++++ DB select ++++++++++++++++');
-			$this->preMaster->hdel('shopConfig:*');
+			$this->preMaster->hdel('shopConfig:'.$this->type);
 			$where['Shop_Id'] = $this->type;
 			$ret = $this->cdb->find( $this->table, '*' , $where );
 			if( empty( $ret ) ){
