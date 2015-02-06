@@ -13,7 +13,7 @@
 		if(  9 > strlen( $code ) ){
 			ret( '兑换码长度应该是10位，请确认',-1 );
 		}
-		$c = new Act_Code( $code );
+		$c = new Act_Code( $code, $user->getUid() );
 		$config = $c->getConfig();
 		if( !$config ){
 			ret( $c->getExchangeInfo(), -1 );

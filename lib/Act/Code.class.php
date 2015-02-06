@@ -8,16 +8,16 @@
 	private $errInfo='兑换成功';		//兑换码错误信息
 	private $cond;
 
-	public function __construct( $code ){
-		parent::__construct();
+	public function __construct( $code,$uid='' ){
+		parent::__construct( $uid );
 		$this->code = $code;
-		$this->cond = new Cond( $this->table, $code );
+		$this->cond = new Cond( $this->table, $uid, get3time() );
 	}
 /**
  *@ getExchangeInfo() 获取兑换结果信息
  **/
 	function  getExchangeInfo(){
-		$this->cond->set( $this->errInfo,$this->key );
+		$this->cond->set( $this->errInfo,$this->code );
 		return $this->errInfo;
 	}
 
@@ -25,9 +25,13 @@
  *@ 获取兑换码对应的奖品配置信息
  **/
 	public function getConfig(){
-		if( $error = $this->cond->get( $this->key ) ){
+		if( $error = $this->cond->get( $this->code ) ){
 			$this->errInfo = $error;
 			#return false;
+		}
+		if( $this->cond->get() ){
+			$this->errInfo = '您已经领取过激活码了';
+			return false;
 		}
 		$this->adb;
 		$this->log->d( '~~~~~~~~~~~~~~~~~~~~~~ SELECT DB ~~~~~~~~~~~~~~~~~~~~~~~' );
@@ -49,6 +53,7 @@
 			return false;
 		}		
 		$this->setCodeUsed();
+		$this->cond->set( 1 );
 		return $keyConfig['goods'];
 	}
 /**
