@@ -19,10 +19,10 @@
 	 	 $ret['down']['ver'] = $tVer;
 		 if( $tVer - $ver < 2 ){
 		 	$ret['down']['url'] = 'http://yzzh.tisgame.com/1.zip';
-		 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/1.zip');
+		 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/download/1.zip');
 		 }else{
 		 	$ret['down']['url'] = 'http://yzzh.tisgame.com/2.zip';
-		 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/2.zip');
+		 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/download/2.zip');
 		 }
 	 }
 	 ret($ret);
