@@ -56,14 +56,15 @@ class Act_Sign extends User_Base{
 		$this->cond->delDayTimes('vip');
 	}
 /**
- *@ 拉取每日签到配置信息
+ *@ 拉取每月签到配置信息
  **/
 	public function getSignConfig( $month ){
 		$this->log->d( ' this->month = '.$this->month.' month = '.$month );
 		if( $month != $this->month ){
 			$keys = $this->pre->keys( 'action:sign:month:*' );
-			$ret = array();
+			$ret = $ret['list'][] = array();
 			foreach( $keys as $v ){
+				if( count( $ret['list'] ) > getthemonth() )continue;
 				$ret['list'][] = $this->pre->hgetall( $v );
 			}
 		}

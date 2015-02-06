@@ -22,6 +22,14 @@
 		}
 	}
 /**
+ *@ 获取当月最后一天
+ **/
+	function getthemonth()
+   { 
+	   $firstday = date('Y-m-01', time() );
+	   return date('d', strtotime("$firstday +1 month -1 day"));
+   }
+/**
  *@ today3unix() 获取今天清空缓存时3点的时间戳
  **/
 	function today3unix(){

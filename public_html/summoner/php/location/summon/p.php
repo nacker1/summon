@@ -1,4 +1,12 @@
 <?php
+	function getthemonth()
+   {
+	   $firstday = date('Y-m-01', time());
+	   return date('d', strtotime("$firstday +1 month -1 day"));
+   }
+
+   var_dump(  getthemonth() );exit;
+
 	phpinfo();exit;
 
 	function king( $total, $num ){
