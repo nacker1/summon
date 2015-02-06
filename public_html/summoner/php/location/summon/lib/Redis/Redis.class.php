@@ -44,11 +44,14 @@
 	 *@ É¾³ýÖ¸¶¨keyÖµ»òÖ¸¶¨keyµÄÒ»¸öÊý¾Ý Èç $key='name' »ò $key=array('name','age','sex') ³É¹¦·µ»Ø1 Ê§°Ü·µ»Ø0
 	 **/
 	public function del($keys){
+		global $log;
 		if( is_array($keys) ){
 			foreach( $keys as $key ){
+				$log->d('~~~~~~~~~~~~  DEL_KEY ~~~~( '.$keys.' )~~~~~~~~~~');
 				$this->connect->del($key);
 			}
 		}else{
+			$log->d('~~~~~~~~~~~~  DEL_KEY ~~~~( '.$keys.' )~~~~~~~~~~');
 			$this->connect->del($keys);
 		}
 		return true;
