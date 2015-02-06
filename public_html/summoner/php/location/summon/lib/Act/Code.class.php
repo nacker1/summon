@@ -27,7 +27,7 @@
 	public function getConfig(){
 		if( $error = $this->cond->get( $this->key ) ){
 			$this->errInfo = $error;
-			return false;
+			#return false;
 		}
 		$this->adb;
 		$this->log->d( '~~~~~~~~~~~~~~~~~~~~~~ SELECT DB ~~~~~~~~~~~~~~~~~~~~~~~' );
