@@ -10,7 +10,7 @@ class Top extends Base{
 	function __construct( $type, $uid='' ){
 		parent::__construct( $uid );
 		$this->type = $type;
-		$this->topPre = new Cond( $this->redisTag.':'.$this->type );
+		$this->topPre = new Cond( $this->redisTag.':'.$this->type, '', 3600 );
 	}
 
 	function getTopList(){
