@@ -468,7 +468,7 @@ class User_Base extends Base{
         if( $nums == 0 ){return true;}
         if( $nums>0 && $umoney>=$nums ){
             $this->userLog['source'] = 2;
-            $this->userLog['type'] = 2;
+            $this->userLog['type'] = 2; 
             $this->userLog['nums'] = $nums;
 
             $this->setUpdTime(2);
