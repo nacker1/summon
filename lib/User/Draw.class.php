@@ -66,7 +66,7 @@ class User_Draw extends User_Base{
 				$this->preMaster->set( 'baseDrawConfig:'.$key, json_encode( $val ) );
 			}
 
-			$this->preMaster->hset( 'baseDrawConfig:'.$this->type.':check','checked', 1, get3time() );
+			$this->preMaster->set( 'baseDrawConfig:'.$this->type.':check', 1, get3time() );
 		}
 	}
 /**
