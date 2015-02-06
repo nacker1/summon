@@ -64,7 +64,7 @@ class Act_Sign extends User_Base{
 			$keys = $this->pre->keys( 'action:sign:month:*' );
 			$ret = $ret['list'][] = array();
 			foreach( $keys as $v ){
-				if( count( $ret['list'] ) > getthemonth() )continue;
+				if( count( $ret['list'] ) >= getthemonth() )continue;
 				$ret['list'][] = $this->pre->hgetall( $v );
 			}
 		}
