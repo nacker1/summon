@@ -18,10 +18,10 @@
  	 if( $tVer > $ver ){
 	 	 $ret['down']['ver'] = $tVer;
 		 if( $tVer - $ver < 2 ){
-		 	$ret['down']['url'] = 'http://120.132.71.226/download/1.zip';
+		 	$ret['down']['url'] = 'http://summon.51094.com/download/1.zip';
 		 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/download/1.zip');
 		 }else{
-		 	$ret['down']['url'] = 'http://120.132.71.226/download/2.zip';
+		 	$ret['down']['url'] = 'http://summon.51094.com/download/2.zip';
 		 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/download/2.zip');
 		 }
 	 }
