@@ -17,7 +17,7 @@
  *@ getExchangeInfo() 获取兑换结果信息
  **/
 	function  getExchangeInfo(){
-		$this->cond->set( $this->errInfo );
+		$this->cond->set( $this->errInfo,$this->key );
 		return $this->errInfo;
 	}
 
@@ -25,14 +25,14 @@
  *@ 获取兑换码对应的奖品配置信息
  **/
 	public function getConfig(){
-		if( $error = $this->cond->get() ){
+		if( $error = $this->cond->get($this->key) ){
 			$this->errInfo = $error;
 			return false;
 		}
 		$this->adb;
 		$this->log->d( '~~~~~~~~~~~~~~~~~~~~~~ SELECT DB ~~~~~~~~~~~~~~~~~~~~~~~' );
 		$keyConfig = $this->adb->findOne( $this->table,'*',array( 'cdkey'=>$this->code ) );
-		$this->log->i( $this->adb->getLastSql() );
+
 		if( empty( $keyConfig ) ){
 			$this->log->e(' 用户#'.$this->uid.'#使用兑换码#'.$this->code.'#无效，兑换结束');
 			$this->errInfo = ' 无效兑换码 ';
