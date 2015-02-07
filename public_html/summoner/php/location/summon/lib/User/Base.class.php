@@ -561,19 +561,20 @@ class User_Base extends Base{
             $this->setMissionId(1,51);
             if( date('Ymd') > 20150205 && date('Ymd') < 20150216 ){
                 if( self::$userinfo[$this->uid]['level'] == 30 ){
-                    $this->addMoney(50000);
-                    $good = new User_Goods($this->uid,11040);
-                    $good->addGoods(30);
+                    $mail = new User_Mail( ADMIN_UID );
+                    $goods['money'] = 50000;
+                    $goods['good'] = '11040,30';
+                    $mail->sendMail( '恭喜您升级到30级，特此奖励如下物品，敬请查收！',2, $this->uid, '30级奖励', json_encode($goods) );
                 }elseif( self::$userinfo[$this->uid]['level'] == 40 ){
-                    $this->addMoney(100000);
-                    $good = new User_Goods($this->uid,11020);
-                    $good->addGoods(30);
+                    $mail = new User_Mail( ADMIN_UID );
+                    $goods['money'] = 100000;
+                    $goods['good'] = '11020,30';
+                    $mail->sendMail( '恭喜您升级到40级，特此奖励如下物品，敬请查收！',2, $this->uid, '40级奖励', json_encode($goods) );
                 }elseif(self::$userinfo[$this->uid]['level'] == 50){
-                    $this->addMoney(200000);
-                    $good = new User_Goods($this->uid,11020);
-                    $good->addGoods(30);
-                    $good1 = new User_Goods($this->uid,11040);
-                    $good1->addGoods(30);
+                    $mail = new User_Mail( ADMIN_UID );
+                    $goods['money'] = 200000;
+                    $goods['good'] = '11040,30#11020,30';
+                    $mail->sendMail( '恭喜您升级到50级，特此奖励如下物品，敬请查收！',2, $this->uid, '50级奖励', json_encode($goods) );
                 }
             }
             $this->log->d('* 用户#'.$this->uid.'#升级到 '.self::$userinfo[$this->uid]['level'].' 级，经验：'.self::$userinfo[$this->uid]['exp'].', 体力：'.self::$userinfo[$this->uid]['life'].', maxLife：'.self::$userinfo[$this->uid]['maxLife'].', getLife:'.$nextinfo['getLife']);
