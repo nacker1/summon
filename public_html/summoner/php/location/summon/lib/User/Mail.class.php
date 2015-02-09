@@ -80,7 +80,7 @@
 			$mailRedis = $this->pubRedis;#new Cond('publicMail','',$time);
 		}else{
 			$mailRedis = new Cond('userMail',$to,$time);
-			$toUser = new User_User( $to,-1 );
+			$toUser = new User_Base( $to );
 			$toUser->setNewMail(1); //标记有新邮件  心跳中提示
 		}
 		$this->log->d('mail_info:'.json_encode($send));
