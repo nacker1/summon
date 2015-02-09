@@ -42,5 +42,5 @@
 
 	define( 'CACUTE_RATE', 1 );
 
-	define( 'SUMMON_VERSION', 1 );									#服务器最新版本号   更新时改此即可 
+	define( 'SUMMON_VERSION', 2 );									#服务器最新版本号   更新时改此即可 
 ?>
