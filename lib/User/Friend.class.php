@@ -70,7 +70,7 @@ class User_Friend extends User_Base{
  **/
 	function agreeUserInvite(){
 		// 第二步 判断用户以及对家好友数量是否已满
-		$toUser = new User_User( $this->toUid, -1 );
+		$toUser = new User_Base( $this->toUid );
 		$toUserHaveFriends = (int)$this->toCond->get('tolFriends');
 		if( $toUserHaveFriends >= $toUser->getMaxFriends() ){
 			$this->errorInfo = ' 对方好友人数已满 ';
@@ -123,7 +123,7 @@ class User_Friend extends User_Base{
 			}
 			if( is_array( $friends ) ){
 				foreach( $friends as $v ){
-					$user = new User_User( $v['uid'],-1 );
+					$user = new User_Base( $v['uid'],-1 );
 					$friend[] = $user->getUid();								#好友uid
 					$friend[] = $user->getUserName();							#好友名称
 					$friend[] = $user->getImage();								#好友头像
