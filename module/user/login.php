@@ -14,15 +14,15 @@
  $input['key'] = $key;
  if( empty( $source ) && empty( $source_id ) && empty( $channel ) ){
  	 $server = new Server();
- 	 $tVer = $server->getServerVer();
- 	 if( $tVer > $ver ){
-	 	 $ret['down']['ver'] = $tVer;
-		 if( $tVer - $ver < 2 ){
-		 	$ret['down']['url'] = 'http://summon.51094.com/download/1.zip';
-		 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/download/1.zip');
+ 	 $sConf = $server->getServerVer();
+ 	 if( $sConf['version'] > $ver ){
+	 	 $ret['down']['ver'] = $sConf['version'];
+		 if( $sConf['version'] - $ver < 2 ){
+		 	$ret['down']['url'] = $sConf['url'].'/1.zip';
+		 	$ret['down']['size'] = (int)$sConf['size'];
 		 }else{
-		 	$ret['down']['url'] = 'http://summon.51094.com/download/2.zip';
-		 	$ret['down']['size'] = (int)filesize(SUMMON_ROOT.'/download/2.zip');
+		 	$ret['down']['url'] = $sConf['url'].'/2.zip';
+		 	$ret['down']['size'] = (int)$sConf['size'];
 		 }
 	 }
 	 ret($ret);
