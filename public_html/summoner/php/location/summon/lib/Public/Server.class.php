@@ -103,14 +103,20 @@
 		return $this->slist;
 	}
 /**
- *@ 获取游戏最新版本
+ *@ 获取游戏最新版本信息
  **/
 	public function getServerVer(){
-		$ret = $this->pre->hgetall( 'summon:version' );
-		if( empty( $ret ) || !isset( $ret['ver'] ) ){
-			$ret['ver'] = SUMMON_VERSION;
+		$retConf = $this->pre->hgetall( 'summon:zy_baseGameConfig' );
+		if( empty( $ret ) ){
+			$this->cdb;
+			$ret = $this->cdb->findOne( 'zy_baseGameConfig', 'config', array( 'tag'=>'game_base_version_admin' ) );
+			if( !isset( $ret['config'] ) ){
+				$ret['config'] = '{"version":1,"url":"http://summon.51094.com/download","size":"10001"}';
+			}
+			$this->pre->set( 'summon:zy_baseGameConfig', $ret['config'], get3time() );	
+			$retConf = $ret['config'];
 		}
-		return (int)$ret['ver'];
+		return json_decode( $retConf, true );
 	}
 /**
  *@ 获取服务器php请求地址
