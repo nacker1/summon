@@ -1,8 +1,4 @@
 <?php
-$code = '100alaksdjflaksfjqwoefji';
-echo substr( $code, 0, strpos( $code, 'a' ) );
-echo substr( $code,-1 );
-exit;
 /**
  *@ Act_Code 兑换码通用类
  **/
