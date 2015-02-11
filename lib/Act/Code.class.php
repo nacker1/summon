@@ -1,23 +1,30 @@
 <?php
+$code = '100alaksdjflaksfjqwoefji';
+echo substr( $code, 0, strpos( $code, 'a' ) );
+echo substr( $code,-1 );
+exit;
 /**
  *@ Act_Code 兑换码通用类
  **/
  class Act_Code extends User_Base{
  	private $table='zy_actionCdkey';	//兑换码表
-	private $code;				//兑换码 	
+	private $code;						//兑换码 	
+	private $channel;					//兑换码来源渠道	
+	private $keyType;					//兑换码类型
 	private $errInfo='兑换成功';		//兑换码错误信息
 	private $cond;
 
 	public function __construct( $code,$uid='' ){
 		parent::__construct( $uid );
 		$this->code = $code;
+		$this->channel = substr( $this->code, 0, strpos( $this->code, 'a' ) );
+		$this->keyType = substr( $this->code, -1 );
 		$this->cond = new Cond( $this->table, $uid, get3time() );
 	}
 /**
  *@ getExchangeInfo() 获取兑换结果信息
  **/
 	function  getExchangeInfo(){
-		$this->cond->set( $this->errInfo,$this->code );
 		return $this->errInfo;
 	}
 
@@ -25,12 +32,8 @@
  *@ 获取兑换码对应的奖品配置信息
  **/
 	public function getConfig(){
-		if( $error = $this->cond->get( $this->code ) ){
-			$this->errInfo = $error;
-			#return false;
-		}
-		if( $this->cond->get() ){
-			$this->errInfo = '您已经领取过激活码了';
+		if( $this->cond->get( $this->channel.':'.$this->keyType ) ){
+			$this->errInfo = '您已经领取过该类型的激活码了';
 			return false;
 		}
 		$this->adb;
@@ -53,7 +56,7 @@
 			return false;
 		}		
 		$this->setCodeUsed();
-		$this->cond->set( 1 );
+		$this->cond->set( 1, $this->channel.':'.$this->keyType, $keyConfig['overTime'] - time() );
 		return $keyConfig['goods'];
 	}
 /**

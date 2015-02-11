@@ -10,8 +10,8 @@
  	case '1': //兑换码兑换
  		$tag = ' 兑换码兑换 ';
 		$code = $input['code'];
-		if(  9 > strlen( $code ) ){
-			ret( '兑换码长度应该是10位，请确认',-1 );
+		if(  10 > strlen( $code ) ){
+			ret( '兑换码错误，请重新输入',-1 );
 		}
 		$c = new Act_Code( $code, $user->getUid() );
 		$config = $c->getConfig();
