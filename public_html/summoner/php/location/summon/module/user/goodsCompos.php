@@ -35,7 +35,7 @@
 
 			$gTemp = array();
 			$goods = explode('&',$config);
-			$i = 0;
+			$i = $tolEnergy = 0;
 			foreach( $goods as $val ){
 				$good = explode(':',$val);
 				$bGood = $good[0];
@@ -43,6 +43,8 @@
 					foreach( $use as $v ){
 						if( substr( $v, 0, 5 ) == substr( $bGood, 0, 5 ) ){
 							$bGood = $v;
+							$gCom = new Goodcompos( $bGood, 2 );
+ 							$tolEnergy += $gCom->getEnergy();
 						}
 					}
 				}
