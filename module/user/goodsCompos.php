@@ -13,15 +13,17 @@
  	case '1': //装备合成
  		$tag = '装备合成';
  		$comid = $input['comid']; //需要合成的装备id
+ 		$use = $input['use']; //合成装备时使用的装备物品id
 
-		 if( $comid < 30000 ){
+		if( $comid < 30000 ){
 			ret('YMD',-1);
-		 }
+		}
+		if( !empty( $use ) ){
+			$use = explode( '#',$use );
+		}
 
 		 $goodcom = new Goodcompos( $comid );
-
 		 $cominfo = $goodcom->getComItemInfo();
-
 		 $config = $cominfo['config'];
 		 if( !empty( $config ) ){
 			$money = $cominfo['Cost_Gold'];
@@ -36,13 +38,20 @@
 			$i = 0;
 			foreach( $goods as $val ){
 				$good = explode(':',$val);
-
-				$ug[$i] = new User_Goods( $user->getUid(), $good[0] );
+				$bGood = $good[0];
+				if( is_array( $use ) ){
+					foreach( $use as $v ){
+						if( substr( $v, 0, 5 ) == substr( $bGood, 0, 5 ) ){
+							$bGood = $v;
+						}
+					}
+				}
+				$ug[$i] = new User_Goods( $user->getUid(), $bGood );
 				if( $ug[$i]->getGoodsNum() < $good[1] ){
 					$log->e('* 用户'.$ug[$i]->getGoodName().'不足，无法合成。装备：'.$config);
 					ret('['.$ug[$i]->getGoodName().']不足，无法合成。',-1);
 				}else{
-					$g[] = $good[0];
+					$g[] = $bGood;
 					$g[] = -$good[1];
 					array_push( $gTemp, implode(',',$g) );
 					unset($g);
