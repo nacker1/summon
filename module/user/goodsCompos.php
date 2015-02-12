@@ -46,6 +46,7 @@
 						}
 					}
 				}
+				$log->i( 'bGood:'.$bGood );
 				$ug[$i] = new User_Goods( $user->getUid(), $bGood );
 				if( $ug[$i]->getGoodsNum() < $good[1] ){
 					$log->e('* 用户'.$ug[$i]->getGoodName().'不足，无法合成。装备：'.$config);
