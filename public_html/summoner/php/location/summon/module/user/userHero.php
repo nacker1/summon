@@ -104,7 +104,7 @@
 		$cLevel = 1;
 		$hInfo = $hero->getHeroInfo();
 		if( $hInfo ){ //品质升级
-			$cLevel = (int)$hInfo['color'] + 1;
+			$cLevel = (int)$hInfo['star'] + 1;
 			if( $cLevel >= 5 ){
 				ret('品质已到顶级',-1);
 			}
@@ -126,7 +126,7 @@
 				$reGood[] = GENERAL_ID.',-'.$num;
 				$reGood[] = $gid.',-'.$goods->getGoodsNum();
 			}
-			if( !$hero->colorUp( $cLevel ) ){
+			if( !$hero->starUp( $cLevel ) ){
 				ret('系统繁忙',-1);
 			}
 		}else{ //英雄合成
@@ -294,7 +294,7 @@
 				$hero = new User_Hero( $user->getUid(), $hid );
 				ret($hero->getHeroInfo());
 				break;
-			case '2':#颜色
+			case '2':#品质
 				$hero = new User_Hero( $user->getUid(), $hid );
 				$hero->colorUp($to);
 				ret($hero->getHeroInfo());
