@@ -59,8 +59,9 @@ class User_Draw extends User_Base{
 				$temp = $this->type.':'.$v['Item_Type'].':'.$v['Item_Color'];
 				$config_ret[ $temp ][ $v['Item_Id'] ] = $v;
 			}
-			$this->log->i('ret:'.json_encode($ret));
+			$this->log->d('ret:'.json_encode($ret));
 			foreach( $config_ret as $key=>$val ){
+				$this->log->d('config:'.json_encode( $val ) );
 				$this->preMaster->set( 'baseDrawConfig:'.$key, json_encode( $val ) );
 			}
 
