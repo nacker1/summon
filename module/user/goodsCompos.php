@@ -72,10 +72,10 @@
 		 }
 	case '2': //装备强化
 		$tag = '装备强化';
- 		$comid = $input['comid']; 					//需要强化的装备id
- 		$iList = $input['items'];					//需要吞掉的物品id
- 		$hid = $input['hid'];						//英雄id
- 		$index = $input['index'];					//英雄需要强化装备对应的装备框
+ 		$comid = $input['comid']; 						//需要强化的装备id
+ 		$iList = $input['items'];						//需要吞掉的物品id
+ 		$hid = $input['hid'];							//英雄id
+ 		$index = $input['index'];						//英雄需要强化装备对应的装备框
  		if( empty( $comid ) || empty( $iList ) ){
  			ret('YMD('.__LINE__.')',-1);
  		}

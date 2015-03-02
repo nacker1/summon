@@ -103,33 +103,36 @@ class User_Hero extends User_Base{
 		return count($this->hinfo);
 	}
 /**
- *@ 赠送英雄 $color英雄品质（1白，2绿，3蓝，4紫，5橙）
+ *@ 赠送英雄 
+ *@ param:
+ *	star : 	英雄星级   1 - 5 星
+ *	color:	英雄品质   0 - 9 阶   0白  1绿  2绿+1  3蓝  4蓝+1  5蓝+2  6紫  7紫+1  8紫+2  9紫+3
  **/
-	public function giveHero( $color='' ){
-		empty( $color ) && $color = 1;
+	public function giveHero( $star = 1, $color=0 ){
+		empty( $star ) && $star = 1;
 		empty( $this->hid ) && ret( 'no_hid ('.__LINE__.')' );
 		if( !empty( $this->hinfo ) && $this->hinfo['hid'] == $this->hid ){
 			$nums = array( 1=>10,2=>20,3=>40,4=>80,5=>160 );
 			//转成英雄碎片
-			if( isset( $nums[ $color ] ) ){
+			if( isset( $nums[ $star ] ) ){
 				$gid = '11'.substr($this->hid,2);
 				$good = new User_Goods( $this->uid, $gid );
-				return $good->addGoods( $nums[ $color ] );
+				return $good->addGoods( $nums[ $star ] );
 			}else{
 				$this->log->e( ' 用户#'.$this->uid.'# 获得英雄转成碎片后因对应品质的数量找不到失败。理论上应该是在作弊！' );
 				return false;
 			}
 		}else{ //添加英雄数量
-			$this->setMissionId(1,21);
-			switch( $color ){
-				case '2':
-					$this->setMissionId(1,22);break;
+			$this->setMissionId( 1, 21 );
+			switch( $color ){ #触发系统任务   1绿色英雄   3蓝色英雄   6紫色英雄
+				case '1':
+					$this->setMissionId( 1, 22 );break;
 				case '3':
-					$this->setMissionId(1,23);break;
-				case '4':
-					$this->setMissionId(1,24);break;
+					$this->setMissionId( 1, 23 );break;
+				case '6':
+					$this->setMissionId( 1, 24 );break;
 			}
-			$hero = $this->initHero($color);
+			$hero = $this->initHero( $star, $color );
 			$this->hinfo = $hero;
 			return $this->redis->hmset( 'roleinfo:'.$this->uid.':hero:'.$this->hid, $hero );
 		}
@@ -137,14 +140,21 @@ class User_Hero extends User_Base{
 /**
  *@ 初始化英雄数据
  **/
-	private function initHero($color){
-		for( $i=1;$i<=$color; $i++ ){
-			$config[$i]=1;
+	private function initHero( $star=1, $color=0 ){
+		switch( $color ){
+			case $color >= 6: #紫色技能
+				$config[4] = 1;
+			case $color >= 3: #蓝色技能
+				$config[3] = 1;
+			case $color >= 1: #绿色技能
+				$config[2] = 1;
+			default:
+				$config[1] = 1;
 		}
 		$hero['hid'] = $this->hid;
 		$hero['level'] = 1;
 		$hero['exp'] = 0;
-		$hero['star'] = 1;
+		$hero['star'] = $star;
 		$hero['color'] = $color;
 		$hero['uid'] = $this->uid;
 		$hero['equip1'] = '0';
@@ -289,12 +299,27 @@ class User_Hero extends User_Base{
 		return true;
 	}
 /** 
- *@ 英雄品质升级或使用灵魂石合成英雄 $level: 品质等级  1=>白  2=>绿  3=>蓝 4=>紫 5=>橙
+ *@ 英雄品质升级或使用灵魂石合成英雄 $level: 品质等级  0=>白  1=>绿  3=>蓝 6=>紫 10=>橙
  **/
 	function colorUp( $level ){
-		$this->unLockSkill( $level ); //品质升级技能解锁
+		switch( $level ){
+			case 1: $skillLevel = 2;
+			case 3: $skillLevel = 3;
+			case 6: $skillLevel = 4;
+			case 10: $skillLevel = 5;
+		}
+		$this->unLockSkill( $skillLevel ); //品质升级技能解锁
 		self::$lastUpdHero[$this->uid][$this->hid]['color'] = $level;
 		$ret = self::$heroInfo[$this->uid][$this->hid]['color'] = $level;
+		$this->setHeroUpdTime();
+		return $ret;
+	}
+/** 
+ *@ 英雄品质星星升级或使用灵魂石合成英雄
+ **/
+	function starUp( $level ){
+		self::$lastUpdHero[$this->uid][$this->hid]['star'] = $level;
+		$ret = self::$heroInfo[$this->uid][$this->hid]['star'] = $level;
 		$this->setHeroUpdTime();
 		return $ret;
 	}
