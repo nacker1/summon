@@ -75,7 +75,7 @@ class User_Draw extends User_Base{
 	function getGift( $nums ){
 		$ret = array();
 
-		if( $nums == 10 && $this->getLevel() > 1 ){
+		if( $nums == 10 ){
 			for( $i=0;$i<$nums-1;$i++ ){
 				$type = $this->_getType();
 				array_push( $ret, $this->_getGood( $type ) );
@@ -102,7 +102,7 @@ class User_Draw extends User_Base{
 		if( $this->giveHeroTag ){
 			if( $this->type == 2 ){  #送英雄
 				$type['type'] = 1;
-				$type['color'] = 1;
+				$type['color'] = 3;
 				$type['min'] = 1;
 				$type['max'] = 1;
 			}elseif( $this->type == 1 ){  #送蓝色物品
