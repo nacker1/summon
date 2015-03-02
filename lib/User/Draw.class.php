@@ -41,7 +41,7 @@ class User_Draw extends User_Base{
 				#$this->preMaster->hmset( 'baseDrawTypeConfig:'.$this->type.':'.$v['Group_Level'].':'.$v['id'], $v );
 				$rret[$v['Group_Level']][ $v['id'] ] = $v;
 			}
-			$this->log->i('rret:'.json_encode($rret));
+			#$this->log->i('rret:'.json_encode($rret));
 			foreach ($rret as $key => $value) {
 				# code...
 				$this->preMaster->set( 'baseDrawTypeConfig:'.$this->type.':'.$key, json_encode($value) );
@@ -59,7 +59,7 @@ class User_Draw extends User_Base{
 				$temp = $this->type.':'.$v['Item_Type'].':'.$v['Item_Color'];
 				$config_ret[ $temp ][] = $v;
 			}
-			$this->log->d('ret:'.json_encode($ret));
+			#$this->log->d('ret:'.json_encode($ret));
 			foreach( $config_ret as $key=>$val ){
 				$this->preMaster->set( 'baseDrawConfig:'.$key, json_encode( $val ) );
 			}
