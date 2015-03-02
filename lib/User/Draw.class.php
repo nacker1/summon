@@ -102,9 +102,12 @@ class User_Draw extends User_Base{
 		if( $this->giveHeroTag ){
 			if( $this->type == 2 ){  #送英雄
 				$type['type'] = 1;
-				$type['color'] = 3;
+				$type['color'] = 1;
 				$type['min'] = 1;
 				$type['max'] = 1;
+				if( $this->getLevel() < 2 ){  #1级时默认送蓝色英雄
+					$type['color'] = 3;
+				}
 			}elseif( $this->type == 1 ){  #送蓝色物品
 				$item = array( 3=>0.05, 4=>0.95 );
 				$itemType = $this->retRate( $item );
