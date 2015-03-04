@@ -270,6 +270,26 @@ class User_Hero extends User_Base{
 		return $eqConf;
 	}
 /**
+ *@ 清空英雄身上的装备  吞装备进阶时使用
+ **/
+	function emptyEquip(){
+		for( $i=1;$i<7;$i++ ){
+			self::$heroInfo[$this->uid][$this->hid]['equip'.$i] = '0';
+		}
+		return true;
+	}
+/**
+ *@ 检查英雄身上的装备是否全部穿满
+ **/
+	function allEquip(){
+		for( $i=1;$i<7;$i++ ){
+			if( empty( self::$heroInfo[$this->uid][$this->hid]['equip'.$i] ) ){
+				return false;
+			}
+		}
+		return true;
+	}
+/**
  *@ 计算指定英雄的总战斗力
  **/
 	function getTotalFire(){
@@ -298,21 +318,28 @@ class User_Hero extends User_Base{
 		self::$heroInfo[$this->uid][$this->hid]['fire'] = self::$lastUpdHero[$this->uid][$this->hid]['fire'] = $this->getTotalFire();
 		return true;
 	}
+	function getHeroColor(){
+		return (int)self::$heroInfo[$this->uid][$this->hid]['color'];
+	}
 /** 
  *@ 英雄品质升级或使用灵魂石合成英雄 $level: 品质等级  0=>白  1=>绿  3=>蓝 6=>紫 10=>橙
  **/
 	function colorUp( $level ){
-		switch( $level ){
-			case 1: $skillLevel = 2;
-			case 3: $skillLevel = 3;
-			case 6: $skillLevel = 4;
-			case 10: $skillLevel = 5;
+		if( $this->allEquip() ){
+			switch( $level ){
+				case 1: $skillLevel = 2;
+				case 3: $skillLevel = 3;
+				case 6: $skillLevel = 4;
+				case 10: $skillLevel = 5;
+			}
+			$this->unLockSkill( $skillLevel ); //品质升级技能解锁
+			self::$lastUpdHero[$this->uid][$this->hid]['color'] = $level;
+			$ret = self::$heroInfo[$this->uid][$this->hid]['color'] = $level;
+			$this->emptyEquip(); #清空英雄身上的装备
+			$this->setHeroUpdTime();
+			return $ret;
 		}
-		$this->unLockSkill( $skillLevel ); //品质升级技能解锁
-		self::$lastUpdHero[$this->uid][$this->hid]['color'] = $level;
-		$ret = self::$heroInfo[$this->uid][$this->hid]['color'] = $level;
-		$this->setHeroUpdTime();
-		return $ret;
+		return false;
 	}
 /** 
  *@ 英雄品质星星升级或使用灵魂石合成英雄
@@ -382,7 +409,7 @@ class User_Hero extends User_Base{
 	function unLockSkill( $skillIndex ){
 		$skillConf = self::$heroInfo[$this->uid][$this->hid]['config'];
 		$skillConf = json_decode( $skillConf, true );
-		if( isset( $skillConf[ $skillIndex ] ) ){return true;}
+		if( isset( $skillConf[ $skillIndex ] ) || !in_array( $skillIndex, array(1,2,3,4,5) ) ){return true;}
 		switch( $skillIndex ){ //技能真正解锁后品质任务加1
 			case '2':$this->setMissionId(1,22);break;
 			case '3':$this->setMissionId(1,23);break;

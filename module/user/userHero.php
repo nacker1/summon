@@ -92,7 +92,7 @@
 		}
 		ret( $ret );
 	case '5': //英雄灵魂石召唤或提升品质
-		$tag = '英雄合成或品质升级';
+		$tag = '英雄合成或星星升级';
 		if( empty( $hid ) ){
 			ret('hero id error!',-1);
 		}
@@ -251,6 +251,24 @@
 		$hero = new Herobase( $hid );
 		ret( $hero->getComment( $order, $page ) );
 		break;
+	case '9': #英雄品质升级
+		$tag = '英雄品质升级';
+		if( empty($hid) ){
+			ret('param error ('.__line__.') !',-1);
+		}
+		$reduceMoney = array( 1=>10000,2=>20000,3=>30000,4=>40000,5=>50000,6=>60000,7=>70000,8=>80000,9=>90000 );
+		$hero = new User_Hero( $user->getUid(), $hid );
+		$color = $hero->getHeroColor();
+		$color += 1;
+		if( $user->getMoney() < $reduceMoney[ $color ] ){
+			ret( 'no_money', -1 );
+		}
+		$add['money'] = -$reduceMoney[$color];
+		if( $hero->colorUp( $color ) ){
+			$ret = $user->sendGoodsFromConfig( $add );
+			ret( $ret );	
+		}
+		ret( 'no_equip'.__LINE__, -1 );
 	case '997': #删除用户英雄的内存信息
 		$hero = new User_Hero( $user->getUid() );
 		$hero->delHeroInfo();
