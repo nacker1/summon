@@ -157,9 +157,9 @@
 			$index = $this->retRate($list);
 			$temp = isset( $this->shopinfo[ $val ][$index] ) ? $this->shopinfo[ $val ][$index] : $this->shopinfo[ $val ][ count($list)-1 ];
 
-			if( 6 == $temp['Item_Type'] ){
+			if( 6 == $temp['Item_Type'] ){ #消耗品数量
 				$nums = 5;
-			}elseif( 1 == $temp['Item_Type'] ){
+			}elseif( 1 == $temp['Item_Type'] ){ #灵魂石数量
 				$nums = 1;
 			}else{
 				$numArr = array(3=>0.1,2=>0.2,1=>0.7);

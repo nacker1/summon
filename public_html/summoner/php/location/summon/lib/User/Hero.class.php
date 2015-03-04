@@ -63,7 +63,9 @@ class User_Hero extends User_Base{
 		$maxFire = -1;
 		$mercHero = '';
 		foreach( $this->hinfo as $v ){
-			if( !isset( $v['hid'] ) ){continue;}
+			if( !isset( $v['hid'] ) ){
+				continue;
+			}
 			$temp[] = $v['fire'];
 			$temp[] = $v['level'];
 			$temp[] = $v['exp'];
