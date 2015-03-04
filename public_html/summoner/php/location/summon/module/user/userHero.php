@@ -264,7 +264,7 @@
 			ret( 'no_money', -1 );
 		}
 		$add['money'] = -$reduceMoney[$color];
-		if( $hero->colorUp( $color ) ){
+		if( true || $hero->colorUp( $color ) ){
 			$ret = $user->sendGoodsFromConfig( $add );
 			ret( $ret );	
 		}
