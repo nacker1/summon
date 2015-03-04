@@ -274,7 +274,7 @@ class User_Hero extends User_Base{
  **/
 	function emptyEquip(){
 		for( $i=1;$i<7;$i++ ){
-			self::$heroInfo[$this->uid][$this->hid]['equip'.$i] = '0';
+			self::$lastUpdHero[$this->uid][$this->hid]['equip'.$i] = self::$heroInfo[$this->uid][$this->hid]['equip'.$i] = '0';
 		}
 		return true;
 	}
