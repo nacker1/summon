@@ -267,11 +267,6 @@
 		if( $hero->colorUp( $color ) ){
 			$ret = $user->sendGoodsFromConfig( $add );
 			$ret['hero'] = $hero->getLastUpdField();
-			#=========== 任务信息 ==================
-			$mis = $user->getMissionNotice();
-			if( !empty( $mis ) ){
-				$ret['mis'] = $mis;
-			}
 			ret( $ret );	
 		}
 		ret( 'no_equip'.__LINE__, -1 );
