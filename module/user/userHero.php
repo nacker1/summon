@@ -266,6 +266,7 @@
 		$add['money'] = -$reduceMoney[$color];
 		if( true || $hero->colorUp( $color ) ){
 			$ret = $user->sendGoodsFromConfig( $add );
+			$ret['hero'] = $hero->getLastUpdField();
 			ret( $ret );	
 		}
 		ret( 'no_equip'.__LINE__, -1 );
