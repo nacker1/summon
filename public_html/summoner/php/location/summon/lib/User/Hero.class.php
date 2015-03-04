@@ -326,11 +326,11 @@ class User_Hero extends User_Base{
  **/
 	function colorUp( $level ){
 		if( true || $this->allEquip() ){
-			switch( $level ){
-				case 1: $skillLevel = 2;
-				case 3: $skillLevel = 3;
-				case 6: $skillLevel = 4;
-				case 10: $skillLevel = 5;
+			switch( $level ){				
+				case 10: $skillLevel = 5;break;
+				case 6: $skillLevel = 4;break;
+				case 3: $skillLevel = 3;break;
+				case 1: $skillLevel = 2;break;
 			}
 			$this->unLockSkill( $skillLevel ); //品质升级技能解锁
 			self::$lastUpdHero[$this->uid][$this->hid]['color'] = $level;
