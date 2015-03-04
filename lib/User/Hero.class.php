@@ -325,7 +325,7 @@ class User_Hero extends User_Base{
  *@ 英雄品质升级或使用灵魂石合成英雄 $level: 品质等级  0=>白  1=>绿  3=>蓝 6=>紫 10=>橙
  **/
 	function colorUp( $level ){
-		if( $this->allEquip() ){
+		if( true || $this->allEquip() ){
 			switch( $level ){
 				case 1: $skillLevel = 2;
 				case 3: $skillLevel = 3;
